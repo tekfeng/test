@@ -17,11 +17,16 @@
 //= require ./backbonejs/libraries/underscore-1.5.2
 //= require ./backbonejs/libraries/backbone-1.1.0
 //= require ./backbonejs/libraries/backbone.marionette-1.4.0
+//= require ./backbonejs/libraries/bootstrap.min
+//= require ./backbonejs/libraries/jquery.cookie
+//= require ./backbonejs/libraries/jquery.fancybox
 
 //= require_tree ./backbonejs/models
 //= require_tree ./backbonejs/collections
 //= require_tree ./backbonejs/views
 
+//= require ./backbonejs/controllers/base_controller
+//= require_tree ./backbonejs/controllers
 //= require ./backbonejs/routers/app_router
 //= require_tree ./backbonejs/routers
 
@@ -35,13 +40,36 @@ function startAmazingBoneoApplication() {
   });
 
   window.amazingBoneoApplication.addInitializer(function(options) {
-    window.adminRouter = new AmazingBoneoApp.AdminRouter();
-    // new AmazingBoneoApp.SalesRouter();
+    window.loginRouter = new AmazingBoneoApp.LoginRouter();
+		new AmazingBoneoApp.AdminRouter();
+    new AmazingBoneoApp.SalesRouter();
+		new AmazingBoneoApp.ReservationsRouter();
+		new AmazingBoneoApp.FinanceRouter();
     Backbone.history.start({pushState: false});
   });
 
   window.amazingBoneoApplication.start();
-}
+};
+
+function pageLoading() {
+  $.fancybox.helpers.overlay.open({closeClick : false});
+  $.fancybox.showLoading();
+};
+
+function pageLoadingOnlyGift() { $.fancybox.showLoading(); };
+
+function pageUnloading() {
+  $.fancybox.helpers.overlay.close();
+  $.fancybox.hideLoading();
+};
+
+function pageUnloadingOnlyGift() { $.fancybox.hideLoading(); };
+
+function setCookie(key, value) { $.cookie(key, value, {expires: 365}); }
+
+function getCookie(key) { return $.cookie(key); }
+
+function removeCookie(key) { $.removeCookie(key); }
 
 $(document).ready(function() {
   startAmazingBoneoApplication();
