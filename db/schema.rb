@@ -11,7 +11,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150511023050) do
+ActiveRecord::Schema.define(version: 20150511031654) do
+
+  create_table "countries", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.string   "name",           limit: 255
+    t.string   "email_address",  limit: 255
+    t.string   "contact_number", limit: 255
+    t.string   "address",        limit: 255
+    t.integer  "country_id",     limit: 4
+    t.string   "source",         limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tour_categories", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tours", force: :cascade do |t|
+    t.string   "code",             limit: 255
+    t.string   "name",             limit: 255
+    t.integer  "tour_category_id", limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false

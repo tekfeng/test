@@ -1,0 +1,21 @@
+shared_settings: &shared_settings
+  project_name: "Amazing Borneo"
+  api_key: 94203bd90ff7c63881ef76e7c3c8288b8cf7a2a7
+
+development: &non_production_settings
+  <<: *shared_settings
+  domain: localhost:3000
+  email_sender: "noreply@rubify.com"
+
+test:
+  <<: *non_production_settings
+  <<: *shared_settings
+  
+staging:
+  <<: *non_production_settings
+  <<: *shared_settings
+  domain: staging_url.com
+
+production:
+  <<: *shared_settings
+  domain: production_url.com
