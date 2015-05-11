@@ -1,0 +1,48 @@
+#start_page_container {
+  .start-page-item {
+    width: 100%;
+    min-height: 300px;
+    padding: 20px;
+    
+    h3 {
+      margin: 0;
+      padding: 0;
+      
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+    
+    ul {
+      list-style: none;
+      
+      li {
+        margin-bottom: 5px;
+        
+        a {
+          color: #fff;
+        }
+      }
+    }
+    
+    &.admin {
+      background: red;
+    }
+    
+    &.sales {
+      background: purple;
+    }
+    
+    &.reservations {
+      background: green;
+    }
+    
+    &.operations {
+      background: blue;
+    }
+    
+    &.finance {
+      background: black;
+    }
+  }
+}
