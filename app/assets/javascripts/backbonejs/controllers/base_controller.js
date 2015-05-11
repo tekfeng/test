@@ -49,7 +49,13 @@ var AmazingBoneoApp = AmazingBoneoApp || {};
 						'title': 'Reports',
 						'url': 'reports'
 					}
-				]
+				],
+        'reservations': [
+					{
+						'title': 'Vendors',
+						'url': 'vendors'
+					},
+        ]
 			};
 			
 			return data[type];

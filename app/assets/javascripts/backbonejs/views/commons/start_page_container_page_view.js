@@ -17,6 +17,6 @@ AmazingBoneoApp.StartPageContainerPageView = Backbone.Marionette.Layout.extend({
 	goToHomePage: function(event) {
 		event.preventDefault();
 		
-		Backbone.history.navigate('home', true);
+		Backbone.history.navigate('users', true);
 	}
 });

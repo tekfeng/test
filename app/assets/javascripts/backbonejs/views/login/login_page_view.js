@@ -16,6 +16,8 @@ AmazingBoneoApp.LoginPageView = Backbone.Marionette.Layout.extend({
 	
 	submitForm: function(event) {
 		event.preventDefault();
+    
+    setCookie('authentication_token', 'asdsad');
 		
 		Backbone.history.navigate('start', true);
 	}

@@ -15,8 +15,10 @@ var AmazingBoneoApp = AmazingBoneoApp || {};
 		},
 		
 		startPage: function() {
-			var startPageConatainerPageView = new AmazingBoneoApp.StartPageContainerPageView();
-			window.amazingBoneoApplication.content.show(startPageConatainerPageView);
+      this._checkLogin(function() {
+  			var startPageConatainerPageView = new AmazingBoneoApp.StartPageContainerPageView();
+  			window.amazingBoneoApplication.content.show(startPageConatainerPageView);
+      });
 		}
   });
 }());
