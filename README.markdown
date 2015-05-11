@@ -99,7 +99,7 @@ GET http://<domain_name>/api/tours?api_key=<api_key>&auth_token=<auth_token>&pag
 }
 ```
 
-### 2. Create Tour
+### 6. Create Tour
 
 ```bash
 POST http://<domain_name>/api/tour_categories?tour=<tour>
@@ -114,7 +114,7 @@ POST http://<domain_name>/api/tour_categories?tour=<tour>
 }
 ```
 
-### 3. Edit Tour
+### 7. Edit Tour
 
 ```bash
 POST http://<domain_name>/api/tour/<tour_id>/edit
@@ -133,7 +133,7 @@ POST http://<domain_name>/api/tour/<tour_id>/edit
 }
 ```
 
-### 4. Update Tour
+### 8. Update Tour
 
 ```bash
 PUT http://<domain_name>/api/tour_categories?tour=<tour>
