@@ -1,0 +1,2 @@
+module BackbonejsHelper
+end
