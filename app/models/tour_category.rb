@@ -16,7 +16,7 @@ class TourCategory < ActiveRecord::Base
     end
     page = opts[:page] ? opts[:page].to_i : 1
     tour_categories = self.all
-    tour_categories = tour_categories.where(columns_condition.join(" OR "), keyword: "%#{opts[:keywords].downcase}%") if opts[:keyword]
+    tour_categories = tour_categories.where(columns_condition.join(" OR "), keyword: "%#{opts[:keyword].downcase}%") if opts[:keyword]
     tour_categories = tour_categories.page(page).per(10)
     return {tour_categories: tour_categories, total_page: tour_categories.total_pages, current_page: page}
   end

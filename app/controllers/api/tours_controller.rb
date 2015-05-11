@@ -5,7 +5,7 @@ class Api::ToursController < Api::BaseController
   end
   
   def create
-    @tour = Tour.new(plant_params)
+    @tour = Tour.new(tour_params)
     if @tour.save
       render json: {status: 'successful'}
     else
@@ -24,10 +24,14 @@ class Api::ToursController < Api::BaseController
   
   def update
     @tour = Tour.find_by_id(params[:id])
-    if @tour and @tour.update_attributes(tour_params)
-      render json: {status: 'successful'}
+    if @tour 
+      if @tour.update_attributes(tour_params)
+        render json: {status: 'successful'}
+      else
+        render json: {status: 'failed', errors: @tour.errors.full_messages}, status: 422
+      end
     else
-      render json: {status: 'failed', errors: @tour.errors.full_messages}, status: 422
+      render json: {status: 'failed', errors: "No such Tour"}, status: 422
     end
   end
   

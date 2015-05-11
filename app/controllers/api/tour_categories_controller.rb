@@ -24,10 +24,14 @@ class Api::TourCategoriesController < Api::BaseController
   
   def update
     @tour_category = TourCategory.find_by_id(params[:id])
-    if @tour_category and @tour_category.update_attributes(tour_category_params)
-      render json: {status: 'successful'}
+    if @tour_category
+      if @tour_category.update_attributes(tour_category_params)
+        render json: {status: 'successful'}
+      else
+        render json: {status: 'failed', errors: @tour_category.errors.full_messages}, status: 422
+      end
     else
-      render json: {status: 'failed', errors: @tour_category.errors.full_messages}, status: 422
+      render json: {status: 'failed', errors: "No such Tour Category"}, status: 422
     end
   end
   
