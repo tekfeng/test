@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
+  devise_for :users
   get 'backbonejs/app'
   
   root :to => 'backbonejs#app'
+  
+  namespace :api do
+    get 'users/get_all'
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
