@@ -1,0 +1,93 @@
+
+a.prev {
+  position: absolute !important;
+  top: 120px;
+  left: 0px;
+  z-index: 200 !important;
+  cursor: pointer;
+}
+a.prev:hover {
+  color: #cccccc;
+}
+
+a.next {
+  position: absolute !important;
+  top: 120px;
+  right: 0px;
+  cursor: pointer;
+  z-index: 200 !important;
+}
+
+a.next:hover {
+  color: #cccccc;
+}
+
+.gallery {
+  display: block;
+  margin: 0 auto; 
+  text-align: center;
+  min-width: 300px;
+  max-width: 400px;
+  position: relative;
+}
+
+.gallery a {
+  color: #3d3d3d;
+  position: relative;
+  text-decoration: none;
+  z-index: 2;
+}
+
+.gallery i {
+  font-size: 2em;
+}
+
+.gallery a:hover{
+  color: black;
+}
+
+.gallery a, .slider {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.slider {
+  /*box-shadow: 0px 0px 25px 5px rgba(0,0,0,0.3);*/
+  overflow: hidden;
+  position: relative;
+  width: 300px;
+  height: 400px;
+  z-index: 100;
+}
+
+.slider ul {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  width: 100%;
+} 
+
+.slider li {
+  float: left;
+  color: #3d3d3d;
+  font-size: 30px; 
+  height: 300px;
+  /*line-height: 167px;*/
+  list-style: none;
+  margin: 0;
+  position: relative;
+  width: 300px;
+  text-align: center;
+}
+
+.slider li img {
+  display: inline-block;
+  width: 300px !important;
+  text-align: center;
+}
+
+.slider li .desc {
+  z-index: 300;
+  font-size: 20px !important;
+  font-weight: 400;
+}

@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  contact_form_header: MyText
+  contact_form_description: MyText
+  contact_us_header: MyText
+  contact_us_description: MyText
+  address: MyText
+  mrt_station: MyText
+  phone: MyString
+  email: MyString
+  working_hours: MyText
+
+two:
+  contact_form_header: MyText
+  contact_form_description: MyText
+  contact_us_header: MyText
+  contact_us_description: MyText
+  address: MyText
+  mrt_station: MyText
+  phone: MyString
+  email: MyString
+  working_hours: MyText

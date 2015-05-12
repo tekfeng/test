@@ -1,0 +1,2 @@
+module Admin::ContactUsPagesHelper
+end

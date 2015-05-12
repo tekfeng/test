@@ -21,3 +21,10 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    models:
+      treatment: Treatment
+    attributes:
+      treatment:
+        title: "Title"
+        content: "Content"

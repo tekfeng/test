@@ -1,7 +1,9 @@
 class Tour < ActiveRecord::Base
   belongs_to :tour_category
   validates :name, :presence => true
+  validates :name, :uniqueness => true
   validates :code, :presence => true
+  validates :code, :uniqueness => true
   validates :tour_category_id, :presence => true
   
   def as_json(options={})

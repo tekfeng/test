@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  treatments_1_url: MyText
+  treatments_2_url: MyText
+  products_url: MyText
+  promotions_url: MyText
+  header: MyText
+  description: MyText
+  cfa_title: MyString
+  cfa_url: MyText
+
+two:
+  treatments_1_url: MyText
+  treatments_2_url: MyText
+  products_url: MyText
+  promotions_url: MyText
+  header: MyText
+  description: MyText
+  cfa_title: MyString
+  cfa_url: MyText

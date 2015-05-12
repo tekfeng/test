@@ -4,7 +4,7 @@ Devise.setup do |config|
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
-  # config.secret_key = '38eb3ab3dfdbbfe03cc1689f272bebc109edb2dffe94883c35eaeeb3c2b6af407c78ae52b548565b554ccf81eb713265f208a6178ced62b0245f360c649691de'
+  # config.secret_key = '0f4a403582b685900f467e1765684300ea83cb9ea279fea36d298f325ace20a82cd03fb82ae212439aea73ea53682a50f5def675eeb41cac781f965653b6bc48'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -97,7 +97,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 10
 
   # Setup a pepper to generate the encrypted password.
-  # config.pepper = '1789faf400d03b3f8f91073ce42f2ae6432facf551c0ee49d365635c316ffabef0953cbfdf56263aa81d21a8f6287d6af8cf2d26f73286193e044da2c72ff8f0'
+  # config.pepper = '62877a81002f719a2a3c8f47cfd04e2a7a2741243bdcf354038384be7d0affbc94bec7e80fdeaa1d4c7cfd165648a513e9d719c634b36e052eccf412f62be5d1'
 
   # ==> Configuration for :confirmable
   # A period that the user is allowed to access the website even without
@@ -227,7 +227,7 @@ Devise.setup do |config|
   # config.navigational_formats = ['*/*', :html]
 
   # The default HTTP method used to sign out a resource. Default is :delete.
-  config.sign_out_via = :delete
+  config.sign_out_via = :get
 
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting

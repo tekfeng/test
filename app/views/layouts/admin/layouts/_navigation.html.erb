@@ -1,0 +1,38 @@
+<nav class="navbar-default navbar-static-side" role="navigation">
+  <div class="sidebar-collapse">
+    <ul class="nav" id="side-menu">
+      <li class="nav-header">
+        <div class="dropdown profile-element">
+          <span>
+            <img alt="image" class="img-circle" src="/assets/dashboard/persona.png">
+          </span>
+          <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+            <span class="clear">
+              <span class="block m-t-xs">
+                <strong class="font-bold">Login as</strong>
+              </span>
+              <span class="text-muted text-xs block">
+                <%= current_user.email %>
+              </span>
+            </span>
+          </a>
+        </div>
+        <div class="logo-element">
+          F
+        </div>
+      </li>
+      <li class="<%= 'active' if params[:controller] == 'tour_categories' %>">
+        <%= link_to "/tour_categories" do %>
+          <i class="fa fa-cubes"></i> 
+          <span class="nav-label">Tour Categories</span>
+        <% end %>
+      </li>
+      <li class="<%= 'active' if params[:controller] == 'tours' %>">
+        <%= link_to "/tours" do %>
+          <i class="fa fa-cubes"></i> 
+          <span class="nav-label">Tours</span>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</nav>

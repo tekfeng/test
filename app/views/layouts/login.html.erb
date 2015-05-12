@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Amazing Borneo</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= stylesheet_link_tag    'dashboard/application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'dashboard/application', 'data-turbolinks-track' => true %>
+
+  <%= csrf_meta_tags %>
+</head>
+<body class="gray-bg">
+  <div class="middle-box text-center loginscreen  animated fadeInDown">
+    <div>
+      <div>
+        <img src='/assets/dashboard/logo.png' width='200'/>
+        <br/><br/>
+      </div>      
+      <%= yield %>
+    </div>
+  </div>
+</body>
+</html>

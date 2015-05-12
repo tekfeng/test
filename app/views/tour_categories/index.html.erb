@@ -1,0 +1,52 @@
+<div class='row'>
+  <div class='col-lg-12'>
+    <div class="row wrapper border-bottom white-bg page-heading">
+      <div class="col-lg-10">
+        <h2>Tour Categories</h2>
+        <ol class="breadcrumb">
+          <li>
+            <a href="/dashboard">Home</a>
+          </li>
+          <li class="active">
+            <strong>Tour Categories</strong>
+          </li>
+        </ol>
+      </div>
+    </div>
+    
+    <div class='wrapper wrapper-content'>
+      <div class='ibox'>
+        <div class="ibox-title">
+          <h5>Tour Categories Listing</h5>                      
+        </div>
+        <div class='ibox-content'>
+          <div class='clearfix'>
+            <%= link_to '+ New Tour Category', new_tour_category_url, class: "btn btn-primary pull-right" %>
+          </div>
+          <br/>
+          <table class='listing-table'>
+            <thead>
+              <tr>
+                <th>No.</th>
+                <th>Tour Category Name</th>
+                <th colspan='2' style='text-align: center;'>Action</th>
+              </tr>
+            </thead>        
+            <tbody>
+              <% @tour_categories.each_with_index do |tour_category, index| %>
+                <tr class="<%= cycle('odd', 'even') %>">
+                  <td><%= index + 1 %></td>
+                  <td><%= tour_category.name.html_safe %></td>
+                  <td style='text-align: center;'>
+                    <%= link_to "Edit", edit_tour_category_url(tour_category), class: 'btn btn-primary' %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <br/ >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

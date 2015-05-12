@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  section_1_header: MyText
+  section_1_sub_header: MyText
+  section_1_content: MyText
+  section_1_cfa_title: MyText
+  section_1_cfa_url: MyText
+  section_2_header: MyText
+  section_2_sub_header: MyText
+  section_2_content: MyText
+  section_2_listing: MyText
+  section_on_3_header: MyText
+  section_3_sub_header: MyText
+  section_3_content: MyText
+  section_3_footer: MyText
+  section_3_cfa_url: MyText
+  section_3_cfa_title: MyString
+
+two:
+  section_1_header: MyText
+  section_1_sub_header: MyText
+  section_1_content: MyText
+  section_1_cfa_title: MyText
+  section_1_cfa_url: MyText
+  section_2_header: MyText
+  section_2_sub_header: MyText
+  section_2_content: MyText
+  section_2_listing: MyText
+  section_on_3_header: MyText
+  section_3_sub_header: MyText
+  section_3_content: MyText
+  section_3_footer: MyText
+  section_3_cfa_url: MyText
+  section_3_cfa_title: MyString

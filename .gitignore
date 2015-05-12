@@ -16,3 +16,10 @@
 !/log/.keep
 /tmp
 .ruby-version
+.DS_Store
+app/.DS_Store
+app/assets/.DS_Store
+app/assets/images/.DS_Store
+app/assets/images/fancyboxjs/.DS_Store
+app/assets/javascripts/.DS_Store
+app/assets/stylesheets/.DS_Store

@@ -1,0 +1,13 @@
+<h3>Forgot your password?</h3>
+<p>Key in your email to start reset your password</p>
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "m-t", role: "form" }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="form-group">
+    <%= f.email_field :email, autofocus: true, placeholder: "Email", class: "form-control" %>
+  </div>
+
+  <button type='submit' class="btn btn-primary block full-width m-b">Reset Password</button>  
+<% end %>
+
+<%= render "devise/shared/links" %>

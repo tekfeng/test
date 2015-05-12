@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  hero_header: MyText
+  hero_sub_header: MyText
+  hero_link_title: MyText
+  hero_link_url: MyText
+  highlight_header: MyText
+  highlight_content: MyText
+  call_for_action_button_title: MyString
+  call_for_action_button_url: MyText
+
+two:
+  hero_header: MyText
+  hero_sub_header: MyText
+  hero_link_title: MyText
+  hero_link_url: MyText
+  highlight_header: MyText
+  highlight_content: MyText
+  call_for_action_button_title: MyString
+  call_for_action_button_url: MyText

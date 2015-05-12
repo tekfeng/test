@@ -1,13 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :users
-  get 'backbonejs/app'
+  devise_for :users  
   
-  root :to => 'backbonejs#app'
+  root :to => 'dashboard#index'
+  resources :dashboard
+  resources :tour_categories
+  resources :tours
+  resources :customers
   
-  namespace :api do
-    resources :tour_categories
-    resources :tours
-    resources :users
-    resources :customers
-  end
+  
 end
