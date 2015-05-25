@@ -1,0 +1,42 @@
+<table class='listing-table'>
+  <thead>
+    <tr>
+      <th class="tour-no">No.</th>
+      <th class="tour-thead-code">Tour Code
+          <a class="menu-down" href="#">
+            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+          </a>
+      </th>
+      <th class="tour-thead-name">Tour Name
+        <a class="menu-down" href="#">
+          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+        </a>
+      </th>
+      <th class="tour-thead-category">Tour Category
+        <a class="menu-down" href="#">
+          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+        </a>
+      </th>
+      <th class="tour-action" style='text-align: center;'>Action</th>
+    </tr>
+  </thead>        
+  <tbody>
+    <% if @tours.count > 0 %>
+      <% @tours.each_with_index do |tour, index| %>
+        <tr class="<%= cycle('odd', 'even') %>">
+          <td><%= index + 1 %></td>
+          <td><%= tour.code %></td>
+          <td><%= tour.name.html_safe %></td>
+          <td><%= tour.tour_category ? tour.tour_category.name : "N/A" %></td>
+          <td style='text-align: center;'>
+            <%= link_to "", edit_tour_url(tour), class: 'glyphicon glyphicon-pencil' %>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan='5'>No tour available<td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

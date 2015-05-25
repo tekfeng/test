@@ -181,14 +181,20 @@
 }
 
 .btn-white {
-  color: inherit;
-  background: white;
-  border: 1px solid $border-color;
+  background-color: $navy;
+  border-color: $navy;
+  color: white;
+  //color: #fff;
+//  background: #18a689;
+//  border: 1px solid $border-color;
 }
 
 .btn-white:hover, .btn-white:focus, .btn-white:active, .btn-white.active, .open .dropdown-toggle.btn-white {
-  color: inherit;
-  border: 1px solid #d2d2d2;
+  background-color: darken($navy, 3%);
+  border-color: darken($navy, 3%);
+  color: white;
+  //color: #fff;
+//  border: 1px solid #d2d2d2;
 }
 
 .btn-white:active, .btn-white.active {

@@ -2,6 +2,16 @@ class TourCategoriesController < BaseController
   
   def index
     @tour_categories = TourCategory.all
+    @order = "asc"
+    if params.present?
+      @tour_categories = TourCategory.search(params)[:tour_categories]
+      if (params[:order].present?)
+        @order = params[:order].to_s
+        @tour_categories = @tour_categories.order("name " + params[:order])
+      else
+        @tour_categories = @tour_categories.order("name asc")
+      end
+    end
   end
   
   def new
@@ -36,5 +46,5 @@ class TourCategoriesController < BaseController
 
   def tour_category_params
     params.require(:tour_category).permit(:name)
-  end
+  end   
 end

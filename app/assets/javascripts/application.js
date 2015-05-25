@@ -16,3 +16,7 @@
 //= require slider
 //= require popmodal
 //= require readyweb
+
+$(function() {
+  
+}

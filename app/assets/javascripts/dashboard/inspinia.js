@@ -78,7 +78,7 @@ $(document).on('click', '.check-link', function() {
 });
 
 // minimalize menu
-$(document).on('click', '.navbar-minimalize', function() {
+$(document).on('click', '.navbar-minimalize', function(event) {
   event.preventDefault();
   $("body").toggleClass("mini-navbar");
   window.lastNavbarState = $("body").hasClass('mini-navbar');
