@@ -2,10 +2,15 @@ class ToursController < BaseController
   
   def index
     @tours = Tour.all
+    @tour_categories = TourCategory.all
+    if params.present?
+      @tours = Tour.search(params)[:tours]
+    end
   end
   
   def new
     @tour = Tour.new
+    @tour_categories = TourCategory.all
   end
   
   def create
@@ -20,6 +25,7 @@ class ToursController < BaseController
   
   def edit
     @tour = Tour.find_by_id(params[:id])
+    @tour_categories = TourCategory.all
   end
 
   def update

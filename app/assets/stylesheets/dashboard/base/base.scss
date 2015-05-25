@@ -42,7 +42,7 @@ a:hover, a:focus {
 }
 
 .border-bottom {
-  border-bottom: 1px solid $border-color !important;
+  //border-bottom: 1px solid $border-color !important;
 }
 
 .font-bold {
@@ -184,6 +184,7 @@ video {
 .ibox-content h1, .ibox-content h2, .ibox-content h3, .ibox-content h4, .ibox-content h5,
 .ibox-title h1, .ibox-title h2, .ibox-title h3, .ibox-title h4, .ibox-title h5 {
   margin-top: 5px;
+  margin-right: 90px;
 }
 
 ul.unstyled, ol.unstyled {
@@ -479,7 +480,7 @@ code {
   padding: 15px 20px 20px 20px;
   border-color: $border-color;
   border-image: none;
-  border-style: solid solid none;
+  //border-style: solid solid none;
   border-width: 1px 0px;
 }
 

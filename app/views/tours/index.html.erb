@@ -1,7 +1,7 @@
 <div class='row'>
   <div class='col-lg-12'>
-    <div class="row wrapper border-bottom white-bg page-heading">
-      <div class="col-lg-10">
+    <div class="row wrapper border-bottom white-bg page-heading text-center">
+      <div class="col-lg-12">
         <h2>Tours</h2>
         <ol class="breadcrumb">
           <li>
@@ -16,38 +16,43 @@
     
     <div class='wrapper wrapper-content'>
       <div class='ibox'>
-        <div class="ibox-title">
-          <h5>Tours Listing</h5>                      
-        </div>
+        <!-- <div class="ibox-title">
+          <h5>Tours Listing</h5>
+        </div> -->
         <div class='ibox-content'>
-          <div class='clearfix'>
-            <%= link_to '+ New Tour', new_tour_url, class: "btn btn-primary pull-right" %>
+          <div class="col-md-12 col-sm-12 col-xs-12 padding-0">
+            <div class='clearfix look-for'>
+              <div class="col-md-12 col-sm-12 col-xs-12 padding-0">
+                <div>
+                  <%= link_to 'Add Tour', new_tour_url, class: "btn btn-primary pull-right" %>
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-6 col-xs-12 padding-0">
+                <form class="group-select">
+                	<select tabindex="1" id="tour_tour_category_id" >
+              			<option value="0">-- Select Tour Category --</option>
+                    <% @tour_categories.each_with_index do |tour_category| %>
+                      <option value="<%= tour_category.id %>"><%= tour_category.name %></option>
+                    <% end %>				
+                  </select>
+                </form>
+              </div>
+              <div class="col-md-6 col-sm-6 col-xs-12 padding-0 search">
+                <form class="group-input">
+                  <input type='search' id='search-tour' placeholder="Search..." />
+                  <a class="submit" type="submit" href="#">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                  </a>
+                </form>
+              </div>
+            </div><!-- clearfix -->
           </div>
           <br/>
-          <table class='listing-table'>
-            <thead>
-              <tr>
-                <th>No.</th>
-				<th>Tour Code</th>
-                <th>Tour Name</th>
-				<th>Tour Category</th>
-                <th colspan='2' style='text-align: center;'>Action</th>
-              </tr>
-            </thead>        
-            <tbody>
-              <% @tours.each_with_index do |tour, index| %>
-                <tr class="<%= cycle('odd', 'even') %>">
-                  <td><%= index + 1 %></td>
-                  <td><%= tour.name.html_safe %></td>
-				  <td><%= tour.code %></td>
-				  <td><%= tour.tour_category ? tour.tour_category.name : "N/A" %></td>
-                  <td style='text-align: center;'>
-                    <%= link_to "Edit", edit_tour_url(tour), class: 'btn btn-primary' %>
-                  </td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
+          <div class="col-md-12 col-sm-12 col-xs-12 padding-0">
+            <div id="listing-table">
+              <%= render :partial => 'list', local: {tours: @tours}%>
+            </div>
+          </div>
           <br/ >
         </div>
       </div>

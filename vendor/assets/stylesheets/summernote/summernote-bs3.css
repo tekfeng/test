@@ -5524,7 +5524,7 @@ button.note-editor .close {
   margin-right: auto;
 }
 .pull-right {
-  float: right !important;
+  float: left !important;
 }
 .pull-left {
   float: left !important;

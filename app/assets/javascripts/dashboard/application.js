@@ -24,7 +24,9 @@
 //= require nprogress
 //= require nprogress-turbolinks
 //= require summernote/summernote.min.js
+//= require ./select_box/jquery.selectbox-0.2.js
 //= require_tree .
+
 
 Dropzone.autoDiscover = false;
 
@@ -63,7 +65,105 @@ function handleFormSubmitResponse(response) {
 
 
 $(function() {
-  // NProgress.start();
+  //category-select
+  $(document).ready(function(){
+    $("input#search-category").val("");
+    $("input#search-tour").val("");
+    $('#abc').val("");
+    $('#tour_tour_category_id').selectbox({
+      onChange: function (val) {
+        var url = "/tours";
+        var tourCategoryId = val;
+        var keyWord = $('input#search-tour').val();
+          $.ajax({
+            type: "GET",
+            data: {
+              tour_category_id: tourCategoryId,
+              keyword: keyWord
+            },
+            url: url,
+            success: function (data) {
+              var result = $(data).find("div#listing-table");
+              $('div#listing-table').html(result)
+            },
+            error: function() {
+            }
+          });
+        },
+    });
+  });
+  
+  //tour-search
+  $(document.body).delegate("#search-tour, #select-tour-category", "keyup", function(){
+    var url = "/tours";
+    var keyWord = $(this).val();
+    var tourCategoryId = $('#tour_tour_category_id').val();
+    var timeout;
+    clearTimeout(timeout);
+    timeout = setTimeout(function(){
+    $.ajax({
+          url: url,
+          type: "GET",
+          data:{
+            tour_category_id: tourCategoryId,
+            keyword: keyWord
+          },
+          success: function(data) {
+            var result = $(data).find("div#listing-table");
+            $('div#listing-table').html(result)
+          },
+          error: function() {
+          }
+       });
+     },700);
+  });
+  
+  //category- search
+  $(document.body).delegate("#search-category", "keyup", function(){
+    var url = "/tour_categories";
+    var keyWord = $(this).val();
+    var delayTimer;
+    clearTimeout(delayTimer);
+    delayTimer = setTimeout(function() {
+      $.ajax({
+        url: url,
+        type: "GET",
+        data:{
+          keyword: keyWord
+        },
+        success: function(data){
+          var result = $(data).find("div#listing-table");
+          $('div#listing-table').html(result);
+        },
+        error: function(){
+        }
+      });
+    },700);
+  });
+  
+  //category-sort
+  $(document.body).delegate("th.category-name", "click", function(){
+    var url = "/tour_categories";
+    var keyWord = $("input#search-category").val();
+    var order = "asc";
+    if ($(this).data('order') == "asc") {
+      order = "desc";
+    }
+    $.ajax({
+      url: url,
+      type: "GET",
+      data:{
+        keyword: keyWord,
+        order: order
+      },
+      success: function(data){
+        var result = $(data).find("div#listing-table");
+        $('div#listing-table').html(result);
+      },
+      error: function(){
+      }
+    });
+  });
   
   $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
       event.preventDefault();
