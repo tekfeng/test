@@ -1,0 +1,60 @@
+<table class='listing-table'>
+  <thead>
+    <tr>
+      <th class="no">No.</th>
+      <th class="customer-thead-name">Customer Name
+          <a class="menu-down" href="#">
+            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+          </a>
+      </th>
+      <th class="customer-thead-email">Email Address
+        <a class="menu-down" href="#">
+          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+        </a>
+      </th>
+      <th class="customer-thead-contact">Contact
+        <a class="menu-down" href="#">
+          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+        </a>
+      </th>
+      <th class="customer-thead-address">Address
+        <a class="menu-down" href="#">
+          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+        </a>
+      </th>
+      <th class="customer-thead-country">Country
+        <a class="menu-down" href="#">
+          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+        </a>
+      </th>
+      <th class="customer-thead-source">Source
+        <a class="menu-down" href="#">
+          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+        </a>
+      </th>
+      <th class="customer-action" style='text-align: center;'>Action</th>
+    </tr>
+  </thead>        
+  <tbody>
+    <% if @customers.count > 0 %>
+      <% @customers.each_with_index do |customer, index| %>
+        <tr class="<%= cycle('odd', 'even') %>">
+          <td><%= index + 1 %></td>
+          <td><%= customer.name %></td>
+          <td><%= customer.email_address %></td>
+          <td><%= customer.contact_number %></td>
+          <td><%= customer.address %></td>
+          <td><%= customer.country ? customer.country.name : "N/A" %></td>
+          <td><%= customer.source ? customer.source.name : "N/A" %></td>
+          <td style='text-align: center;'>
+            <%= link_to "", edit_customer_url(customer), class: 'glyphicon glyphicon-pencil' %>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan='5'>No customer available<td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

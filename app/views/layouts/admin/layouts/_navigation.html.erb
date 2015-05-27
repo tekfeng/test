@@ -33,6 +33,12 @@
           <span class="nav-label">Tours</span>
         <% end %>
       </li>
+      <li class="<%= 'active' if params[:controller] == 'tours' %>">
+        <%= link_to "/customers" do %>
+          <i class="fa fa-cubes"></i> 
+          <span class="nav-label">Customers</span>
+        <% end %>
+      </li>
     </ul>
   </div>
 </nav>
