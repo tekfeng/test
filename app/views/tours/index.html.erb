@@ -16,20 +16,17 @@
     
     <div class='wrapper wrapper-content'>
       <div class='ibox'>
-        <!-- <div class="ibox-title">
-          <h5>Tours Listing</h5>
-        </div> -->
         <div class='ibox-content'>
           <div class="col-md-12 col-sm-12 col-xs-12 padding-0">
             <div class='clearfix look-for'>
               <div class="col-md-12 col-sm-12 col-xs-12 padding-0">
                 <div>
-                  <%= link_to 'Add Tour', new_tour_url, class: "btn btn-primary pull-right" %>
+                  <%= link_to 'New Tour', new_tour_url, class: "btn btn-primary pull-right" %>
                 </div>
               </div>
               <div class="col-md-6 col-sm-6 col-xs-12 padding-0">
                 <form class="group-select">
-                	<select tabindex="1" id="tour_tour_category_id" >
+                	<select tabindex="1" id="tour_tour_category_id">
               			<option value="0">-- Select Tour Category --</option>
                     <% @tour_categories.each_with_index do |tour_category| %>
                       <option value="<%= tour_category.id %>"><%= tour_category.name %></option>
@@ -46,7 +43,6 @@
                 </form>
               </div>
             </div><!-- clearfix -->
-          </div>
           <br/>
           <div class="col-md-12 col-sm-12 col-xs-12 padding-0">
             <div id="listing-table">

@@ -1,0 +1,109 @@
+// Place all the styles related to the Customers controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// form
+.form-group-customer .sbHolder{
+  margin-top: 15px;
+}
+
+//.form-group-customer #name-customer, #email-customer, #contact-customer, #address-customer, #done{
+//  margin-top: 15px;
+//}
+
+.form-group-customer .select-customer{
+   margin-top: 15px;
+}
+
+.form-group-customer .btn-done{
+  margin-top: 15px;
+}
+
+.form-group-customer input#name-customer{
+  width: 80%;
+  height: 32px;
+  border-radius: 5px;
+  border: 1px solid #e5e6e7;
+  padding-left: 15px;
+}
+
+.form-group button#done{
+  width: 15%;
+}
+
+.select-customer-country .sbHolder{
+  margin-left: 0px !important;
+  width: 100% !important;
+  margin-bottom: 30px;
+}
+
+.select-customer-source .sbHolder{
+  margin-right: 0px !important;
+  width: 100% !important;
+}
+
+.new-customer a.btn.btn-primary{
+  margin-top: 30px;
+}
+
+//listing table
+table.listing-table {
+  background: #ffffff none repeat scroll 0 0;
+  border: 1px solid #e7e7e7;
+  font-size: 12px;
+  //margin-top: 40px;
+  width: 100%;
+}
+
+table.listing-table thead th.no{
+  background: #8093a5 none repeat scroll 0 0;
+  color: #fff;
+  width: 5%;
+}
+
+table.listing-table thead th.customer-thead-name, 
+table.listing-table thead th.customer-thead-contact, 
+table.listing-table thead th.customer-thead-country, 
+table.listing-table thead th.customer-action{
+  background:#ececec none repeat;
+  color: #77888f;
+}
+
+table.listing-table thead th.customer-thead-email, 
+table.listing-table thead th.customer-thead-address, 
+table.listing-table thead th.customer-thead-source{
+  background: #8093a5 none repeat scroll 0 0;
+  color: #fff;
+}
+
+table.listing-table thead th.customer-thead-name{
+  width: 20%;
+}
+
+table.listing-table thead th.customer-thead-email, 
+table.listing-table thead th.customer-thead-contact, 
+table.listing-table thead th.customer-thead-address{
+  width: 15%;
+}
+
+table.listing-table thead th.customer-thead-country,
+table.listing-table thead th.customer-thead-source, 
+table.listing-table thead th.customer-action{
+  width: 10%;
+}
+
+table.listing-table thead th.customer-thead-name a.menu-down, 
+table.listing-table thead th.customer-thead-contact a.menu-down,
+table.listing-table thead th.customer-thead-country a.menu-down{
+  color: #8093a5;
+  top: 3px;
+  left: 3px;
+}
+
+table.listing-table thead th.customer-thead-email a.menu-down,
+table.listing-table thead th.customer-thead-address a.menu-down,
+table.listing-table thead th.customer-thead-source a.menu-down{
+  color: #fff;
+  top: 3px;
+  left: 3px;
+}

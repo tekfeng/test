@@ -25,6 +25,7 @@
 //= require nprogress-turbolinks
 //= require summernote/summernote.min.js
 //= require ./select_box/jquery.selectbox-0.2.js
+//= requite customer/customers
 //= require_tree .
 
 
@@ -69,7 +70,9 @@ $(function() {
   $(document).ready(function(){
     $("input#search-category").val("");
     $("input#search-tour").val("");
-    $('#abc').val("");
+    $("#group-select").val("");
+    $('#search-customer').val("");
+    
     $('#tour_tour_category_id').selectbox({
       onChange: function (val) {
         var url = "/tours";
@@ -110,7 +113,7 @@ $(function() {
           },
           success: function(data) {
             var result = $(data).find("div#listing-table");
-            $('div#listing-table').html(result)
+            $('div#listing-table').html(result);
           },
           error: function() {
           }
@@ -164,6 +167,87 @@ $(function() {
       }
     });
   });
+  
+  //search customer
+  $(document.body).delegate("#search-customer", "keyup", function(){
+    var url = "/customers";
+    var keyWord = $(this).val();
+    var customerCountryId = $('#customer_country_id').val();
+    var customerSourceId = $('#customer_source_id').val();
+    var timeout;
+    clearTimeout(timeout);
+    timeout = setTimeout(function(){
+    $.ajax({
+          url: url,
+          type: "GET",
+          data:{
+            keyword: keyWord,
+            country_id: customerCountryId,
+            source_id: customerSourceId
+          },
+          success: function(data) {
+            var result = $(data).find("div#listing-table");
+            $('div#listing-table').html(result);
+          },
+          error: function() {
+          }
+       });
+     },700);
+    
+  });
+  
+  //select country
+  $('#customer_country_id').selectbox({
+    onChange: function (val) {
+      var url = "/customers";
+      var customerCountryId = val;
+      var customerSourceId = $('#customer_source_id').val();
+      var keyWord = $('#search-customer').val();
+      $.ajax({
+        type: "GET",
+        data: {
+          country_id: customerCountryId,
+          source_id: customerSourceId,
+          keyword: keyWord
+        }, 
+        url: url,
+        success: function(data){
+          var result = $(data).find("div#listing-table");
+          $('div#listing-table').html(result)
+        }, 
+        error: function(){
+          
+        }
+      });
+    },
+  });
+ 
+  //select source
+  $('#customer_source_id').selectbox({
+    onChange: function(val){
+      var url = "/customers";
+      var customerSourceId = val;
+      var customerCountryId = $('#customer_country_id').val();
+      var keyWord = $('#search-customer').val();
+      $.ajax({
+        type: "GET",
+        data: {
+          source_id: customerSourceId,
+          country_id: customerCountryId,
+          keyword: keyWord
+        },
+        url: url,
+        success: function(data){
+          var result = $(data).find("div#listing-table");
+          $("div#listing-table").html(result)
+        },
+        error: function(){
+          
+        }
+      });
+    },
+  });
+  
   
   $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
       event.preventDefault();
