@@ -34,7 +34,7 @@ class Customer < ActiveRecord::Base
     customers = customers.where(columns_condition.join(" OR "), keyword: "%#{opts[:keyword].downcase}%" ) if opts[:keyword] && opts[:keyword] != ""
     customers = customers.where("customers.country_id = ?", opts[:country_id].to_i) if opts[:country_id] && opts[:country_id].to_i != 0
     customers = customers.where("customers.source_id = ?", opts[:source_id].to_i) if opts[:source_id] && opts[:source_id].to_i != 0
-    customers = customers.page(page).per(10)
-    return {customers: customers, total_page: customers.total_pages, current_page: page}
+    # customers = customers.page(page).per(10)
+    return {customers: customers, total_page: 1, current_page: page}
   end
 end

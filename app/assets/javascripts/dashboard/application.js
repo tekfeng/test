@@ -70,8 +70,13 @@ $(function() {
   $(document).ready(function(){
     $("input#search-category").val("");
     $("input#search-tour").val("");
-    $("#group-select").val("");
+    $('#tour_tour_category_id').val(0);
     $('#search-customer').val("");
+    $('#customer_country_id').val(0);
+    $('#customer_source_id').val(0);
+    $('#accept').hide();
+    
+    
     
     $('#tour_tour_category_id').selectbox({
       onChange: function (val) {
@@ -248,6 +253,11 @@ $(function() {
     },
   });
   
+  //Done Click
+  // $(document.body).delegate("#done", "click", function(){
+//     $('#new_customer').hide();
+//     $('#accept').show();
+//   });
   
   $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
       event.preventDefault();
@@ -325,7 +335,8 @@ $(function() {
             $.cookie('flashType', response.flash.type, { path: '/' });
             $.cookie('flashMessage', response.flash.message, { path: '/' });
           }//end if
-          
+            // $('#new_customer').hide();
+            // $('#accept').show();
           if(typeof(Turbolinks) !== 'undefined') {
             Turbolinks.visit(response.redirect_to);
           } else {
