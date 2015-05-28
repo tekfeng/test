@@ -7,5 +7,4 @@ Rails.application.routes.draw do
   resources :tours
   resources :customers
   
-  
 end

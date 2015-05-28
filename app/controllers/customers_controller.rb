@@ -17,6 +17,7 @@ class CustomersController < BaseController
     if @customer.save
       render json: {result: 'ok', redirect_to: customers_url,
         flash: { type: :notice, message: 'Customer has been created successfully!' }}
+        @current_customer_id = @customer.id
     else
       render json: {result: 'false', error: @customer.error}
     end
