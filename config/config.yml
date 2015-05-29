@@ -1,0 +1,23 @@
+shared_settings: &shared_settings
+  project_name: "Amazing Borneo"
+  login_footer: "Copyright 2015 &copy; Amazing Borneo"
+  email_sender: "noreply@rubify.com"
+development: &non_production_settings
+  <<: *shared_settings
+  domain: localhost:3000
+  protocol: http
+
+test:
+  <<: *non_production_settings
+  <<: *shared_settings
+
+staging:
+  <<: *non_production_settings
+  <<: *shared_settings
+  domain: amazing-borneo.projectwebby.com
+  protocol: http
+
+production:
+  <<: *shared_settings
+  domain: amazing-borneo.projectwebby.com
+  protocol: http
