@@ -70,3 +70,5 @@ group :test do
   gem 'shoulda-matchers', '~> 2.7.0'
   gem "capybara", '~> 2.4.4'
 end
+
+gem 'unicorn'
