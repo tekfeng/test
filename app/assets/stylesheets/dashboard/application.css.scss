@@ -28,6 +28,12 @@
   text-align: right;
 }
 
+.ibox {
+  .ibox-content {
+    background: none !important;
+  }
+}
+
 form.form-horizontal {
   ul.inline-errors {
     margin-top: 10px;
