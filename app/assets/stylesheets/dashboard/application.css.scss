@@ -22,7 +22,14 @@
  *= require ./select_box/jquery.selectbox.css
  *= require ./style
  *= require customer/customers
+ *= require jquery.datetimepicker.css
+ *= require lead/leads
  */
+
+.padding-0{
+  padding: 0 !important;
+  //margin: 0 !important;
+}
 
 .text-align-right {
   text-align: right;
@@ -254,7 +261,7 @@ div.logo {
 
 .group-input {
     position: relative;
-    margin-top:30px;
+    margin-top:15px;
     input {
         background: rgba(255, 255, 255, 0.2) none repeat scroll 0 0;
         border: 1px solid #ccc;
@@ -284,14 +291,35 @@ div.logo {
 }
 
 .ibox .new a.btn{
-  margin-top: 30px;
+  margin-top: 15px; //btn addnew
 }
 
 .ibox .select-tour-category{
   margin-top: 30px;
 }
 
+.ibox .ibox-content {
+  background: transparent !important;
+}
+
 .group-select .sbHolder{
   margin-left: 0px !important;
-  top: 30px !important;
+  top: 15px !important;
+  padding-right: 20px;
+}
+
+@media (max-width: 767px) {
+   #search-tour a.submit{
+     margin-top: 0px !important; //search loupe
+   }
+}
+
+form.lead .label {
+  background-color: white;
+}
+
+#lead_travel_from, #lead_travel_to {
+  background-image: url("/assets/dashboard/calendar-icon.png");
+  background-repeat: no-repeat;
+  background-position: 99% 6px;
 }

@@ -9,8 +9,8 @@
     </tr>
   </thead>        
   <tbody>
-    <% if @tour_categories.count > 0 %>
-      <% @tour_categories.each_with_index do |tour_category, index| %>
+    <% if tour_categories.count > 0 %>
+      <% tour_categories.each_with_index do |tour_category, index| %>
         <tr class="<%= cycle('odd', 'even') %>">
           <td><%= index + 1 %></td>
           <td><%= tour_category.name.html_safe %></td>

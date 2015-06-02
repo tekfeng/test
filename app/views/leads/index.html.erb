@@ -1,0 +1,97 @@
+<div class="row">
+  <div class='col-lg-12'>
+    <div class="row wrapper border-bottom white-bg page-heading text-center">
+      <div class="col-lg-12">
+        <div class="col-md-4 col-sm-4 col-xs-12">
+          <div class="new-lead">
+            <%= link_to 'New Lead', new_lead_url, class: "btn btn-primary pull-left", id: "new" %>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-12">
+          <h2>Leads</h2>
+          <ol class="breadcrumb">
+            <li>
+              <a href="/dashboard">Home</a>
+            </li>
+            <li>
+              <a href="/dashboard">Sales</a>
+            </li>
+            <li class="active">
+              <strong>Leads</strong>
+            </li>
+          </ol>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-12">
+          <form class="group-input">
+            <input type='search' id='search-customer' placeholder="Search..." />
+            <a class="submit" type="submit" href="#">
+              <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+            </a>
+          </form>
+        </div>
+      </div>
+    </div> <!--row wrapper-->
+    
+    <div class='wrapper wrapper-content'>
+      <div class="ibox">
+        <div class="ibox-content">
+          <div class="col-md-12 col-sm-12 col-xs-12 padding-0 ">
+             <div class='clearfix'>
+               <div class="col-md-12 col-sm-12 col-xs-12 padding-0 text-center">
+                 <form class="select-lead-status">
+                 	 <select tabindex="1" id="lead_status_id">
+               			<option value="0">-- Booking Status --</option>			
+                   </select>
+                 </form>
+               </div>
+               <div class="col-md-12 col-sm-12 col-xs-12 padding-0 text-center">
+                 <form class="select-Sale-Person">
+                 	 <select tabindex="1" id="Sale_Person_id">
+               			<option value="0">-- Sale Person --</option>			
+                   </select>
+                 </form>
+               </div>
+               <div class="col-md-12 col-sm-12 col-xs-12 padding-0 text-center">
+                 <form class="calendar">
+                   <div class="form-group">
+                     <div class="col-md-10 col-md-offset-1 col-xs-12">
+                       <input id="datetimepicker_from" class="form-control" type="text" placeholder="Travel from">
+                       <a class="submit" type="submit" href="#">
+                         <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                       </a>
+                     </div>
+                     <div class="col-md-1 col-sm-1 col-xs-12"></div>
+                   </div>
+                 </form>
+                 <!-- <input type="text" class="form-group" id="datepicker_from" placeholder="Travel from"> -->
+               </div>
+               <div class="col-md-12 col-sm-12 col-xs-12 padding-0 text-center">
+                 <form class="calendar">
+                   <div class="form-group">
+                     <div class="col-md-10 col-md-offset-1 col-xs-12">
+                       <input id="datetimepicker_to" class="form-control" type="text" placeholder="Travel to">
+                       <a class="submit" type="submit" href="#">
+                         <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                       </a>
+                     </div>
+                     <div class="col-md-1 col-sm-1 col-xs-12"></div>
+                   </div>
+                 </form>
+               </div>
+               <div class="col-md-12 col-sm-12 col-xs-12 padding-0 text-center">
+                 <button class="btn btn-primary" type="submit">Filter</button>
+               </div>
+             </div>
+           </div>
+         </div>
+         
+         <div class="col-md-12 col-sm-12 col-xs-12 padding-0">
+           <div id="listing-table">
+             <%= render :partial => 'list', local: {leads: @leads}%>
+           </div>
+         </div>
+       </div>
+     </div><!--wrapper-content-->
+     
+  </div>
+</div>

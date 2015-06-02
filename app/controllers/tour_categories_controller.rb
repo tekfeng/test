@@ -3,7 +3,7 @@ class TourCategoriesController < BaseController
   def index
     @tour_categories = TourCategory.all
     @order = "asc"
-    if params.present?
+    if params[:ajax_call]
       @tour_categories = TourCategory.search(params)[:tour_categories]
       if (params[:order].present?)
         @order = params[:order].to_s
@@ -11,7 +11,9 @@ class TourCategoriesController < BaseController
       else
         @tour_categories = @tour_categories.order("name asc")
       end
+      render :partial => "tour_categories/list" ,locals: {tour_categories: @tour_categories} 
     end
+    
   end
   
   def new

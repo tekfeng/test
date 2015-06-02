@@ -4,12 +4,8 @@
 
 // form
 .form-group-customer .sbHolder{
-  margin-top: 15px;
+  //margin-top: 15px;
 }
-
-//.form-group-customer #name-customer, #email-customer, #contact-customer, #address-customer, #done{
-//  margin-top: 15px;
-//}
 
 .form-group-customer .select-customer{
    margin-top: 15px;
@@ -32,10 +28,15 @@
   margin-top: 15px;
 }
 
+.group-input #search-customer{
+  margin-right: 0px !important;
+  padding-left: 30px;
+}
+
 .select-customer-country .sbHolder{
   margin-left: 0px !important;
   width: 100% !important;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .select-customer-source .sbHolder{
@@ -44,7 +45,7 @@
 }
 
 .new-customer a.btn.btn-primary{
-  margin-top: 30px;
+  margin-top: 15px;
 }
 
 //listing table
@@ -111,4 +112,25 @@ table.listing-table thead th.customer-thead-source a.menu-down{
 
 #accept p{
   text-align: center;
+}
+
+@media (max-width: 767px) {
+  a.submit{
+    margin-top: 0px !important;
+  }
+
+  .sbHolder{
+    margin-bottom: 20px;
+  }
+  
+  .select-customer-country .sbHolder{
+    margin-left: 0px !important;
+    width: 100% !important;
+    margin-bottom: 20px;
+  }
+
+  .select-customer-source .sbHolder{
+    margin-right: 0px !important;
+    width: 100% !important;
+  }
 }

@@ -26,6 +26,7 @@
 //= require summernote/summernote.min.js
 //= require ./select_box/jquery.selectbox-0.2.js
 //= requite customer/customers
+//= requite ./datetimepicker/jquery.datetimepicker.js
 //= require_tree .
 
 
@@ -76,8 +77,6 @@ $(function() {
     $('#customer_source_id').val(0);
     $('#accept').hide();
     
-    
-    
     $('#tour_tour_category_id').selectbox({
       onChange: function (val) {
         var url = "/tours";
@@ -100,6 +99,7 @@ $(function() {
         },
     });
   });
+  
   
   //tour-search
   $(document.body).delegate("#search-tour, #select-tour-category", "keyup", function(){
@@ -137,11 +137,11 @@ $(function() {
         url: url,
         type: "GET",
         data:{
+          ajax_call: true,
           keyword: keyWord
         },
         success: function(data){
-          var result = $(data).find("div#listing-table");
-          $('div#listing-table').html(result);
+          $('div#categories_listing').html(data);
         },
         error: function(){
         }
@@ -258,6 +258,7 @@ $(function() {
 //     $('#new_customer').hide();
 //     $('#accept').show();
 //   });
+  
   
   $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
       event.preventDefault();

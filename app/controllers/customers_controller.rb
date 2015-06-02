@@ -19,7 +19,7 @@ class CustomersController < BaseController
         flash: { type: :notice, message: 'Customer has been created successfully!' }}
         @current_customer_id = @customer.id
     else
-      render json: {result: 'false', error: @customer.error}
+      render json: {result: 'false', error: @customer.errors}
     end
   end
   

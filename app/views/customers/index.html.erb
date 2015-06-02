@@ -22,12 +22,12 @@
         <div class="ibox-content">
           <div class="col-md-12 col-sm-12 col-xs-12 padding-0 ">
              <div class='clearfix'>
-               <div class="col-md-6 col-sm-6 col-xs-12 padding-0">
+               <div class="col-md-5 col-sm-5 col-xs-12 padding-0">
                  <div class="new-customer">
-                   <%= link_to 'New Customer', new_customer_url, class: "btn btn-primary pull-right", id: "new" %>
+                   <%= link_to 'New Customer', new_customer_url, class: "btn btn-primary pull-left", id: "new" %>
                  </div>
                </div>
-               <div class="col-md-6 col-sm-6 col-xs-12 padding-0 search">
+               <div class="col-md-5 col-md-offset-2 col-sm-5 col-sm-offset-2 col-xs-12 padding-0 search">
                  <form class="group-input">
                    <input type='search' id='search-customer' placeholder="Search..." />
                    <a class="submit" type="submit" href="#">
@@ -35,33 +35,34 @@
                    </a>
                  </form>
                </div>
-
-               <div class= "form-group-customer">
-                 <div class="col-md-6 col-sm-6 col-xs-12 padding-0">
-                   <form class="select-customer-country">
-                   	<select tabindex="1" id="customer_country_id">
-                 			<option value="0">-- Country of origin --</option>	
-                      <% @countries.each_with_index do |country| %>
-                        <option value="<%= country.id %>"><%= country.name %></option>
-                      <% end %>			
-                     </select>
-                   </form>
-                 </div>
+             </div><!--clearfix-->
+           </div><!--col-12-->
+           <div class="col-md-12 col-sm-12 col-xs-12 padding-0 ">
+             <div class= "form-group-customer">
+               <div class="col-md-5 col-sm-5 col-xs-12 padding-0">
+                 <form class="select-customer-country">
+                 	<select tabindex="1" id="customer_country_id">
+               			<option value="0">-- Country of origin --</option>	
+                    <% @countries.each_with_index do |country| %>
+                      <option value="<%= country.id %>"><%= country.name %></option>
+                    <% end %>			
+                   </select>
+                 </form>
                </div>
-               <div class= "form-group-customer">
-                 <div class="col-md-6 col-sm-6 col-xs-12 padding-0">
-                   <form class="select-customer-source">
-                   	<select tabindex="1" id="customer_source_id">
-                 			<option value="0">-- Source --</option>		
-                      <% @sources.each_with_index do |source| %>
-                        <option value="<%= source.id %>"><%= source.name %></option>
-                      <% end %>		
-                     </select>
-                   </form>
-                 </div>
+             </div>
+             <div class= "form-group-customer">
+               <div class="col-md-5 col-md-offset-2 col-sm-5 col-sm-offset-2 col-xs-12 padding-0">
+                 <form class="select-customer-source">
+                 	<select tabindex="1" id="customer_source_id">
+               			<option value="0">-- Source --</option>		
+                    <% @sources.each_with_index do |source| %>
+                      <option value="<%= source.id %>"><%= source.name %></option>
+                    <% end %>		
+                   </select>
+                 </form>
                </div>
-             </div> <!--clearfix-->
-          </div>
+             </div><!--form-group-customer-->
+           </div>
           <br/>
           <div class="col-md-12 col-sm-12 col-xs-12 padding-0">
             <div id="listing-table">

@@ -898,7 +898,7 @@
     width: 50%;
   }
   .note-editor .col-sm-5 {
-    width: 41.66666666666667%;
+    /*width: 41.66666666666667%;*/
   }
   .note-editor .col-sm-4 {
     width: 33.33333333333333%;
@@ -5524,7 +5524,7 @@ button.note-editor .close {
   margin-right: auto;
 }
 .pull-right {
-  float: left !important;
+  float: right !important;
 }
 .pull-left {
   float: left !important;

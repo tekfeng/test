@@ -9,6 +9,7 @@
 	height: 32px;
 	position: relative;
 	width: 80%;
+  top: 0px;
   margin: 0 auto;
 }
 .sbHolder:focus .sbSelector{
@@ -74,7 +75,6 @@
 	width: 100%;
 	z-index: 1;
 	overflow-y: auto;
-  text-align: left;
 }
 .sbOptions li{
 	padding: 0 7px;
