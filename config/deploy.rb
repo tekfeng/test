@@ -18,6 +18,7 @@ load 'deploy/assets'
 
 after 'deploy:finalize_update', 'deploy:symlink_share', 'deploy:generate_binstubs'
 after "deploy:update", "deploy:cleanup"
+before 'deploy:assets:precompile', 'deploy:assets:link_tmp_cache_folder'
 
 def remote_file_exists?(full_path)
   'true' ==  capture("if [ -e #{full_path} ]; then echo 'true'; fi").strip
