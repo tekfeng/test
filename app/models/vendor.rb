@@ -24,6 +24,8 @@ class Vendor < ActiveRecord::Base
     case path
     when "tour_categories", "tours"
       return 1
+    when  "customers", "leads", "bookings"
+      return 2
     when "vendors", "vendor_categories", "vendor_rates", "mtq_slots"
       return 5
     else 
