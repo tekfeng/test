@@ -1,5 +1,6 @@
 class Tour < ActiveRecord::Base
   belongs_to :tour_category
+  has_many :booking
   validates :name, :presence => true
   validates :name, :uniqueness => true
   validates :code, :presence => true

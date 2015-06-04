@@ -5,23 +5,23 @@
         <%= f.input :customer_id,:as => :select ,:collection => Customer.all.collect{|t| [t.name + " - " + t.email_address, t.id]},class: 'form-control'%>
       </div>
       <div class="col-md-1 col-sm-1 col-xs-12"></div>
-    </div>
+    </div> <!--select-customer-->
     <div class="col-md-12 col-sm-12 col-xs-12 padding-0 text-center">
       <p>Or</p>
-    </div>
-    <div class="form-group text-center">
-        <%= f.action :submit, input_html: {class: "btn btn-primary save-form-button calender"}, wrapper_html:{class: "col-md-12 col-sm-12 col-xs-12"} %>
-    </div>
-    <hr/>
-      <div class="form-group">
-        <%= f.input :travel_from, :as =>  :string, id: 'datetimepicker_from', placeholder: "Travel from", input_html:{class: "form-control"}, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12"} %>
-      </div>
+    </div> <!--0r-->
+    <div class="form-group text-center col-md-12 col-sm-12 col-xs-12 ">
+        <%= f.action :submit, wrapper_html:{class: " btn btn-primary save-form-button"} %>
+    </div> <!--btn create-->
+    
+    <div class="form-group">
+      <%= f.input :travel_from, :as =>  :string, id: 'datetimepicker_from', placeholder: "Travel from", input_html:{class: "form-control"}, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12"} %>
+    </div> <!--travel from-->
     <div class="form-group">
       <%= f.input :travel_to, :as => :string, id: 'datetimepicker_to', placeholder: "Travel to", input_html:{class: "form-control" }, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12"}%>
-    </div>
+    </div> <!--travel to-->
     <div class="form-group">
       <%= f.input :contact_number, :as => :string, placeholder: "Contact Number",  input_html:{class: "form-control"}, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12"}%>
-    </div>
+    </div> <!--contact-->
     <div class="form-group">
       <div class="col-md-12 col-sm-12 col-xs-12 padding-0">
         <div class="col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1 col-xs-12 padding-0">
@@ -32,12 +32,13 @@
         </div>
         <div class="col-md-1 col-sm-1 col-xs-12 padding-0"></div>
       </div>
-    </div>
+    </div> <!--aldust+childrent-->
     <div class="form-group">
       <div class="col-md-12 col-sm-12 col-xs-12 padding-0 sum-pax">
           No. of Pax: <p id="sum-pax"></p>
       </div>
     </div>
+    
     <% end %>
 <% end %>
 

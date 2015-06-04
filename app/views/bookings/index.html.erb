@@ -1,11 +1,11 @@
 <div class="row wrapper border-bottom white-bg page-heading text-center">
     <div class="col-md-4 col-sm-4 col-xs-12">
-      <div class="new-lead">
-        <%= link_to 'New Lead', new_lead_url, class: "btn btn-primary pull-left", id: "new" %>
+      <div class="new-booking">
+        <%= link_to 'New Booking', new_lead_url, class: "btn btn-primary pull-left", id: "new" %>
       </div>
     </div>
     <div class="col-md-4 col-sm-4 col-xs-12">
-      <h2>Leads</h2>
+      <h2>Bookings</h2>
       <ol class="breadcrumb">
         <li>
           <a href="/dashboard">Home</a>
@@ -14,7 +14,7 @@
           <a href="/dashboard">Sales</a>
         </li>
         <li class="active">
-          <strong>Leads</strong>
+          <strong>Bookings</strong>
         </li>
       </ol>
     </div>
@@ -27,14 +27,13 @@
       </form>
     </div>
 </div> <!--row wrapper-->
-    
 <div class='wrapper wrapper-content'>
   <div class="ibox">
     <div class="ibox-content container-fluid white-bg">
       <div class="col-md-12 col-sm-12 col-xs-12 padding-0 text-center">
         <form class="select-lead-status">
           <select tabindex="1" id="lead_status_id">
-            <option value="0">-- Booking Status --</option>			
+            <option value="0">-- Payments Status --</option>			
           </select>
         </form>
       </div>
@@ -45,14 +44,14 @@
           </select>
         </form>
       </div>
-      <div class="col-md-12 col-sm-12 col-xs-12 padding-0 text-center">
+      <div class="col-md-12 col-sm-12 col-xs-12 padding-0">
         <form class="calendar">
           <div class="form-group">
             <input id="datetimepicker_from" class="form-control" type="text" placeholder="Travel from">
           </div>
         </form>
       </div>
-      <div class="col-md-12 col-sm-12 col-xs-12 padding-0 text-center">
+      <div class="col-md-12 col-sm-12 col-xs-12 padding-0">
         <form class="calendar">
           <div class="form-group">
             <input id="datetimepicker_to" class="form-control" type="text" placeholder="Travel to">
@@ -64,30 +63,7 @@
       </div>
     </div>
     <div id="listing-table">
-      <%= render :partial => 'list', local: {leads: @leads}%>
+      <%= render :partial => 'list', local: {bookings: @bookings}%>
     </div>
   </div>
 </div>
-
-<script>
-   $(document).ready(function(){
-     $('#datetimepicker_from, #datetimepicker_to').datetimepicker({
-       lang:'de',
-       i18n:{
-        de:{
-         months:[
-          'Januar','Februar','März','April',
-          'May','Jun','July','August',
-          'September','October','November','Dezember',
-         ],
-         dayOfWeek:[
-          "So.", "Mo", "Di", "Mi",
-          "Do", "Fr", "Sa.",
-         ]
-        }
-       },
-       timepicker:false,
-       format:'d/m/Y'
-      });
-   });
-</script>

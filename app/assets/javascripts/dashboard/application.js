@@ -75,7 +75,7 @@ $(function() {
     $('#search-customer').val("");
     $('#customer_country_id').val(0);
     $('#customer_source_id').val(0);
-    $('#accept').hide();
+    // $('#accept').hide();
     
     $('#tour_tour_category_id').selectbox({
       onChange: function (val) {
@@ -85,13 +85,14 @@ $(function() {
           $.ajax({
             type: "GET",
             data: {
+              ajax_call: true,
               tour_category_id: tourCategoryId,
               keyword: keyWord
             },
             url: url,
             success: function (data) {
-              var result = $(data).find("div#listing-table");
-              $('div#listing-table').html(result)
+              
+              $('div#listing-table').html(data)
             },
             error: function() {
             }
@@ -113,12 +114,12 @@ $(function() {
           url: url,
           type: "GET",
           data:{
+            ajax_call: true,
             tour_category_id: tourCategoryId,
             keyword: keyWord
           },
           success: function(data) {
-            var result = $(data).find("div#listing-table");
-            $('div#listing-table').html(result);
+            $('div#listing-table').html(data);
           },
           error: function() {
           }
@@ -186,13 +187,13 @@ $(function() {
           url: url,
           type: "GET",
           data:{
+            // ajax_call: true,
             keyword: keyWord,
             country_id: customerCountryId,
             source_id: customerSourceId
           },
           success: function(data) {
-            var result = $(data).find("div#listing-table");
-            $('div#listing-table').html(result);
+            $('div#listing-table').html(data);
           },
           error: function() {
           }
@@ -211,20 +212,20 @@ $(function() {
       $.ajax({
         type: "GET",
         data: {
+          // ajax_call: true,
           country_id: customerCountryId,
           source_id: customerSourceId,
           keyword: keyWord
         }, 
         url: url,
         success: function(data){
-          var result = $(data).find("div#listing-table");
-          $('div#listing-table').html(result)
+          $('div#listing-table').html(data)
         }, 
         error: function(){
           
         }
       });
-    },
+    }
   });
  
   //select source
@@ -237,14 +238,15 @@ $(function() {
       $.ajax({
         type: "GET",
         data: {
+          ajax_call: true,
           source_id: customerSourceId,
           country_id: customerCountryId,
           keyword: keyWord
         },
         url: url,
         success: function(data){
-          var result = $(data).find("div#listing-table");
-          $("div#listing-table").html(result)
+         
+          $("div#listing-table").html(data)
         },
         error: function(){
           
@@ -252,12 +254,6 @@ $(function() {
       });
     },
   });
-  
-  //Done Click
-  // $(document.body).delegate("#done", "click", function(){
-//     $('#new_customer').hide();
-//     $('#accept').show();
-//   });
   
   
   $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
@@ -336,13 +332,16 @@ $(function() {
             $.cookie('flashType', response.flash.type, { path: '/' });
             $.cookie('flashMessage', response.flash.message, { path: '/' });
           }//end if
-            // $('#new_customer').hide();
-            // $('#accept').show();
-          if(typeof(Turbolinks) !== 'undefined') {
-            Turbolinks.visit(response.redirect_to);
-          } else {
-            document.location = response.redirect_to;
-          }
+          $('#ajax_modal').modal({
+                show: true,
+                backdrop: 'static',
+                keyboard: true
+          });
+          // if(typeof(Turbolinks) !== 'undefined') {
+          //   Turbolinks.visit(response.redirect_to);
+          // } else {
+          //   document.location = response.redirect_to;
+          // }
         } else {
           handleResponseErrors(response.errors, formDom);
         }//end else

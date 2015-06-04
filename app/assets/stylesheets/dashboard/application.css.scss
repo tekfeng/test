@@ -24,6 +24,7 @@
  *= require customer/customers
  *= require jquery.datetimepicker.css
  *= require lead/leads
+ *= require booking/bookings
  */
 
 .padding-0{
@@ -244,15 +245,15 @@ div.modal-loading {
 }
 
 div.logo {
-  background: url(/assets/dashboard/logo.png) no-repeat 0px 0px;
-  width: 500px;
+  background: url(/assets/dashboard/ab_logo.png) no-repeat 0px 0px;
+  width: 600px;
   opacity: 0.3;
-  height: 263px;
+  height: 300px;
   position: absolute;
   top: 50%;
   margin-top: -131px;
   left: 50%;
-  margin-left: -250px;
+  margin-left: -100px;
 }
 
 .static-page-content h3 {
@@ -263,7 +264,7 @@ div.logo {
     position: relative;
     margin-top:15px;
     input {
-        background: rgba(255, 255, 255, 0.2) none repeat scroll 0 0;
+        background: #fff none repeat scroll 0 0;
         border: 1px solid #ccc;
         border-radius: 5px !important;
         color: #666666;
@@ -298,9 +299,6 @@ div.logo {
   margin-top: 30px;
 }
 
-.ibox .ibox-content {
-  background: transparent !important;
-}
 
 .group-select .sbHolder{
   margin-left: 0px !important;
@@ -318,8 +316,3 @@ form.lead .label {
   background-color: white;
 }
 
-#lead_travel_from, #lead_travel_to {
-  background-image: url("/assets/dashboard/calendar-icon.png");
-  background-repeat: no-repeat;
-  background-position: 99% 6px;
-}

@@ -36,8 +36,8 @@
     </tr>
   </thead>        
   <tbody>
-    <% if @customers.count > 0 %>
-      <% @customers.each_with_index do |customer, index| %>
+    <% if customers.count > 0 %>
+      <% customers.each_with_index do |customer, index| %>
         <tr class="<%= cycle('odd', 'even') %>">
           <td><%= index + 1 %></td>
           <td><%= customer.name %></td>

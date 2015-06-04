@@ -3,8 +3,9 @@ class CustomersController < BaseController
     @customers = Customer.all
     @countries = Country.all
     @sources = Source.all
-    if params.present?
+    if params[:ajax_call]
       @customers = Customer.search(params)[:customers]
+      render :partial => 'customers/list', locals: {customers: @customers}
     end
   end
   

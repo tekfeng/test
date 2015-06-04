@@ -49,35 +49,10 @@ hr{
   width: 80%;
 }
 
-.calendar{
-  position: relative;
-  margin-top: 0px;
-  input#datetimepicker_from, input#datetimepicker_to {
-      background: rgba(255, 255, 255, 0.2) none repeat scroll 0 0;
-      border: 1px solid #ccc;
-      border-radius: 5px !important;
-      color: #666666;
-      font-family: "OpenSans-Regular";
-      font-size: 14px;
-      height: 32px;
-      line-height: 32px;
-      margin-bottom: 18px;
-      outline: medium none;
-      padding: 0 10px 0 20px;
-      width: 100%;
-  }
-  
-  a.submit {
-      color: #ccc;
-      font-size: 16px;
-      height: 30px;
-      line-height: 30px;
-      position: absolute;
-      right: 20px;
-      bottom: 20px;
-      text-align: center;
-      width: 32px;
-  }
+#lead_travel_from, #lead_travel_to,input#datetimepicker_from, input#datetimepicker_to {
+  background-image: url("/assets/dashboard/calendar-icon.png");
+  background-repeat: no-repeat;
+  background-position: 99% 6px;
 }
 
 .inputs li{
@@ -87,7 +62,6 @@ hr{
 #lead_travel_from_input, #lead_travel_to_input, #lead_contact_number_input, #lead_adults_input, #lead_children_input, .sum-pax {
   margin-top: 20px;
 }
-
 
 @media (max-width: 767px) {
   #lead_children_input,#lead_adults_input{

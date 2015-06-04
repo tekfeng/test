@@ -21,8 +21,8 @@
     </tr>
   </thead>        
   <tbody>
-    <% if @tours.count > 0 %>
-      <% @tours.each_with_index do |tour, index| %>
+    <% if tours.count > 0 %>
+      <% tours.each_with_index do |tour, index| %>
         <tr class="<%= cycle('odd', 'even') %>">
           <td><%= index + 1 %></td>
           <td><%= tour.code %></td>

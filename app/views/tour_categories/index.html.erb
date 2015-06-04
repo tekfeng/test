@@ -1,16 +1,16 @@
 <div class="row wrapper border-bottom white-bg page-heading text-center">
-    <h2>Tour Categories</h2>
-    <ol class="breadcrumb">
-      <li>
-        <a href="/dashboard">Home</a>
-      </li>
-      <li class="active">
-        <strong>Tour Categories</strong>
-      </li>
-    </ol>
+  <h2>Tour Categories</h2>
+  <ol class="breadcrumb">
+    <li>
+      <a href="/dashboard">Home</a>
+    </li>
+    <li class="active">
+      <strong>Tour Categories</strong>
+    </li>
+  </ol>
 </div> <!-- wrapper border-bottom -->
 <div class='wrapper wrapper-content'>
-  <div class='ibox'>
+  <div class='ibox white-bg'>
     <div class='ibox-content container-fluid'>
       <div class="col-md-6 col-sm-6 col-xs-12 padding-0">
         <div class="new">
@@ -25,9 +25,9 @@
           </a>
         </form>
       </div>
+    </div>  
+    <div id="categories_listing">
+      <%= render :partial => 'list', locals: {tour_categories: @tour_categories} %>
     </div>
-  </div>
-  <div id="categories_listing" class="row">
-    <%= render :partial => 'list', locals: {tour_categories: @tour_categories} %>
-  </div> <!--col-12-->
-</div>
+  </div> <!-- ibox -->
+</div>   

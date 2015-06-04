@@ -1,32 +1,27 @@
-<div class='row'>
+<div class="row wrapper border-bottom white-bg page-heading text-center">
   <div class='col-lg-12'>
-    <div class='wrapper wrapper-content'>
-      <div class='ibox'>
-        <div class='ibox-content'>
-          <div class='row'>
-            <div class='col-lg-12'>
-              <div class="m-b-md text-center">
-                <a href="<%= tour_categories_url %>" class="btn btn-white btn-xs pull-left">&larr; Back</a>
-                <h2>New Tour Category</h2>
-                <ol class="breadcrumb">
-                  <li>
-                    <a href="/dashboard">Home</a>
-                  </li>
-                  <li class="active">
-                    <strong>Tour Categories</strong>
-                  </li>
-                </ol>
-              </div>
-              <div class='row'>
-                <div class='col-lg-12'>
-                  <hr />
-                  <%= render 'form' %>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="m-b-md text-center">
+      <a href="<%= tour_categories_url %>" class="btn btn-white btn-xs pull-left">&larr; Back</a>
+      <h2>New Tour Category</h2>
+      <ol class="breadcrumb">
+        <li>
+          <a href="/dashboard">Home</a>
+        </li>
+        <li class="active">
+          <strong>Tour Categories</strong>
+        </li>
+      </ol>
     </div>
   </div>
 </div>
+<div class='wrapper wrapper-content'>
+  <div class='ibox'>
+    <div class='ibox-content'>
+      <%= render 'form' %>
+    </div>
+  </div>
+</div> 
+    
+      
+
+

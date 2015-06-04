@@ -1,0 +1,41 @@
+// Place all the styles related to the bookings controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+table.listing-table thead th.booking-number,
+table.listing-table thead th.booking-date,
+table.listing-table thead th.booking-tour,
+table.listing-table thead th.booking-sale{
+  background: #8093a5 none repeat scroll 0 0;
+  color: #fff;
+}
+
+table.listing-table thead th.booking-number a.menu-down,
+table.listing-table thead th.booking-date a.menu-down,
+table.listing-table thead th.booking-tour a.menu-down,
+table.listing-table thead th.booking-sale a.menu-down{
+  color: #fff;
+  top: 3px;
+  left: 5px;
+}
+
+table.listing-table thead th.travel-date,
+table.listing-table thead th.booking-name,
+table.listing-table thead th.booking-status,
+table.listing-table thead th.itinerary{
+  background:#ececec none repeat;
+  color: #77888f;
+}
+
+table.listing-table thead th.travel-date a.menu-down,
+table.listing-table thead th.booking-name a.menu-down,
+table.listing-table thead th.booking-status a.menu-down,
+table.listing-table thead th.itinerary a.menu-down{
+  color: #8093a5;
+  top: 3px;
+  left: 5px;
+}
+
+#listing-table{
+  margin-top: 20px;
+}
