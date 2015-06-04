@@ -50,7 +50,6 @@ gem 'paperclip'
 gem 'nprogress-rails'
 gem "non-stupid-digest-assets"
 gem 'sidekiq'
-gem "formnestic"
 gem 'fullcalendar-rails', '~> 2.1.1.0'
 gem 'momentjs-rails'
 
