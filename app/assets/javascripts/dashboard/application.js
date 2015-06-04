@@ -30,8 +30,8 @@
 //= require formnestic/formnestic
 //= require dashboard/selectordie.js
 //= require dashboard/jquery.datetimepicker.js
-//= require moment
-//= require fullcalendar.js
+//= require dashboard/moment.min.js
+//= require dashboard/fullcalendar.js
 //= require dashboard/jquery.fancybox-1.3.4
 //= require dashboard/jquery.selectbox-0.2
  
