@@ -13,17 +13,8 @@
 
 ActiveRecord::Schema.define(version: 20150603092529) do
 
-  create_table "booking_statuses", force: :cascade do |t|
-ActiveRecord::Schema.define(version: 20150601024531) do
-
   create_table "add_username_to_users", force: :cascade do |t|
     t.string   "username",   limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
-  create_table "cities", force: :cascade do |t|
-    t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
@@ -37,7 +28,14 @@ ActiveRecord::Schema.define(version: 20150601024531) do
     t.string   "itinerary",    limit: 255
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
-    
+  end
+
+  create_table "cities", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "competitors", force: :cascade do |t|
     t.string   "name",           limit: 255
     t.datetime "created_at",                 null: false
@@ -73,12 +71,6 @@ ActiveRecord::Schema.define(version: 20150601024531) do
     t.datetime "updated_at",                 null: false
   end
 
-  create_table "sources", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "mtq_slots", force: :cascade do |t|
     t.datetime "date"
     t.integer  "available_slot", limit: 4
@@ -108,6 +100,12 @@ ActiveRecord::Schema.define(version: 20150601024531) do
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+  end
+
+  create_table "sources", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "tour_categories", force: :cascade do |t|
