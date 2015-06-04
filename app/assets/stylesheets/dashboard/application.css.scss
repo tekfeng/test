@@ -653,7 +653,14 @@ table.listing-table {
   margin-left: 140px;
   font-size: 16px !important;
 }
-form.vendor .sbHolder {
+.form-group-customer form.select-customer-country .sbHolder ul.sbOptions {
+  width: 100%;
+  background-color: white;
+}
+
+form.vendor .sbHolder, 
+form.select-customer-country .sbHolder,
+{
   background: white;
   margin-left: 200px;
   width: 325px;
@@ -680,6 +687,7 @@ form.vendor .sbHolder {
   }
 }
 
+
 li#vendor_vendor_category_id_input, li#vendor_city_id_input {
   margin-top: 20px;
 }
@@ -692,4 +700,60 @@ li#vendor_vendor_category_id_input, li#vendor_city_id_input {
 }
 .ibox-content h2, .ibox-content h1 {
   text-align: center;
+}
+
+form.group-select .sbHolder{
+  background: white;
+  width: 100%;
+  border-radius: 4px;
+  
+  .sbSelector {
+    color: #5e5e5e;
+    width: 100%;
+  }
+  ul.sbOptions {
+    width: 325px;
+    background-color: white;
+  }
+  .sbToggle {
+    height: 28px;
+    background-color: #22A98E;
+  }
+  
+  .sbOptions a:link {
+    color: #5e5e5e ;
+    &:hover{
+      color: #EADB35;
+    };
+  }
+}
+
+.select-new-tour .sbHolder{
+  background: white;
+  width: 100%;
+  border-radius: 4px;
+  
+  .sbSelector {
+    color: #5e5e5e;
+    width: 100%;
+  }
+  ul.sbOptions {
+    width: 100%;
+    background-color: white;
+  }
+  .sbToggle {
+    height: 28px;
+    background-color: #22A98E;
+  }
+  
+  .sbOptions a:link {
+    color: #5e5e5e ;
+    &:hover{
+      color: #EADB35;
+    };
+  }
+}
+
+#categories_listing{
+  margin-top: 20px;
 }

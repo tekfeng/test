@@ -11,6 +11,12 @@ class Lead < ActiveRecord::Base
   validates :adults, :uniqueness => true
   validates :children, :presence => true
   validates :children, :uniqueness => true
+  has_many :tours
+  accepts_nested_attributes_for :tours, allow_destroy: true
+  
+  BOOKING_STATUS = ['Confirm invoice','Need follow up','Replied','Closed','Allocated','Fully booked','No response','Cancel invoice']
+  
+  
 end
 
 

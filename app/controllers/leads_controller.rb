@@ -5,6 +5,7 @@ class LeadsController <  BaseController
   
   def new
     @lead = Lead.new
+    @lead.user = current_user
   end
   
   def create
