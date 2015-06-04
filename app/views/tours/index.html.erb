@@ -1,57 +1,43 @@
-<div class='row'>
-  <div class='col-lg-12'>
-    <div class="row wrapper border-bottom white-bg page-heading text-center">
-      <div class="col-lg-12">
-        <h2>Tours</h2>
-        <ol class="breadcrumb">
-          <li>
-            <a href="/dashboard">Home</a>
-          </li>
-          <li class="active">
-            <strong>Tours</strong>
-          </li>
-        </ol>
-      </div>
-    </div>
-    
-    <div class='wrapper wrapper-content'>
-      <div class='ibox'>
-        <div class='ibox-content'>
-          <div class="col-md-12 col-sm-12 col-xs-12 padding-0">
-            <div class='clearfix look-for'>
-              <div class="col-md-12 col-sm-12 col-xs-12 padding-0">
-                <div>
-                  <%= link_to 'New Tour', new_tour_url, class: "btn btn-primary pull-right" %>
-                </div>
-              </div>
-              <div class="col-md-6 col-sm-6 col-xs-12 padding-0">
-                <form class="group-select">
-                	<select tabindex="1" id="tour_tour_category_id">
-              			<option value="0">-- Select Tour Category --</option>
-                    <% @tour_categories.each_with_index do |tour_category| %>
-                      <option value="<%= tour_category.id %>"><%= tour_category.name %></option>
-                    <% end %>				
-                  </select>
-                </form>
-              </div>
-              <div class="col-md-6 col-sm-6 col-xs-12 padding-0 search">
-                <form class="group-input">
-                  <input type='search' id='search-tour' placeholder="Search..." />
-                  <a class="submit" type="submit" href="#">
-                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                  </a>
-                </form>
-              </div>
-            </div><!-- clearfix -->
-          <br/>
-          <div class="col-md-12 col-sm-12 col-xs-12 padding-0">
-            <div id="listing-table">
-              <%= render :partial => 'list', local: {tours: @tours}%>
-            </div>
-          </div>
-          <br/ >
+<div class="row wrapper border-bottom white-bg page-heading text-center">
+  <h2>Tours</h2>
+  <ol class="breadcrumb">
+    <li>
+      <a href="/dashboard">Home</a>
+    </li>
+    <li class="active">
+      <strong>Tours</strong>
+    </li>
+  </ol>
+</div>
+<div class='wrapper wrapper-content'>
+  <div class='ibox white-bg'>
+    <div class='ibox-content container-fluid'>
+      <div class="col-md-12 col-sm-12 col-xs-12 padding-0">
+        <div>
+          <%= link_to 'New Tour', new_tour_url, class: "btn btn-primary pull-left" %>
         </div>
       </div>
+      <div class="col-md-5 col-sm-5 col-xs-12 padding-0">
+          <form class="group-select">
+          	<select tabindex="1" id="tour_tour_category_id">
+        			<option value="0">-- Select Tour Category --</option>
+              <% @tour_categories.each_with_index do |tour_category| %>
+                <option value="<%= tour_category.id %>"><%= tour_category.name %></option>
+              <% end %>				
+            </select>
+          </form>
+        </div>
+      <div class="col-md-5 col-md-offset-2 col-sm-5 col-sm-offset-2 col-xs-12 padding-0 search">
+          <form class="group-input">
+            <input type='search' id='search-tour' placeholder="Search..." />
+            <a class="submit" type="submit" href="#">
+              <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+            </a>
+          </form>
+        </div>
+    </div> <!--ibox-content-->
+    <div id="listing-table">
+      <%= render :partial => 'list', locals: {tours: @tours} %>
     </div>
-  </div>
-</div>
+  </div> <!--ibox-->
+</div> <!--wrapper-content-->

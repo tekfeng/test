@@ -1,0 +1,69 @@
+<div class="row wrapper border-bottom white-bg page-heading text-center">
+    <div class="col-md-4 col-sm-4 col-xs-12">
+      <div class="new-booking">
+        <%= link_to 'New Booking', new_lead_url, class: "btn btn-primary pull-left", id: "new" %>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-4 col-xs-12">
+      <h2>Bookings</h2>
+      <ol class="breadcrumb">
+        <li>
+          <a href="/dashboard">Home</a>
+        </li>
+        <li>
+          <a href="/dashboard">Sales</a>
+        </li>
+        <li class="active">
+          <strong>Bookings</strong>
+        </li>
+      </ol>
+    </div>
+    <div class="col-md-4 col-sm-4 col-xs-12">
+      <form class="group-input">
+        <input type='search' id='search-customer' placeholder="Search..." />
+        <a class="submit" type="submit" href="#">
+          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+        </a>
+      </form>
+    </div>
+</div> <!--row wrapper-->
+<div class='wrapper wrapper-content'>
+  <div class="ibox">
+    <div class="ibox-content container-fluid white-bg">
+      <div class="col-md-12 col-sm-12 col-xs-12 padding-0 text-center">
+        <form class="select-lead-status">
+          <select tabindex="1" id="lead_status_id">
+            <option value="0">-- Payments Status --</option>			
+          </select>
+        </form>
+      </div>
+      <div class="col-md-12 col-sm-12 col-xs-12 padding-0 text-center">
+        <form class="select-Sale-Person">
+          <select tabindex="1" id="Sale_Person_id">
+            <option value="0">-- Sale Person --</option>			
+          </select>
+        </form>
+      </div>
+      <div class="col-md-12 col-sm-12 col-xs-12 padding-0">
+        <form class="calendar">
+          <div class="form-group">
+            <input id="datetimepicker_from" class="form-control" type="text" placeholder="Travel from">
+          </div>
+        </form>
+      </div>
+      <div class="col-md-12 col-sm-12 col-xs-12 padding-0">
+        <form class="calendar">
+          <div class="form-group">
+            <input id="datetimepicker_to" class="form-control" type="text" placeholder="Travel to">
+          </div>
+        </form>
+      </div>
+      <div class="col-md-12 col-sm-12 col-xs-12 padding-0 text-center">
+         <button class="btn btn-primary" type="submit">Filter</button>
+      </div>
+    </div>
+    <div id="listing-table">
+      <%= render :partial => 'list', local: {bookings: @bookings}%>
+    </div>
+  </div>
+</div>

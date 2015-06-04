@@ -21,14 +21,16 @@
      </div>
    </div>
    <div class= "form-group">
-     <div class="col-md-12 col-sm-12 col-xs-12 padding-0">
+     <div class="col-md-10 col-md-offset-1 col-xs-12 padding-0">
        <%= form.select :country_id, Country.all.collect{|t| [t.name, t.id]}, {}, { class: 'form-control' }%>
      </div>
+     <div calss="col-md-1 col-sm-1 col-xs-12 padding-0"></div>
    </div>
    <div class= "form-group">
-     <div class="col-md-12 col-sm-12 col-xs-12 padding-0">
+     <div class="col-md-10 col-md-offset-1 col-xs-12 padding-0">
        <%= form.select :source_id, Source.all.collect{|t| [t.name, t.id]}, {}, { class: 'form-control' }%>
      </div>
+     <div calss="col-md-1 col-sm-1 col-xs-12 padding-0"></div>
    </div>
    <div class="form-group text-center">
      <div class="col-md-12 col-sm-12 col-xs-12 padding-0">

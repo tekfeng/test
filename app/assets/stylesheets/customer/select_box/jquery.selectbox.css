@@ -24,7 +24,7 @@
 	position: absolute;
 	text-indent: 10px;
 	top: 0;
-	width: 150px;
+	width: 100%;
 }
 .sbSelector:link, .sbSelector:visited, .sbSelector:hover{
 	color: #8093a5;

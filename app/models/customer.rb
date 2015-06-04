@@ -1,6 +1,7 @@
 class Customer < ActiveRecord::Base
   belongs_to :country 
   belongs_to :source
+  has_many :lead
   validates :name, :presence => true
   validates :name, :uniqueness => true
   validates :email_address, :presence => true

@@ -3,8 +3,9 @@ class CustomersController < BaseController
     @customers = Customer.all
     @countries = Country.all
     @sources = Source.all
-    if params.present?
+    if params[:ajax_call]
       @customers = Customer.search(params)[:customers]
+      render :partial => 'customers/list', locals: {customers: @customers}
     end
   end
   
@@ -19,7 +20,7 @@ class CustomersController < BaseController
         flash: { type: :notice, message: 'Customer has been created successfully!' }}
         @current_customer_id = @customer.id
     else
-      render json: {result: 'false', error: @customer.error}
+      render json: {result: 'false', error: @customer.errors}
     end
   end
   

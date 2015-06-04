@@ -6,5 +6,7 @@ Rails.application.routes.draw do
   resources :tour_categories
   resources :tours
   resources :customers
+  resources :leads
+  resources :bookings
   
 end

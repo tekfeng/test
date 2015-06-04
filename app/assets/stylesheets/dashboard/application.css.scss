@@ -22,7 +22,15 @@
  *= require ./select_box/jquery.selectbox.css
  *= require ./style
  *= require customer/customers
+ *= require jquery.datetimepicker.css
+ *= require lead/leads
+ *= require booking/bookings
  */
+
+.padding-0{
+  padding: 0 !important;
+  //margin: 0 !important;
+}
 
 .text-align-right {
   text-align: right;
@@ -243,15 +251,15 @@ div.modal-loading {
 }
 
 div.logo {
-  background: url(/assets/dashboard/logo.png) no-repeat 0px 0px;
-  width: 500px;
+  background: url(/assets/dashboard/ab_logo.png) no-repeat 0px 0px;
+  width: 600px;
   opacity: 0.3;
-  height: 263px;
+  height: 300px;
   position: absolute;
   top: 50%;
   margin-top: -131px;
   left: 50%;
-  margin-left: -250px;
+  margin-left: -100px;
 }
 
 .static-page-content h3 {
@@ -260,9 +268,9 @@ div.logo {
 
 .group-input {
     position: relative;
-    margin-top:30px;
+    margin-top:15px;
     input {
-        background: rgba(255, 255, 255, 0.2) none repeat scroll 0 0;
+        background: #fff none repeat scroll 0 0;
         border: 1px solid #ccc;
         border-radius: 5px !important;
         color: #666666;
@@ -290,14 +298,27 @@ div.logo {
 }
 
 .ibox .new a.btn{
-  margin-top: 30px;
+  margin-top: 15px; //btn addnew
 }
 
 .ibox .select-tour-category{
   margin-top: 30px;
 }
 
+
 .group-select .sbHolder{
   margin-left: 0px !important;
-  top: 30px !important;
+  top: 15px !important;
+  padding-right: 20px;
 }
+
+@media (max-width: 767px) {
+   #search-tour a.submit{
+     margin-top: 0px !important; //search loupe
+   }
+}
+
+form.lead .label {
+  background-color: white;
+}
+

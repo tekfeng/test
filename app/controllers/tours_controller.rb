@@ -3,9 +3,10 @@ class ToursController < BaseController
   def index
     @tours = Tour.all
     @tour_categories = TourCategory.all
-    if params.present?
+    if params[:ajax_call]
       @tours = Tour.search(params)[:tours]
-    end
+      render :partial => 'tours/list', locals: {tours: @tours}
+    end  
   end
   
   def new
