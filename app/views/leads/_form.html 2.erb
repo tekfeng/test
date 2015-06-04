@@ -1,0 +1,113 @@
+<%= semantic_form_for @lead do |f| %>
+  <%= f.inputs do %>
+    <div class= "form-group">
+      <div class="col-md-10 col-md-offset-1 col-xs-12">
+        <%= f.input :customer_id,:as => :select ,:collection => Customer.all.collect{|t| [t.name + " - " + t.email_address, t.id]},class: 'form-control'%>
+      </div>
+      <div class="col-md-1 col-sm-1 col-xs-12"></div>
+    </div> <!--select-customer-->
+    <div class="col-md-12 col-sm-12 col-xs-12 padding-0 text-center">
+      <p>Or</p>
+    </div> <!--0r-->
+    <div class="form-group text-center col-md-12 col-sm-12 col-xs-12 ">
+        <%= f.action :submit,:as => :button, wrapper_html:{class: " btn btn-primary save-form-button"} %>
+    </div> <!--btn create-->
+    <div class="form-group">
+      <%= f.input :travel_from, :as =>  :string, id: 'datetimepicker_from', placeholder: "Travel from", input_html:{class: "form-control"}, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12"} %>
+    </div> <!--travel from-->
+    <div class="form-group">
+      <%= f.input :travel_to, :as => :string, id: 'datetimepicker_to', placeholder: "Travel to", input_html:{class: "form-control" }, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12"}%>
+    </div> <!--travel to-->
+    <div class="form-group">
+      <%= f.input :contact_number, :as => :string, placeholder: "Contact Number",  input_html:{class: "form-control"}, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12"}%>
+    </div> <!--contact-->
+    <div class="form-group">
+      <div class="col-md-12 col-sm-12 col-xs-12 padding-0">
+        <div class="col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1 col-xs-12 padding-0">
+          <%= f.input :adults, :as => :string, placeholder: "No. of Adults", input_html:{class: 'form-control '}%>
+        </div>
+        <div class="col-md-5 col-sm-5 col-xs-12 padding-0">
+          <%= f.input :children, :as => :string, placeholder: "No. of Childrens", input_html:{class: 'form-control '} %>
+        </div>
+        <div class="col-md-1 col-sm-1 col-xs-12 padding-0"></div>
+      </div>
+    </div> <!--aldust+childrent-->
+    <div class="form-group">
+      <div class="col-md-12 col-sm-12 col-xs-12 padding-0 sum-pax">
+          No. of Pax: <p id="sum-pax"></p>
+      </div>
+    </div>
+    
+    <% end %>
+<% end %>
+
+<script>
+ $(document).ready(function(){
+   $('.label').hide();
+   $("#lead_travel_from").val("");
+   $('#lead_travel_to').val("");
+   
+   //select lead customer id
+   $('#lead_customer_id').selectbox({}); 
+   
+   //date from
+   $("#lead_travel_from").datetimepicker({
+   lang:'de',
+   i18n:{
+    de:{
+     months:[
+      'Januar','Februar','März','April',
+      'May','Jun','July','August',
+      'September','October','November','Dezember',
+     ],
+     dayOfWeek:[
+      "So.", "Mo", "Di", "Mi",
+      "Do", "Fr", "Sa.",
+     ]
+    }
+   },
+   timepicker:false,
+   format:'d/m/Y'
+  });
+  
+  //date to
+  $('#lead_travel_to').datetimepicker({
+    lang:'de',
+    i18n:{
+     de:{
+      months:[
+       'Januar','Februar','März','April',
+       'May','Jun','July','August',
+       'September','October','November','Dezember',
+      ],
+      dayOfWeek:[
+       "So.", "Mo", "Di", "Mi",
+       "Do", "Fr", "Sa.",
+      ]
+     }
+    },
+    timepicker:false,
+    format:'d/m/Y'
+  });
+  
+  //sum=pax
+  $(document.body).delegate("#lead_adults, #lead_children", "keyup", function(){
+    var adults = $("#lead_adults").val();
+    var children = $("#lead_children").val();
+    var sum;
+    console.log(parseInt(children))
+    if(parseInt(adults) != "NaN" && parseInt(children) == "null")
+    {
+      sum = parseInt(adults);
+      $("#sum-pax").html(sum.toString());
+    }
+    else if(parseInt(adults) == "null" && parseInt(children) != "NaN"){
+      sum = parseInt(children);
+      $("#sum-pax").html(sum.toString());
+    }
+    sum = parseInt(adults) + parseInt(children);
+    $("#sum-pax").html(sum.toString());
+  });
+})
+</script>
+  

@@ -13,8 +13,15 @@
 
 ActiveRecord::Schema.define(version: 20150604091442) do
 
+
   create_table "add_username_to_users", force: :cascade do |t|
     t.string   "username",   limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "booking_statuses", force: :cascade do |t|
+    t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
@@ -72,6 +79,8 @@ ActiveRecord::Schema.define(version: 20150604091442) do
     t.integer  "children",       limit: 4
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.string   "status",         limit: 255
+    t.string   "user_id",        limit: 255
   end
 
   create_table "mtq_slots", force: :cascade do |t|
@@ -123,6 +132,7 @@ ActiveRecord::Schema.define(version: 20150604091442) do
     t.integer  "tour_category_id", limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "lead_id",          limit: 4
   end
 
   create_table "users", force: :cascade do |t|
