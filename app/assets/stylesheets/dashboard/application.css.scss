@@ -8,23 +8,22 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require_self
  *= require font-awesome
  *= require animate/animate.css
  *= require dropzone/dropzone.css
  *= require dropzone/basic.css
- *= require iCheck/custom.css 
+ *= require iCheck/custom.css
  *= require ekko-lightbox/ekko-lightbox.css
  *= require toastr/toastr.min.css
  *= require ./style
  *= require summernote/summernote.css
  *= require summernote/summernote-bs3.css
  *= require ./select_box/jquery.selectbox.css
- *= require ./style
  *= require customer/customers
  *= require jquery.datetimepicker.css
  *= require lead/leads
  *= require booking/bookings
+ *= require_self
  */
 
 .padding-0{
@@ -36,11 +35,6 @@
   text-align: right;
 }
 
-.ibox {
-  .ibox-content {
-    background: none !important;
-  }
-}
 
 form.form-horizontal {
   ul.inline-errors {
@@ -49,16 +43,16 @@ form.form-horizontal {
     list-style-type: none;
     color: #ed5565;
   }
-  
+
   div.form-errors-container {
     background: #ed5565;
     padding: 10px;
     color: #fff;
     margin-bottom: 20px;
   }
-  
+
   ul.form-errors {
-    padding-left: 30px;    
+    padding-left: 30px;
     list-style-type: decimal;
     margin-top: 5px;
     margin-bottom: 0;
@@ -101,7 +95,7 @@ div.drop-zone-previews-container, div.support-photo-drop-zone-previews-container
       margin-bottom: 10px;
     }
   }
-  
+
   &.auto-width-image-preview {
     div.dz-preview.dz-image-preview {
       img {
@@ -109,19 +103,19 @@ div.drop-zone-previews-container, div.support-photo-drop-zone-previews-container
       }
     }
   }
-  
+
   div.dz-error-mark {
     display: none;
   }
-  
+
   div.dz-success-mark {
     display: none;
   }
-  
+
   div.dz-error-message {
     display: none;
   }
-  
+
   div.dz-progress {
     display: none;
   }
@@ -219,17 +213,17 @@ table.listing-table {
     padding: 5px 10px;
     border: 1px solid #e7e7e7;
   }
-  
+
   tr.even {
     td {
       background: rgb(249, 249, 249);
     }
   }
-  
+
   tr:hover td {
     background: #f5f5f5 !important;
   }
-  
+
   .btn {
     font-size: 12px;
   }
@@ -283,7 +277,7 @@ div.logo {
         padding: 0 10px 0 40px;
         width: 100%;
     }
-    
+
     a.submit {
         color: #ccc;
         font-size: 16px;
@@ -294,7 +288,7 @@ div.logo {
         text-align: center;
         width: 32px;
     }
-    
+
 }
 
 .ibox .new a.btn{

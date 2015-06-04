@@ -60,13 +60,13 @@ namespace :deploy do
     rescue => e
     end
   end
-  
+
   namespace :assets do
     task :link_tmp_cache_folder, roles: [:app, :db] do
       run "mkdir -p #{shared_path}/tmp/cache"
       run "mkdir -p #{release_path}/tmp"
       run "ln -nfs #{shared_path}/tmp/cache #{release_path}/tmp/cache"
-    end    
+    end
   end
 
   desc 'Symlink share'
@@ -85,11 +85,11 @@ namespace :deploy do
     ## Link config file
     run "rm -f #{release_path}/config/config.yml"
     run "ln -nfs #{shared_path}/config/config.yml #{release_path}/config/config.yml"
-    
+
     ## Link config file
     run "rm -f #{release_path}/.rbenv-vars"
     run "ln -nfs #{shared_path}/.rbenv-vars #{release_path}/.rbenv-vars"
-    
+
 
   end
 

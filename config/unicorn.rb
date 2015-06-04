@@ -19,20 +19,20 @@ before_exec do |server|
 end
 
 before_fork do |server, worker|
-  
+
   if defined?(ActiveRecord::Base)
     ActiveRecord::Base.connection.disconnect!
   end
-  
+
   old_pid = "#{server.config[:pid]}.oldbin"
   if old_pid != server.pid
     begin
       sig = (worker.nr + 1) >= server.worker_processes ? :QUIT : :TTOU
       Process.kill(sig, File.read(old_pid).to_i)
-    rescue Errno::ENOENT, Errno::ESRCH      
+    rescue Errno::ENOENT, Errno::ESRCH
     end
   end
-  
+
   # Throttle the master from forking too quickly by sleeping.
   sleep 1
 end
@@ -48,12 +48,10 @@ after_fork do |server, worker|
   # and Redis. TokyoCabinet file handles are safe to reuse
   # between any number of forked children (assuming your kernel
   # correctly implements pread()/pwrite() system calls)
-  
+
   begin
     uid, gid = Process.euid, Process.egid
-    if (ENV['RACK_ENV'] || ENV['RAILS_ENV']) == "production"
-      user, group = 'app', 'app'
-    end
+    user, group = 'app', 'app'
     target_uid = Etc.getpwnam(user).uid
     target_gid = Etc.getgrnam(group).gid
     worker.tmp.chown(target_uid, target_gid)
