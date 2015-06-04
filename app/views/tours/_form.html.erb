@@ -12,7 +12,7 @@
   </div>
   
   <div class='form-group'>
-    <div class="col-md-10 col-md-offset-1 col-xs-12 padding-0">
+    <div class="col-md-10 col-md-offset-1 col-xs-12 padding-0 select-new-tour">
       <%= form.select :tour_category_id, TourCategory.all.collect{|t| [t.name, t.id]}, {}, { class: 'form-control' }%>
     </div>
     <div class="col-md-1 col-md-1 col-xs-12 padding-0"></div>

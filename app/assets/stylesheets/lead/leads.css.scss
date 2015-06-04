@@ -59,9 +59,42 @@ hr{
   list-style: none;
 }
 
-#lead_travel_from_input, #lead_travel_to_input, #lead_contact_number_input, #lead_adults_input, #lead_children_input, .sum-pax {
+#lead_travel_from_input, 
+#lead_travel_to_input, 
+#lead_contact_number_input, 
+#lead_adults_input, 
+#lead_children_input, 
+.sum-pax {
   margin-top: 20px;
 }
+
+form.select-lead-status {
+  background: white;
+  width: 100%;
+  border-radius: 4px;
+  
+  .sbSelector {
+    color: #5e5e5e;
+    width: 100%;
+  }
+  ul.sbOptions {
+    width: 100%;
+    background-color: white;
+  }
+  .sbToggle {
+    height: 28px;
+    background-color: #22A98E;
+  }
+  
+  .sbOptions a:link {
+    color: #5e5e5e ;
+    &:hover{
+      color: #EADB35;
+    };
+  }
+}
+
+
 
 @media (max-width: 767px) {
   #lead_children_input,#lead_adults_input{

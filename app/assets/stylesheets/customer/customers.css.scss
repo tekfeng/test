@@ -109,6 +109,58 @@ table.listing-table thead th.customer-thead-source a.menu-down{
   text-align: center;
 }
 
+form.select-customer-source .sbHolder{
+  background: white;
+  width: 325px;
+  border-radius: 4px;
+
+  .sbSelector {
+    color: #5e5e5e;
+    width: 100%;
+  }
+  ul.sbOptions {
+    width: 100%;
+    background-color: white;
+  }
+  .sbToggle {
+    height: 28px;
+    background-color: #22A98E;
+  }
+
+  .sbOptions a:link {
+    color: #5e5e5e ;
+    &:hover{
+      color: #EADB35;
+    };
+  }
+}
+
+.select-country .sbHolder, .select-source .sbHolder{
+  background: white;
+  width: 100%;
+  border-radius: 4px;
+
+  .sbSelector {
+    color: #5e5e5e;
+    width: 100%;
+  }
+  ul.sbOptions {
+    width: 100%;
+    background-color: white;
+  }
+  .sbToggle {
+    height: 28px;
+    background-color: #22A98E;
+  }
+
+  .sbOptions a:link {
+    color: #5e5e5e ;
+    &:hover{
+      color: #EADB35;
+    };
+  }
+}
+
 @media (max-width: 767px) {
   a.submit{
     margin-top: 0px !important;

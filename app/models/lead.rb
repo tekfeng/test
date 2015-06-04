@@ -14,6 +14,9 @@ class Lead < ActiveRecord::Base
   has_many :tours
   accepts_nested_attributes_for :tours, allow_destroy: true
   
+  BOOKING_STATUS = ['Confirm invoice','Need follow up','Replied','Closed','Allocated','Fully booked','No response','Cancel invoice']
+  
+  
 end
 
 

@@ -35,6 +35,9 @@
         <form class="select-lead-status">
           <select tabindex="1" id="lead_status_id">
             <option value="0">-- Booking Status --</option>			
+             <% Lead::BOOKING_STATUS.each_with_index do |status| %>
+               <option value=""><%= status %></option>
+             <% end %>
           </select>
         </form>
       </div>
@@ -70,24 +73,25 @@
 </div>
 
 <script>
-   $(document).ready(function(){
-     $('#datetimepicker_from, #datetimepicker_to').datetimepicker({
-       lang:'de',
-       i18n:{
-        de:{
-         months:[
-          'Januar','Februar','März','April',
-          'May','Jun','July','August',
-          'September','October','November','Dezember',
-         ],
-         dayOfWeek:[
-          "So.", "Mo", "Di", "Mi",
-          "Do", "Fr", "Sa.",
-         ]
-        }
-       },
-       timepicker:false,
-       format:'d/m/Y'
-      });
-   });
+  $("#lead_status_id").selectbox();
+ $(document).ready(function(){
+   $('#datetimepicker_from, #datetimepicker_to').datetimepicker({
+     lang:'de',
+     i18n:{
+      de:{
+       months:[
+        'Januar','Februar','März','April',
+        'May','Jun','July','August',
+        'September','October','November','Dezember',
+       ],
+       dayOfWeek:[
+        "So.", "Mo", "Di", "Mi",
+        "Do", "Fr", "Sa.",
+       ]
+      }
+     },
+     timepicker:false,
+     format:'d/m/Y'
+    });
+ });
 </script>
