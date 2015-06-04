@@ -1,0 +1,33 @@
+<thead>
+  <tr>
+    <th>No.</th>
+    <th>Name</th>
+    <th>Vendor Type</th>
+    <th>Email</th>
+    <th>Contact</th>
+    <th>Fax</th>
+    <th>City</th>
+    <th colspan='2' style='text-align: center;'>Action</th>
+  </tr>
+</thead>        
+<tbody>
+  <% @vendors.each_with_index do |vendor, index| %>
+    <tr class="<%= cycle('odd', 'even') %>">
+      <td><%= index + 1 %></td>
+      <td><%= vendor.name.html_safe %></td>
+      <td><%= vendor.vendor_type %></td>
+      <td><%= vendor.email %></td>
+      <td><%= vendor.contact %></td>
+      <td><%= vendor.fax %></td>
+      <td><%= vendor.city ? vendor.city.name : "N/A" %></td>
+      
+      <td style='text-align: center;'>
+        <%= link_to "More Details", "/vendors/#{vendor.id}/more_details", class: 'btn btn-blue' %>
+      </td>
+      
+      <td style='text-align: center;'>
+        <%= link_to "Edit", edit_vendor_url(vendor), class: 'btn edit-btn' %>
+      </td>
+    </tr>
+  <% end %>
+</tbody>

@@ -1,0 +1,46 @@
+<% updated ||= false %>
+<div class='row'>
+  <div class='col-lg-12'>
+    <div class='wrapper wrapper-content'>
+      <div class='ibox'>
+        <div class='ibox-content'>
+          <div class='row'>
+            <div class='col-lg-12'>
+              <div class="m-b-md">
+                <h2>Edit Vendor Rate: <%= @vendor.name.html_safe %></h2>
+                <a href="<%= vendor_rates_path %>" class="btn btn-white btn-xs pull-left back-button">&larr; Back</a>
+               
+                <% if updated %>
+                  <p class="updated-notifi"><%=@vendor.name %> is updated successfull !</p>
+                <% end %>
+                <div class="detail-vendor-time">
+                  <p class="pdl-60"> Last Updated by: <%= @vendor.user_updated_lastest.try(:username) %> </p>
+                  <p class="pdl-60"> Last Updated on: <%= @vendor.updated_at.in_time_zone("Singapore").strftime("%d-%m-%Y") %> </p> 
+                  <p class="pdl-60"> Last Created by: <%= @vendor.user_created.try(:username) %> </p>
+                  <p class="pdl-60"> Last Created on: <%= @vendor.created_at.in_time_zone("Singapore").strftime("%d-%m-%Y") %> </p>                     
+                </div>
+                <hr />
+                
+                <div class="detail-vendor-info">
+                  <p class="pdl-60"> Vendor name: <%= @vendor.name %> </p>
+                  <p class="pdl-60"> Vendor type: <%= @vendor.vendor_type %> </p>
+                  <p class="pdl-60"> Vendor category: <%= @vendor.vendor_category.try(:name) %> </p>
+                  <p class="pdl-60"> Vendor Eamil address: <%= @vendor.email %> </p>
+                  <p class="pdl-60"> Vendor Contact number: <%= @vendor.contact %> </p>
+                  <p class="pdl-60"> Vendor Fax number: <%= @vendor.fax %> </p>
+                </div>
+                
+              </div>
+              <div class='row'>
+                <div class='col-lg-12'>
+                  <hr />
+                  <%= render 'rate_form' %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

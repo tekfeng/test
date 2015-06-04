@@ -50,6 +50,10 @@ gem 'paperclip'
 gem 'nprogress-rails'
 gem "non-stupid-digest-assets"
 gem 'sidekiq'
+gem "formnestic"
+gem 'fullcalendar-rails', '~> 2.1.1.0'
+gem 'momentjs-rails'
+
 # gem 'capistrano-sidekiq', github: 'seuros/capistrano-sidekiq'
 
 group :development, :test do
@@ -72,6 +76,7 @@ group :test do
   gem "launchy", '~> 2.4.2'
   gem 'shoulda-matchers', '~> 2.7.0'
   gem "capybara", '~> 2.4.4'
+  
 end
 
 gem 'capistrano', '~> 2.15.5'

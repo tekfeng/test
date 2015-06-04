@@ -21,36 +21,53 @@
           F
         </div>
       </li>
-      <li class="<%= 'active' if params[:controller] == 'tour_categories' %>">
-        <%= link_to "/tour_categories" do %>
-          <i class="fa fa-cubes"></i> 
-          <span class="nav-label">Tour Categories</span>
-        <% end %>
-      </li>
-      <li class="<%= 'active' if params[:controller] == 'tours' %>">
-        <%= link_to "/tours" do %>
-          <i class="fa fa-cubes"></i> 
-          <span class="nav-label">Tours</span>
-        <% end %>
-      </li>
-      <li class="<%= 'active' if params[:controller] == 'customers' %>">
-        <%= link_to "/customers" do %>
-          <i class="fa fa-cubes"></i> 
-          <span class="nav-label">Customers</span>
-        <% end %>
-      </li>
-      <li class="<%= 'active' if params[:controller] == 'leads' %>">
-        <%= link_to "/leads" do %>
-          <i class="fa fa-cubes"></i> 
-          <span class="nav-label">Leads</span>
-        <% end %>
-      </li>
-      <li class="<%= 'active' if params[:controller] == 'bookings' %>">
-        <%= link_to "/bookings" do %>
-          <i class="fa fa-cubes"></i> 
-          <span class="nav-label">Booking</span>
-        <% end %>
-      </li>
+     
+      <% if Vendor.showing_section(request) == 1 %>
+      
+      
+        <li class="<%= 'active' if params[:controller] == 'tour_categories' %>">
+          <%= link_to "/tour_categories" do %>
+            <i class="fa fa-cubes"></i> 
+            <span class="nav-label">Tour Categories</span>
+          <% end %>
+        </li>
+        <li class="<%= 'active' if params[:controller] == 'tours' %>">
+          <%= link_to "/tours" do %>
+            <i class="fa fa-cubes"></i> 
+            <span class="nav-label">Tours</span>
+          <% end %>
+        </li>
+      
+      <% elsif Vendor.showing_section(request) == 5 %> 
+        <li class="<%= 'active' if params[:controller] == 'vendors' %>">
+          <%= link_to "/vendors" do %>
+            <i class="fa fa-cubes"></i> 
+            <span class="nav-label">Vendors</span>
+          <% end %>
+        </li>    
+      
+        <li class="<%= 'active' if params[:controller] == 'vendor_categories' %>">
+          <%= link_to "/vendor_categories" do %>
+            <i class="fa fa-cubes"></i> 
+            <span class="nav-label">Vendor Categories</span>
+          <% end %>
+        </li>
+      
+        <li class="<%= 'active' if params[:controller] == 'vendor_rates' %>">
+          <%= link_to "/vendor_rates" do %>
+            <i class="fa fa-cubes"></i> 
+            <span class="nav-label">Vendor Rates</span>
+          <% end %>
+        </li>
+      
+      
+        <li class="<%= 'active' if params[:controller] == 'mtq_slots' %>">
+          <%= link_to "/mtq_slots" do %>
+            <i class="fa fa-cubes"></i> 
+            <span class="nav-label">MTQ Slots</span>
+          <% end %>
+        </li>
+      <% end %>
     </ul>
   </div>
 </nav>

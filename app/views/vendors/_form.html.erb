@@ -1,0 +1,21 @@
+<%= semantic_form_for @vendor do |f| %>
+    <%= f.inputs do %> 
+      <%= f.input :name,  as: :string, :required => false %>
+      <%= f.input :vendor_type, as: :string, :required => false  %>
+      <%= f.input :email, as: :string, :required => false  %>
+      <%= f.input :contact, as: :string, :required => false  %>
+      <%= f.input :fax, as: :string, :required => false  %>
+      <%= f.input :vendor_category_id, as: :select,  collection: VendorCategory.all.collect{|t| [t.name, t.id]} %>
+      <%= f.input :city_id, as: :select,  collection: City.all.collect{|t| [t.name, t.id]} %>
+    <% end %>
+    <%= f.actions do %>
+      <%= f.action :submit, :label => "Save", :button_html => { :class => "btn btn-primary save-form-button submit-bt" } %>
+    <% end %>
+<% end %>
+  
+<script language="javascript">
+  $(document).ready(function() {
+    $("#vendor_vendor_category_id").selectbox();
+    $("#vendor_city_id").selectbox();
+  });  
+</script>

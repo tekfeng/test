@@ -1,0 +1,30 @@
+<%= semantic_form_for @vendor_rate,  :url => "/vendor_rates/#{@vendor_rate.id}/update_current_contact/#{@vendor.id}?competitor_id=#{@competitor_id}", :html => {:method => :post, :multipart => true }  do |f| %>
+	<div class='content' style="margin-bottom: 30px; margin-top: 30px;">
+	  <div class='column-inside'>
+      <table class='salary-table' id='salary_table'>
+        <thead>
+          <tr>
+            <th> Seasons/ Room Type</th>
+            <% @vendor.rooms.each do |room| %>
+              <th><span class="arrow-down"></span><%=room.name %></th>
+            <% end %>
+          </tr>
+        </thead>
+        <tbody>
+          <% Season.all.each do |season| %>
+            <tr>
+              <th><%= season.name %></th>
+              <% @vendor.rooms.each do |room| %>
+                <td>
+                  <input class="" type="text" value="<%= SeasonRoomPrice.find_price_competitor(season.id, room.id, @vendor_rate.rate_type, @vendor_rate.try(:id), @competitor_id, ) %>" name="room_price[<%=room.id%>_<%=season.id%>_<%=@vendor_rate.rate_type%>_<%=@vendor_rate.id%>_<%=@competitor_id%>]" maxlength="10">
+                  <span class="span-behind-input">185</span>
+                </td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+	  </div>
+	</div>  
+  <%= f.action :submit, :label => "Update Competitor Rate", :button_html => { :class => "btn btn-primary ud-vd" } %>      
+<% end %>

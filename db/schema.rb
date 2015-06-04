@@ -14,6 +14,15 @@
 ActiveRecord::Schema.define(version: 20150603092529) do
 
   create_table "booking_statuses", force: :cascade do |t|
+ActiveRecord::Schema.define(version: 20150601024531) do
+
+  create_table "add_username_to_users", force: :cascade do |t|
+    t.string   "username",   limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "cities", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
@@ -28,6 +37,12 @@ ActiveRecord::Schema.define(version: 20150603092529) do
     t.string   "itinerary",    limit: 255
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    
+  create_table "competitors", force: :cascade do |t|
+    t.string   "name",           limit: 255
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "vendor_rate_id", limit: 4
   end
 
   create_table "countries", force: :cascade do |t|
@@ -64,6 +79,37 @@ ActiveRecord::Schema.define(version: 20150603092529) do
     t.datetime "updated_at"
   end
 
+  create_table "mtq_slots", force: :cascade do |t|
+    t.datetime "date"
+    t.integer  "available_slot", limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.integer  "vendor_id",  limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "season_room_prices", force: :cascade do |t|
+    t.integer  "season_id",      limit: 4
+    t.integer  "room_id",        limit: 4
+    t.float    "price",          limit: 24
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "rate_type",      limit: 4
+    t.integer  "competitor_id",  limit: 4
+    t.integer  "vendor_rate_id", limit: 4
+  end
+
+  create_table "seasons", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "tour_categories", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.datetime "created_at"
@@ -92,9 +138,49 @@ ActiveRecord::Schema.define(version: 20150603092529) do
     t.string   "group",                  limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "username",               limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "vendor_categories", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "vendor_rates", force: :cascade do |t|
+    t.string   "name",                       limit: 255
+    t.integer  "vendor_category_id",         limit: 4
+    t.integer  "city_id",                    limit: 4
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.integer  "vendor_id",                  limit: 4
+    t.date     "effective"
+    t.date     "expired"
+    t.integer  "rate_type",                  limit: 4
+    t.string   "remarks",                    limit: 255
+    t.integer  "competitor_id",              limit: 4
+    t.string   "contract_file_file_name",    limit: 255
+    t.string   "contract_file_content_type", limit: 255
+    t.integer  "contract_file_file_size",    limit: 4
+    t.datetime "contract_file_updated_at"
+    t.string   "competitor_name",            limit: 255
+  end
+
+  create_table "vendors", force: :cascade do |t|
+    t.string   "name",               limit: 255
+    t.string   "vendor_type",        limit: 255
+    t.string   "email",              limit: 255
+    t.string   "contact",            limit: 255
+    t.string   "fax",                limit: 255
+    t.integer  "city_id",            limit: 4
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "vendor_category_id", limit: 4
+    t.integer  "user_create_id",     limit: 4
+    t.integer  "user_update_id",     limit: 4
+  end
 
 end

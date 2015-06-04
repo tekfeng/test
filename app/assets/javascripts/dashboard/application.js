@@ -27,7 +27,38 @@
 //= require ./select_box/jquery.selectbox-0.2.js
 //= requite customer/customers
 //= requite ./datetimepicker/jquery.datetimepicker.js
-//= require_tree .
+//= require formnestic/formnestic
+//= require dashboard/selectordie.js
+//= require dashboard/jquery.datetimepicker.js
+//= require moment
+//= require fullcalendar.js
+//= require dashboard/jquery.fancybox-1.3.4
+//= require dashboard/jquery.selectbox-0.2
+ 
+$(document).ready(function() {    
+  $(document.body).delegate('.filter-style', 'click', function() {
+    var category_id = $("#vendor_vendor_category_id").val();
+    var city_id = $("#vendor_city_id").val();
+    $.ajax({
+      type: "GET",
+      url: "/vendors_controll/filter_vendor",
+      data: {
+        category_id: category_id,
+        city_id: city_id,
+        render_to_view: window.location.pathname.split("/")[1]
+      },
+      success: function (data) {
+        $(".listing-table").html(data)
+      }
+    });    
+    return false
+  });
+  
+  
+  
+  
+});
+
 
 
 Dropzone.autoDiscover = false;
@@ -63,8 +94,6 @@ function handleFormSubmitResponse(response) {
     handleResponseErrors(response.errors);
   }//end else    
 }
-
-
 
 $(function() {
   //category-select
@@ -312,7 +341,6 @@ $(function() {
       }, 200);
       $('div.has-error:first').find('input, select, textarea').focus();
     }
-    
     var submitBtn = formDom.find('button[type=submit]:first');
     $.ajax({
       beforeSend: function() {
@@ -380,4 +408,13 @@ $(document).on('page:change', function() {
   }
   
   $('.summernote').summernote();
+});
+
+$(document).ready(function() {
+  if ($('.updated-notifi').length == 1) {
+    setTimeout(function() {
+      $('.updated-notifi').fadeOut();
+    }, 3000)
+  }
+  
 });

@@ -1,0 +1,43 @@
+<%= semantic_form_for @vendor_rate,  :url => "/vendor_rates/#{@vendor_rate.id}/update_current_contact/#{@vendor.id}", :html => {:method => :post, :multipart => true }  do |f| %>
+  <%= f.inputs do %>
+    <% if @vendor_rate.rate_type != 4 %>
+      <%= f.input :contract_file, :as => :file %>
+      <% if f.object.contract_file.exists? %>
+        <span class="file-name-show"><%= f.object.contract_file_file_name %></span>
+      <% end %>
+      <a href="/vendor_rates/<%= @vendor_rate.id %>/download_files">
+        <span class="download"> Download</span>
+      </a>
+    <% end %>
+  <% end %>
+   
+	<div class='content' style="margin-bottom: 30px; margin-top: 30px;">
+	  <div class='column-inside'>
+      <table class='salary-table' id='salary_table'>
+        <thead>
+          <tr>
+            <th> Seasons/ Room Type</th>
+            <% @vendor.rooms.each do |room| %>
+              <th><span class="arrow-down"></span><%=room.name %></th>
+            <% end %>
+          </tr>
+        </thead>
+        <tbody>
+          <% Season.all.each do |season| %>
+            <tr>
+              <th><%= season.name %></th>
+              <% @vendor.rooms.each do |room| %>
+                <td>
+                  <input class="" type="text" value="<%= SeasonRoomPrice.find_price(season.id, room.id, @vendor_rate.rate_type, @vendor_rate.try(:id)) %>" name="room_price[<%=room.id%>_<%=season.id%>_<%=@vendor_rate.rate_type%>_<%=@vendor_rate.id%>]" maxlength="10">
+                  <span class="span-behind-input">185</span>
+                </td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+	  </div>
+	</div>  
+  <%= f.action :submit, :label => "Update Competitor Rate", :button_html => { :class => "btn btn-primary ud-vd" } %>      
+<% end %>
+

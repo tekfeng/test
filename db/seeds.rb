@@ -8,9 +8,26 @@
 
 
 if User.count == 0
-  user = User.new({ email: 'admin@sample.com', password: 'password' })
+  user = User.new({ email: 'admin@sample.com', password: 'password', username: "superadmin" })
   user.save!
 end
+
+if Season.count == 0
+  Season.create(name: "low")
+  Season.create(name: "Peak")
+  Season.create(name: "Holiday")
+  Season.create(name: "NYE")
+  Season.create(name: "CNY")
+end
+
+if City.count == 0
+  City.create(name: "Kota kinabalu")
+  City.create(name: "Ranau")
+  City.create(name: "Sandakan")
+  City.create(name: "Miri")
+  City.create(name: "Sabah")
+end
+
 
 if HomePage.count == 0
   HomePage.create({

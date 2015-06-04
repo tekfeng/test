@@ -1,0 +1,90 @@
+<div class='row'>
+  <div class='col-lg-12'>
+    <div class="row wrapper border-bottom white-bg page-heading">
+      <div class="col-lg-10">
+        <h2>Mtp Slots</h2>
+        <ol class="breadcrumb">
+          <li>
+            <a href="/dashboard">Home</a>
+          </li>
+          <li class="active">
+            <strong>Mtp Slots</strong>
+          </li>
+        </ol>
+      </div>
+    </div>   
+    <div class='wrapper wrapper-content'>
+      <div class='ibox'>
+        <div class="ibox-title" style="height: auto; float: left; width: 100%; background-color: #F4F4F4; border-top: none; padding-bottom: 20px;">
+          <div class="col-md-4 box-slot-available">
+            <div class="box-slot-available-content current">
+              <div>Available slots in this month</div>
+              <div class="number"><%= MtqSlot.available_slot_in_this_month %></div>
+            </div >
+          </div>
+          <div class="col-md-4 box-slot-available">
+            <div class="box-slot-available-content current-next-m">
+              <div>Available slots in <%= (DateTime.now + 1.month).strftime("%B-%Y")%></div>
+              <div class="number"><%= MtqSlot.available_slot_in_next1_month%></div>
+             </div >
+          </div>
+          <div class="col-md-4 box-slot-available">
+            <div class="box-slot-available-content current-next-next-m">
+              <div>Available slots in <%= (DateTime.now + 1.month + 1.month).strftime("%B-%Y") %></div>
+              <div class="number"><%= MtqSlot.available_slot_in_next2_month%></div>
+             </div>
+          </div>
+        </div>
+        <div class='ibox-content'>     
+          <div id='calendar'></div>
+        </div>         
+      </div>
+    </div>
+  </div>
+</div>
+<% events =  MtqSlot.mtq_slot_all_date.to_s.gsub('"', '').html_safe %>
+<script language="javascript">
+
+  $(document).ready(function() {
+    $('#calendar').fullCalendar({
+      theme: true,
+      header: {
+        left: 'prev,next today',
+				center: 'title',
+				right: 'month,agendaWeek,agendaDay'
+			},
+			editable: true,
+			eventLimit: true, // allow "more" link when too many events
+			events: <%= events %>
+		});
+    
+    
+    $(document.body).delegate(".ui-widget-content .fc-day-grid td.ui-widget-content", 'click', function(e) {
+      var date = $(this).data("date");
+      $.ajax({
+        type     : "POST",
+        cache    : false,
+        url : "/mtq_slot/edit_ajax",
+        data : {date: date},
+        success: function(data) {
+          $.fancybox({
+            'width': 300,
+            'height': 100,
+            'enableEscapeButton' : false,
+            'overlayShow' : true,
+            'overlayOpacity' : 0,
+            'hideOnOverlayClick' : false,
+            'content' : data
+          });
+        }
+      });       
+      $('#fancybox-close').css("top", "0px");
+      $('#fancybox-close').css("right", "5px");
+    });
+    
+  });  
+  
+  
+  
+  
+</script>

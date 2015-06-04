@@ -23,6 +23,12 @@
  *= require jquery.datetimepicker.css
  *= require lead/leads
  *= require booking/bookings
+ *= require formnestic/formnestic
+ *= require dashboard/jquery.datetimepicker.css
+ *= require dashboard/selectordie_custom.css
+ *= require dashboard/fullcalendar.css
+ *= require dashboard/jquery.fancybox-1.3.4.css
+ *= require dashboard/jquery.selectbox.css
  *= require_self
  */
 
@@ -316,3 +322,374 @@ form.lead .label {
   background-color: white;
 }
 
+.vendor ol {
+  list-style: none ;
+  padding-left: 0px;
+  li label {
+    background: white;
+    font-size: 14px;
+    font-size: "Helvetica Neue";
+    font-weight: normal;
+    float: left;
+    width: 200px !important;
+  }
+  ol {
+    padding-left: 0px;
+    list-style: none;
+  }
+}
+li.stringish input {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px #dedede inset;
+  padding: 4px;
+  width: 325px !important;
+}
+li.input {
+  margin-bottom :10px;
+}
+div.formnestic-li-fieldset-legend {
+  display:none;
+}
+.input-icon-select-date {
+  background-image: url("/assets/calendar-icon.png");
+  background-position: 99% 4px;
+  background-repeat: no-repeat;
+}
+.pdl-60 {
+  padding-left: 60px;
+}
+form.vendor {
+  label {
+  text-align: left;
+  padding-left: 60px;
+  }
+  fieldset {
+    padding-bottom: 20px;
+  }
+  select {
+    width: 325px;
+  }
+  .formnestic-minus-button-container {
+    display: none;
+  }
+  a.formnestic-add-row-field-link {
+    float: left;
+    margin-left: 200px;
+  }
+}
+form li#vendor_submit_action { 
+  list-style: none; 
+  margin-left: 200px;
+}
+.ud-vd {
+  padding: 6px 44px !important;
+}
+.updated-notifi {
+  color: white;
+  background: green;
+  font-size: 15px;
+  display: inline;
+  padding: 5px 18px;
+  line-height:4em;
+  float: right;
+}
+ol {
+  list-style: none;
+}
+form.vendor_rate {
+  ol li {
+    label {
+      float: left;
+      line-height: 1.5em;
+      background-color: white;
+      font-size: 16px;
+    }
+    input {
+      padding: 5px;
+      float: left;
+    }
+  }
+  li.input {
+    float: left;
+    border: none;
+  }
+  span.download {
+    background-image: url("/assets/download_icon.png");
+    background-repeat: no-repeat;
+    background-position: 6px 7px;
+    color: white;
+    background-color: black;
+    padding: 4px 25px;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    float: left;
+    &:hover {
+      background-color: #212020;
+    };
+  }
+}
+#salary_table {
+  th, td {
+    border: 1px solid gray;
+    padding: 5px;
+   
+  }
+  input {
+    border: none;
+    background-color: #F5F9CF;
+    width: 45%;
+    border-radius: 5px;
+    border: 1px solid;
+    float: left;
+    padding: 3px;
+    color: black;
+  }
+}
+.span-behind-input {
+  background-color: #adadad;
+  color: black;
+  float: left;
+  margin-left: 5%;
+  padding: 5px;
+  text-align: center;
+  width: 45%;
+}
+.wrapper.wrapper-content {
+  ol {
+    list-style: none;
+  }
+  li {
+    list-style: none;
+  }
+}
+thead th {
+  font-size: 18px;
+  color: black;
+}
+tbody th {
+  font-size: 16px;
+  color: black;
+}
+.arrow-down {
+  float: left;
+  width: 20px;
+  height: 25px;
+  background-image: url("/assets/icon_arrow_down.png");
+  background-repeat: no-repeat;
+  background-position: 4px 10px;
+}
+.file-name-show {
+  background: white none repeat scroll 0 0;
+  left: 254px;
+  position: absolute;
+  top: 47px;
+  width: 105px;
+}
+p.inline-errors {
+  color: red;
+  padding-bottom: 15px;
+  padding-left: 200px;
+  padding-top: 6px;
+}
+
+table.listing-table {
+ thead th {
+   color: white;
+   background: black;
+ }
+ tbody td {
+   color: black;
+ }
+}
+.filter-style {
+  width: 100px;
+  margin-left: 105px;
+  margin-top: 18px;
+}
+#vendor_filter fieldset {
+  padding-bottom: 0px;
+}
+.filter-style {
+  font-size: 14px !important;
+}
+.btn-blue {
+  background-color: #006ccc;
+  border-color: #1ab394;
+  color: white;
+  &:hover {
+    background-color: #0044cc;
+    color: white !important;
+  };
+}
+.listing-table .edit-btn {
+  background-color:whitesmoke;
+  color: #333333;
+  border: 1px solid #cccccc;
+  border-radius: 4px !important;
+}
+.list-competitor-name {
+  margin-left: 4px;
+  .competitor-name {
+    padding: 5px 15px;
+    border: 1px solid black;
+    cursor: pointer;
+  	border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    color: black;
+    font-size: 14px;
+    background-color: #eee;
+  }
+  .competitor-name.active {
+    color: white;
+    background-color: black;
+  }
+}
+
+.fc-button-group {
+  display: inline-block !important;
+  } 
+.fc button {
+  border-radius: 6px;
+  display: inline-block !important;
+}
+.fc button.fc-agendaWeek-button {
+   border-radius: 0px;
+}
+.ui-corner-left {
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+}
+.ui-corner-right {
+  border-top-left-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+}
+.fc-toolbar .ui-state-default {
+  background: #d7ebf9 url("/assets/ui-bg_glass_80_d7ebf9_1x400.png") repeat-x scroll 50% 50%;
+  border: 1px solid #aed0ea;
+  color: #2779aa;
+  font-weight: bold;
+}
+.fc-today-button {
+  border-radius: 6px !important;
+}
+.ui-state-default .ui-icon {
+  background-image: url("/assets/ui-icons_3d80b3_256x240.png");
+}
+.ui-icon-circle-triangle-w {
+  background-position: -80px -192px;
+}
+.ui-icon {
+  height: 16px;
+  width: 16px;
+}
+.ui-icon {
+  background-repeat: no-repeat;
+  display: block;
+  overflow: hidden;
+  text-indent: -99999px;
+}
+.ui-icon-circle-triangle-e {
+  background-position: -48px -192px;
+}
+.fc-past {
+  background: #f2f5f7 url("/assets/ui-bg_highlight-hard_100_f2f5f7_1x100.png") repeat-x scroll 50% top !important;
+  color: #362b36 !important;
+}
+.fc-today {
+  background-color: #FFEF8F !important;
+}
+.ui-widget-header {
+  border: 1px solid #aed0ea;
+  font-size: 15px;
+}
+#fancybox-content {
+  width: 400px !important;
+  border-radius: 5px;
+  background-color: white; color: black;
+  input {
+    color: black;
+    border-radius: 5px;
+    border: 1px solid #CCCCCC;
+  }
+  form.ajax-form {
+    padding: 30px 20px 20px 20px;
+  }
+}
+#fancybox-overlay {
+  opacity: 0.7 !important;
+}
+#fancybox-outer {
+  width: 400px !important;
+}
+.ui-state-active {
+  background-color: #47aa8e !important;
+}
+.box-slot-available {
+  text-align: center;
+  font-size: 18px;
+  .box-slot-available-content {
+    color: black;
+    width: 90%;   
+    background-color: white; 
+    border-top: 3px solid #d2d9dd; 
+    padding: 20px 10px;
+    .number {
+      margin-top: 15px;
+      font-size: 24px;
+      font-weight: bold;
+      color: black;
+    }
+  }
+}
+.fc-toolbar .ui-state-default.ui-state-active {
+  background: url("/assets/green.png");
+  background-repeat: repeat-x;
+  color: white;
+  font-weight: 500;
+}
+.submit-bt {
+  margin-left: 140px;
+  font-size: 16px !important;
+}
+form.vendor .sbHolder {
+  background: white;
+  margin-left: 200px;
+  width: 325px;
+  border-radius: 4px;
+  
+  .sbSelector {
+    color: #5e5e5e;
+    width: 100%;
+  }
+  ul.sbOptions {
+    width: 325px;
+    background-color: white;
+  }
+  .sbToggle {
+    height: 28px;
+    background-color: #22A98E;
+  }
+  
+  .sbOptions a:link {
+    color: #5e5e5e ;
+    &:hover{
+      color: #EADB35;
+    };
+  }
+}
+
+li#vendor_vendor_category_id_input, li#vendor_city_id_input {
+  margin-top: 20px;
+}
+.back-button {
+  color: white !important;
+  background-color: #18A689 !important;
+  padding: 7px 14px !important;
+  border-radius: 5px !important;
+  margin-top: -40px !important;
+}
+.ibox-content h2, .ibox-content h1 {
+  text-align: center;
+}

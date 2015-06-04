@@ -16,3 +16,4 @@
 //= require slider
 //= require popmodal
 //= require readyweb
+//= require formnestic/formnestic
