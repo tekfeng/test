@@ -1,6 +1,8 @@
 
 <%= semantic_form_for @lead,  :url => "/leads",  :html => {:method => :post} do |form| %>
   <%= form.inputs do %>
+      <%= form.input :customer_id,:as => :select ,:collection => Customer.all.collect{|t| [t.name + " - " + t.email_address, t.id]},class: 'form-control'%>
+  
     <li>
       <%= form.semantic_fields_for :tours, {
         row_removable: true, 
@@ -10,7 +12,7 @@
         <%= tour.inputs do %>
             
               <%= tour.input :name, :label => "Name" ,as: :string , :required => false, :input_html => { :class => 'input-icon-select-date'} %>
-              <%= tour.input :tour_category_id, :label => "Name" ,as: :string , :required => false, :input_html => { :class => 'input-icon-select-date'} %>
+              <%= tour.input :tour_category_id, :label => "Category" ,as: :string , :required => false, :input_html => { :class => 'input-icon-select-date'} %>
             
         <% end %>
       <% end %>
