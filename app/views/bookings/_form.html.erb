@@ -1,0 +1,95 @@
+<%= semantic_form_for @booking,  :url => "/bookings",  :html => {:method => :post} do |form| %>
+  <%= form.inputs do %>
+    <div class= "form-group">
+      <div class="col-md-10 col-md-offset-1 col-xs-12">
+        <%= form.input :customer_id,:as => :select ,:collection => Customer.all.collect{|t| [t.name + " - " + t.email_address, t.id]},class: 'form-control'%>
+      </div>
+      <div class="col-md-1 col-sm-1 col-xs-12"></div>
+    </div><!--select-customer-->
+    <div class="col-md-12 col-sm-12 col-xs-12 padding-0 text-center">
+      <p>Or</p>
+    </div> <!--0r-->
+    <div class="form-group text-center col-md-12 col-sm-12 col-xs-12 ">
+      <% if @booking.customer_id %>
+        <div><a href="/customers/<%=@booking.customer_id%>/edit" class="btn btn-primary ud-vd">Edit Customer Information</a></div>
+      <% else %>
+        <div><a href="/customers/new" class="btn btn-primary ud-vd">Add New Customer</a></div>
+      <% end %>
+    </div> <!--btn create-->
+    <div class="form-group">
+      <%= form.input :travel_date,:as => :string, id: 'datetimepicker_from', placeholder: "Travel from", input_html:{class: "form-control input-icon-select-date"}, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12 padding-0"}%>
+    </div> <!--travel from-->
+    <div class="form-group">
+      <%= form.input :travel_to,:as => :string, id: 'datetimepicker_to', placeholder: "Travel to", input_html:{class: "form-control input-icon-select-date" }, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12 padding-0"}%>
+    </div> <!--travel to-->
+    <div class="form-group">
+      <%= form.input :contact_number,:as => :string, placeholder: "Contact Number",  input_html:{class: "form-control"}, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12 padding-0"}%>
+    </div> <!--contact-->
+    <div class="form-group">
+      <div class="adult-and-child" style="width: 325px; margin: 0px auto;">
+        <div class="input-num-adult-booking-form" style="width: 150px; float: left;">
+          <%= form.input :number_adult, :as => :string, placeholder: "No. of Adults", input_html:{class: 'form-control'}%>
+        </div>
+        <div class="nput-num-adult-booking-form" style="width: 150px; float: left; margin-left: 25px;">
+          <%= form.input :number_child, :as => :string, placeholder: "No. of Childrens", input_html:{class: 'form-control '} %>
+        </div>
+        <div class="col-md-1 col-sm-1 col-xs-12 padding-0"></div>
+      </div>
+    </div> <!--aldust+childrent-->
+    <% if @booking.new_record? %>
+      <% @booking.tours.new %>
+    <% end %>
+    <li class="form-group">
+      <%= form.semantic_fields_for :tours, {
+        min_entry: 3,
+        row_removable: true, 
+        row_addable: true,
+        new_record_link_label: "+ Add Tour"
+      } do |tour| %>       
+        <%= tour.inputs do %>
+        
+          <%= tour.input :tour_category_id, :as => :select, :collection => TourCategory.all.collect{|t| [t.name, t.id]},:input_html => { :class => 'form-control'}, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12 padding-0 form-control booking-tour-category"}%>
+        
+          <%= tour.input :name, :as => :select , :collection => Tour.all.collect{|t| [t.name, t.id]}, :input_html => { :class => 'form-control booking-tour'}, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12 padding-0 booking-tour"}%>
+       
+        <% end %>
+      <% end %>
+    </li>
+  <% end %>
+  <div class="col-md-12 col-sm-12 col-xs-12 padding-0 text-center">
+    <%= form.action :submit, :label => "save", :button_html => { :class => "btn btn-primary ud-vd" } %>
+  </div>
+<% end %>
+
+<script language="javascript">
+  $(document).ready(function() {
+    $('.label').hide();
+    $('#booking_customer_id').selectbox({});
+    $('#booking-tour-category').selectbox({});
+    $('.form-group .booking-tour-category').selectbox({});
+    $('.form-group .booking-tour').selectbox({});
+    
+    $('#booking_travel_from_input, #booking_travel_date').datetimepicker({
+     timepicker:false,
+     format:'d/m/Y'
+    });
+    $('#booking_travel_from_input, #booking_travel_to').datetimepicker({
+     lang:'de',
+     i18n:{
+      de:{
+       months:[
+        'Januar','Februar','März','April',
+        'May','Jun','July','August',
+        'September','October','November','Dezember',
+       ],
+       dayOfWeek:[
+        "So.", "Mo", "Di", "Mi",
+        "Do", "Fr", "Sa.",
+       ]
+      }
+     },
+     timepicker:false,
+     format:'d/m/Y'
+    });
+  });  
+</script>
