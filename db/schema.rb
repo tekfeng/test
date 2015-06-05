@@ -11,17 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150604091442) do
-
+ActiveRecord::Schema.define(version: 20150605022149) do
 
   create_table "add_username_to_users", force: :cascade do |t|
     t.string   "username",   limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
-  create_table "booking_statuses", force: :cascade do |t|
-    t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
@@ -31,13 +24,15 @@ ActiveRecord::Schema.define(version: 20150604091442) do
     t.string   "user_id",        limit: 255
     t.string   "tour_id",        limit: 255
     t.string   "status",         limit: 255
-    t.string   "sales_person",   limit: 255
     t.string   "itinerary",      limit: 255
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.string   "booking_number", limit: 255
-    t.datetime "booking_date"
-    t.string   "name",           limit: 255
+    t.integer  "customer_id",    limit: 4
+    t.datetime "travel_to"
+    t.string   "contact_number", limit: 255
+    t.integer  "number_adult",   limit: 4
+    t.integer  "number_child",   limit: 4
   end
 
   create_table "cities", force: :cascade do |t|
@@ -133,6 +128,7 @@ ActiveRecord::Schema.define(version: 20150604091442) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "lead_id",          limit: 4
+    t.integer  "booking_id",       limit: 4
   end
 
   create_table "users", force: :cascade do |t|

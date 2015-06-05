@@ -1,6 +1,8 @@
 class Customer < ActiveRecord::Base
   belongs_to :country 
   belongs_to :source
+  
+  has_many :bookings
   has_many :lead
   validates :name, :presence => true
   validates :name, :uniqueness => true

@@ -11,6 +11,7 @@ class Lead < ActiveRecord::Base
   validates :adults, :uniqueness => true
   validates :children, :presence => true
   validates :children, :uniqueness => true
+  
   has_many :tours
   accepts_nested_attributes_for :tours, allow_destroy: true
   

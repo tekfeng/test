@@ -1,0 +1,57 @@
+
+<%= semantic_form_for @booking,  :url => "/bookings",  :html => {:method => :post} do |form| %>
+  <%= form.inputs do %>
+      <%= form.input :customer_id,:as => :select ,:collection => Customer.all.collect{|t| [t.name + " - " + t.email_address, t.id]},class: 'form-control'%>
+      <div> OR </div>
+      <% if @booking.customer_id %>
+        <div><a href="/customers/<%=@booking.customer_id%>/edit" class="btn btn-primary ud-vd">Edit Customer Information</a></div>
+      <% else %>
+        <div><a href="/customers/new" class="btn btn-primary ud-vd">Add New Customer</a></div>
+      <% end %>
+      
+      
+      <%= form.input :travel_date,:as => :string, :input_html => { :class => 'input-icon-select-date'} %>
+      <%= form.input :travel_to,:as => :string, :input_html => { :class => 'input-icon-select-date'} %>
+      
+      <%= form.input :contact_number,:as => :string, :input_html => { :class => ''} %>
+      <%= form.input :number_adult, :as => :string, :input_html => { :class => 'width-50'} %>
+      <%= form.input :number_child, :as => :string, :input_html => { :class => 'width-50'} %>
+      
+    <li>
+      <% if @booking.new_record? %>
+        <% @booking.tours.new %>
+      <% end %>
+      <%= form.semantic_fields_for :tours, {
+        min_entry: 3,
+        row_removable: true, 
+        row_addable: true,
+        new_record_link_label: "+ Add Tour"
+      } do |tour| %>       
+        <%= tour.inputs do %>
+            
+              <%= tour.input :name, :label => "Name" ,as: :select , :collection => Tour.all, :required => false, :input_html => { :class => ''} %>
+              <%= tour.input :tour_category_id, :label => "Category" ,as: :select , :collection => TourCategory.all , :required => false, :input_html => { :class => ''} %>
+            
+        <% end %>
+      <% end %>
+    </li>
+  <% end %>
+  <%= form.action :submit, :label => "Save", :button_html => { :class => "btn btn-primary ud-vd" } %>
+<% end %>
+
+<script language="javascript">
+  $(document).ready(function() {
+    $('#booking_travel_date').datetimepicker({
+      timepicker: false,
+      format:'d-m-Y',
+    }); 
+    
+    
+    $('#booking_travel_to').datetimepicker({
+      timepicker: false,
+      format:'d-m-Y',
+    }); 
+    
+    // $("#booking_customer_id").selectbox();
+  });  
+</script>

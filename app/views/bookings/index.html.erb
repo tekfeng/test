@@ -20,6 +20,23 @@
           <h5 style="text-align: center;">Bookings</h5>                      
         </div>
         <div class='ibox-content'>
+          
+          <div class="clearfix">
+            <div id="vendor_filter">
+              <% @booking_new = Booking.new %>
+              <%= semantic_form_for @booking_new,  :url => "", :html => {:method => :get }  do |f| %>
+                <%= f.inputs do %>
+                  <%= f.input :status, :label => "Payment Status", :as => :select, placeholder: 'user@domain.com', collection: Booking.all.collect(&:status) %>
+                  <%= f.input :user_id, :label => "Sales Person", :as => :select, collection: User.all %>
+                  <%= f.input :travel_date,:as => :string, :input_html => { :class => 'input-icon-select-date'} %>
+                  <%= f.input :travel_to,:as => :string, :input_html => { :class => 'input-icon-select-date'} %>
+                <% end %>
+                 <%= f.action :submit, :label => "Filter", :button_html => { :class => "btn btn-primary filter-booking" } %>
+              <% end %>
+            </div>
+          </div>
+          
+          
           <div class='clearfix'>
             <%= link_to 'Add New', new_booking_url, class: "btn btn-primary pull-right" %>
           </div>
@@ -37,8 +54,6 @@
                 <th>Status</th>
                 <th>Sales Person</th>
                 <th>Itinerary</th>
-                
-                <th colspan='2' style='text-align: center;'>Rates</th>
               </tr>
             </thead>        
             <tbody>
@@ -47,11 +62,11 @@
                   <td><%= index + 1 %></td>
                   <td><%= booking.booking_number %></td>
                   <td><%= booking.travel_date %></td>
-                  <td><%= booking.booking_date %></td>
-                  <td><%= booking.name %></td>
-                  <td><%= booking.tour.try(:code) %></td>
+                  <td><%= booking.created_at.strftime("%d-%m-%Y") %></td>
+                  <td><%= booking.customer.try(:name) %></td>
+                  <td><%= booking.tours.first.try(:code) %></td>
                   <td><%= booking.status %></td>
-                  <td><%= booking.sales_person %></td>
+                  <td><%= booking.user.try(:username) %></td>
                   
                                         
                   <td style='text-align: center;'>
@@ -67,9 +82,25 @@
     </div>
   </div>
 </div>
+
+   
+
 <script language="javascript">
   $(document).ready(function() {
-    $("select#vendor_vendor_category_id").selectbox();
-    $("select#vendor_city_id").selectbox();
+    
+    $('#booking_travel_date').datetimepicker({
+      timepicker: false,
+      format:'d-m-Y',
+    }); 
+    
+    
+    $('#booking_travel_to').datetimepicker({
+      timepicker: false,
+      format:'d-m-Y',
+    }); 
+    
+    
+    $("select#booking_status").selectbox();
+    $("select#booking_user_id").selectbox();
   });  
 </script>

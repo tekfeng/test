@@ -321,12 +321,14 @@ div.logo {
 form.lead .label {
   background-color: white;
 }
-
-.vendor ol {
+.booking ol li label {
+  text-align: right;
+}
+.vendor ol, .booking ol {
   list-style: none ;
   padding-left: 0px;
   li label {
-    background: white;
+    background: #F3F3F4;
     font-size: 14px;
     font-size: "Helvetica Neue";
     font-weight: normal;
@@ -359,8 +361,15 @@ div.formnestic-li-fieldset-legend {
 .pdl-60 {
   padding-left: 60px;
 }
+form.booking {
+  label {
+    background-color: white;
+  }
+ 
+}
 form.vendor {
   label {
+  background-color: white;
   text-align: left;
   padding-left: 60px;
   }
@@ -658,7 +667,7 @@ table.listing-table {
   background-color: white;
 }
 
-form.vendor .sbHolder, 
+form.vendor .sbHolder, form.booking .sbHolder, 
 form.select-customer-country .sbHolder,
 {
   background: white;
@@ -756,4 +765,13 @@ form.group-select .sbHolder{
 
 #categories_listing{
   margin-top: 20px;
+}
+.width-50 {
+  width: 50%;
+}
+.filter-booking {
+  margin-left: 300px;
+  font-size: 16px !important;
+  margin-top: 15px;
+  padding: 5px 22px;
 }
