@@ -3,8 +3,8 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 hr{
-  height: 2px; 
-  border: 0; 
+  height: 2px;
+  border: 0;
   box-shadow: inset 0 2px 2px -2px rgba(0, 0, 0, 0.5);
 }
 
@@ -59,18 +59,18 @@ hr{
   list-style: none;
 }
 
-#lead_travel_from_input, 
-#lead_travel_to_input, 
-#lead_contact_number_input, 
-#lead_adults_input, 
-#lead_children_input, 
+#lead_travel_from_input,
+#lead_travel_to_input,
+#lead_contact_number_input,
+#lead_adults_input,
+#lead_children_input,
 .sum-pax {
   margin-top: 20px;
 }
 
 form.select-lead-status .sbHolder{
   background: white;
-  width: 83%;
+  width: 73%;
   border-radius: 4px;
   margin-bottom: 20px;
   .sbSelector {
@@ -85,7 +85,7 @@ form.select-lead-status .sbHolder{
     height: 28px;
     background-color: #22A98E;
   }
-  
+
   .sbOptions a:link {
     color: #5e5e5e ;
     &:hover{
@@ -96,7 +96,7 @@ form.select-lead-status .sbHolder{
 
 #lead_customer_id_input .sbHolder{
   background: white;
-  width: 100%;
+  width: 90%;
   border-radius: 4px;
   margin-bottom: 20px;
   .sbSelector {
@@ -111,7 +111,7 @@ form.select-lead-status .sbHolder{
     height: 28px;
     background-color: #22A98E;
   }
-  
+
   .sbOptions a:link {
     color: #5e5e5e ;
     &:hover{
@@ -128,6 +128,16 @@ form.select-lead-status .sbHolder{
    width: 75% !important;
 }
 
+
+form.lead div.formnestic-nested-model-container div.formnestic-list-new-entry-link-container a {
+  float: right;
+  display: block;
+  background-color: #1ab394;
+  border-color: #1ab394;
+  color: #ffffff;
+  border-radius: 5px;
+  font-size: 18px;
+}
 form.lead, form.booking {
   div.formnestic-nested-model-container div.formnestic-list-new-entry-link-container a {
     float: right;
@@ -147,10 +157,36 @@ form.lead, form.booking {
   }
 }
 
-#lead_customer_id_input{
-  width: 80%;
+
+
+form.lead div.formnestic-nested-model-container fieldset.formnestic-li-fieldset {
+  li.input{
+    margin-bottom: 0px;
+  }
+  border-bottom: none;
+  border-top: 1px dashed #cccccc;
+  padding-top: 15px;
+  margin-top: 15px;
 }
 
+form.lead .formnestic-nested-model-container .formnestic-li-fieldset {
+  border-bottom: none;
+  .sbHolder {
+    margin-top: 25px;
+    background: white;
+    width: 73%;
+    border-radius: 4px;
+
+    .sbSelector {
+      color: #5e5e5e;
+      width: 100%;
+    }
+    ul.sbOptions {
+      width: 100%;
+      background-color: white;
+    }
+  }
+}
 .form-group .lead-tour-category .sbHolder, .form-group .booking-tour-category .sbHolder{
   background: white;
   border-radius: 4px;
@@ -182,11 +218,11 @@ form.lead, form.booking {
   #lead_children_input,#lead_adults_input{
     padding: 0 !important;
   }
-  
+
   #lead_adults, #lead_children{
      width: 100% !important;
   }
-  
+
   #lead_travel_from, #lead_travel_to, #lead_contact_number{
     width:100% !important;
   }
@@ -211,7 +247,7 @@ form.lead, form.booking {
       margin-left: 200px;
       width: 325px;
       border-radius: 4px;
-  
+
       .sbSelector {
         color: #5e5e5e;
         width: 100%;
@@ -224,7 +260,7 @@ form.lead, form.booking {
         height: 28px;
         background-color: #22A98E;
       }
-  
+
       .sbOptions a:link {
         color: #5e5e5e ;
         &:hover{
@@ -234,6 +270,29 @@ form.lead, form.booking {
     }
   }
 }
+
+
+form.calendar .form-group .form-control{
+  width: 73%;
+}
+
+
+
+@media (max-width: 767px) {
+  #lead_children_input,#lead_adults_input{
+    padding: 0 !important;
+  }
+
+  #lead_adults, #lead_children{
+     width: 100% !important;
+  }
+
+  #lead_travel_from, #lead_travel_to, #lead_contact_number{
+    width:100% !important;
+  }
+}
+
+
 li#lead_submit_action input {
   float: left;margin-left: 30%;
 }
@@ -241,9 +300,11 @@ li#lead_submit_action input {
 form.booking li#booking_number_adult_input input#booking_number_adult, li#booking_number_child_input input#booking_number_child{
   width: 150px !important;
 }
+
 form.booking {
   padding-bottom: 50px;
 }
+
 li#booking_status_input , li#booking_user_id_input{
   float: left;
   width: 100%;
