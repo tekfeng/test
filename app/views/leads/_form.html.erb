@@ -70,20 +70,11 @@
     $('.form-group .lead-tour').selectbox({});
     
     $('#lead_travel_from_input, #lead_travel_to').datetimepicker({
-     lang:'de',
-     i18n:{
-      de:{
-       months:[
-        'Januar','Februar','März','April',
-        'May','Jun','July','August',
-        'September','October','November','Dezember',
-       ],
-       dayOfWeek:[
-        "So.", "Mo", "Di", "Mi",
-        "Do", "Fr", "Sa.",
-       ]
-      }
-     },
+     timepicker:false,
+     format:'d/m/Y'
+    });
+    
+    $('#lead_travel_from_input, #lead_travel_to').datetimepicker({
      timepicker:false,
      format:'d/m/Y'
     });
