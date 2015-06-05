@@ -68,11 +68,11 @@ hr{
   margin-top: 20px;
 }
 
-form.select-lead-status {
+form.select-lead-status .sbHolder{
   background: white;
-  width: 100%;
+  width: 83%;
   border-radius: 4px;
-  
+  margin-bottom: 20px;
   .sbSelector {
     color: #5e5e5e;
     width: 100%;
@@ -94,10 +94,134 @@ form.select-lead-status {
   }
 }
 
+#lead_customer_id_input .sbHolder{
+  background: white;
+  width: 100%;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  .sbSelector {
+    color: #5e5e5e;
+    width: 100%;
+  }
+  ul.sbOptions {
+    width: 100%;
+    background-color: white;
+  }
+  .sbToggle {
+    height: 28px;
+    background-color: #22A98E;
+  }
+  
+  .sbOptions a:link {
+    color: #5e5e5e ;
+    &:hover{
+      color: #EADB35;
+    };
+  }
+}
+
+#lead_travel_from, #lead_travel_to, #lead_contact_number{
+  width: 73% !important;
+}
+
+#lead_adults, #lead_children{
+   width: 75% !important;
+}
+
+form.lead div.formnestic-nested-model-container div.formnestic-list-new-entry-link-container a {
+  float: right;
+  display: block;
+}
+
+form.lead div.formnestic-nested-model-container fieldset.formnestic-li-fieldset{
+  border-bottom: 1px dashed #cccccc;
+  display: block;
+  float: left;
+  margin-bottom: 15px;
+  position: relative;
+  width: 100%;
+}
+
+#lead_customer_id_input{
+  width: 80%;
+}
+
+.form-group .lead-tour-category .sbHolder{
+  background: white;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  width: 73%;
+  .sbSelector {
+    color: #5e5e5e;
+    width: 100%;
+  }
+  ul.sbOptions {
+    width: 100%;
+    background-color: white;
+  }
+  .sbToggle {
+    height: 28px;
+    background-color: #22A98E;
+  }
+  .sbOptions a:link {
+    color: #5e5e5e ;
+    &:hover{
+      color: #EADB35;
+    };
+  }
+}
 
 
 @media (max-width: 767px) {
   #lead_children_input,#lead_adults_input{
     padding: 0 !important;
   }
+  
+  #lead_adults, #lead_children{
+     width: 100% !important;
+  }
+  
+  #lead_travel_from, #lead_travel_to, #lead_contact_number{
+    width:100% !important;
+  }
+}
+form.lead div.formnestic-nested-model-container fieldset.formnestic-li-fieldset {
+  border-bottom: none;
+  border-top: 1px dashed #cccccc;
+  padding-top: 25px;
+  margin-top: 25px;
+}
+form.lead .formnestic-nested-model-container .formnestic-li-fieldset {
+  border-bottom: none;
+  .sbHolder {
+    margin-top: 25px;
+    background: white;
+    margin-left: 200px;
+    width: 325px;
+    border-radius: 4px;
+  
+    .sbSelector {
+      color: #5e5e5e;
+      width: 100%;
+    }
+    ul.sbOptions {
+      width: 325px;
+      background-color: white;
+    }
+    .sbToggle {
+      height: 28px;
+      background-color: #22A98E;
+    }
+  
+    .sbOptions a:link {
+      color: #5e5e5e ;
+      &:hover{
+        color: #EADB35;
+      };
+    }
+  }
+}
+li#lead_submit_action input {
+  float: left;margin-left: 30%;
 }

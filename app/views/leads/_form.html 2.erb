@@ -1,4 +1,4 @@
-<%= semantic_form_for @lead do |f| %>
+<%= semantic_form_for @lead,  :url => "/leads",  :html => {:method => :post} do |f| %>
   <%= f.inputs do %>
     <div class= "form-group">
       <div class="col-md-10 col-md-offset-1 col-xs-12">
@@ -12,14 +12,15 @@
     <div class="form-group text-center col-md-12 col-sm-12 col-xs-12 ">
         <%= f.action :submit,:as => :button, wrapper_html:{class: " btn btn-primary save-form-button"} %>
     </div> <!--btn create-->
+    <hr/>
     <div class="form-group">
-      <%= f.input :travel_from, :as =>  :string, id: 'datetimepicker_from', placeholder: "Travel from", input_html:{class: "form-control"}, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12"} %>
+      <%= f.input :travel_from, :as =>  :string, id: 'datetimepicker_from', placeholder: "Travel from", input_html:{class: "form-control"}, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12 padding-0"} %>
     </div> <!--travel from-->
     <div class="form-group">
-      <%= f.input :travel_to, :as => :string, id: 'datetimepicker_to', placeholder: "Travel to", input_html:{class: "form-control" }, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12"}%>
+      <%= f.input :travel_to, :as => :string, id: 'datetimepicker_to', placeholder: "Travel to", input_html:{class: "form-control" }, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12 padding-0"}%>
     </div> <!--travel to-->
     <div class="form-group">
-      <%= f.input :contact_number, :as => :string, placeholder: "Contact Number",  input_html:{class: "form-control"}, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12"}%>
+      <%= f.input :contact_number, :as => :string, placeholder: "Contact Number",  input_html:{class: "form-control"}, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12 padding-0"}%>
     </div> <!--contact-->
     <div class="form-group">
       <div class="col-md-12 col-sm-12 col-xs-12 padding-0">
@@ -33,7 +34,7 @@
       </div>
     </div> <!--aldust+childrent-->
     <div class="form-group">
-      <div class="col-md-12 col-sm-12 col-xs-12 padding-0 sum-pax">
+      <div class="col-md-11 col-md-offset-1 col-xs-12 padding-0 sum-pax">
           No. of Pax: <p id="sum-pax"></p>
       </div>
     </div>
@@ -46,6 +47,7 @@
    $('.label').hide();
    $("#lead_travel_from").val("");
    $('#lead_travel_to').val("");
+   $('#lead_submit_action').html('Create a new Customer')
    
    //select lead customer id
    $('#lead_customer_id').selectbox({}); 
