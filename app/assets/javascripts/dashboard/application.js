@@ -104,7 +104,7 @@ $(function() {
     $('#search-customer').val("");
     $('#customer_country_id').val(0);
     $('#customer_source_id').val(0);
-    // $('#accept').hide();
+    
     
     $('#tour_tour_category_id').selectbox({
       onChange: function (val) {
