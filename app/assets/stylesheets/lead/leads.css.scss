@@ -128,25 +128,30 @@ form.select-lead-status .sbHolder{
    width: 75% !important;
 }
 
-form.lead div.formnestic-nested-model-container div.formnestic-list-new-entry-link-container a {
-  float: right;
-  display: block;
+form.lead, form.booking {
+  div.formnestic-nested-model-container div.formnestic-list-new-entry-link-container a {
+    float: right;
+    display: block;
+  }
 }
 
-form.lead div.formnestic-nested-model-container fieldset.formnestic-li-fieldset{
-  border-bottom: 1px dashed #cccccc;
-  display: block;
-  float: left;
-  margin-bottom: 15px;
-  position: relative;
-  width: 100%;
+
+form.lead, form.booking {
+  div.formnestic-nested-model-container fieldset.formnestic-li-fieldset{
+    border-bottom: 1px dashed #cccccc;
+    display: block;
+    float: left;
+    margin-bottom: 15px;
+    position: relative;
+    width: 100%;
+  }
 }
 
 #lead_customer_id_input{
   width: 80%;
 }
 
-.form-group .lead-tour-category .sbHolder{
+.form-group .lead-tour-category .sbHolder, .form-group .booking-tour-category .sbHolder{
   background: white;
   border-radius: 4px;
   margin-bottom: 20px;
@@ -186,42 +191,63 @@ form.lead div.formnestic-nested-model-container fieldset.formnestic-li-fieldset{
     width:100% !important;
   }
 }
-form.lead div.formnestic-nested-model-container fieldset.formnestic-li-fieldset {
-  border-bottom: none;
-  border-top: 1px dashed #cccccc;
-  padding-top: 25px;
-  margin-top: 25px;
-}
-form.lead .formnestic-nested-model-container .formnestic-li-fieldset {
-  border-bottom: none;
-  .sbHolder {
+form.lead, form.booking {
+  div.formnestic-nested-model-container fieldset.formnestic-li-fieldset {
+    border-bottom: none;
+    border-top: 1px dashed #cccccc;
+    padding-top: 25px;
     margin-top: 25px;
-    background: white;
-    margin-left: 200px;
-    width: 325px;
-    border-radius: 4px;
-  
-    .sbSelector {
-      color: #5e5e5e;
-      width: 100%;
-    }
-    ul.sbOptions {
+  }
+}
+form.booking  .sbHolder {
+  margin-left: auto !important;
+}
+form.lead, form.booking {
+  .formnestic-nested-model-container .formnestic-li-fieldset {
+    border-bottom: none;
+    .sbHolder {
+      margin-top: 25px;
+      background: white;
+      margin-left: 200px;
       width: 325px;
-      background-color: white;
-    }
-    .sbToggle {
-      height: 28px;
-      background-color: #22A98E;
-    }
+      border-radius: 4px;
   
-    .sbOptions a:link {
-      color: #5e5e5e ;
-      &:hover{
-        color: #EADB35;
-      };
+      .sbSelector {
+        color: #5e5e5e;
+        width: 100%;
+      }
+      ul.sbOptions {
+        width: 325px;
+        background-color: white;
+      }
+      .sbToggle {
+        height: 28px;
+        background-color: #22A98E;
+      }
+  
+      .sbOptions a:link {
+        color: #5e5e5e ;
+        &:hover{
+          color: #EADB35;
+        };
+      }
     }
   }
 }
 li#lead_submit_action input {
   float: left;margin-left: 30%;
+}
+
+form.booking li#booking_number_adult_input input#booking_number_adult, li#booking_number_child_input input#booking_number_child{
+  width: 150px !important;
+}
+form.booking {
+  padding-bottom: 50px;
+}
+li#booking_status_input , li#booking_user_id_input{
+  float: left;
+  width: 100%;
+  .sbHolder {
+    float: left;
+  }
 }
