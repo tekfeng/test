@@ -1,0 +1,64 @@
+<table class='listing-table vendor-listing-content-tab-vendor-rates'>
+  <thead>
+    <tr>
+      <th class="no">No</th>
+      <th class="booking-number">Booking Number
+        <a class="menu-down" href="#">
+          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+        </a>
+      </th>
+      <th class="booking-travel-date">Travel Date
+        <a class="menu-down" href="#">
+          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+        </a>
+      </th>
+      <th class="booking-date">Booking Date
+        <a class="menu-down" href="#">
+          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+        </a>
+      </th>
+      <th class="booking-name">Name
+        <a class="menu-down" href="#">
+          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+        </a>
+      </th>
+      <th class="booking-tour-code">Tour Code
+        <a class="menu-down" href="#">
+          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+        </a>
+      </th>
+      <th class="booking-status">Status
+        <a class="menu-down" href="#">
+          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+        </a>
+      </th>
+      <th class="booking-sale">Sale Person
+        <a class="menu-down" href="#">
+          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+        </a>
+      </th>
+      <th class="booking-action" style='text-align: center;'>Itinerary</th>
+    </tr>
+  </thead>
+  <% if @bookings.count > 0 %>
+    <% @bookings.each_with_index do |booking, index| %>
+      <tr class="<%= cycle('odd', 'even') %>">
+        <td><%=  index + 1 %></td>
+        <td><%= booking.booking_number %></td>
+        <td><%= booking.travel_date ? booking.travel_date.strftime("%d-%m-%Y") : "" %></td>
+        <td><%= booking.created_at.strftime("%d-%m-%Y") %></td>
+        <td><%= booking.customer.try(:name) %></td>
+        <td><%= booking.booking_tour_category_tours.first.tour.try(:code) %></td>
+        <td><%= booking.status %></td>
+        <td><%= booking.user.try(:username) %></td>                           
+        <td style='text-align: center;'>
+          <%= link_to "Send", "/bookings/#{booking.id}/send", class: 'btn btn-primary' %>
+        </td>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr>
+      <td colspan='7'>No lead available<td>
+    </tr>
+  <% end %>
+</table>

@@ -1,11 +1,16 @@
 <table class='listing-table vendor-listing-content-tab-vendor-rates'>
   <thead>
     <tr>
-      <th class="no">Date</th>
+       <th class="no">No</th>
+      <th class="date">Date
+        <a class="menu-down" href="#">
+          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+        </a>
+      </th>
       <th class="lead-thead-name">Name
-          <a class="menu-down" href="#">
-            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-          </a>
+        <a class="menu-down" href="#">
+          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+        </a>
       </th>
       <th class="lead-thead-email">Email Address
         <a class="menu-down" href="#">
@@ -42,7 +47,7 @@
           <td><%= lead.status %></td>
           <td><%= lead.user.try(:username) %></td>              
           <td style='text-align: center;'>
-            <%= link_to "Edit", edit_lead_url(lead), class: 'btn btn-primary' %>
+            <%= link_to "", edit_lead_url(lead), class: 'glyphicon glyphicon-pencil' %>
           </td>
         </tr>
       <% end %>

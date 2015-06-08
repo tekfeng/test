@@ -67,34 +67,39 @@ hr{
   list-style: none;
 }
 
+table.listing-table thead th.no,
 table.listing-table thead th.lead-thead-name,
 table.listing-table thead th.lead-thead-tour-category,
 table.listing-table thead th.lead-thead-sale{
-  background:#ececec none repeat;
-  color: #77888f;
+  //background:#ececec none repeat;
+//  color: #77888f;
+  background: #8093a5 none repeat scroll 0 0;
+  color: #fff;
 }
 
 table.listing-table thead th.lead-thead-name a.menu-down,
 table.listing-table thead th.lead-thead-tour-category a.menu-down,
 table.listing-table thead th.lead-thead-sale a.menu-down{
-  color: #8093a5;
-  top: 3px;
-  left: 3px;
+  color: #fff;
+  margin-top: 4px;
+  margin-left: 6px;
 }
 
+table.listing-table thead th.date,
 table.listing-table thead th.lead-thead-email,
 table.listing-table thead th.lead-thead-status,
 table.listing-table thead th.lead-action{
-  background: #8093a5 none repeat scroll 0 0;
-  color: #fff;
+  background:#ececec none repeat;
+  color: #77888f;
 }
 
+table.listing-table thead th.date a.menu-down,
 table.listing-table thead th.lead-thead-email a.menu-down,
 table.listing-table thead th.lead-thead-status a.menu-down,
 table.listing-table thead th.lead-action a.menu-down{
-  color: #fff;
-  top: 3px;
-  left: 3px;
+  color: #8093a5;
+  margin-top: 4px;
+  margin-left: 6px;
 }
 
 #lead_travel_from_input,
@@ -103,6 +108,10 @@ table.listing-table thead th.lead-action a.menu-down{
 #lead_adults_input,
 #lead_children_input,{
   margin-top: 10px;
+}
+
+.ud-vd {
+  padding: 6px 44px !important;
 }
 
 .sum-pax{
@@ -261,6 +270,11 @@ form.lead .formnestic-nested-model-container {
   }
 }
 
+.action.input_action{
+  text-align: center;
+  width: 100%;
+}
+
 
 @media (max-width: 767px) {
   #lead_children_input,#lead_adults_input{
@@ -401,18 +415,11 @@ form.calendar .form-group .form-control{
   }
 }
 
-form.booking li#booking_number_adult_input input#booking_number_adult, li#booking_number_child_input input#booking_number_child{
-  width: 150px !important;
+
+.btn.btn-primary.filter-lead{
+  width:100px;
 }
 
-form.booking {
-  padding-bottom: 50px;
-}
-
-li#booking_status_input , li#booking_user_id_input{
-  float: left;
-  width: 100%;
-  .sbHolder {
-    float: left;
-  }
+#listing-table {
+    margin-top: 20px;
 }

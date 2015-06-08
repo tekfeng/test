@@ -34,7 +34,7 @@
     
     <div class='wrapper wrapper-content'>
       <div class='ibox'>
-        <div class='ibox-content'>
+        <div class='ibox-content container-fluid white-bg'>
           <div class="clearfix">
             <div id="vendor_filter">
               <% @leading_new = Lead.new %>
@@ -49,12 +49,9 @@
               <% end %>
             </div>
           </div>
-          
-          <br/>
-          <div id="listing-table vendor-listing-content-tab-vendor-rates">
-            <%= render :partial => 'list', local: {leads: @leads}%>
-          </div>
-          <br/ >
+        </div>
+        <div id="listing-table vendor-listing-content-tab-vendor-rates">
+          <%= render :partial => 'list', local: {leads: @leads}%>
         </div>
       </div>
     </div>

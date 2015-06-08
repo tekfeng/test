@@ -1,10 +1,14 @@
 class BookingsController < BaseController
   def index
     @bookings = Booking.all
+    if params[:ajax_call]
+      @bookings = Booking.search(params)[:bookings]
+      render :partial => 'bookings/list', locals: {bookings: @bookings}
+    end
   end
   
   def new
-    @booking = Booking.new
+    @bookings = Booking.new
   end
   
   def create

@@ -2,40 +2,87 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-table.listing-table thead th.booking-number,
-table.listing-table thead th.booking-date,
-table.listing-table thead th.booking-tour,
-table.listing-table thead th.booking-sale{
+table.listing-table thead th.no,
+table.listing-table thead th.booking-travel-date,
+table.listing-table thead th.booking-name,
+table.listing-table thead th.booking-status,
+table.listing-table thead th.booking-action
+{
   background: #8093a5 none repeat scroll 0 0;
   color: #fff;
 }
 
-table.listing-table thead th.booking-number a.menu-down,
-table.listing-table thead th.booking-date a.menu-down,
-table.listing-table thead th.booking-tour a.menu-down,
-table.listing-table thead th.booking-sale a.menu-down{
+table.listing-table thead th.booking-travel-date a.menu-down,
+table.listing-table thead th.booking-name a.menu-down,
+table.listing-table thead th.booking-status a.menu-down,
+table.listing-table thead th.booking-action{
   color: #fff;
   top: 3px;
   left: 5px;
 }
 
-table.listing-table thead th.travel-date,
-table.listing-table thead th.booking-name,
-table.listing-table thead th.booking-status,
+
+table.listing-table thead th.booking-number,
+table.listing-table thead th.booking-date,
+table.listing-table thead th.booking-tour-code,
+table.listing-table thead th.booking-sale,
 table.listing-table thead th.itinerary{
   background:#ececec none repeat;
   color: #77888f;
 }
 
-table.listing-table thead th.travel-date a.menu-down,
-table.listing-table thead th.booking-name a.menu-down,
-table.listing-table thead th.booking-status a.menu-down,
-table.listing-table thead th.itinerary a.menu-down{
+table.listing-table thead th.booking-number a.menu-down,
+table.listing-table thead th.booking-date a.menu-down,
+table.listing-table thead th.booking-tour-code a.menu-down,
+table.listing-table thead th.booking-sale a.menu-down,
+{
   color: #8093a5;
   top: 3px;
   left: 5px;
 }
 
+
 #listing-table{
   margin-top: 20px;
+}
+
+form .sbHolder {
+    background: #ffffff none repeat scroll 0 0;
+    border-radius: 4px;
+    margin-top: 15px;
+    width: 325px;
+}
+
+form.lead ol li {
+    float: left;
+    width: 100%;
+}
+
+li#booking_status_input , li#booking_user_id_input{
+  width: 100%;
+  .sbHolder {
+   
+  }
+}
+
+form.booking li#booking_number_adult_input input#booking_number_adult, li#booking_number_child_input input#booking_number_child{
+  width: 150px !important;
+}
+
+form.booking {
+  padding-bottom: 50px;
+}
+
+li.input {
+  margin-bottom :10px;
+}
+
+.filter-booking {
+  font-size: 12px !important;
+  margin-top: 15px;
+  width :100px;
+}
+
+#listing-table {
+    margin-top: 20px;
 }
