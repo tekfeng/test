@@ -2,6 +2,10 @@ class Tour < ActiveRecord::Base
   belongs_to :tour_category
   belongs_to :lead
   belongs_to :booking
+  has_and_belongs_to_many :bookings, join_table: "booking_tours"
+  has_and_belongs_to_many :lead, join_table: "lead_tours"
+  
+  has_many :booking_tour_category_tours, dependent: :destroy
   
   validates :name, :presence => true
   validates :name, :uniqueness => true
@@ -30,4 +34,18 @@ class Tour < ActiveRecord::Base
     # tours = tours.page(page).per(10)
     return {tours: tours, total_page: 1, current_page: page}
   end
+  
+  def as_json(for_="")
+    case (for_)
+    when "selectbox"
+      {
+        id: self.id,
+        name: self.name
+      }
+    else
+      self
+    end
+  end
+  
+  
 end

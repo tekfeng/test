@@ -39,6 +39,12 @@ class ToursController < BaseController
     end
   end
   
+  def tour_of_tour_category
+    tour_category = TourCategory.find_by_id(params[:id].to_i)
+    p tour_category
+    tours = tour_category.tours
+    render json: tours.as_json('selectbox')
+  end
   private
 
   def tour_params

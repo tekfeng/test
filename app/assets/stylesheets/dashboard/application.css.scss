@@ -775,4 +775,10 @@ form.group-select .sbHolder{
   margin-top: 15px;
   padding: 5px 22px;
 }
-
+.formnestic-list-entries-container li.form-control {
+//  display: none;
+  border: none;
+}
+.formnestic-list-entries-container .form-control {
+  width: 100%;
+}

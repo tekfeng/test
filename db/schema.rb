@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150605022149) do
+ActiveRecord::Schema.define(version: 20150605084003) do
 
   create_table "add_username_to_users", force: :cascade do |t|
     t.string   "username",   limit: 255
@@ -19,25 +19,33 @@ ActiveRecord::Schema.define(version: 20150605022149) do
     t.datetime "updated_at",             null: false
   end
 
-  create_table "booking_statuses", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+  create_table "booking_tour_category_tours", force: :cascade do |t|
+    t.integer  "tour_id",          limit: 4
+    t.integer  "booking_id",       limit: 4
+    t.integer  "tour_category_id", limit: 4
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  create_table "booking_tours", force: :cascade do |t|
+    t.integer "booking_id", limit: 4
+    t.integer "tour_id",    limit: 4
   end
 
   create_table "bookings", force: :cascade do |t|
     t.datetime "travel_date"
     t.string   "user_id",        limit: 255
-    t.string   "tour_id",        limit: 255
     t.string   "status",         limit: 255
     t.string   "itinerary",      limit: 255
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.string   "booking_number", limit: 255
     t.integer  "customer_id",    limit: 4
     t.datetime "travel_to"
     t.string   "contact_number", limit: 255
     t.integer  "number_adult",   limit: 4
     t.integer  "number_child",   limit: 4
+    t.integer  "tour_id",        limit: 4
   end
 
   create_table "cities", force: :cascade do |t|
@@ -68,6 +76,19 @@ ActiveRecord::Schema.define(version: 20150605022149) do
     t.integer  "source_id",      limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "lead_tour_category_tours", force: :cascade do |t|
+    t.integer  "tour_id",          limit: 4
+    t.integer  "lead_id",          limit: 4
+    t.integer  "tour_category_id", limit: 4
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  create_table "leading_tours", force: :cascade do |t|
+    t.integer "lead_id", limit: 4
+    t.integer "tour_id", limit: 4
   end
 
   create_table "leads", force: :cascade do |t|

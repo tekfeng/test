@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   root :to => 'dashboard#index'
   resources :dashboard
   resources :tour_categories
-  resources :tours
+  resources :tours do
+    member do
+      get :tour_of_tour_category
+    end
+  end
   resources :customers
   resources :leads
   resources :bookings
