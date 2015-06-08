@@ -1,5 +1,7 @@
 class Lead < ActiveRecord::Base
   belongs_to :customer
+  belongs_to :user
+  
   validates :customer_id, :presence => true
   validates :travel_from, :presence => true
   validates :travel_from, :uniqueness => true

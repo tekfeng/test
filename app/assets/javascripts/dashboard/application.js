@@ -53,10 +53,6 @@ $(document).ready(function() {
     });    
     return false
   });
-  
-  
-  
-  
 });
 
 
@@ -228,62 +224,9 @@ $(function() {
           }
        });
      },700);
-    
   });
   
-  //select country
-  $('#customer_country_id').selectbox({
-    onChange: function (val) {
-      var url = "/customers";
-      var customerCountryId = val;
-      var customerSourceId = $('#customer_source_id').val();
-      var keyWord = $('#search-customer').val();
-      $.ajax({
-        type: "GET",
-        data: {
-          // ajax_call: true,
-          country_id: customerCountryId,
-          source_id: customerSourceId,
-          keyword: keyWord
-        }, 
-        url: url,
-        success: function(data){
-          $('div#listing-table').html(data)
-        }, 
-        error: function(){
-          
-        }
-      });
-    }
-  });
  
-  //select source
-  $('#customer_source_id').selectbox({
-    onChange: function(val){
-      var url = "/customers";
-      var customerSourceId = val;
-      var customerCountryId = $('#customer_country_id').val();
-      var keyWord = $('#search-customer').val();
-      $.ajax({
-        type: "GET",
-        data: {
-          ajax_call: true,
-          source_id: customerSourceId,
-          country_id: customerCountryId,
-          keyword: keyWord
-        },
-        url: url,
-        success: function(data){
-         
-          $("div#listing-table").html(data)
-        },
-        error: function(){
-          
-        }
-      });
-    },
-  });
-  
   
   $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
       event.preventDefault();

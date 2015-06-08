@@ -109,7 +109,9 @@ table.listing-table thead th.customer-thead-source a.menu-down{
   text-align: center;
 }
 
-form.select-customer-source .sbHolder{
+form.select-customer-country .sbHolder,
+form.select-customer-source .sbHolder
+{
   background: white;
   width: 325px;
   border-radius: 4px;
@@ -135,9 +137,9 @@ form.select-customer-source .sbHolder{
   }
 }
 
-.select-country .sbHolder, .select-source .sbHolder{
+form .sbHolder {
   background: white;
-  width: 100%;
+  width: 90%;
   border-radius: 4px;
 
   .sbSelector {
@@ -160,6 +162,7 @@ form.select-customer-source .sbHolder{
     };
   }
 }
+
 
 @media (max-width: 767px) {
   a.submit{

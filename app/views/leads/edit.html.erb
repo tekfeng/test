@@ -1,0 +1,37 @@
+<div class="row wrapper border-bottom white-bg page-heading text-center">
+  <div class="col-md-4 col-sm-4 col-xs-12">
+    <div class="edit-lead">
+      <%= link_to 'New Lead', new_lead_url, class: "btn btn-primary pull-left", id: "new" %>
+    </div>
+  </div>
+  <div class="col-md-4 col-sm-4 col-xs-12">
+     <h2>Edit Leads</h2>
+     <ol class="breadcrumb">
+       <li>
+         <a href="/dashboard">Home</a>
+       </li>
+       <li>
+         <a href="/dashboard">Sales</a>
+       </li>
+       <li class="active">
+         <strong>Leads</strong>
+       </li>
+     </ol>
+   </div>  
+  <div class="col-md-4 col-sm-4 col-xs-12">
+     <form class="group-input">
+       <input type='search' id='search-customer' placeholder="Search..." />
+       <a class="submit" type="submit" href="#">
+         <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+       </a>
+     </form>
+   </div>
+</div>
+
+<div class='wrapper wrapper-content'>
+  <div class='ibox white-bg'>
+    <div class='ibox-content'>
+      <%= render 'form' %>
+    </div>
+  </div>
+</div>

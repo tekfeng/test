@@ -2,33 +2,53 @@
   <thead>
     <tr>
       <th class="no">Date</th>
-      <th class="customer-thead-name">Name
+      <th class="lead-thead-name">Name
           <a class="menu-down" href="#">
             <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
           </a>
       </th>
-      <th class="customer-thead-email">Email Address
+      <th class="lead-thead-email">Email Address
         <a class="menu-down" href="#">
           <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
         </a>
       </th>
-      <th class="customer-thead-contact">Tour Category
+      <th class="lead-thead-tour-category">Tour Category
         <a class="menu-down" href="#">
           <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
         </a>
       </th>
-      <th class="customer-thead-address">Status
+      <th class="lead-thead-status">Status
         <a class="menu-down" href="#">
           <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
         </a>
       </th>
-      <th class="customer-thead-country">Sale Person
+      <th class="lead-thead-sale">Sale Person
         <a class="menu-down" href="#">
           <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
         </a>
       </th>
+      <th class="lead-action" style='text-align: center;'>Action</th>
     </tr>
   </thead>        
   <tbody>
+    <% if @leads.count > 0 %>
+      <% @leads.each_with_index do |lead, index| %>
+        <tr class="<%= cycle('odd', 'even') %>">
+          <td><%= lead.created_at %></td>
+          <td><%= lead.customer ? lead.customer.name : "N/A" %></td>
+          <td><%= lead.customer ? lead.customer.email_address : "N/A" %></td>
+          <td><%= lead.tour_category ? lead.tour_category.name : "N/A" %></td>
+          <td><%= lead.status %></td>
+          <td><%= lead.user_id %></td>
+          <td style='text-align: center;'>
+            <%= link_to "", edit_lead_url(lead), class: 'glyphicon glyphicon-pencil' %>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan='7'>No lead available<td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
