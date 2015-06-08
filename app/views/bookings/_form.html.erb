@@ -37,10 +37,10 @@
       </div>
     </div> <!--aldust+childrent-->
     <% if @booking.new_record? %>
-      <% @booking.tours.new %>
+      <% @booking.booking_tour_category_tours.new %>
     <% end %>
     <li class="form-group">
-      <%= form.semantic_fields_for :tours, {
+      <%= form.semantic_fields_for :booking_tour_category_tours, {
         min_entry: 3,
         row_removable: true, 
         row_addable: true,
@@ -48,10 +48,54 @@
       } do |tour| %>       
         <%= tour.inputs do %>
         
-          <%= tour.input :tour_category_id, :as => :select, :collection => TourCategory.all.collect{|t| [t.name, t.id]},:input_html => { :class => 'form-control'}, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12 padding-0 form-control booking-tour-category"}%>
+          <%= tour.input :tour_category_id, :as => :select, :collection => TourCategory.all.collect{|t| [t.name, t.id]},:input_html => { :class => 'form-control booking-tour-category', :id => 'booking_tour_category'}, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12 padding-0 form-control "} %>
         
-          <%= tour.input :name, :as => :select , :collection => Tour.all.collect{|t| [t.name, t.id]}, :input_html => { :class => 'form-control booking-tour'}, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12 padding-0 booking-tour"}%>
+          <%= tour.input :tour_id, :as => :select , :collection => [], :input_html => { :class => 'form-control booking-tour', :id => 'booking_tour'}, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12 padding-0"}%>
        
+            <script language="javascript">
+              $(document).ready(function() {
+                $('.label').hide();
+                var bookingTour = $('#booking_tour.booking-tour');
+                bookingTour.append('<option value="0">Tour Name</option>');
+                bookingTour.val(0);
+                bookingTour.selectbox({});
+                
+                
+                var bookingTourCategory =  $('#booking_tour_category.booking-tour-category');
+                bookingTourCategory.append('<option value="0">Tour Category</option>');
+                bookingTourCategory.val(0);
+    
+                bookingTourCategory.selectbox({
+                  onChange: function (val, inst) {
+                    var category_id = val;
+                    var tourOfTourCategory = $(this).closest(".formnestic-li-fieldset").find("select#booking_tour.booking-tour")
+                    tourOfTourCategory.selectbox("detach");
+                    tourOfTourCategory.html('');
+                    tourOfTourCategory.append('<option value="0">Tour Name</option>');
+                    tourOfTourCategory.val(0);
+                      if (category_id !== null) {
+                        $.ajax({
+                          url:"/tours/" + category_id + "/tour_of_tour_category",
+                          data:{'id':category_id},
+                          success:function(data){
+                            $.each(data, function(index, item) {
+                              var html = '<option value="'+item.id+'">'+item.name+'</option>';
+                              tourOfTourCategory.append(html);
+                            })            
+                            tourOfTourCategory.selectbox({});
+              
+                          }
+                        })
+                      } else {
+                        tourOfTourCategory.selectbox({});
+                      }
+                  	}
+                });
+    
+              });  
+            </script>
+            
+            
         <% end %>
       <% end %>
     </li>
@@ -64,32 +108,15 @@
 <script language="javascript">
   $(document).ready(function() {
     $('.label').hide();
-    $('#booking_customer_id').selectbox({});
-    $('#booking-tour-category').selectbox({});
-    $('.form-group .booking-tour-category').selectbox({});
-    $('.form-group .booking-tour').selectbox({});
+    var bookingCustomerId = $('#booking_customer_id');
+    bookingCustomerId.append('<option value="0">Select Customer</option>');
+    bookingCustomerId.val(0);
+    bookingCustomerId.selectbox({});
     
     $('#booking_travel_from_input, #booking_travel_date').datetimepicker({
      timepicker:false,
      format:'d/m/Y'
     });
-    $('#booking_travel_from_input, #booking_travel_to').datetimepicker({
-     lang:'de',
-     i18n:{
-      de:{
-       months:[
-        'Januar','Februar','März','April',
-        'May','Jun','July','August',
-        'September','October','November','Dezember',
-       ],
-       dayOfWeek:[
-        "So.", "Mo", "Di", "Mi",
-        "Do", "Fr", "Sa.",
-       ]
-      }
-     },
-     timepicker:false,
-     format:'d/m/Y'
-    });
+    
   });  
 </script>

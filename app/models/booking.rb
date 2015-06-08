@@ -1,8 +1,8 @@
 class Booking < ActiveRecord::Base
   belongs_to :user
-  has_many :tours
   belongs_to :customer
-  accepts_nested_attributes_for :tours, allow_destroy: true
+  has_many :booking_tour_category_tours, dependent: :destroy
+  accepts_nested_attributes_for :booking_tour_category_tours, allow_destroy: true
   after_create :create_booking_code
   
   

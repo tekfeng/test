@@ -59,24 +59,7 @@
             var leadForm = $("form.lead-form");
             leadForm.find('.label').hide();
             leadForm.find('.form-control.lead-group-select').selectbox({});
-            leadForm.find('#lead_travel_from_input, #lead_travel_to').datetimepicker({
-             lang:'de',
-             i18n:{
-              de:{
-               months:[
-                'Januar','Februar','März','April',
-                'May','Jun','July','August',
-                'September','October','November','Dezember',
-               ],
-               dayOfWeek:[
-                "So.", "Mo", "Di", "Mi",
-                "Do", "Fr", "Sa.",
-               ]
-              }
-             },
-             timepicker:false,
-             format:'d/m/Y'
-            });
+           
           });  
         </script>
           
@@ -88,3 +71,11 @@
   </div>
 <% end %>
 
+<script language="javascript">
+  $(document).ready(function() {
+    var leadForm = $("form.lead-form");   
+    leadForm.find('#lead_travel_from_input, #lead_travel_to').datetimepicker({
+     timepicker:false,
+     format:'d/m/Y'
+    });
+</script>
