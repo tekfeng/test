@@ -16,9 +16,8 @@ class CustomersController < BaseController
   def create
     @customer = Customer.new(customer_params)
     if @customer.save
-      render json: {result: 'ok', redirect_to: customers_url,
+      render json: {result: 'ok', redirect_to: customers_url, customer_id: @customer.id,
         flash: { type: :notice, message: 'Customer has been created successfully!' }}
-        @current_customer_id = @customer.id
     else
       render json: {result: 'false', error: @customer.errors}
     end
@@ -31,7 +30,7 @@ class CustomersController < BaseController
   def update
     @customer = Customer.find(params[:id])
     if @customer.update_attributes(customer_params)
-      render json: {result: 'ok', redirect_to: customers_url, 
+      render json: {result: 'ok', redirect_to: customers_url
         flash: { type: :notice, message: 'Customer details has been saved successfully!' }}
     else
       render json: { result: 'failed', errors: @customer.errors }

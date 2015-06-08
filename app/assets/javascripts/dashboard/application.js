@@ -243,6 +243,9 @@ $(function() {
   });
   
   $(document).on('submit', 'form.ajax-form', function(e) {
+    var _this = this;
+    var noRedirectURLCustomer = $(e.currentTarget).hasClass("customer-form");
+    
     e.preventDefault(this);
     var formDom = $(this);
     var formData = new FormData(this);
@@ -298,21 +301,30 @@ $(function() {
       contentType: false,
       type: $(this).attr('method') || $(this).find('input[name=_method]:first').val(),
       success: function(response) {
+        
+        
+        
         if(response.result == 'ok') {
           if(response.flash) {
             $.cookie('flashType', response.flash.type, { path: '/' });
             $.cookie('flashMessage', response.flash.message, { path: '/' });
           }//end if
+          if (response.customer_id) {
+            document.getElementById("conver-customer-to-lead-url").href="/leads/new?customer_id=" + response.customer_id ; 
+          }
+          
           $('#ajax_modal').modal({
                 show: true,
                 backdrop: 'static',
                 keyboard: true
           });
-          // if(typeof(Turbolinks) !== 'undefined') {
-          //   Turbolinks.visit(response.redirect_to);
-          // } else {
-          //   document.location = response.redirect_to;
-          // }
+        if (!noRedirectURLCustomer) {  
+          if(typeof(Turbolinks) !== 'undefined') {
+            Turbolinks.visit(response.redirect_to);
+          } else {
+            document.location = response.redirect_to;
+          }
+         } 
         } else {
           handleResponseErrors(response.errors, formDom);
         }//end else

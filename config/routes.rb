@@ -40,4 +40,7 @@ Rails.application.routes.draw do
   get '/vendors_controll/filter_vendor', :controller => "vendors", action: "filter_vendor"
   
   post "/vendor_rates/:id/update_current_contact/:vendor_id" => 'vendor_rates#update_current_contact'
+  
+  get "/leads/:id/convert_to_booking" => 'bookings#convert_to_booking'
+  
 end

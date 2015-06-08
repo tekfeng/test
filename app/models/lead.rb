@@ -5,10 +5,7 @@ class Lead < ActiveRecord::Base
   accepts_nested_attributes_for :tours, allow_destroy: true
   
   has_many :lead_tour_category_tours, dependent: :destroy
-  accepts_nested_attributes_for :lead_tour_category_tours, allow_destroy: true
-  
-  has_and_belongs_to_many :tours, join_table: "lead_tours"
-  
+  accepts_nested_attributes_for :lead_tour_category_tours, allow_destroy: true  
   
   after_create :create_default_value
    

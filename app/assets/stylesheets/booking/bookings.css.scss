@@ -86,3 +86,18 @@ li.input {
 #listing-table {
     margin-top: 20px;
 }
+.convert-to-booking {
+  width: 200px;
+  color: white;
+  height: 40px;
+  text-align: center;
+  background-color: #00256d;
+  padding-top: 7px;
+  font-size: 15px;
+  border-radius: 4px;
+  float: right;
+  margin-top: 20px;
+  &:hover {
+    background-color:#0B2EAA;
+  };
+}
