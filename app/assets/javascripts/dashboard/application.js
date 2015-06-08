@@ -243,6 +243,9 @@ $(function() {
   });
   
   $(document).on('submit', 'form.ajax-form', function(e) {
+    var _this = this;
+    var noRedirectURLCustomer = $(e.currentTarget).hasClass("customer-form");
+    
     e.preventDefault(this);
     var formDom = $(this);
     var formData = new FormData(this);
@@ -308,11 +311,13 @@ $(function() {
                 backdrop: 'static',
                 keyboard: true
           });
-          // if(typeof(Turbolinks) !== 'undefined') {
-          //   Turbolinks.visit(response.redirect_to);
-          // } else {
-          //   document.location = response.redirect_to;
-          // }
+        if (!noRedirectURLCustomer) {  
+          if(typeof(Turbolinks) !== 'undefined') {
+            Turbolinks.visit(response.redirect_to);
+          } else {
+            document.location = response.redirect_to;
+          }
+         } 
         } else {
           handleResponseErrors(response.errors, formDom);
         }//end else

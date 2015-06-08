@@ -1,7 +1,7 @@
 <div class="row wrapper border-bottom white-bg page-heading text-center">
   <div class="col-md-4 col-sm-4 col-xs-12">
     <div class="edit-lead">
-      <%= link_to 'New Lead', new_lead_url, class: "btn btn-primary pull-left", id: "new" %>
+      <%= link_to 'New Lead', edit_lead_url(@lead), class: "btn btn-primary pull-left", id: "new" %>
     </div>
   </div>
   <div class="col-md-4 col-sm-4 col-xs-12">
@@ -18,14 +18,22 @@
        </li>
      </ol>
    </div>  
-  <div class="col-md-4 col-sm-4 col-xs-12">
-     <form class="group-input">
-       <input type='search' id='search-customer' placeholder="Search..." />
-       <a class="submit" type="submit" href="#">
-         <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-       </a>
-     </form>
-   </div>
+ <% if controller.action_name == "index" %>    
+   <div class="col-md-4 col-sm-4 col-xs-12">
+      <form class="group-input">
+        <input type='search' id='search-customer' placeholder="Search..." />
+        <a class="submit" type="submit" href="#">
+          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+        </a>
+      </form>
+    </div>
+  <% else  %>
+    <div class="col-md-4 col-sm-4 col-xs-12">
+      <a href="/leads/<%= @lead.id %>/convert_to_booking">
+        <div class="convert-to-booking">Convert to Booking</div>
+      </a>
+    </div>
+  <% end %>
 </div>
 
 <div class='wrapper wrapper-content'>

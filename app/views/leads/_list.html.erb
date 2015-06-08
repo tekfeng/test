@@ -1,4 +1,4 @@
-<table class='listing-table'>
+<table class='listing-table vendor-listing-content-tab-vendor-rates'>
   <thead>
     <tr>
       <th class="no">Date</th>
@@ -34,14 +34,15 @@
     <% if @leads.count > 0 %>
       <% @leads.each_with_index do |lead, index| %>
         <tr class="<%= cycle('odd', 'even') %>">
-          <td><%= lead.created_at %></td>
-          <td><%= lead.customer ? lead.customer.name : "N/A" %></td>
-          <td><%= lead.customer ? lead.customer.email_address : "N/A" %></td>
-          <td><%= lead.tour_category ? lead.tour_category.name : "N/A" %></td>
+          <td><%= index + 1 %></td>
+          <td><%= lead.travel_from ? lead.travel_from.strftime("%d-%m-%Y") : "" %></td>                  
+          <td><%= lead.customer.try(:name) %></td>
+          <td><%= lead.customer.try(:email_address) %></td>
+          <td><%= lead.lead_tour_category_tours ? lead.lead_tour_category_tours.first.tour_category.try(:name) : "N/A" %></td>
           <td><%= lead.status %></td>
-          <td><%= lead.user_id %></td>
+          <td><%= lead.user.try(:username) %></td>              
           <td style='text-align: center;'>
-            <%= link_to "", edit_lead_url(lead), class: 'glyphicon glyphicon-pencil' %>
+            <%= link_to "Edit", edit_lead_url(lead), class: 'btn btn-primary' %>
           </td>
         </tr>
       <% end %>

@@ -1,24 +1,40 @@
 <div class='row'>
   <div class='col-lg-12'>
-    <div class="row wrapper border-bottom white-bg page-heading">
-      <div class="col-lg-10">
-        <h2>Leadings</h2>
-        <ol class="breadcrumb">
-          <li>
-            <a href="/dashboard">Home</a>
-          </li>
-          <li class="active">
-            <strong>Leadings</strong>
-          </li>
-        </ol>
+    <div class="row wrapper border-bottom white-bg page-heading text-center">
+      <div class="col-lg-12">
+        <div class="col-md-4 col-sm-4 col-xs-12">
+          <div class="new-lead">
+            <%= link_to 'New Lead', new_lead_url, class: "btn btn-primary pull-left", id: "new" %>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-12">
+          <h2>Leads</h2>
+          <ol class="breadcrumb">
+            <li>
+              <a href="/dashboard">Home</a>
+            </li>
+            <li>
+              <a href="/dashboard">Sales</a>
+            </li>
+            <li class="active">
+              <strong>Leads</strong>
+            </li>
+          </ol>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-12">
+          <form class="group-input">
+            <input type='search' id='search-customer' placeholder="Search..." />
+            <a class="submit" type="submit" href="#">
+              <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+            </a>
+          </form>
+        </div>
       </div>
     </div>
     
     <div class='wrapper wrapper-content'>
       <div class='ibox'>
-        
         <div class='ibox-content'>
-          
           <div class="clearfix">
             <div id="vendor_filter">
               <% @leading_new = Lead.new %>
@@ -26,51 +42,18 @@
                 <%= f.inputs do %>
                   <%= f.input :status, :label => "Payment Status", :as => :select, placeholder: 'user@domain.com', collection: Lead.all.collect(&:status) %>
                   <%= f.input :user_id, :label => "Sales Person", :as => :select, collection: User.all %>
-                  <%= f.input :travel_from, :label => "Travel From",:required => false, :as => :string, :input_html => { :class => 'input-icon-select-date'} %>
-                  <%= f.input :travel_to, :label => "Travel To",:required => false, :as => :string, :input_html => { :class => 'input-icon-select-date'} %>
+                  <%= f.input :travel_from, :as => :string, :input_html => { :class => 'input-icon-select-date'}, wrapper_html:{class: "text-center"}, placeholder: "Travel from"%>
+                  <%= f.input :travel_to, :label => "Travel To", :as => :string, :input_html => { :class => 'input-icon-select-date'}, wrapper_html:{class: "text-center"},placeholder: "Travel to" %>
                 <% end %>
                  <%= f.action :submit, :label => "Filter", :button_html => { :class => "btn btn-primary filter-lead" } %>
               <% end %>
             </div>
           </div>
           
-          
-          <div class='clearfix'>
-            <%= link_to 'Add New', new_lead_url, class: "btn btn-primary pull-right" %>
-          </div>
-          
           <br/>
-          <table class='listing-table vendor-listing-content-tab-vendor-rates'>
-            <thead>
-              <tr>
-                <th>No.</th>
-                <th>Date</th>
-                <th>Name</th>
-                <th>Email Address</th>
-                <th>Tour Category</th>
-                <th>Status</th>
-                <th>Sales Person</th>
-                <th>Action</th>
-              </tr>
-            </thead>        
-            <tbody>
-              <% @leads.each_with_index do |lead, index| %>
-                <tr class="<%= cycle('odd', 'even') %>">
-                  <td><%= index + 1 %></td>
-                  <td><%= lead.travel_from ? lead.travel_from.strftime("%d-%m-%Y") : "" %></td>                  
-                  <td><%= lead.customer.try(:name) %></td>
-                  <td><%= lead.customer.try(:email_address) %></td>
-                  <td><%= lead.lead_tour_category_tours ? lead.lead_tour_category_tours.first.tour_category.try(:name) : "N/A" %></td>
-                  <td><%= lead.status %></td>
-                  <td><%= lead.user.try(:username) %></td>              
-                                
-                  <td style='text-align: center;'>
-                    <%= link_to "Edit", edit_lead_url(lead), class: 'btn btn-primary' %>
-                  </td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
+          <div id="listing-table vendor-listing-content-tab-vendor-rates">
+            <%= render :partial => 'list', local: {leads: @leads}%>
+          </div>
           <br/ >
         </div>
       </div>
@@ -82,7 +65,8 @@
 
 <script language="javascript">
   $(document).ready(function() {
-    
+    $('#lead_travel_from,#lead_travel_to').val("");
+    $('.label').hide();
     $('#lead_travel_from').datetimepicker({
       timepicker: false,
       format:'d-m-Y',

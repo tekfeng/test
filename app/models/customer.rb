@@ -9,9 +9,7 @@ class Customer < ActiveRecord::Base
   validates :email_address, :presence => true
   validates :email_address, :uniqueness => true
   validates :contact_number, :presence => true
-  validates :contact_number, :uniqueness => true
   validates :address, :presence => true
-  validates :address, :uniqueness => true
   validates :country_id, :presence => true
   validates :source_id, :presence => true
   

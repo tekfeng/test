@@ -26,9 +26,29 @@ class BookingsController < BaseController
     end
   end
   
+  def convert_to_booking
+    @lead = Lead.find_by_id(params[:id])
+    @booking = Booking.new({
+      travel_date: @lead.travel_from,
+      customer_id: @lead.customer_id,
+      travel_to: @lead.travel_to,
+      contact_number: @lead.contact_number,
+      number_child: @lead.children,
+      number_adult: @lead.adults,
+      user_id: @lead.user_id
+    })
+    @lead.lead_tour_category_tours.each do |leadtour|
+      @booking.booking_tour_category_tours.new({
+        tour_id: leadtour.tour_id,
+        tour_category_id: leadtour.tour_category_id
+      })
+    end
+    render template: "/bookings/new", locals: {lead: true} 
+  end
+  
   private
 
   def booking_params
-    params.require(:booking).permit(:customer_id, :travel_date, :travel_to, :tour_id, :status, :sales_person, :itinerary, :booking_number, :booking_date, :number_adult, :number_child)
+    params.require(:booking).permit(:customer_id, :travel_date, :travel_to, :tour_id, :status, :sales_person, :itinerary, :booking_number, :booking_date, :number_adult, :number_child, :contact_number)
   end
 end
