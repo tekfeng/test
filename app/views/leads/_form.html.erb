@@ -45,55 +45,65 @@
         row_removable: true, 
         row_addable: true,
         new_record_link_label: "+ Add Tour"
-      } do |tour| %>       
+      } do |tour| %>   
         <%= tour.inputs do %>
         
-          <%= tour.input :tour_category_id, :as => :select, :collection => TourCategory.all.collect{|t| [t.name, t.id]},:input_html => { :class => 'form-control lead-tour-category', :id => 'lead_tour_category'}, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12 padding-0 form-control "} %>
-        
-          <%= tour.input :tour_id, :as => :select, :input_html => { :class => 'form-control lead-tour', :id => 'lead_tour'}, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12 padding-0"}%>
+          <%= tour.input :tour_category_id, :as => :select, :collection => TourCategory.all.collect{|t| [t.name, t.id]},:input_html => { :class => 'form-control lead-tour-category', :id => 'lead_tour_category'}, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12 padding-0 form-control "} %>  
+          <%= tour.input :tour_id, :as => :select, :collection => tour.object.tour_category.nil? ? [] : tour.object.tour_category.tours.collect{|t| [t.name, t.id]}, :input_html => { :class => 'form-control lead-tour', :id => 'lead_tour'}, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12 padding-0"} %>
        
             <script language="javascript">
               $(document).ready(function() {           
                 $('.label').hide();         
-                <% if controller.action_name == "edit" %>
+                <% if controller.action_name == "edit" %>          
+                    
                   var leadTour = $('#lead_tour.lead-tour')
-                  var leadTourCategory =  $('#lead_tour_category.lead-tour-category')                
+                  var leadTourCategory =  $('#lead_tour_category.lead-tour-category') 
+                         
                 <% else %>
                   var leadTour = $('#lead_tour.lead-tour').last();
-                  var leadTourCategory =  $('#lead_tour_category.lead-tour-category').last();                  
+                  var leadTourCategory =  $('#lead_tour_category.lead-tour-category').last();    
+                                  
+                  leadTour.append('<option value="0">Tour Name</option>');
+                  leadTour.val(0);              
+                  leadTourCategory.append('<option value="0">Tour Category</option>');
+                  leadTourCategory.val(0);
+                  
+                  
                 <% end %>         
                   
-                leadTour.append('<option value="0">Tour Name</option>');
-                leadTour.val(0);
+                
                 leadTour.selectbox({});        
-                leadTourCategory.append('<option value="0">Tour Category</option>');
-                leadTourCategory.val(0);
+              
     
                 leadTourCategory.selectbox({
                   onChange: function (val, inst) {
+                    console.log("on change")
                     var category_id = val;
                     var tourOfTourCategory = $(this).closest(".formnestic-li-fieldset").find("select#lead_tour.lead-tour");
                     tourOfTourCategory.selectbox("detach");
                     tourOfTourCategory.html('');
                     tourOfTourCategory.append('<option value="0">Tour Name</option>');
                     tourOfTourCategory.val(0);
-                      if (category_id !== null) {
-                        $.ajax({
-                          url:"/tours/" + category_id + "/tour_of_tour_category",
-                          data:{'id':category_id},
-                          success:function(data){
-                            $.each(data, function(index, item) {
-                              var html = '<option value="'+item.id+'">'+item.name+'</option>';
-                              tourOfTourCategory.append(html);
-                            })            
-                            tourOfTourCategory.selectbox({});
-              
-                          }
-                        })
-                      } else {
-                        tourOfTourCategory.selectbox({});
-                      }
-                  	}
+                    if (category_id !== null) {
+                      $.ajax({
+                        url:"/tours/" + category_id + "/tour_of_tour_category",
+                        data:{'id':category_id},
+                        success:function(data){
+                          $.each(data, function(index, item) {
+                            var html = '<option value="'+item.id+'">'+item.name+'</option>';
+                            tourOfTourCategory.append(html);
+                          })            
+                          tourOfTourCategory.selectbox({});
+            
+                        }
+                      })
+                    } else {
+                      tourOfTourCategory.selectbox({});
+                    }
+                  }
+                    
+                    
+                    
                 });
     
               });  
