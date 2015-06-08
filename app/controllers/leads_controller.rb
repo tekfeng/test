@@ -9,8 +9,11 @@ class LeadsController <  BaseController
   
   def new
     @lead = Lead.new
-    @customer = Customer.find(:customer_id)
-   
+    p "params[:customer_id] = #{params[:customer_id]}"
+    if params[:customer_id]
+      @lead.customer_id = params[:customer_id].to_i
+      @convert_cus_tomer_to_lead =  true
+    end   
   end
   
   def create

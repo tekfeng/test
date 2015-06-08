@@ -186,7 +186,7 @@ form.lead div.formnestic-nested-model-container div.formnestic-list-new-entry-li
   border-color: #1ab394;
   color: #ffffff;
   border-radius: 5px;
-  font-size: 18px;
+  font-size: 14px;
 }
 form.lead, form.booking {
   div.formnestic-nested-model-container div.formnestic-list-new-entry-link-container a {
@@ -422,4 +422,10 @@ form.calendar .form-group .form-control{
 
 #listing-table {
     margin-top: 20px;
+}
+
+
+
+input.btn-primary[type="submit"] {
+  margin-top: -60px;
 }
