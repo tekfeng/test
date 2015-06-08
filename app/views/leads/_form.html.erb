@@ -1,8 +1,8 @@
-<%= semantic_form_for @lead,  :url => "/leads",  :html => {:method => :post, class: "lead-form"} do |form| %>
+<%= semantic_form_for @lead,  :url => "/leads",  :html => {:method => :post} do |form| %>
   <%= form.inputs do %>
     <div class= "form-group">
       <div class="col-md-10 col-md-offset-1 col-xs-12">
-        <%= form.input :customer_id,:as => :select ,:collection => Customer.all.collect{|t| [t.name + " - " + t.email_address, t.id]}, input_html:{class: 'form-control lead-group-select'}%>
+        <%= form.input :customer_id,:as => :select ,:collection => Customer.all.collect{|t| [t.name + " - " + t.email_address, t.id]},class: 'form-control'%>
       </div>
       <div class="col-md-1 col-sm-1 col-xs-12"></div>
     </div><!--select-customer-->
@@ -17,65 +17,115 @@
       <% end %>
     </div> <!--btn create-->
     <div class="form-group">
-      <%= form.input :travel_from,:as => :string, placeholder: "Travel from", input_html:{class: "form-control input-icon-select-date"}, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12 padding-0"}%>
+      <%= form.input :travel_from,:as => :string, id: 'datetimepicker_from', placeholder: "Travel from", input_html:{class: "form-control input-icon-select-date"}, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12 padding-0"}%>
     </div> <!--travel from-->
     <div class="form-group">
-      <%= form.input :travel_to,:as => :string, placeholder: "Travel to", input_html:{class: "form-control input-icon-select-date" }, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12 padding-0"}%>
+      <%= form.input :travel_to,:as => :string, id: 'datetimepicker_to', placeholder: "Travel to", input_html:{class: "form-control input-icon-select-date" }, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12 padding-0"}%>
     </div> <!--travel to-->
     <div class="form-group">
       <%= form.input :contact_number,:as => :string, placeholder: "Contact Number",  input_html:{class: "form-control"}, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12 padding-0"}%>
     </div> <!--contact-->
     <div class="form-group">
-      <div class="col-md-12 col-sm-12 col-xs-12 padding-0">
-        <div class="col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1 col-xs-12 padding-0">
+      <div class="adult-and-child" style="width: 325px; margin: 0px auto;">
+        <div class="input-num-adult-lead-form" style="width: 150px; float: left;">
           <%= form.input :adults, :as => :string, placeholder: "No. of Adults", input_html:{class: 'form-control'}%>
         </div>
-        <div class="col-md-5 col-sm-5 col-xs-12 padding-0">
+        <div class="nput-num-adult-lead-form" style="width: 150px; float: left; margin-left: 25px;">
           <%= form.input :children, :as => :string, placeholder: "No. of Childrens", input_html:{class: 'form-control '} %>
         </div>
         <div class="col-md-1 col-sm-1 col-xs-12 padding-0"></div>
       </div>
     </div> <!--aldust+childrent-->
-    <div class="form-group">
-      <div class="col-md-10 col-md-offset-2 col-sm-10 col-sm-offset-2 col-xs-12 padding-0 sum-pax">
-          No. of Pax: <p id="sum-pax"></p>
-      </div>
-    </div>
-    <div class="form-group">
-      <%= form.semantic_fields_for :tours, {
+    <% if @lead.new_record? %>
+      <% @lead.lead_tour_category_tours.new %>
+    <% end %>
+    <li class="form-group">
+      <%= form.semantic_fields_for :lead_tour_category_tours, {
         min_entry: 3,
         row_removable: true, 
         row_addable: true,
         new_record_link_label: "+ Add Tour"
-      } do |tour| %>
+      } do |tour| %>       
+        <%= tour.inputs do %>
         
-        <%= tour.inputs do %>        
-          <%= tour.input :tour_category_id, :as => :select, :collection => TourCategory.pluck(:name, :id),:input_html => { :class => 'form-control lead-group-select'}, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12 padding-0"}%>        
-          <%= tour.input :name, :as => :select , :collection => Tour.pluck(:name, :id), :input_html => { :class => 'form-control lead-group-select'}, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12 padding-0"}%>       
+          <%= tour.input :tour_category_id, :as => :select, :collection => TourCategory.all.collect{|t| [t.name, t.id]},:input_html => { :class => 'form-control lead-tour-category', :id => 'lead_tour_category'}, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12 padding-0 form-control "} %>
+        
+          <%= tour.input :tour_id, :as => :select, :input_html => { :class => 'form-control lead-tour', :id => 'lead_tour'}, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12 padding-0"}%>
+       
+            <script language="javascript">
+              $(document).ready(function() {           
+                $('.label').hide();         
+                <% if controller.action_name == "edit" %>
+                  var leadTour = $('#lead_tour.lead-tour')
+                  var leadTourCategory =  $('#lead_tour_category.lead-tour-category')                
+                <% else %>
+                  var leadTour = $('#lead_tour.lead-tour').last();
+                  var leadTourCategory =  $('#lead_tour_category.lead-tour-category').last();                  
+                <% end %>         
+                  
+                leadTour.append('<option value="0">Tour Name</option>');
+                leadTour.val(0);
+                leadTour.selectbox({});        
+                leadTourCategory.append('<option value="0">Tour Category</option>');
+                leadTourCategory.val(0);
+    
+                leadTourCategory.selectbox({
+                  onChange: function (val, inst) {
+                    var category_id = val;
+                    var tourOfTourCategory = $(this).closest(".formnestic-li-fieldset").find("select#lead_tour.lead-tour");
+                    tourOfTourCategory.selectbox("detach");
+                    tourOfTourCategory.html('');
+                    tourOfTourCategory.append('<option value="0">Tour Name</option>');
+                    tourOfTourCategory.val(0);
+                      if (category_id !== null) {
+                        $.ajax({
+                          url:"/tours/" + category_id + "/tour_of_tour_category",
+                          data:{'id':category_id},
+                          success:function(data){
+                            $.each(data, function(index, item) {
+                              var html = '<option value="'+item.id+'">'+item.name+'</option>';
+                              tourOfTourCategory.append(html);
+                            })            
+                            tourOfTourCategory.selectbox({});
+              
+                          }
+                        })
+                      } else {
+                        tourOfTourCategory.selectbox({});
+                      }
+                  	}
+                });
+    
+              });  
+            </script>
+            
+            
         <% end %>
-        
-        <script language="javascript">
-          $(document).ready(function() {
-            var leadForm = $("form.lead-form");
-            leadForm.find('.label').hide();
-            leadForm.find('.form-control.lead-group-select').selectbox({});
-           
-          });  
-        </script>
-          
       <% end %>
-    </div>
+    </li>
   <% end %>
   <div class="col-md-12 col-sm-12 col-xs-12 padding-0 text-center">
-    <%= form.action :submit, :label => "save", :button_html => { :class => "btn btn-primary save-form-button" } %>
+    <%= form.action :submit, :label => "save", :button_html => { :class => "btn btn-primary ud-vd" } %>
   </div>
 <% end %>
 
 <script language="javascript">
   $(document).ready(function() {
-    var leadForm = $("form.lead-form");   
-    leadForm.find('#lead_travel_from_input, #lead_travel_to').datetimepicker({
+    $('.label').hide();
+    var leadCustomerId = $('#lead_customer_id');
+    leadCustomerId.append('<option value="0">Select Customer</option>');
+    leadCustomerId.val(0);
+    leadCustomerId.selectbox({});
+    
+    $('#lead_travel_to').datetimepicker({
      timepicker:false,
      format:'d/m/Y'
     });
+    
+    $('#lead_travel_from').datetimepicker({
+     timepicker:false,
+     format:'d/m/Y'
+    });
+    
+  });  
 </script>

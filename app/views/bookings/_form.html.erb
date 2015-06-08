@@ -55,20 +55,20 @@
             <script language="javascript">
               $(document).ready(function() {
                 $('.label').hide();
-                var bookingTour = $('#booking_tour.booking-tour');
+                var bookingTour = $('#booking_tour.booking-tour').last();
                 bookingTour.append('<option value="0">Tour Name</option>');
                 bookingTour.val(0);
                 bookingTour.selectbox({});
                 
                 
-                var bookingTourCategory =  $('#booking_tour_category.booking-tour-category');
+                var bookingTourCategory =  $('#booking_tour_category.booking-tour-category').last();
                 bookingTourCategory.append('<option value="0">Tour Category</option>');
                 bookingTourCategory.val(0);
     
                 bookingTourCategory.selectbox({
                   onChange: function (val, inst) {
                     var category_id = val;
-                    var tourOfTourCategory = $(this).closest(".formnestic-li-fieldset").find("select#booking_tour.booking-tour")
+                    var tourOfTourCategory = $(this).closest(".formnestic-li-fieldset").find("select#booking_tour.booking-tour");
                     tourOfTourCategory.selectbox("detach");
                     tourOfTourCategory.html('');
                     tourOfTourCategory.append('<option value="0">Tour Name</option>');
@@ -113,7 +113,12 @@
     bookingCustomerId.val(0);
     bookingCustomerId.selectbox({});
     
-    $('#booking_travel_from_input, #booking_travel_date').datetimepicker({
+    $('#booking_travel_to').datetimepicker({
+     timepicker:false,
+     format:'d/m/Y'
+    });
+    
+    $('#booking_travel_date').datetimepicker({
      timepicker:false,
      format:'d/m/Y'
     });

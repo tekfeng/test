@@ -57,7 +57,7 @@
             <tbody>
               <% @bookings.each_with_index do |booking, index| %>
                 <tr class="<%= cycle('odd', 'even') %>">
-                  <td><%= booking.id %></td>
+                  <td><%=  index + 1 %></td>
                   <td><%= booking.booking_number %></td>
                   <td><%= booking.travel_date ? booking.travel_date.strftime("%d-%m-%Y") : "" %></td>
                   <td><%= booking.created_at.strftime("%d-%m-%Y") %></td>
