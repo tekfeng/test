@@ -10,13 +10,12 @@ class CustomersController < BaseController
     @countries = Country.all
     @sources = Source.all
     if params[:ajax_call]
-      @customers = Customer.search(params)[:customers]
-      render :partial => '/customers/list', locals: {customers: @customers}
-    end
-    
-   @customers = smart_listing_create(:customers, Customer.unscoped, partial: "customers/list") 
-   
-                         
+      # @customers = Customer.search(params)[:customers]
+#       render :partial => '/customers/list', locals: {customers: @customers}
+       @customers = smart_listing_create(:customers, Customer.search(params)[:customers], partial: "customers/list") 
+    else
+       @customers = smart_listing_create(:customers, Customer.unscoped, partial: "customers/list") 
+    end                         
   end
   
   def new
