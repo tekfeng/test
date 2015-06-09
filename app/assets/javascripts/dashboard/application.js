@@ -98,7 +98,6 @@ $(function() {
     $("input#search-tour").val("");
     $('#tour_tour_category_id').val(0);
     
-    
     $('#tour_tour_category_id').selectbox({
       onChange: function (val) {
         var url = "/tours";
@@ -196,8 +195,6 @@ $(function() {
     });
   });
   
-  
-  
  
   
   $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
@@ -283,6 +280,7 @@ $(function() {
           }//end if
           if (response.customer_id) {
             document.getElementById("conver-customer-to-lead-url").href="/leads/new?customer_id=" + response.customer_id ; 
+            document.getElementById("conver-lead-to-booking-url").href="/bookings/new";
           }
           
           $('#ajax_modal').modal({

@@ -43,3 +43,24 @@
     </div>
   </div>
 </div>
+
+<div id="ajax_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class='modal-dialog'>
+    <div class='modal-content'>
+      <div class='ibox'>
+        <div class='ibox-content container-fluid'>
+          <div id="accept" class= "col-md-12 col-sm-12 col-xs-12">
+            <div class='col-md-12 col-sm-12 col-xs-12'>
+              <h3>Do you want to convert this Lead to a Booking?</h3><br/>
+              <p>Once a Lead is converted to a Booking, this Lead will be found under Bookings.</p>
+            </div>
+            <div class='col-md-12 col-sm-12 col-xs-12 text-center'>
+              <a class="btn btn-white" href='<%= leads_url %>'>No</a>
+              <a class="btn btn-white" id="conver-lead-to-booking-url" href='/bookings/new'>Yes</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>    
+</div>
