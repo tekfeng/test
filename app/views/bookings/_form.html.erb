@@ -37,6 +37,11 @@
         <div class="col-md-1 col-sm-1 col-xs-12 padding-0"></div>
       </div>
     </div> <!--aldust+childrent-->
+    <div class="form-group">
+      <div class="col-md-8 col-md-offset-4 col-sm-8 col-sm-offset-4 col-xs-12 padding-0 sum-pax">
+         <p> No. of Pax: </p>
+      </div>
+    </div>
     <% if @booking.new_record?  and !lead %>
       <% @booking.booking_tour_category_tours.new %>
     <% end %>

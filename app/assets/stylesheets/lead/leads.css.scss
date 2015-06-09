@@ -41,7 +41,7 @@ hr{
 }
 
 .form-group p{
-  margin-left: 100px;
+  margin-left: 50px;
   font-size: 15px;
 }
 
@@ -114,9 +114,6 @@ table.listing-table thead th.lead-action a.menu-down{
   padding: 6px 44px !important;
 }
 
-.sum-pax{
-  margin-top: 20px;
-}
 
 form.select-lead-status .sbHolder{
   background: white;
@@ -215,14 +212,15 @@ form.lead div.formnestic-nested-model-container fieldset.formnestic-li-fieldset 
   }
   border-bottom: none;
   border-top: 1px dashed #cccccc;
-  padding-top: 15px;
-  margin-top: 15px;
+//  padding-top: 15px;
+//  margin-top: 15px;
 }
 
 form.lead .formnestic-nested-model-container {
   .formnestic-list-entries-container {
     li{
       width: 100%;
+      margin-top: 15px;
     }
   }
   .formnestic-li-fieldset {
@@ -339,7 +337,7 @@ form.booking {
 form.lead .formnestic-nested-model-container .formnestic-li-fieldset {
   border-bottom: none;
   .sbHolder {
-    margin-top: 15px;
+    margin-top: 25px;
     background: white;
     width: 325px;
     border-radius: 4px;
@@ -370,7 +368,7 @@ form.calendar .form-group .form-control{
   width: 73%;
 }
 
-.inputs .formnestic-li-fieldset .formnestic-odd-row {
+.inputs.formnestic-li-fieldset.formnestic-even-row{
   border-bottom: none;
   .sbHolder {
     margin-top: 15px;
@@ -411,7 +409,7 @@ form.calendar .form-group .form-control{
   }
 
   #lead_travel_from, #lead_travel_to, #lead_contact_number{
-    width:100% !important;
+    width:325px!important;
   }
 }
 
@@ -426,7 +424,17 @@ form.calendar .form-group .form-control{
   }
 }
 
+input.btn-primary[type="submit"] {
+  margin-top: -60px;
+}
 
+input.filter-lead[type="submit"] {
+  margin-top: 10px;
+  margin-left: 40px;
+}
+input.filter-booking[type="submit"] {
+  margin-top: 10px;
+}
 
 input.btn-primary[type="submit"] {
   margin-top: -60px;

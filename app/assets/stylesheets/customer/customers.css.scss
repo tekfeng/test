@@ -107,6 +107,17 @@ table.listing-table thead th.customer-thead-source a.menu-down{
   left: 3px;
 }
 
+table.listing-table{
+  tbody {
+    tr.odd td{
+      padding: 10px;
+    } 
+    tr.even td{
+      padding: 10px;
+    }
+  }
+}
+
 #accept p{
   text-align: center;
 }
@@ -172,7 +183,7 @@ form .sbHolder {
   }
 
   .sbHolder{
-    margin-bottom: 20px;
+    margin-bottom: 0px;
   }
   
   .select-customer-country .sbHolder{
@@ -189,4 +200,8 @@ form .sbHolder {
 
 .ibox-content form#new_customer .form-group .form-control{
   width : 325px;
+}
+
+#customer_name_input, #customer_email_address, #customer_contact_number{
+  margin-bottom: 25px;
 }

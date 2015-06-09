@@ -1,34 +1,33 @@
-<%= form_for @customer, html: { class: @customer.new_record? ? 'form-horizontal ajax-form customer-form' : 'form-horizontal ajax-form', enctype: 'multipart/form-data' } do |form| %>
-
+<%= semantic_form_for @customer,:url =>  @customer.new_record? ? "/customers" : "/customers/#{@customer.id}", :html => {:method => @customer.new_record? ? :post : :put} do |form| %>
    <div class= "form-group">
      <div class="col-md-12 col-sm-12 col-xs-12 padding-0 text-center">
-       <%= form.text_field :name, class: 'form-control', id: 'name-customer',placeholder: "Name Customer" %>
+       <%= form.input :name, :as => :string, placeholder: "Name Customer", input_html:{class: "form-control"}%>
      </div>
    </div>
    <div class= "form-group">
      <div class="col-md-12 col-sm-12 col-xs-12 padding-0 text-center">
-       <%= form.text_field :email_address, class: 'form-control', id: 'email-customer',placeholder: "Email Address" %>
+       <%= form.input :email_address, :as => :string, placeholder: "Email address", input_html:{class: "form-control"}%>
      </div>
    </div>
    <div class= "form-group">
      <div class="col-md-12 col-sm-12 col-xs-12 padding-0 text-center">
-       <%= form.text_field :contact_number, class: 'form-control', id: 'contact-customer',placeholder: "Contact Number" %>
+       <%= form.input :contact_number, :as => :string, placeholder: "Contact Number", input_html:{class: "form-control"}%>
      </div>
    </div>
    <div class= "form-group">
      <div class="col-md-12 col-sm-12 col-xs-12 padding-0 text-center">
-       <%= form.text_field :address, class: 'form-control', id: 'address-customer',placeholder: "Address" %>
+       <%= form.input :address, :as => :string, placeholder: "Address", input_html:{class: "form-control"}%>
      </div>
    </div>
    <div class= "form-group">
      <div class="col-md-10 col-md-offset-1 col-xs-12 padding-0 select-country">
-       <%= form.select :country_id, Country.all.collect{|t| [t.name, t.id]}, {}, { class: 'form-control lead-group-select' }%>
+       <%= form.input :country_id,:as => :select ,:collection =>Country.all.collect{|t| [t.name, t.id]} ,class: 'form-control lead-group-select'%>
      </div>
      <div calss="col-md-1 col-sm-1 col-xs-12 padding-0"></div>
    </div>
    <div class= "form-group">
      <div class="col-md-10 col-md-offset-1 col-xs-12 padding-0 select-source">
-       <%= form.select :source_id, Source.all.collect{|t| [t.name, t.id]}, {}, { class: 'form-control lead-group-select' }%>
+       <%= form.input :source_id,:as => :select ,:collection =>Source.all.collect{|t| [t.name, t.id]} ,class: 'form-control lead-group-select'%>
      </div>
      <div calss="col-md-1 col-sm-1 col-xs-12 padding-0"></div>
    </div>
@@ -41,6 +40,7 @@
 <% end %>
 <script language="javascript">
   $(document).ready(function() {
-    $('.form-control.lead-group-select').selectbox({});
+    $('.label').hide();
+    $('#customer_country_id, #customer_source_id').selectbox({});
   })
 </script>

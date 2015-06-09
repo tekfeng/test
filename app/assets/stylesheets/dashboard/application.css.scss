@@ -678,7 +678,7 @@ form.select-customer-country .sbHolder,
     width: 100%;
   }
   ul.sbOptions {
-    width: 325px;
+    width: 100%;
     background-color: white;
   }
   .sbToggle {
@@ -719,7 +719,7 @@ form.group-select .sbHolder{
     width: 100%;
   }
   ul.sbOptions {
-    width: 325px;
+    width: 100%;
     background-color: white;
   }
   .sbToggle {
@@ -776,16 +776,6 @@ form.group-select .sbHolder{
   width: 100%;
 }
 
-//form {
-//  label {
-//    float: left;
-//  }
-//  .sbHolder {
-//    width: 325px;
-//    float: left;
-//  }
-//
-//}
 
 form.lead ol li {
   width: 100%;
@@ -797,4 +787,8 @@ form.lead .label {
  margin-top: 6px;
  text-align: right;
  width: 200px;
+}
+
+.ibox-content .search-tour .group-input{
+  margin-top: 30px;
 }

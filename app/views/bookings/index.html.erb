@@ -72,8 +72,14 @@
       format:'d-m-Y',
     }); 
     
+    var customerCountry = $('#booking_status');
+    customerCountry.append('<option value="0">Payment Status</option>');
+    customerCountry.val(0);
+    customerCountry.selectbox({});
     
-    $("select#booking_status").selectbox();
-    $("select#booking_user_id").selectbox();
+    var customerSource = $("select#booking_user_id");
+    customerSource.append('<option value="0">Sales Person</option>');
+    customerSource.val(0);
+    customerSource.selectbox();
   });  
 </script>
