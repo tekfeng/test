@@ -71,8 +71,8 @@ SmartListing.configure do |config|
   }
 
   config.constants :selectors, {
-    #:item_action_destroy   => "a.destroy",
-    #:edit_cancel           => "button.cancel",
+    # :item_action_destroy   => "a.destroy",
+    # :edit_cancel           => "button.cancel",
     #:row                   => "tr",
     #:head                  => "thead",
     #:filtering_icon        => "i"

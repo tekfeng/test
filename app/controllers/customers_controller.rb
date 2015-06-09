@@ -1,21 +1,22 @@
 class CustomersController < BaseController
   include SmartListing::Helper::ControllerExtensions
   helper  SmartListing::Helper
+  
   def dashboard_page
     render template: "dashboard/dashboard_page", layout: "dashboard"
   end
   
   def index
-    @customers = Customer.all
     @countries = Country.all
     @sources = Source.all
     if params[:ajax_call]
-      # @customers = Customer.search(params)[:customers]
-#       render :partial => '/customers/list', locals: {customers: @customers}
-       @customers = smart_listing_create(:customers, Customer.search(params)[:customers], partial: "customers/list") 
+      @customers = Customer.search(params)[:customers]
+      @customers = smart_listing_create(:customers, @customers, partial: "customers/list") 
+      render template: "/customers/filter", layout: false
     else
-       @customers = smart_listing_create(:customers, Customer.unscoped, partial: "customers/list") 
-    end                         
+      @customers = Customer.all
+      @customers = smart_listing_create(:customers, @customers, partial: "customers/list") 
+    end                        
   end
   
   def new
