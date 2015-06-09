@@ -35,22 +35,20 @@
     <div class='wrapper wrapper-content'>
       <div class='ibox'>
         <div class='ibox-content container-fluid white-bg'>
-          <div class="clearfix">
-            <div id="vendor_filter">
-              <% @booking_new = Booking.new %>
-              <%= semantic_form_for @booking_new,  :url => "", :html => {:method => :get }  do |f| %>
-                <%= f.inputs do %>
-                  <%= f.input :status, :label => "Payment Status", :as => :select, placeholder: 'user@domain.com', collection: Booking.all.collect(&:status) %>
-                  <%= f.input :user_id, :label => "Sales Person", :as => :select, collection: User.all %>
-                  <%= f.input :travel_date,:as => :string, :input_html => { :class => 'input-icon-select-date'}, wrapper_html:{class: "text-center"}, placeholder: "Travel from"%>
-                  <%= f.input :travel_to,:label => "Travel To", :as => :string, :input_html => { :class => 'input-icon-select-date'}, wrapper_html:{class: "text-center"},placeholder: "Travel to" %>
-                <% end %>
-                 <%= f.action :submit, :label => "Filter", :button_html => { :class => "btn btn-primary filter-booking" } %>
+          <div id="vendor_filter">
+            <% @booking_new = Booking.new %>
+            <%= semantic_form_for @booking_new,  :url => "", :html => {:method => :get }  do |f| %>
+              <%= f.inputs do %>
+                <%= f.input :status, :label => "Payment Status", :as => :select, placeholder: 'user@domain.com', collection: Booking.all.collect(&:status) %>
+                <%= f.input :user_id, :label => "Sales Person", :as => :select, collection: User.all %>
+                <%= f.input :travel_date,:as => :string, :input_html => { :class => 'input-icon-select-date'}, wrapper_html:{class: "text-center"}, placeholder: "Travel from"%>
+                <%= f.input :travel_to,:label => "Travel To", :as => :string, :input_html => { :class => 'input-icon-select-date'}, wrapper_html:{class: "text-center"},placeholder: "Travel to" %>
               <% end %>
-            </div>
+               <%= f.action :submit, :label => "Filter", :button_html => { :class => "btn btn-primary filter-booking" } %>
+            <% end %>
           </div>
         </div>
-        <div id="listing-table vendor-listing-content-tab-vendor-rates">
+        <div id="listing-table">
           <%= render :partial => 'list', local: {bookings: @bookings}%>
         </div>
       </div>

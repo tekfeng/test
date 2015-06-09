@@ -1,7 +1,9 @@
 // Place all the styles related to the Customers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
+.m-b-md h2 {
+ padding-right: 70px;
+}
 .form-group-customer .select-customer{
    margin-top: 15px;
 }
@@ -183,4 +185,8 @@ form .sbHolder {
     margin-right: 0px !important;
     width: 100% !important;
   }
+}
+
+.ibox-content form#new_customer .form-group .form-control{
+  width : 325px;
 }

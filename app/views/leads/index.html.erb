@@ -31,29 +31,27 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
     
-    <div class='wrapper wrapper-content'>
-      <div class='ibox'>
-        <div class='ibox-content container-fluid white-bg'>
-          <div class="clearfix">
-            <div id="vendor_filter">
-              <% @leading_new = Lead.new %>
-              <%= semantic_form_for @leading_new,  :url => "", :html => {:method => :get }  do |f| %>
-                <%= f.inputs do %>
-                  <%= f.input :status, :label => "Payment Status", :as => :select, placeholder: 'user@domain.com', collection: Lead.all.collect(&:status) %>
-                  <%= f.input :user_id, :label => "Sales Person", :as => :select, collection: User.all %>
-                  <%= f.input :travel_from, :as => :string, :input_html => { :class => 'input-icon-select-date'}, wrapper_html:{class: "text-center"}, placeholder: "Travel from"%>
-                  <%= f.input :travel_to, :label => "Travel To", :as => :string, :input_html => { :class => 'input-icon-select-date'}, wrapper_html:{class: "text-center"},placeholder: "Travel to" %>
-                <% end %>
-                 <%= f.action :submit, :label => "Filter", :button_html => { :class => "btn btn-primary filter-lead" } %>
-              <% end %>
-            </div>
-          </div>
-        </div>
-        <div id="listing-table vendor-listing-content-tab-vendor-rates">
-          <%= render :partial => 'list', local: {leads: @leads}%>
-        </div>
+<div class='wrapper wrapper-content'>
+  <div class='ibox'>
+    <div class='ibox-content container-fluid white-bg'>
+      <div id="vendor_filter">
+        <% @leading_new = Lead.new %>
+        <%= semantic_form_for @leading_new,  :url => "", :html => {:method => :get }  do |f| %>
+          <%= f.inputs do %>
+            <%= f.input :status, :label => "Payment Status", :as => :select, placeholder: 'user@domain.com', collection: Lead.all.collect(&:status) %>
+            <%= f.input :user_id, :label => "Sales Person", :as => :select, collection: User.all %>
+            <%= f.input :travel_from, :as => :string, :input_html => { :class => 'input-icon-select-date'}, wrapper_html:{class: "text-center"}, placeholder: "Travel from"%>
+            <%= f.input :travel_to, :label => "Travel To", :as => :string, :input_html => { :class => 'input-icon-select-date'}, wrapper_html:{class: "text-center"},placeholder: "Travel to" %>
+          <% end %>
+           <%= f.action :submit, :label => "Filter", :button_html => { :class => "btn btn-primary filter-lead" } %>
+        <% end %>
       </div>
+    </div>
+    <div id="listing-table">
+      <%= render :partial => 'list', local: {leads: @leads}%>
     </div>
   </div>
 </div>

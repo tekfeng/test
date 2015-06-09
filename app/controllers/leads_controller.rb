@@ -9,8 +9,6 @@ class LeadsController <  BaseController
   
   def new
     @lead = Lead.new
-    @customer = Customer.find(:customer_id)
-   
   end
   
   def create

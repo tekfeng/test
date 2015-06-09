@@ -97,9 +97,6 @@ $(function() {
     $("input#search-category").val("");
     $("input#search-tour").val("");
     $('#tour_tour_category_id').val(0);
-    $('#search-customer').val("");
-    $('#customer_country_id').val(0);
-    $('#customer_source_id').val(0);
     
     
     $('#tour_tour_category_id').selectbox({
@@ -199,32 +196,7 @@ $(function() {
     });
   });
   
-  //search customer
-  $(document.body).delegate("#search-customer", "keyup", function(){
-    var url = "/customers";
-    var keyWord = $(this).val();
-    var customerCountryId = $('#customer_country_id').val();
-    var customerSourceId = $('#customer_source_id').val();
-    var timeout;
-    clearTimeout(timeout);
-    timeout = setTimeout(function(){
-    $.ajax({
-          url: url,
-          type: "GET",
-          data:{
-            // ajax_call: true,
-            keyword: keyWord,
-            country_id: customerCountryId,
-            source_id: customerSourceId
-          },
-          success: function(data) {
-            $('div#listing-table').html(data);
-          },
-          error: function() {
-          }
-       });
-     },700);
-  });
+  
   
  
   
