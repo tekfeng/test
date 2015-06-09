@@ -40,7 +40,12 @@
     
     <% smart_listing.collection.each_with_index do |customer, index| %>
       <tr>
-        <td><%= customer.id %></td>
+        <% if params[:customers_smart_listing] and params[:customers_smart_listing][:page] and  params[:customers_smart_listing][:page].to_i > 0 %>
+        <% index_show = (params[:customers_smart_listing][:page].to_i - 1)*10 + index + 1 %>
+        <% else %>
+        <% index_show = index + 1 %>
+        <% end %>
+        <td><%= index_show %></td>
         <td><%= customer.name %></td>
         <td><%= customer.email_address %></td>
         <td><%= customer.contact_number %></td>
