@@ -9,7 +9,6 @@ class LeadsController <  BaseController
   
   def new
     @lead = Lead.new
-    p "params[:customer_id] = #{params[:customer_id]}"
     if params[:customer_id]
       @lead.customer_id = params[:customer_id].to_i
       @convert_cus_tomer_to_lead =  true
