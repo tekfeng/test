@@ -67,7 +67,6 @@
                 leadTour.selectbox({});                          
                 leadTourCategory.selectbox({
                   onChange: function (val, inst) {
-                    console.log("on change")
                     var category_id = val;
                     var tourOfTourCategory = $(this).closest(".formnestic-li-fieldset").find("select#lead_tour.lead-tour");
                     tourOfTourCategory.selectbox("detach");

@@ -1,11 +1,20 @@
 class LeadsController <  BaseController
+  include SmartListing::Helper::ControllerExtensions
+  helper  SmartListing::Helper
+  
+  
   def index
-    @leads = Lead.all
     if params[:ajax_call]
       @leads = Lead.search(params)[:leads]
-      render :partial => 'leads/list', locals: {leads: @leads}
+      @leads = smart_listing_create(:leads, @leads, partial: "leads/list") 
+      render template: "/leads/filter", layout: false     
+    else
+      @leads = Lead.all
+      @leads = smart_listing_create(:leads, @leads, partial: "leads/list") 
     end
   end
+  
+  
   
   def new
     @lead = Lead.new

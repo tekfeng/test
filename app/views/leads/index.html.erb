@@ -51,7 +51,7 @@
       </div>
     </div>
     <div id="listing-table">
-      <%= render :partial => 'list', local: {leads: @leads}%>
+       <%= smart_listing_render(:leads) %>
     </div>
   </div>
 </div>
@@ -60,21 +60,72 @@
 
 <script language="javascript">
   $(document).ready(function() {
+    var leadStatusValue, leadUserId;
     $('#lead_travel_from,#lead_travel_to').val("");
     $('.label').hide();
     $('#lead_travel_from').datetimepicker({
       timepicker: false,
       format:'d-m-Y',
-    }); 
-    
+      onChangeDateTime: function (db, $input) {
+        $('#lead_travel_to').datetimepicker({
+          timepicker: false,
+          format:'d-m-Y',
+           minDate: db,
+        });
+      }     
+    });     
     
     $('#lead_travel_to').datetimepicker({
       timepicker: false,
       format:'d-m-Y',
-    }); 
+      onChangeDateTime: function (db, $input) {
+        $('#lead_travel_from').datetimepicker({
+          timepicker: false,
+          format:'d-m-Y',
+          maxDate: db,
+        });
+      }
+    });  
+      
+    $("select#lead_status").selectbox({
+      onChange: function (val, inst) {
+        leadStatusValue = val;
+      }
+    });
+    $("select#lead_user_id").selectbox({
+      onChange: function (val, inst) {
+        leadUserId = val;
+      }
+    });
     
     
-    $("select#lead_status").selectbox();
-    $("select#lead_user_id").selectbox();
+    
+    $(document.body).delegate("input.filter-lead", "click", function(e){
+      e.preventDefault();
+      
+      var url = "/leads";
+      var travel_from = $("#lead_travel_from").val();
+      var travel_to = $("#lead_travel_to").val();
+      
+      $.ajax({
+        url: url,
+        type: "GET",
+        data:{
+          ajax_call: true,
+          lead_status: leadStatusValue,
+          user_id: leadUserId,
+          travel_from: travel_from,
+          travel_to: travel_to
+        },
+        success: function(data) {
+          console.log("success")
+          $('div#listing-table').html(data);
+        },
+        error: function() {
+        }
+      });
+      return false;
+    });
+    
   });  
 </script>
