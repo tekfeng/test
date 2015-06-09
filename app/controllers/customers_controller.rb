@@ -1,10 +1,10 @@
 class CustomersController < BaseController
-
+  include SmartListing::Helper::ControllerExtensions
+  helper  SmartListing::Helper
   def dashboard_page
     render template: "dashboard/dashboard_page", layout: "dashboard"
   end
   
-
   def index
     @customers = Customer.all
     @countries = Country.all
@@ -13,6 +13,10 @@ class CustomersController < BaseController
       @customers = Customer.search(params)[:customers]
       render :partial => '/customers/list', locals: {customers: @customers}
     end
+    
+   @customers = smart_listing_create(:customers, Customer.unscoped, partial: "customers/list") 
+   
+                         
   end
   
   def new
