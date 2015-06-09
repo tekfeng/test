@@ -5,7 +5,7 @@ class CustomersController < BaseController
     @sources = Source.all
     if params[:ajax_call]
       @customers = Customer.search(params)[:customers]
-      render :partial => 'customers/list', locals: {customers: @customers}
+      render :partial => '/customers/list', locals: {customers: @customers}
     end
   end
   
