@@ -1,4 +1,10 @@
 class CustomersController < BaseController
+
+  def dashboard_page
+    render template: "dashboard/dashboard_page", layout: "dashboard"
+  end
+  
+
   def index
     @customers = Customer.all
     @countries = Country.all

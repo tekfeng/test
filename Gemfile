@@ -79,3 +79,4 @@ group :test do
 end
 
 gem 'capistrano', '~> 2.15.5'
+gem "smart_listing"
