@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users  
   
+  get 'quotation', controller: 'dashboard', action: 'quotation'
+  get 'invoice', controller: 'dashboard', action: 'invoice'
+  get 'itinerary', controller: 'dashboard', action: 'itinerary'
+  
   root :to => 'dashboard#index'
   resources :dashboard
   resources :tour_categories
@@ -42,5 +46,7 @@ Rails.application.routes.draw do
   post "/vendor_rates/:id/update_current_contact/:vendor_id" => 'vendor_rates#update_current_contact'
   
   get "/leads/:id/convert_to_booking" => 'bookings#convert_to_booking'
+  
+  
   
 end
