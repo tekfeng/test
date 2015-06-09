@@ -106,7 +106,7 @@
   $(document).ready(function() {
     $('.label').hide();
     var leadCustomerId = $('#lead_customer_id');
-    <% if controller.action_name != "edit" %>        
+    <% if controller.action_name != "edit" and !@convert_cus_tomer_to_lead %>        
       leadCustomerId.append('<option value="0">Select Customer</option>');
       leadCustomerId.val(0);
     <% end %>
