@@ -1,0 +1,43 @@
+<table class='listing-table vendor-listing-content-tab-vendor-rates'>
+  <thead>
+    <tr>
+      <th class="no">No</th>
+      <th class="booking-number">Date
+        <a class="menu-down" href="#">
+          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+        </a>
+      </th>
+      <th class="booking-travel-date">Name
+        <a class="menu-down" href="#">
+          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+        </a>
+      </th>
+      <th class="booking-date">Email Address
+        <a class="menu-down" href="#">
+          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+        </a>
+      </th>
+      <th class="booking-name">Source
+        <a class="menu-down" href="#">
+          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+        </a>
+      </th>
+       <th class="booking-action" style='text-align: center;'>
+       </th>
+    </tr>
+  </thead>
+  <% if incomings.count > 0 %>
+    <% incomings.each_with_index do |incoming, index| %>
+      <tr class="<%= cycle('odd', 'even') %>">
+        <td><%=  index + 1 %></td>
+        <td style='text-align: center;'>
+          <%= link_to "View", "/incomings/#{incoming.id}", class: 'btn btn-primary' %>
+        </td>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr>
+      <td colspan='6'>No Incoming available<td>
+    </tr>
+  <% end %>
+</table>

@@ -16,7 +16,8 @@ Rails.application.routes.draw do
   resources :customers
   resources :leads
   resources :bookings
- 
+  resources :incomings
+  
   resources :vendors do
      member do
        get :more_details
