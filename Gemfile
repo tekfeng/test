@@ -50,6 +50,9 @@ gem 'paperclip'
 gem 'nprogress-rails'
 gem "non-stupid-digest-assets"
 gem 'sidekiq'
+gem 'prawn', '~> 2.0.0'
+gem 'prawn-table', '~> 0.2.1'
+
 # gem 'capistrano-sidekiq', github: 'seuros/capistrano-sidekiq'
 
 group :development, :test do

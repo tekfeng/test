@@ -13,12 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20150603092529) do
 
-  create_table "booking_statuses", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
   create_table "bookings", force: :cascade do |t|
     t.datetime "travel_date"
     t.string   "user_id",      limit: 255
