@@ -6,11 +6,11 @@ class BookingsController < BaseController
   def index
     if params[:ajax_call]
       @bookings = Booking.search(params)
-      @bookings = smart_listing_create(:bookings, @bookings, partial: "bookings/list") 
+      @bookings = smart_listing_create(:bookings, @bookings, partial: "bookings/list", default_sort: {travel_date: "asc"}) 
       render template: "/bookings/filter", layout: false     
     else
       @bookings = Booking.all
-      @bookings = smart_listing_create(:bookings, @bookings, partial: "bookings/list") 
+      @bookings = smart_listing_create(:bookings, @bookings, partial: "bookings/list", default_sort: {travel_date: "asc"}) 
     end
   end
   

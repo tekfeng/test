@@ -3,41 +3,21 @@
     <thead>
       <tr>
         <th class="no">No</th>
-        <th class="booking-number">Booking Number
-          <a class="menu-down" href="#">
-            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-          </a>
-        </th>
-        <th class="booking-travel-date">Travel Date
-          <a class="menu-down" href="#">
-            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-          </a>
-        </th>
-        <th class="booking-date">Booking Date
-          <a class="menu-down" href="#">
-            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-          </a>
-        </th>
-        <th class="booking-name">Name
-          <a class="menu-down" href="#">
-            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-          </a>
-        </th>
-        <th class="booking-tour-code">Tour Code
-          <a class="menu-down" href="#">
-            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-          </a>
-        </th>
-        <th class="booking-status">Status
-          <a class="menu-down" href="#">
-            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-          </a>
-        </th>
-        <th class="booking-sale">Sale Person
-          <a class="menu-down" href="#">
-            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-          </a>
-        </th>
+        
+        <th class="customer-thead-name cus-style-gray"><%= smart_listing.sortable "Booking Number", "booking_number" %></th>
+        
+        <th class="cus-style-white"><%= smart_listing.sortable "Travel Date", "travel_date" %></th>
+        
+        <th class="customer-thead-name cus-style-gray"><%= smart_listing.sortable "Booking Date", "created_at" %></th>
+        
+        <th class="booking-name">Name</th>
+        
+        <th class="booking-tour-code">Tour Code</th>
+        
+        <th class="customer-thead-name cus-style-white"><%= smart_listing.sortable "Status", "status" %></th>
+        
+        <th class="booking-sale">Sale Person</th>
+        
         <th class="booking-action" style='text-align: center;'>Itinerary</th>
       </tr>
     </thead>

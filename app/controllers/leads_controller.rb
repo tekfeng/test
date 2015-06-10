@@ -6,11 +6,11 @@ class LeadsController <  BaseController
   def index
     if params[:ajax_call]
       @leads = Lead.search(params)
-      @leads = smart_listing_create(:leads, @leads, partial: "leads/list") 
+      @leads = smart_listing_create(:leads, @leads, partial: "leads/list", default_sort: {travel_from: "asc"}) 
       render template: "/leads/filter", layout: false     
     else
       @leads = Lead.all
-      @leads = smart_listing_create(:leads, @leads, partial: "leads/list") 
+      @leads = smart_listing_create(:leads, @leads, partial: "leads/list", default_sort: {travel_from: "asc"}) 
     end
   end
   
