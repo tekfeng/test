@@ -1,5 +1,10 @@
 class ToursController < BaseController
   
+  
+  def dashboard_page
+    render template: "dashboard/dashboard_page", layout: "dashboard"
+  end
+   
   def index
     @tours = Tour.all
     @tour_categories = TourCategory.all

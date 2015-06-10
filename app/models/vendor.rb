@@ -22,7 +22,7 @@ class Vendor < ActiveRecord::Base
   def self.showing_section(request)
     path = request.original_fullpath.split("/")[1][/[^?]+/]
     case path
-    when "tour_categories", "tours"
+    when "tour_categories", "tours", "users"
       return 1
     when "leads", "customers", "bookings"
       return 2

@@ -28,6 +28,13 @@ if City.count == 0
   City.create(name: "Sabah")
 end
 
+if Department.count == 0
+  Department.create(name: "Department 1")
+  Department.create(name: "Department 2")
+  Department.create(name: "Department 3")
+  Department.create(name: "Department 4")
+end
+
 if Country.count == 0
   Country.create(name: "Vietname")
   Country.create(name: "Singapore")

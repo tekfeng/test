@@ -18,6 +18,15 @@ class ApplicationMailer < ActionMailer::Base
     @email = email
     attachments["itinerary.pdf"] = { :mime_type => 'application/pdf', :content => pdf.render }
     mail(:to => email , :subject => "[Amazing Borneo] Itinerary")
-  end  
+  end 
+  
+  def welcome_user(user, password)
+    @user = user
+    @url = "#{APP_CONFIG[:domain]}"
+    @password = password
+    mail(to: @user.email, subject: 'Welcome to Amazing Borneo')
+  end
+  
+   
       
 end

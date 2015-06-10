@@ -27,18 +27,35 @@
      
       <% if Vendor.showing_section(request) == 1 %>  
         
+        <li class="<%= 'active' if params[:controller] == 'tours' and  controller.action_name == 'dashboard_page'%>">
+          <%= link_to "/tours/dashboard_page" do %>
+          <i class="fa fa-cubes"></i> 
+          <span class="nav-label">Dashboard</span>
+          <% end %>
+        </li>
+        
         <li class="<%= 'active' if params[:controller] == 'tour_categories' %>">
           <%= link_to "/tour_categories" do %>
           <i class="fa fa-cubes"></i> 
           <span class="nav-label">Tour Categories</span>
           <% end %>
         </li>
-        <li class="<%= 'active' if params[:controller] == 'tours' %>">
+        
+        <li class="<%= 'active' if params[:controller] == 'tours' and  controller.action_name != 'dashboard_page' %>">
           <%= link_to "/tours" do %>
           <i class="fa fa-cubes"></i> 
           <span class="nav-label">Tours</span>
           <% end %>
         </li>
+        
+        <li class="<%= 'active' if params[:controller] == 'users'%>">
+          <%= link_to "/users" do %>
+          <i class="fa fa-cubes"></i> 
+          <span class="nav-label">Users</span>
+          <% end %>
+        </li>
+        
+        
       
       <% elsif Vendor.showing_section(request) == 2 %> 
          
