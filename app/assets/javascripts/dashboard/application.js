@@ -262,7 +262,7 @@ $(function() {
         for(var idx = 0; idx < fieldErrors.length; idx++) {
           if(formGroup.length > 0) {
             errorContainer.append("<li>" + fieldErrors[idx] + "</li>");
-            errorsDisplay.append("<li>" + formGroup.find('label:first').html().replace(/:/g, '') + " " + fieldErrors[idx] + "</li>");
+            // errorsDisplay.append("<li>" + formGroup.find('label:first').html().replace(/:/g, '') + " " + fieldErrors[idx] + "</li>");
           } else {
             errorsDisplay.append("<li>" + key + " " + fieldErrors[idx] + "</li>");
           }//end else
@@ -308,18 +308,16 @@ $(function() {
           }
           
         if (!noRedirectURLCustomer) {  
-          
           if(typeof(Turbolinks) !== 'undefined') {
-             console.log("2222")
             Turbolinks.visit(response.redirect_to);
           } else {
-            console.log("33333")
             document.location = response.redirect_to;
           }
          } 
         } else {
           handleResponseErrors(response.errors, formDom);
         }//end else
+        console.log("aaaaa")
         submitBtn.html("Save Changes").removeAttr("disabled");        
       }
     });
