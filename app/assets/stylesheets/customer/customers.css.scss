@@ -22,7 +22,7 @@
 
 .form-group button#done{
   width: 15%;
-  margin-top: 15px;
+  margin-top: 25px;
 }
 
 .group-input #search-customer{
@@ -150,6 +150,10 @@ form.select-customer-source .sbHolder
   }
 }
 
+.form-group-customer form .sbHolder{
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
 form .sbHolder {
   background: white;
   width: 325px;
@@ -199,9 +203,16 @@ form .sbHolder {
 }
 
 .ibox-content form#new_customer .form-group .form-control{
-  width : 325px;
+  width : 100%;
 }
 
-#customer_name_input, #customer_email_address, #customer_contact_number{
-  margin-bottom: 25px;
+#customer_email_address, #customer_contact_number, #customer_address{
+  margin-top: 25px;
+}
+
+.form-group ul.inline-errors{
+  padding-left: 0px;
+  color: #ff0000;
+  margin-bottom: -10px;
+  margin-top: 5px;
 }

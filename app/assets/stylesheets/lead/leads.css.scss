@@ -112,7 +112,7 @@ table.listing-table thead th.lead-action a.menu-down{
 #lead_contact_number_input,
 #lead_adults_input,
 #lead_children_input,{
-  margin-top: 10px;
+  margin-top: 25px;
 }
 
 .ud-vd {
@@ -272,11 +272,19 @@ form.lead .formnestic-nested-model-container {
 .action.input_action{
   text-align: center;
   width: 100%;
+  //margin-top: 15px;
 }
 
 #lead_children_input,#lead_adults_input{
   padding: 0 !important;
   width: 80%;
+}
+
+@media (max-width: 1024px) {
+  .form-group input#lead_children{
+    margin-left: 0px;
+    width: 100%;
+  }
 }
 
 @media (max-width: 767px) {
@@ -321,7 +329,7 @@ form.booking {
       margin-top: 25px;
       background: white;
       margin-left: 200px;
-      width: 325px;
+      width: 67%;
       border-radius: 4px;
 
       .sbSelector {
@@ -329,7 +337,7 @@ form.booking {
         width: 100%;
       }
       ul.sbOptions {
-        width: 325px;
+        width: 100%;
         background-color: white;
       }
       .sbToggle {
@@ -350,7 +358,7 @@ form.booking {
 form.lead .formnestic-nested-model-container .formnestic-li-fieldset {
   border-bottom: none;
   .sbHolder {
-    margin-top: 25px;
+    //margin-top: 25px;
     background: white;
     width: 67%;
     border-radius: 4px;
@@ -410,6 +418,7 @@ form.lead .formnestic-nested-model-container .formnestic-li-fieldset {
 
 .sum-pax-lead{
   font-size: 15px;
+  margin-top: 20px;
 }
 
 
@@ -427,10 +436,6 @@ input.btn-primary[type="submit"] {
   margin-top: -60px;
 }
 
-input.filter-lead[type="submit"] {
-  margin-top: 10px;
-  margin-left: 40px;
-}
 input.filter-booking[type="submit"] {
   margin-top: 10px;
 }
@@ -440,11 +445,16 @@ input.btn-primary[type="submit"] {
 }
 
 input.filter-lead[type="submit"] {
-  margin-top: 10px;
+  margin-top: 25px;
   margin-left: 40px;
 }
 input.filter-booking[type="submit"] {
   margin-top: 10px;
 }
 
-
+.form-group p.inline-errors{
+  padding-left: 0px;
+  color: #ff0000;
+  margin-bottom: -10px;
+  margin-top: 5px;
+}

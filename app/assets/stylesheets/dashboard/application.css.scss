@@ -386,7 +386,7 @@ li.stringish input {
   width: 100%;
 }
 li.input {
-  margin-bottom :10px;
+  //margin-bottom :10px;
 }
 div.formnestic-li-fieldset-legend {
   display:none;
@@ -534,9 +534,11 @@ tbody th {
 }
 p.inline-errors {
   color: red;
-  padding-bottom: 15px;
-  padding-left: 200px;
   padding-top: 6px;
+  margin-left: 0px;
+}
+li#lead_children_input p.inline-errors,li#booking_number_child_input p.inline-errors  {
+  margin-left: 85px;
 }
 
 table.listing-table {
@@ -829,4 +831,7 @@ form.lead .label {
 
 .ibox-content .search-tour .group-input{
   margin-top: 30px;
+}
+form .formnestic-nested-model-container .formnestic-list-entries-container li {
+  margin-top: 15px;
 }

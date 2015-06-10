@@ -43,6 +43,7 @@ table.listing-table thead th.booking-sale a.menu-down,
 
 .sum-pax-booking{
   font-size: 15px;
+  margin-top: 20px;
 }
 
 
@@ -53,7 +54,7 @@ table.listing-table thead th.booking-sale a.menu-down,
 form .sbHolder {
     background: #ffffff none repeat scroll 0 0;
     border-radius: 4px;
-    margin-top: 15px;
+    margin-top: 25px;
     width: 100%;
 }
 
@@ -62,15 +63,15 @@ form.lead ol li {
     width: 100%;
 }
 
-li#booking_status_input , li#booking_user_id_input, #booking_travel_date{
-  margin-bottom: 10px;
-  .sbHolder {
-    margin-bottom: 20px;
-  }
+#booking_submit_action .filter-booking{
+  margin-top: 25px;
 }
 
+li#booking_travel_date_input, li#booking_travel_to_input{
+  margin-top: 25px;
+}
 li#booking_contact_number_input, #booking_number_adult_input, #booking_number_child_input{
-  margin-top: 10px;
+  margin-top: 25px;
 }
 
 form.booking li#booking_number_adult_input input#booking_number_adult, 
@@ -83,11 +84,11 @@ li#booking_number_child_input input#booking_number_child{
 }
 
 form.booking {
-  padding-bottom: 50px;
+  padding-bottom: 20px;
 }
 
-li.input {
-  margin-bottom :10px;
+form.booking p{
+  margin-top: 20px;
 }
 
 .filter-booking {
@@ -114,6 +115,13 @@ li.input {
   &:hover {
     background-color: #18a689;
   };
+}
+
+@media (max-width: 1024px) {
+  li#booking_number_child_input input#booking_number_child{
+    margin-left: 0px;
+    width: 100%;
+  }
 }
 
 @media (max-width: 767px) {

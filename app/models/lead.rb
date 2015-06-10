@@ -8,6 +8,13 @@ class Lead < ActiveRecord::Base
   accepts_nested_attributes_for :lead_tour_category_tours, allow_destroy: true  
   
   after_create :create_default_value
+  
+  validates :customer_id, :presence => true
+  validates :contact_number, :presence => true
+  validates :travel_from, :presence => true
+  validates :travel_to, :presence => true
+  validates :adults, :presence => true
+  validates :children, :presence => true
    
   BOOKING_STATUS = ['Confirm invoice','Need follow up','Replied','Closed','Allocated','Fully booked','No response','Cancel invoice']
     

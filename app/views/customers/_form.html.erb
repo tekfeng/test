@@ -1,35 +1,39 @@
-<%= semantic_form_for @customer,:url =>  @customer.new_record? ? "/customers" : "/customers/#{@customer.id}", :html => {:method => @customer.new_record? ? :post : :put, :class => "ajax-form customer-form"} do |form| %>
+<%= semantic_form_for @customer,:url =>  @customer.new_record? ? "/customers" : "/customers/#{@customer.id}", :html => {:method => @customer.new_record? ? :post : :put, :class => @customer.new_record? ? "ajax-form convert-customer-to-lead" : "ajax-form"} do |form| %>
    <div class= "form-group">
-     <div class="col-md-12 col-sm-12 col-xs-12 padding-0 text-center">
-       <%= form.input :name, :as => :string, placeholder: "Name Customer", input_html:{class: "form-control"}%>
+     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+       <%= form.input :name, :as => :string, placeholder: "Name Customer"%>
      </div>
+     <div class="col-md-2 col-sm-2 col-xs-12"></div>
    </div>
    <div class= "form-group">
-     <div class="col-md-12 col-sm-12 col-xs-12 padding-0 text-center">
-       <%= form.input :email_address, :as => :string, placeholder: "Email address", input_html:{class: "form-control"}%>
+     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+       <%= form.input :email_address, :as => :string, placeholder: "Email address"%>
      </div>
+     <div class="col-md-2 col-sm-2 col-xs-12"></div>
    </div>
    <div class= "form-group">
-     <div class="col-md-12 col-sm-12 col-xs-12 padding-0 text-center">
-       <%= form.input :contact_number, :as => :string, placeholder: "Contact Number", input_html:{class: "form-control"}%>
+     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+       <%= form.input :contact_number, :as => :string, placeholder: "Contact Number"%>
      </div>
+     <div class="col-md-2 col-sm-2 col-xs-12"></div>
    </div>
    <div class= "form-group">
-     <div class="col-md-12 col-sm-12 col-xs-12 padding-0 text-center">
-       <%= form.input :address, :as => :string, placeholder: "Address", input_html:{class: "form-control"}%>
+     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+       <%= form.input :address, :as => :string, placeholder: "Address"%>
      </div>
+     <div class="col-md-2 col-sm-2 col-xs-12"></div>
    </div>
    <div class= "form-group">
-     <div class="col-md-10 col-md-offset-1 col-xs-12 padding-0 select-country">
-       <%= form.input :country_id,:as => :select ,:collection =>Country.all.collect{|t| [t.name, t.id]} ,class: 'form-control lead-group-select'%>
+     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0 lead-group-select">
+       <%= form.input :country_id,:as => :select ,:collection =>Country.all.collect{|t| [t.name, t.id]}, include_blank: false %>
      </div>
-     <div calss="col-md-1 col-sm-1 col-xs-12 padding-0"></div>
+     <div class="col-md-2 col-sm-2 col-xs-12"></div>
    </div>
    <div class= "form-group">
-     <div class="col-md-10 col-md-offset-1 col-xs-12 padding-0 select-source">
-       <%= form.input :source_id,:as => :select ,:collection =>Source.all.collect{|t| [t.name, t.id]} ,class: 'form-control lead-group-select'%>
+     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0 lead-group-select">
+       <%= form.input :source_id,:as => :select ,:collection =>Source.all.collect{|t| [t.name, t.id]} ,class: 'form-control lead-group-select', include_blank: false%>
      </div>
-     <div calss="col-md-1 col-sm-1 col-xs-12 padding-0"></div>
+     <div class="col-md-2 col-sm-2 col-xs-12"></div>
    </div>
    <div class="form-group text-center">
      <div class="col-md-12 col-sm-12 col-xs-12 padding-0">
@@ -43,15 +47,15 @@
     $('.label').hide();
     var customerCountry = $('#customer_country_id');
     <% if controller.action_name != "edit" %>
-    customerCountry.append('<option value="0">--Select Country--</option>');
-    customerCountry.val(0);
+    customerCountry.prepend('<option value="">--Select Country--</option>');
+    customerCountry.val("");
     <% end %>
     customerCountry.selectbox({});
     
     var customerSource = $('#customer_source_id');
     <% if controller.action_name != "edit" %>
-    customerSource.append('<option value="0">--Select Source--</option>');
-    customerSource.val(0);
+    customerSource.prepend('<option value="">--Select Source--</option>');
+    customerSource.val("");
     <% end %>
     customerSource.selectbox({});
   })

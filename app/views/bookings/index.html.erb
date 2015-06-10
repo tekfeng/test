@@ -21,14 +21,6 @@
             </li>
           </ol>
         </div>
-        <!-- <div class="col-md-4 col-sm-4 col-xs-12">
-          <form class="group-input">
-            <input type='search' id='search-customer' placeholder="Search..." />
-            <a class="submit" type="submit" href="#">
-              <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-            </a>
-          </form>
-        </div> -->
       </div>
     </div>
     
@@ -39,10 +31,30 @@
             <% @booking_new = Booking.new %>
             <%= semantic_form_for @booking_new,  :url => "", :html => {:method => :get }  do |f| %>
               <%= f.inputs do %>
-                <%= f.input :status, :label => "Payment Status", :as => :select, placeholder: 'user@domain.com', collection: Booking.all.collect(&:status).uniq %>
-                <%= f.input :user_id, :label => "Sales Person", :as => :select, collection: User.all %>
-                <%= f.input :travel_date,:as => :string, :input_html => { :class => 'input-icon-select-date'}, wrapper_html:{class: "text-center"}, placeholder: "Travel from"%>
-                <%= f.input :travel_to,:label => "Travel To", :as => :string, :input_html => { :class => 'input-icon-select-date'}, wrapper_html:{class: "text-center"},placeholder: "Travel to" %>
+              <div class= "form-group">
+                <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+                  <%= f.input :status, :as => :select, collection: Booking.all.collect(&:status).uniq %>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-12"></div>
+              </div>
+              <div class= "form-group">
+                <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+                  <%= f.input :user_id, :label => "Sales Person", :as => :select, collection: User.all %>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-12"></div>
+              </div>
+              <div class= "form-group">
+                <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+                  <%= f.input :travel_date,:as => :string, :input_html => { :class => 'input-icon-select-date'}, placeholder: "Travel from"%>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-12"></div>
+              </div>
+              <div class= "form-group">
+                <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+                  <%= f.input :travel_to, :as => :string, :input_html => { :class => 'input-icon-select-date'},placeholder: "Travel to"%>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-12"></div>
+              </div>  
               <% end %>
                <%= f.action :submit, :label => "Filter", :button_html => { :class => "btn btn-primary filter-booking" } %>
             <% end %>

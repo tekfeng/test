@@ -229,8 +229,10 @@ $(function() {
   
   $(document).on('submit', 'form.ajax-form', function(e) {
     var _this = this;
-    var noRedirectURLCustomer = $(e.currentTarget).hasClass("customer-form");
-    // console.log("aaahdhdhdhdh", $(e.currentTarget).hasClass("customer-form"))
+    
+    
+    var noRedirectURLCustomer = $(e.currentTarget).hasClass("convert-customer-to-lead");
+
     
     e.preventDefault(this);
     var formDom = $(this);
@@ -245,7 +247,7 @@ $(function() {
     });
     
     var handleResponseErrors = function(errors, form) {
-      form.prepend("<div class='form-errors-container'><ul class='form-errors'></ul></div>");
+      // form.prepend("<div class='form-errors-container'><ul class='form-errors'></ul></div>");
       var errorsDisplay = form.find('ul.form-errors');
       var numberOfErrors = 0;
       for(var key in errors) {
@@ -268,9 +270,9 @@ $(function() {
         }//end for
       }//end for
       errorsDisplay.parent().prepend("<div>Please correct the following error(s) below:</div>");
-      $('html, body').animate({
-        scrollTop: errorsDisplay.parent().offset().top
-      }, 200);
+      // $('html, body').animate({
+      //   scrollTop: errorsDisplay.parent().offset().top
+      // }, 200);
       $('div.has-error:first').find('input, select, textarea').focus();
     }
     var submitBtn = formDom.find('button[type=submit]:first');
@@ -289,6 +291,7 @@ $(function() {
       success: function(response) {
         
         if(response.result == 'ok') {
+          console.log("1111")
           if(response.flash) {
             $.cookie('flashType', response.flash.type, { path: '/' });
             $.cookie('flashMessage', response.flash.message, { path: '/' });
@@ -305,9 +308,12 @@ $(function() {
           }
           
         if (!noRedirectURLCustomer) {  
+          
           if(typeof(Turbolinks) !== 'undefined') {
+             console.log("2222")
             Turbolinks.visit(response.redirect_to);
           } else {
+            console.log("33333")
             document.location = response.redirect_to;
           }
          } 

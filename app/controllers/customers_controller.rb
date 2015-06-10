@@ -29,7 +29,7 @@ class CustomersController < BaseController
       render json: {result: 'ok', redirect_to: customers_url, customer_id: @customer.id, modal_box: true,
         flash: { type: :notice, message: 'Customer details has been saved successfully!' }}
     else
-      render template: "customers/new"
+      render json: {result: 'failed', errors: @customer.errors}
     end
   end
   
@@ -43,7 +43,7 @@ class CustomersController < BaseController
       render json: {result: 'ok', redirect_to: customers_url,
         flash: { type: :notice, message: 'Customer details has been saved successfully!' }}
     else
-      render template: "customers/edit"
+      render json: {result: 'failed', errors: @customer.errors}
     end
   end
   

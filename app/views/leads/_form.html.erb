@@ -1,8 +1,8 @@
-<%= semantic_form_for @lead,  :url =>  @lead.new_record? ?  "/leads" : "/leads/#{@lead.id}",  :html => {:method => @lead.new_record? ? :post : :put } do |form| %>
+<%= semantic_form_for @lead,  :url =>  @lead.new_record? ?  "/leads" : "/leads/#{@lead.id}",  :html => {:method => @lead.new_record? ? :post : :put, :class => @lead.new_record? ? "new-lead" : ""} do |form| %>
   <%= form.inputs do %>
     <div class= "form-group">
       <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
-        <%= form.input :customer_id,:as => :select ,:collection => Customer.all.collect{|t| [t.name + " - " + t.email_address, t.id]}%>
+        <%= form.input :customer_id,:as => :select ,:collection => Customer.all.collect{|t| [t.name + " - " + t.email_address, t.id]}, include_blank: false %>
       </div>
       <div class="col-md-2 col-sm-2 col-xs-12"></div>
     </div><!--select-customer-->
@@ -62,9 +62,9 @@
       } do |tour| %>   
         <%= tour.inputs do %>
         
-          <%= tour.input :tour_category_id, :as => :select, :collection => TourCategory.all.collect{|t| [t.name, t.id]},:input_html => { :class => 'form-control lead-tour-category', :id => 'lead_tour_category'}, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12 padding-0 form-control "} %>  
+          <%= tour.input :tour_category_id, :as => :select, :collection => TourCategory.all.collect{|t| [t.name, t.id]},:input_html => { :class => 'lead-tour-category', :id => 'lead_tour_category'}, include_blank: false %>  
          
-          <%= tour.input :tour_id, :as => :select, :collection => tour.object.tour_category.nil? ? [] : tour.object.tour_category.tours.collect{|t| [t.name, t.id]}, :input_html => { :class => 'form-control lead-tour', :id => 'lead_tour'}, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12 padding-0"} %>       
+          <%= tour.input :tour_id, :as => :select, :collection => tour.object.tour_category.nil? ? [] : tour.object.tour_category.tours.collect{|t| [t.name, t.id]}, :input_html => { :class => 'lead-tour', :id => 'lead_tour'},include_blank: false %>       
             <script language="javascript">
               $(document).ready(function() {           
                 $('.label').hide();         
@@ -74,10 +74,10 @@
                 <% else %>
                   var leadTour = $('#lead_tour.lead-tour').last();
                   var leadTourCategory =  $('#lead_tour_category.lead-tour-category').last();                                      
-                  leadTour.append('<option value="0">Tour Name</option>');
-                  leadTour.val(0);              
-                  leadTourCategory.append('<option value="0">Tour Category</option>');
-                  leadTourCategory.val(0);                                   
+                  leadTour.prepend('<option value="">Tour Name</option>');
+                  leadTour.val("");              
+                  leadTourCategory.prepend('<option value="">Tour Category</option>');
+                  leadTourCategory.val("");                                   
                 <% end %>                                           
                 leadTour.selectbox({});                          
                 leadTourCategory.selectbox({
@@ -86,8 +86,8 @@
                     var tourOfTourCategory = $(this).closest(".formnestic-li-fieldset").find("select#lead_tour.lead-tour");
                     tourOfTourCategory.selectbox("detach");
                     tourOfTourCategory.html('');
-                    tourOfTourCategory.append('<option value="0">Tour Name</option>');
-                    tourOfTourCategory.val(0);
+                    tourOfTourCategory.prepend('<option value="">Tour Name</option>');
+                    tourOfTourCategory.val("");
                     if (category_id !== null) {
                       $.ajax({
                         url:"/tours/" + category_id + "/tour_of_tour_category",
@@ -121,8 +121,8 @@
     $('.label').hide();
     var leadCustomerId = $('#lead_customer_id');
     <% if controller.action_name != "edit" and !@convert_cus_tomer_to_lead %>        
-      leadCustomerId.append('<option value="0">Select Customer</option>');
-      leadCustomerId.val(0);
+      leadCustomerId.prepend('<option value="">Select Customer</option>');
+      leadCustomerId.val("");
     <% end %>
     leadCustomerId.selectbox({});    
     $('#lead_travel_to').datetimepicker({

@@ -84,11 +84,7 @@
                 
               <% end %>
                 
-                bookingTour.selectbox({});
-                
-                
-               
-    
+                bookingTour.selectbox({});  
                 bookingTourCategory.selectbox({
                   onChange: function (val, inst) {
                     var category_id = val;
@@ -133,11 +129,10 @@
   $(document).ready(function() {
     $('.label').hide();
     var bookingCustomerId = $('#booking_customer_id');
-    <% p "lead = #{lead}" %>
-    
+        
     <% if !lead %>
-      bookingCustomerId.append('<option value="0">Select Customer</option>');
-      bookingCustomerId.val(0);
+      bookingCustomerId.prepend('<option value="0">Select Customer</option>');
+      bookingCustomerId.val("");
     <% end %>
       
     bookingCustomerId.selectbox({});
