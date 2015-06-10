@@ -1,60 +1,68 @@
-<table class='listing-table vendor-listing-content-tab-vendor-rates'>
-  <thead>
-    <tr>
-       <th class="no">No</th>
-      <th class="date">Date
-        <a class="menu-down" href="#">
-          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-        </a>
-      </th>
-      <th class="lead-thead-name">Name
-        <a class="menu-down" href="#">
-          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-        </a>
-      </th>
-      <th class="lead-thead-email">Email Address
-        <a class="menu-down" href="#">
-          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-        </a>
-      </th>
-      <th class="lead-thead-tour-category">Tour Category
-        <a class="menu-down" href="#">
-          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-        </a>
-      </th>
-      <th class="lead-thead-status">Status
-        <a class="menu-down" href="#">
-          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-        </a>
-      </th>
-      <th class="lead-thead-sale">Sale Person
-        <a class="menu-down" href="#">
-          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-        </a>
-      </th>
-      <th class="lead-action" style='text-align: center;'>Action</th>
-    </tr>
-  </thead>        
-  <tbody>
-    <% if @leads.count > 0 %>
-      <% @leads.each_with_index do |lead, index| %>
+<% unless smart_listing.empty? %>
+  <table class='listing-table vendor-listing-content-tab-vendor-rates'>
+    <thead>
+      <tr>
+         <th class="no">No</th>
+        <th class="date">Date
+          <a class="menu-down" href="#">
+            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+          </a>
+        </th>
+        <th class="lead-thead-name">Name
+          <a class="menu-down" href="#">
+            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+          </a>
+        </th>
+        <th class="lead-thead-email">Email Address
+          <a class="menu-down" href="#">
+            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+          </a>
+        </th>
+        <th class="lead-thead-tour-category">Tour Category
+          <a class="menu-down" href="#">
+            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+          </a>
+        </th>
+        <th class="lead-thead-status">Status
+          <a class="menu-down" href="#">
+            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+          </a>
+        </th>
+        <th class="lead-thead-sale">Sale Person
+          <a class="menu-down" href="#">
+            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+          </a>
+        </th>
+        <th class="lead-action" style='text-align: center;'>Action</th>
+      </tr>
+    </thead>  
+   
+    <tbody>
+    
+      <% smart_listing.collection.each_with_index do |lead, index| %>
         <tr class="<%= cycle('odd', 'even') %>">
-          <td><%= index + 1 %></td>
-          <td><%= lead.travel_from ? lead.travel_from.strftime("%d-%m-%Y") : "" %></td>                  
+          <% if params[:leads_smart_listing] and params[:leads_smart_listing][:page] and  params[:leads_smart_listing][:page].to_i > 0 %>
+          <% index_show = (params[:leads_smart_listing][:page].to_i - 1)*10 + index + 1 %>
+          <% else %>
+          <% index_show = index + 1 %>
+          <% end %>
+          <td><%= index_show %></td>
+          <td><%= lead.travel_from ? lead.travel_from.strftime("%d-%m-%Y") : "" %></td>    
           <td><%= lead.customer.try(:name) %></td>
           <td><%= lead.customer.try(:email_address) %></td>
           <td><%= lead.lead_tour_category_tours ? lead.lead_tour_category_tours.first.tour_category.try(:name) : "N/A" %></td>
           <td><%= lead.status %></td>
-          <td><%= lead.user.try(:username) %></td>              
+          <td><%= lead.user.try(:username) %></td>
           <td style='text-align: center;'>
             <%= link_to "", edit_lead_url(lead), class: 'glyphicon glyphicon-pencil' %>
           </td>
+        
         </tr>
       <% end %>
-    <% else %>
-      <tr>
-        <td colspan='7'>No lead available<td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+  <%= smart_listing.paginate  %>
+
+<% else %>
+  <p class="warning">No records!</p>
+<% end %>   

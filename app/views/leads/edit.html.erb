@@ -29,9 +29,7 @@
     </div>
   <% else  %>
     <div class="col-md-4 col-sm-4 col-xs-12">
-      <a href="/bookings/<%= @lead.id %>/convert_to_booking">
-        <div class="convert-to-booking">Convert to Booking</div>
-      </a>
+      <div class="convert-to-booking">Convert to Booking</div>
     </div>
   <% end %>
 </div>
@@ -43,3 +41,36 @@
     </div>
   </div>
 </div>
+
+<div id="convert_lead_to_booking_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class='modal-dialog'>
+    <div class='modal-content'>
+      <div class='ibox'>
+        <div class='ibox-content container-fluid'>
+          <div id="accept" class= "col-md-12 col-sm-12 col-xs-12">
+            <div class='col-md-12 col-sm-12 col-xs-12'>
+              <p>New Customer created. Do you want to proceed to create a lead</p>
+            </div>
+            <div class='col-md-12 col-sm-12 col-xs-12 text-center'>
+              <a class="btn btn-white" href='<%= customers_url %>'>No</a>
+              <!-- <button class="btn btn-primary" type="submit">Yes</button> -->
+              <a class="btn btn-white" id="conver-customer-to-lead-url" href='/leads/new'>Yes</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>    
+</div>
+
+<script language="javascript">
+  $(document).ready(function() {
+    $(document.body).delegate(".convert-to-booking", "click", function(e){
+      $('#convert_lead_to_booking_modal').modal({
+        show: true,
+        backdrop: 'static',
+        keyboard: true
+      });
+    });
+  });  
+</script>

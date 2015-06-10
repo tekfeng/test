@@ -23,7 +23,6 @@
       <div class = "col-md-2 col-sm-2 col-xs-12"></div>
     </div> <!--travel from-->
     <div class="form-group">
-      
       <%= form.input :travel_to,:as => :string, id: 'datetimepicker_to', placeholder: "Travel to"%>, 
     </div> <!--travel to-->
     <div class="form-group">
@@ -76,7 +75,6 @@
                 leadTour.selectbox({});                          
                 leadTourCategory.selectbox({
                   onChange: function (val, inst) {
-                    console.log("on change")
                     var category_id = val;
                     var tourOfTourCategory = $(this).closest(".formnestic-li-fieldset").find("select#lead_tour.lead-tour");
                     tourOfTourCategory.selectbox("detach");

@@ -1,9 +1,16 @@
 class BookingsController < BaseController
+  include SmartListing::Helper::ControllerExtensions
+  helper  SmartListing::Helper
+  
+  
   def index
-    @bookings = Booking.all
     if params[:ajax_call]
-      @bookings = Booking.search(params)[:bookings]
-      render :partial => 'bookings/list', locals: {bookings: @bookings}
+      @bookings = Booking.search(params)
+      @bookings = smart_listing_create(:bookings, @bookings, partial: "bookings/list") 
+      render template: "/bookings/filter", layout: false     
+    else
+      @bookings = Booking.all
+      @bookings = smart_listing_create(:bookings, @bookings, partial: "bookings/list") 
     end
   end
   
@@ -26,7 +33,7 @@ class BookingsController < BaseController
       
       redirect_to bookings_url
     else
-      render json: { result: 'failed', errors: @booking.errors }
+      render template: "bookings/new"
     end
   end
   

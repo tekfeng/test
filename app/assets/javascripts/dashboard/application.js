@@ -271,7 +271,8 @@ $(function() {
       processData: false,
       contentType: false,
       type: $(this).attr('method') || $(this).find('input[name=_method]:first').val(),
-      success: function(response) {    
+      success: function(response) {
+        
         if(response.result == 'ok') {
           if(response.flash) {
             $.cookie('flashType', response.flash.type, { path: '/' });
@@ -280,12 +281,14 @@ $(function() {
           if (response.customer_id) {
             document.getElementById("conver-customer-to-lead-url").href="/leads/new?customer_id=" + response.customer_id ; 
           }
+          if (response.modal_box){
+            $('#ajax_modal').modal({
+              show: true,
+              backdrop: 'static',
+              keyboard: true
+            });
+          }
           
-          $('#ajax_modal').modal({
-                show: true,
-                backdrop: 'static',
-                keyboard: true
-          });
         if (!noRedirectURLCustomer) {  
           if(typeof(Turbolinks) !== 'undefined') {
             Turbolinks.visit(response.redirect_to);
