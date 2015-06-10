@@ -262,7 +262,7 @@ $(function() {
         for(var idx = 0; idx < fieldErrors.length; idx++) {
           if(formGroup.length > 0) {
             errorContainer.append("<li>" + fieldErrors[idx] + "</li>");
-            errorsDisplay.append("<li>" + formGroup.find('label:first').html().replace(/:/g, '') + " " + fieldErrors[idx] + "</li>");
+            // errorsDisplay.append("<li>" + formGroup.find('label:first').html().replace(/:/g, '') + " " + fieldErrors[idx] + "</li>");
           } else {
             errorsDisplay.append("<li>" + key + " " + fieldErrors[idx] + "</li>");
           }//end else
