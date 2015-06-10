@@ -2,38 +2,23 @@
   <table class='listing-table vendor-listing-content-tab-vendor-rates'>
     <thead>
       <tr>
-         <th class="no">No</th>
-        <th class="date">Date
-          <a class="menu-down" href="#">
-            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-          </a>
-        </th>
-        <th class="lead-thead-name">Name
-          <a class="menu-down" href="#">
-            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-          </a>
-        </th>
-        <th class="lead-thead-email">Email Address
-          <a class="menu-down" href="#">
-            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-          </a>
-        </th>
-        <th class="lead-thead-tour-category">Tour Category
-          <a class="menu-down" href="#">
-            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-          </a>
-        </th>
-        <th class="lead-thead-status">Status
-          <a class="menu-down" href="#">
-            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-          </a>
-        </th>
-        <th class="lead-thead-sale">Sale Person
-          <a class="menu-down" href="#">
-            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-          </a>
-        </th>
+        <th class="no">No</th>
+        
+        <th class="customer-thead-name cus-style-gray"><%= smart_listing.sortable "Date", "travel_from" %></th>
+        
+        <th class="lead-thead-name">Name</th>
+          
+        <th class="lead-thead-email">Email Address</th>
+        
+        <th class="lead-thead-tour-category">Tour Category</th>
+        
+        <th class="lead-thead-email cus-style-gray"><%= smart_listing.sortable "Status", "status" %></th>
+        
+       
+        <th class="lead-thead-sale">Sale Person</th>
+        
         <th class="lead-action" style='text-align: center;'>Action</th>
+        
       </tr>
     </thead>  
    

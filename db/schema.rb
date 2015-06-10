@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150608032726) do
+ActiveRecord::Schema.define(version: 20150610085657) do
 
   create_table "add_username_to_users", force: :cascade do |t|
     t.string   "username",   limit: 255
@@ -39,12 +39,13 @@ ActiveRecord::Schema.define(version: 20150608032726) do
     t.string   "itinerary",      limit: 255
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.string   "name",           limit: 255
+    t.string   "booking_number", limit: 255
     t.integer  "customer_id",    limit: 4
     t.datetime "travel_to"
     t.string   "contact_number", limit: 255
     t.integer  "number_adult",   limit: 4
     t.integer  "number_child",   limit: 4
+    t.integer  "tour_id",        limit: 4
   end
 
   create_table "cities", force: :cascade do |t|
@@ -75,6 +76,12 @@ ActiveRecord::Schema.define(version: 20150608032726) do
     t.integer  "source_id",      limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "departments", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "lead_tour_category_tours", force: :cascade do |t|
@@ -171,6 +178,8 @@ ActiveRecord::Schema.define(version: 20150608032726) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "username",               limit: 255
+    t.integer  "department_id",          limit: 4
+    t.string   "contact_number",         limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

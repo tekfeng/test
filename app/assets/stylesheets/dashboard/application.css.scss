@@ -32,8 +32,22 @@
  *= require_self
  */
 
-
-
+.cus-style-white {
+  background-color: #8093A5 !important;
+  color: white !important;
+}
+.cus-style-white a {
+  color: white !important;
+  background-color: #8093A5 !important; 
+}
+.cus-style-gray {
+  background-color: #ECECEC !important;
+  color: #77888f !important;
+  a {
+    background-color: #ECECEC !important;
+    color: #77888f !important;
+  }
+} 
 
 @media screen and (min-width:320px) and (max-width:768px) {
   .toggle-class-show-hide {
@@ -162,7 +176,9 @@ img.padding-photo {
   border: 5px solid #fff;
   box-shadow: 0 0 5px #ccc;
 }
-
+table.listing-table thead th {
+  width: auto !important;
+}
 table.listing-table thead th.no {
   background: #8093a5 none repeat scroll 0 0;
   color: #fff;

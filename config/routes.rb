@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  
+  
+  post "/users", :controller => "users", action: "create"
   devise_for :users  
   
   get 'quotation', controller: 'dashboard', action: 'quotation'
@@ -7,8 +10,15 @@ Rails.application.routes.draw do
   
   root :to => 'dashboard#index'
   resources :dashboard
+  
+  resources :users
+  
   resources :tour_categories
+  
   resources :tours do
+    collection do
+      get 'dashboard_page'
+    end
     member do
       get :tour_of_tour_category
     end

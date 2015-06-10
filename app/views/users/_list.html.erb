@@ -1,0 +1,36 @@
+<% unless smart_listing.empty? %>
+<table class='listing-table'>
+  <thead>
+    <tr>
+      <th class="cus-style-gray">No.</th>
+    
+      <th class="cus-style-white"><%= smart_listing.sortable "Name", "username" %></th>
+      
+      <th class="cus-style-gray" style='text-align: center;'>Action</th>
+    </tr>
+  </thead>     
+  <tbody>
+    
+    <% smart_listing.collection.each_with_index do |user, index| %>
+      <tr class="<%= cycle('odd', 'even') %>">
+        <% if params[:users_smart_listing] and params[:users_smart_listing][:page] and  params[:users_smart_listing][:page].to_i > 0 %>
+        <% index_show = (params[:users_smart_listing][:page].to_i - 1)*10 + index + 1 %>
+        <% else %>
+        <% index_show = index + 1 %>
+        <% end %>
+        <td><%= index_show %></td>
+        <td><%= user.username %></td>
+        
+        <td style='text-align: center;'>
+          <%= link_to "", edit_user_path(user), class: 'glyphicon glyphicon-pencil' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+ <%= smart_listing.paginate  %>
+
+<% else %>
+  <p class="warning">No records!</p>
+<% end %>   

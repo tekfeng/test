@@ -1,0 +1,41 @@
+<%= semantic_form_for @user,:url =>  @user.new_record? ? "/users" : "/users/#{@user.id}", :html => {:method => @user.new_record? ? :post : :put, :class => "user-form"} do |form| %>
+   <div class= "form-group">
+     <div class="col-md-12 col-sm-12 col-xs-12 padding-0 text-center">
+       <%= form.input :username, :as => :string, placeholder: "Name", input_html:{class: "form-control"}%>
+     </div>
+   </div>
+   <div class= "form-group">
+     <div class="col-md-12 col-sm-12 col-xs-12 padding-0 text-center">
+       <%= form.input :email, :as => :string, placeholder: "Email address", input_html:{class: "form-control"}%>
+     </div>
+   </div>
+   <div class= "form-group">
+     <div class="col-md-12 col-sm-12 col-xs-12 padding-0 text-center">
+       <%= form.input :contact_number, :as => :string, placeholder: "Contact Number", input_html:{class: "form-control"}%>
+     </div>
+   </div>
+   
+   <div class= "form-group">
+     <div class="col-md-10 col-md-offset-1 col-xs-12 padding-0 select-source">
+       <%= form.input :department_id,:as => :select ,:collection => Department.all.collect{|t| [t.name, t.id]} ,class: 'form-control lead-group-select'%>
+     </div>
+     <div calss="col-md-1 col-sm-1 col-xs-12 padding-0"></div>
+   </div>
+   <div class="form-group text-center">
+     <div class="col-md-12 col-sm-12 col-xs-12 padding-0">
+       <button class="btn btn-primary save-form-button" id="done" type="submit">Done</button>
+     </div>
+   </div>
+
+<% end %>
+<script language="javascript">
+  $(document).ready(function() {
+    $('.label').hide();
+    var userCountry = $('#user_department_id');
+    <% if controller.action_name != "edit" %>
+    userCountry.prepend('<option value="">--Select Department--</option>');
+    userCountry.val("");
+    <% end %>
+    userCountry.selectbox({}); 
+  })
+</script>
