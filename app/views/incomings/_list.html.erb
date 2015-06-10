@@ -1,28 +1,19 @@
-<table class='listing-table vendor-listing-content-tab-vendor-rates'>
+<table id="incomings_listing_table" class='listing-table vendor-listing-content-tab-vendor-rates'>
   <thead>
     <tr>
-      <th class="booking-number">Date
-        <a class="menu-down" href="#">
-          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-        </a>
+      <th class="odd">
+        <%= smart_listing.sortable "Date", :created_at %>
       </th>
-      <th class="booking-travel-date">Name
-        <a class="menu-down" href="#">
-          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-        </a>
+      <th class="even" >
+        <%= smart_listing.sortable "Name", :customer_name %>
       </th>
-      <th class="booking-date">Email Address
-        <a class="menu-down" href="#">
-          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-        </a>
+      <th class="odd">Email Address
       </th>
-      <th class="booking-name">Source
-        <a class="menu-down" href="#">
-          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-        </a>
+      <th class="even">
+        <%= smart_listing.sortable "Source", :source_info %>
       </th>
-       <th class="booking-action" style='text-align: center;background:#ececec;'>
-       </th>
+      <th class="odd" style='text-align: center;'>
+      </th>
     </tr>
   </thead>
   <% if smart_listing.collection.count > 0 %>

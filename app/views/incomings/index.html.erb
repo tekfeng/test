@@ -29,6 +29,16 @@
       <div class='ibox'>
         <div class='ibox-content container-fluid white-bg'>
           <div id="vendor_filter">
+            <%= smart_listing_controls_for(:incomings) do %>
+              <ol class='filter-form-group' >
+                <li class="search-control">
+                 <%= select_tag :source_eq, '', collection: []  %>
+                </li>  
+                <li id="source_filter_control" >
+                  
+                </li>  
+              </ol>  
+            <% end %>
           </div>
         </div>
         <div id="listing-table">

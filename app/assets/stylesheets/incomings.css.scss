@@ -1,3 +1,26 @@
 // Place all the styles related to the incomings controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+table#incomings_listing_table {
+  th {
+    color: #fff;
+    &.odd{
+      a.sortable {
+        color: #fff;
+      }
+      background: #8093a5;
+    }
+    &.even {
+      a.sortable {
+        color: #77888f;
+      }
+      background: #ececec;
+    }
+  }
+}
+
+form.smart-listing-controls {
+  max-width: 500px;
+  margin: 0 auto;
+}
