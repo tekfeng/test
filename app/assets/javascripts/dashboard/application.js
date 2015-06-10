@@ -196,7 +196,21 @@ $(function() {
     });
   });
   
- 
+  
+  $(document).delegate('.navbar-minimalize.minimalize-styl-2', 'click', function(event) {
+    console.log("hahahahhaha")
+    event.preventDefault();
+    
+    if ($(".navbar-default").hasClass("toggle-class-show-hide")) {
+      $(".navbar-default").animate({'left': -225});
+    }
+    else {
+      $(".navbar-default").animate({'left': 0});
+    }
+    $(".navbar-default").toggleClass("toggle-class-show-hide")
+    
+    return false;
+  });
   
   $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
       event.preventDefault();
