@@ -64,7 +64,6 @@ class LeadsController <  BaseController
   end
   
   
-  
   private
 
   def lead_params

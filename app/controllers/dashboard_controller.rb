@@ -1,7 +1,6 @@
 class DashboardController < BaseController
   
-  def index
-    
+  def index    
     render template: "dashboard/index", layout: "index_page"
   end
   
@@ -16,4 +15,5 @@ class DashboardController < BaseController
   def invoice
     send_data(InvoicePDF.new.render, filename: 'invoice.pdf', disposition: :inline, stream: true, :type => "application/pdf")
   end    
+
 end

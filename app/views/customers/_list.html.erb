@@ -1,3 +1,4 @@
+<% unless smart_listing.empty? %>
 <table class='listing-table'>
   <thead>
     <tr>
@@ -34,27 +35,38 @@
       </th>
       <th class="customer-action" style='text-align: center;'>Action</th>
     </tr>
-  </thead>        
+  </thead>     
   <tbody>
-    <% if customers.count > 0 %>
-      <% customers.each_with_index do |customer, index| %>
-        <tr class="<%= cycle('odd', 'even') %>">
-          <td><%= index + 1 %></td>
-          <td><%= customer.name %></td>
-          <td><%= customer.email_address %></td>
-          <td><%= customer.contact_number %></td>
-          <td><%= customer.address %></td>
-          <td><%= customer.country ? customer.country.name : "N/A" %></td>
-          <td><%= customer.source ? customer.source.name : "N/A" %></td>
-          <td style='text-align: center;'>
-            <%= link_to "", edit_customer_url(customer), class: 'glyphicon glyphicon-pencil' %>
-          </td>
-        </tr>
-      <% end %>
-    <% else %>
+    
+    <% smart_listing.collection.each_with_index do |customer, index| %>
       <tr>
-        <td colspan='8'>No customer available<td>
+        <% if params[:customers_smart_listing] and params[:customers_smart_listing][:page] and  params[:customers_smart_listing][:page].to_i > 0 %>
+        <% index_show = (params[:customers_smart_listing][:page].to_i - 1)*10 + index + 1 %>
+        <% else %>
+        <% index_show = index + 1 %>
+        <% end %>
+        <td><%= index_show %></td>
+        <td><%= customer.name %></td>
+        <td><%= customer.email_address %></td>
+        <td><%= customer.contact_number %></td>
+        <td><%= customer.address %></td>
+        <td><%= customer.country ? customer.country.name : "N/A" %></td>
+        <td><%= customer.source ? customer.source.name : "N/A" %></td>
+        <td style='text-align: center;'>
+          <%= link_to "", edit_customer_path(customer), class: 'glyphicon glyphicon-pencil' %>
+        </td>
+        <td>
+          <%= link_to 'Delete', customers_path(customer),
+          method: :delete,
+          data: { confirm: 'Are you sure?' } %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+ <%= smart_listing.paginate  %>
+
+<% else %>
+  <p class="warning">No records!</p>
+<% end %>   

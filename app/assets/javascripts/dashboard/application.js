@@ -34,6 +34,7 @@
 //= require dashboard/fullcalendar.js
 //= require dashboard/jquery.fancybox-1.3.4
 //= require dashboard/jquery.selectbox-0.2
+//= require smart_listing
  
 $(document).ready(function() {    
   $(document.body).delegate('.filter-style', 'click', function() {
