@@ -19,9 +19,9 @@ hr{
 }
 
 .form-group input#lead_children{
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
- // margin-left: 30px;
+  margin-left: 85px;
 }
 
 .btn.btn-primary.filter{
@@ -148,7 +148,7 @@ form.select-lead-status .sbHolder{
 
 #lead_customer_id_input .sbHolder{
   background: white;
-  width: 98%;
+  width: 100%;
   border-radius: 4px;
   margin-bottom: 10px;
   .sbSelector {
@@ -352,7 +352,7 @@ form.lead .formnestic-nested-model-container .formnestic-li-fieldset {
   .sbHolder {
     margin-top: 25px;
     background: white;
-    width: 80%;
+    width: 67%;
     border-radius: 4px;
 
     .sbSelector {

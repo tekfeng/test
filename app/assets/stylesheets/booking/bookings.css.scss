@@ -54,7 +54,7 @@ form .sbHolder {
     background: #ffffff none repeat scroll 0 0;
     border-radius: 4px;
     margin-top: 15px;
-    width: 325px;
+    width: 100%;
 }
 
 form.lead ol li {
@@ -73,8 +73,13 @@ li#booking_contact_number_input, #booking_number_adult_input, #booking_number_ch
   margin-top: 10px;
 }
 
-form.booking li#booking_number_adult_input input#booking_number_adult, li#booking_number_child_input input#booking_number_child{
-  width: 150px !important;
+form.booking li#booking_number_adult_input input#booking_number_adult, 
+li#booking_number_child_input input#booking_number_child{
+  width: 80% !important;
+}
+
+li#booking_number_child_input input#booking_number_child{
+  margin-left: 85px;
 }
 
 form.booking {

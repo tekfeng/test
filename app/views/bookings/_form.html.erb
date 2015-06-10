@@ -2,10 +2,10 @@
 <%= semantic_form_for @booking,  :url => "/bookings",  :html => {:method => :post} do |form| %>
   <%= form.inputs do %>
     <div class= "form-group">
-      <div class="col-md-10 col-md-offset-1 col-xs-12">
-        <%= form.input :customer_id,:as => :select ,:collection => Customer.all.collect{|t| [t.name + " - " + t.email_address, t.id]},class: 'form-control'%>
+      <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+        <%= form.input :customer_id,:as => :select ,:collection => Customer.all.collect{|t| [t.name + " - " + t.email_address, t.id]}%>
       </div>
-      <div class="col-md-1 col-sm-1 col-xs-12"></div>
+      <div class="col-md-2 col-sm-2 col-xs-12"></div>
     </div><!--select-customer-->
     <div class="col-md-12 col-sm-12 col-xs-12 padding-0 text-center">
       <p>Or</p>
@@ -18,27 +18,36 @@
       <% end %>
     </div> <!--btn create-->
     <div class="form-group">
-      <%= form.input :travel_date,:as => :string, id: 'datetimepicker_from', placeholder: "Travel from", input_html:{class: "form-control input-icon-select-date"}, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12 padding-0"}%>
+      <div class = "col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+      <%= form.input :travel_date,:as => :string, placeholder: "Travel from", input_html:{class: " input-icon-select-date"}%>
+      </div>
+      <div class = "col-md-2 col-sm-2 col-xs-12"></div>
     </div> <!--travel from-->
     <div class="form-group">
-      <%= form.input :travel_to,:as => :string, id: 'datetimepicker_to', placeholder: "Travel to", input_html:{class: "form-control input-icon-select-date" }, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12 padding-0"}%>
+      <div class = "col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+      <%= form.input :travel_to,:as => :string, placeholder: "Travel to", input_html:{class: "input-icon-select-date" }%>
+      </div>
+      <div class = "col-md-2 col-sm-2 col-xs-12"></div>
     </div> <!--travel to-->
     <div class="form-group">
-      <%= form.input :contact_number,:as => :string, placeholder: "Contact Number",  input_html:{class: "form-control"}, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12 padding-0"}%>
+      <div class = "col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+      <%= form.input :contact_number,:as => :string, placeholder: "Contact Number"%>
+      </div>
+      <div class = "col-md-2 col-sm-2 col-xs-12"></div>
     </div> <!--contact-->
     <div class="form-group">
-      <div class="adult-and-child" style="width: 325px; margin: 0px auto;">
-        <div class="input-num-adult-booking-form" style="width: 150px; float: left;">
-          <%= form.input :number_adult, :as => :string, placeholder: "No. of Adults", input_html:{class: 'form-control'}%>
+      <div class="adult-and-child col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+        <div class="input-num-adult-lead-form col-md-6 col-sm-12 col-xs-12 padding-0">
+          <%= form.input :number_adult, :as => :string, placeholder: "No. of Adults"%>
         </div>
-        <div class="nput-num-adult-booking-form" style="width: 150px; float: left; margin-left: 25px;">
-          <%= form.input :number_child, :as => :string, placeholder: "No. of Childrens", input_html:{class: 'form-control '} %>
+        <div class="nput-num-adult-lead-form col-md-6 col-sm-12 col-xs-12 padding-0">
+          <%= form.input :number_child, :as => :string, placeholder: "No. of Childrens"%>
         </div>
-        <div class="col-md-1 col-sm-1 col-xs-12 padding-0"></div>
+        <div class = "col-md-2 col-sm-2 col-xs-12"></div>
       </div>
     </div> <!--aldust+childrent-->
     <div class="form-group">
-      <div class="col-md-7 col-md-offset-5 col-sm-7 col-sm-offset-5 col-xs-12 padding-0 sum-pax-booking">
+      <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0 sum-pax-lead">
           No. of Pax: <p id="sum-pax"></p>
       </div>
     </div>
