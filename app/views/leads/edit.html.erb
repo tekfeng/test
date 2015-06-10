@@ -49,12 +49,13 @@
         <div class='ibox-content container-fluid'>
           <div id="accept" class= "col-md-12 col-sm-12 col-xs-12">
             <div class='col-md-12 col-sm-12 col-xs-12'>
-              <p>New Customer created. Do you want to proceed to create a lead</p>
+              <h3 style="text-align: center;">Do you want to convert this Lead to a Booking?</h3>
+              <p>Once a Lead is converted to a Booking, this Lead will be found under Bookings.</p>
             </div>
             <div class='col-md-12 col-sm-12 col-xs-12 text-center'>
-              <a class="btn btn-white" href='<%= customers_url %>'>No</a>
+              <a class="btn btn-white" href='<%= leads_url %>'>No</a>
               <!-- <button class="btn btn-primary" type="submit">Yes</button> -->
-              <a class="btn btn-white" id="conver-customer-to-lead-url" href='/leads/new'>Yes</a>
+              <a class="btn btn-white" id="conver-customer-to-lead-url" href='/bookings/<%=@lead.id%>/convert_to_booking'>Yes</a>
             </div>
           </div>
         </div>
