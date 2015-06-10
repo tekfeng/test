@@ -32,6 +32,37 @@
  *= require_self
  */
 
+
+
+
+@media screen and (min-width:320px) and (max-width:768px) {
+  .toggle-class-show-hide {
+    
+  }
+  .navbar-top-links {
+    float: right;
+  }
+  .navbar-default {
+    background-color: #263949;
+    z-index: 99999;
+    top: 50px;
+    ul li {
+      background:url("/assets/dashboard/patterns/header-profile.png") no-repeat ;
+    }
+  }  
+ #wrapper div.logo {
+   margin-top: 0px;
+   margin-left: 0px;
+   left: 0%;
+   top: 100px !important;
+ }
+}
+@media screen and (min-width:768px){
+  .navbar-header {
+    display: none;
+  }
+  
+}
 .padding-0{
   padding: 0 !important;
   //margin: 0 !important;
