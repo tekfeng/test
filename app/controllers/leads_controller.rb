@@ -14,8 +14,6 @@ class LeadsController <  BaseController
     end
   end
   
-  
-  
   def new
     @lead = Lead.new
     if params[:customer_id]
