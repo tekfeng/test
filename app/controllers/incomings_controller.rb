@@ -4,7 +4,9 @@ class IncomingsController < BaseController
   
   
   def index
-    @incomings = smart_listing_create(:incomings, Incoming.all, partial: "incomings/list") 
+    @incomings = Incoming.all 
+    @incomings = Incoming.ransack(params[:search]).result if params[:search] 
+    @incomings = smart_listing_create(:incomings, @incomings, partial: "incomings/list") 
   end
   
   def show
