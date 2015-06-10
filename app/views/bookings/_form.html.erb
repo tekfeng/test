@@ -38,8 +38,8 @@
       </div>
     </div> <!--aldust+childrent-->
     <div class="form-group">
-      <div class="col-md-8 col-md-offset-4 col-sm-8 col-sm-offset-4 col-xs-12 padding-0 sum-pax">
-         <p> No. of Pax: </p>
+      <div class="col-md-7 col-md-offset-5 col-sm-7 col-sm-offset-5 col-xs-12 padding-0 sum-pax-booking">
+          No. of Pax: <p id="sum-pax"></p>
       </div>
     </div>
     <% if @booking.new_record?  and !lead %>
@@ -141,6 +141,26 @@
     $('#booking_travel_date').datetimepicker({
      timepicker:false,
      format:'d/m/Y'
+    });
+    
+    //sum-pax
+    $(document.body).delegate("#booking_number_adult, #booking_number_child", "keyup", function(){
+      var adults = $("#booking_number_adult").val();
+      var children = $("#booking_number_child").val();
+      var sum;
+      if(parseInt(adults) && !parseInt(children))
+      {
+        sum = parseInt(adults);
+        $("#sum-pax").html(sum);
+      }
+      else if(!parseInt(adults) && parseInt(children)){
+        sum = parseInt(children);
+        $("#sum-pax").html(sum);
+      }
+      else if (parseInt(adults) && parseInt(children)){
+        sum = parseInt(adults) + parseInt(children);
+        $("#sum-pax").html(sum);
+      }
     });
     
   });  

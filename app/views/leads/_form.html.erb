@@ -17,27 +17,31 @@
       <% end %>
     </div> <!--btn create-->
     <div class="form-group">
-      <%= form.input :travel_from,:as => :string, id: 'datetimepicker_from', placeholder: "Travel from", input_html:{class: "form-control input-icon-select-date"}, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12 padding-0"}%>
+      <div class = "col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+        <%= form.input :travel_from,:as => :string, id: 'datetimepicker_from', placeholder: "Travel from"%>
+      </div>
+      <div class = "col-md-2 col-sm-2 col-xs-12"></div>
     </div> <!--travel from-->
     <div class="form-group">
-      <%= form.input :travel_to,:as => :string, id: 'datetimepicker_to', placeholder: "Travel to", input_html:{class: "form-control input-icon-select-date" }, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12 padding-0"}%>
+      
+      <%= form.input :travel_to,:as => :string, id: 'datetimepicker_to', placeholder: "Travel to"%>, 
     </div> <!--travel to-->
     <div class="form-group">
-      <%= form.input :contact_number,:as => :string, placeholder: "Contact Number",  input_html:{class: "form-control"}, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12 padding-0"}%>
+      <%= form.input :contact_number,:as => :string, placeholder: "Contact Number",  input_html:{class: "form-control"}, wrapper_html: {class: "col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0"}%>
     </div> <!--contact-->
     <div class="form-group">
-      <div class="adult-and-child" style="width: 325px; margin: 0px auto;">
-        <div class="input-num-adult-lead-form" style="width: 150px; float: left;">
+      <div class="adult-and-child">
+        <div class="input-num-adult-lead-form col-md-6 col-sm-12 col-xs-12 padding-0">
           <%= form.input :adults, :as => :string, placeholder: "No. of Adults", input_html:{class: 'form-control'}%>
         </div>
-        <div class="nput-num-adult-lead-form" style="width: 150px; float: left; margin-left: 25px;">
-          <%= form.input :children, :as => :string, placeholder: "No. of Childrens", input_html:{class: 'form-control '} %>
+        <div class="nput-num-adult-lead-form col-md-6 col-sm-12 col-xs-12 padding-0">
+          <%= form.input :children, :as => :string, placeholder: "No. of Childrens", input_html:{class: 'form-control'}%>
         </div>
       </div>
     </div> <!--aldust+childrent-->
     <div class="form-group">
-      <div class="col-md-8 col-md-offset-4 col-sm-8 col-sm-offset-4 col-xs-12 padding-0 sum-pax">
-         <p> No. of Pax: </p>
+      <div class="col-md-7 col-md-offset-5 col-sm-7 col-sm-offset-5 col-xs-12 padding-0 sum-pax-lead">
+        No. of Pax: <p id="sum-pax"></p>
       </div>
     </div>
     <% if @lead.new_record? %>
@@ -125,5 +129,24 @@
      format:'d/m/Y'
     });
     
+    //sum-pax
+    $(document.body).delegate("#lead_adults, #lead_children", "keyup", function(){
+      var adults = $("#lead_adults").val();
+      var children = $("#lead_children").val();
+      var sum;
+      if(parseInt(adults) && !parseInt(children))
+      {
+        sum = parseInt(adults);
+        $("#sum-pax").html(sum);
+      }
+      else if(!parseInt(adults) && parseInt(children)){
+        sum = parseInt(children);
+        $("#sum-pax").html(sum);
+      }
+      else if (parseInt(adults) && parseInt(children)){
+        sum = parseInt(adults) + parseInt(children);
+        $("#sum-pax").html(sum);
+      }
+    });
   });  
 </script>

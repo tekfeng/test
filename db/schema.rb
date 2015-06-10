@@ -39,13 +39,12 @@ ActiveRecord::Schema.define(version: 20150608032726) do
     t.string   "itinerary",      limit: 255
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.string   "booking_number", limit: 255
+    t.string   "name",           limit: 255
     t.integer  "customer_id",    limit: 4
     t.datetime "travel_to"
     t.string   "contact_number", limit: 255
     t.integer  "number_adult",   limit: 4
     t.integer  "number_child",   limit: 4
-    t.integer  "tour_id",        limit: 4
   end
 
   create_table "cities", force: :cascade do |t|

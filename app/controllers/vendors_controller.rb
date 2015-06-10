@@ -1,5 +1,10 @@
 class VendorsController < BaseController
   
+  def dashboard_page
+    render template: "dashboard/dashboard_page", layout: "dashboard"
+  end
+  
+  
   def index   
     @vendors = Vendor.all
     if params[:vendor_categopry_id]
@@ -75,7 +80,6 @@ class VendorsController < BaseController
     else
       render json: { result: 'failed', errors: room.errors.full_messages }
     end
-    
   end
   
   private

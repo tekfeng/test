@@ -52,6 +52,8 @@ gem "non-stupid-digest-assets"
 gem 'sidekiq'
 gem 'fullcalendar-rails', '~> 2.1.1.0'
 gem 'momentjs-rails'
+gem 'prawn', '~> 2.0.0'
+gem 'prawn-table', '~> 0.2.1'
 
 # gem 'capistrano-sidekiq', github: 'seuros/capistrano-sidekiq'
 
@@ -79,3 +81,4 @@ group :test do
 end
 
 gem 'capistrano', '~> 2.15.5'
+gem "smart_listing"

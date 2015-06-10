@@ -1,4 +1,4 @@
-<%= semantic_form_for @customer,:url =>  @customer.new_record? ? "/customers" : "/customers/#{@customer.id}", :html => {:method => @customer.new_record? ? :post : :put} do |form| %>
+<%= semantic_form_for @customer,:url =>  @customer.new_record? ? "/customers" : "/customers/#{@customer.id}", :html => {:method => @customer.new_record? ? :post : :put, :class => "ajax-form customer-form"} do |form| %>
    <div class= "form-group">
      <div class="col-md-12 col-sm-12 col-xs-12 padding-0 text-center">
        <%= form.input :name, :as => :string, placeholder: "Name Customer", input_html:{class: "form-control"}%>
@@ -41,6 +41,18 @@
 <script language="javascript">
   $(document).ready(function() {
     $('.label').hide();
-    $('#customer_country_id, #customer_source_id').selectbox({});
+    var customerCountry = $('#customer_country_id');
+    <% if controller.action_name != "edit" %>
+    customerCountry.append('<option value="0">--Select Country--</option>');
+    customerCountry.val(0);
+    <% end %>
+    customerCountry.selectbox({});
+    
+    var customerSource = $('#customer_source_id');
+    <% if controller.action_name != "edit" %>
+    customerSource.append('<option value="0">--Select Source--</option>');
+    customerSource.val(0);
+    <% end %>
+    customerSource.selectbox({});
   })
 </script>

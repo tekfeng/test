@@ -1,44 +1,39 @@
-<div class='row'>
-  <div class="row wrapper border-bottom white-bg page-heading text-center">
-    <div class="col-lg-12">
-      <div class="col-md-4 col-sm-4 col-xs-12">
-        <div class="edit-lead">
-          <a href="<%= leads_url %>" class="btn btn-white btn-xs pull-left">&larr; Back</a>
-        </div>
-      </div>
-      <div class="col-md-4 col-sm-4 col-xs-12">
-         <h2>Edit Leads</h2>
-         <ol class="breadcrumb">
-           <li>
-             <a href="/dashboard">Home</a>
-           </li>
-           <li>
-             <a href="/dashboard">Sales</a>
-           </li>
-           <li class="active">
-             <strong>Leads</strong>
-           </li>
-         </ol>
-      </div>  
-      <% if controller.action_name == "index" %>    
-       <div class="col-md-4 col-sm-4 col-xs-12">
-          <form class="group-input">
-            <input type='search' id='search-customer' placeholder="Search..." />
-            <a class="submit" type="submit" href="#">
-              <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-            </a>
-          </form>
-        </div>
-      <% else  %>
-        <div class="col-md-4 col-sm-4 col-xs-12">
-          <a href="/leads/<%= @lead.id %>/convert_to_booking">
-            <div class="convert-to-booking btn btn-primary">Convert to Booking</div>
-          </a>
-        </div>
-      <% end %>
-      </div>
+<div class="row wrapper border-bottom white-bg page-heading text-center">
+  <div class="col-md-4 col-sm-4 col-xs-12">
+    <div class="edit-lead">
+      <a href="<%= leads_url %>" class="btn btn-white btn-xs pull-left">&larr; Back</a>
     </div>
   </div>
+  <div class="col-md-4 col-sm-4 col-xs-12">
+     <h2>Edit Leads</h2>
+     <ol class="breadcrumb">
+       <li>
+         <a href="/dashboard">Home</a>
+       </li>
+       <li>
+         <a href="/dashboard">Sales</a>
+       </li>
+       <li class="active">
+         <strong>Leads</strong>
+       </li>
+     </ol>
+   </div>  
+ <% if controller.action_name == "index" %>    
+   <div class="col-md-4 col-sm-4 col-xs-12">
+      <form class="group-input">
+        <input type='search' id='search-customer' placeholder="Search..." />
+        <a class="submit" type="submit" href="#">
+          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+        </a>
+      </form>
+    </div>
+  <% else  %>
+    <div class="col-md-4 col-sm-4 col-xs-12">
+      <a href="/bookings/<%= @lead.id %>/convert_to_booking">
+        <div class="convert-to-booking">Convert to Booking</div>
+      </a>
+    </div>
+  <% end %>
 </div>
 
 <div class='wrapper wrapper-content'>
@@ -47,25 +42,4 @@
       <%= render 'form' %>
     </div>
   </div>
-</div>
-
-<div id="ajax_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class='modal-dialog'>
-    <div class='modal-content'>
-      <div class='ibox'>
-        <div class='ibox-content container-fluid'>
-          <div id="accept" class= "col-md-12 col-sm-12 col-xs-12">
-            <div class='col-md-12 col-sm-12 col-xs-12'>
-              <h3>Do you want to convert this Lead to a Booking?</h3><br/>
-              <p>Once a Lead is converted to a Booking, this Lead will be found under Bookings.</p>
-            </div>
-            <div class='col-md-12 col-sm-12 col-xs-12 text-center'>
-              <a class="btn btn-white" href='<%= leads_url %>'>No</a>
-              <a class="btn btn-white" id="conver-lead-to-booking-url" href='/bookings/new'>Yes</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>    
 </div>

@@ -57,7 +57,7 @@
       </div><!--form-group-customer-->
     </div>
     <div id="listing-table">
-      <%= render :partial => 'list', locals: {customers: @customers}%>
+      <%= smart_listing_render(:customers) %>
     </div>
   </div>
 </div>

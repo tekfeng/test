@@ -41,6 +41,10 @@ table.listing-table thead th.booking-sale a.menu-down,
   left: 5px;
 }
 
+.sum-pax-booking{
+  font-size: 15px;
+}
+
 
 #listing-table{
   margin-top: 20px;
@@ -59,7 +63,6 @@ form.lead ol li {
 }
 
 li#booking_status_input , li#booking_user_id_input, #booking_travel_date{
-  width: 100%;
   margin-bottom: 10px;
   .sbHolder {
     margin-bottom: 20px;
@@ -105,4 +108,13 @@ li.input {
   &:hover {
     background-color:#18a689;
   };
+}
+
+@media (max-width: 767px) {
+  li.stringish input {
+    width:100% !important;
+  }
+  #lead_travel_from, #lead_travel_to, #lead_contact_number {
+    width: 100% !important;
+  }
 }

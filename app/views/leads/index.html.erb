@@ -39,8 +39,9 @@
         <% @leading_new = Lead.new %>
         <%= semantic_form_for @leading_new,  :url => "", :html => {:method => :get }  do |f| %>
           <%= f.inputs do %>
-            <%= f.input :status, :as => :select, collection: Lead.all.collect(&:status) %>
+            <%= f.input :status, :as => :select, collection: Lead.all.collect(&:status).uniq %>
             <%= f.input :user_id, :as => :select, collection: User.all %>
+
             <%= f.input :travel_from, :as => :string, :input_html => { :class => 'input-icon-select-date'}, wrapper_html:{class: "text-center"}, placeholder: "Travel from"%>
             <%= f.input :travel_to, :label => "Travel To", :as => :string, :input_html => { :class => 'input-icon-select-date'}, wrapper_html:{class: "text-center"},placeholder: "Travel to" %>
           <% end %>

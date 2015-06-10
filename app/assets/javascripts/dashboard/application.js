@@ -34,6 +34,7 @@
 //= require dashboard/fullcalendar.js
 //= require dashboard/jquery.fancybox-1.3.4
 //= require dashboard/jquery.selectbox-0.2
+//= require smart_listing
  
 $(document).ready(function() {    
   $(document.body).delegate('.filter-style', 'click', function() {
@@ -214,6 +215,7 @@ $(function() {
   $(document).on('submit', 'form.ajax-form', function(e) {
     var _this = this;
     var noRedirectURLCustomer = $(e.currentTarget).hasClass("customer-form");
+    // console.log("aaahdhdhdhdh", $(e.currentTarget).hasClass("customer-form"))
     
     e.preventDefault(this);
     var formDom = $(this);
@@ -269,10 +271,7 @@ $(function() {
       processData: false,
       contentType: false,
       type: $(this).attr('method') || $(this).find('input[name=_method]:first').val(),
-      success: function(response) {
-        
-        
-        
+      success: function(response) {    
         if(response.result == 'ok') {
           if(response.flash) {
             $.cookie('flashType', response.flash.type, { path: '/' });
@@ -280,7 +279,6 @@ $(function() {
           }//end if
           if (response.customer_id) {
             document.getElementById("conver-customer-to-lead-url").href="/leads/new?customer_id=" + response.customer_id ; 
-            document.getElementById("conver-lead-to-booking-url").href="/bookings/new";
           }
           
           $('#ajax_modal').modal({
