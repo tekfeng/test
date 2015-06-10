@@ -202,10 +202,11 @@ $(function() {
     event.preventDefault();
     
     if ($(".navbar-default").hasClass("toggle-class-show-hide")) {
-      $(".navbar-default").animate({'left': -225});
+      $(".navbar-default").animate({'left': 0});
     }
     else {
-      $(".navbar-default").animate({'left': 0});
+      $(".navbar-default").animate({'left': -225});
+      
     }
     $(".navbar-default").toggleClass("toggle-class-show-hide")
     
