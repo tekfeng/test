@@ -5,7 +5,7 @@ class LeadsController <  BaseController
   
   def index
     if params[:ajax_call]
-      @leads = Lead.search(params)[:leads]
+      @leads = Lead.search(params)
       @leads = smart_listing_create(:leads, @leads, partial: "leads/list") 
       render template: "/leads/filter", layout: false     
     else
@@ -35,11 +35,10 @@ class LeadsController <  BaseController
             tour_category_id: value[:tour_category_id]
           })
         end
-      end
-      
+      end     
       redirect_to leads_url
     else
-      render json: { result: 'failed', errors: @lead.errors }
+      render template: "leads/new"
     end
   end
   
@@ -66,9 +65,9 @@ class LeadsController <  BaseController
           end             
         end
       end      
-       redirect_to leads_url
+      redirect_to leads_url
     else
-      render json: { result: 'failed', errors: @tour.errors }
+      render template: "leads/edit"
     end
   end
   

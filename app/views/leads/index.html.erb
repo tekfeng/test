@@ -21,14 +21,14 @@
             </li>
           </ol>
         </div>
-        <div class="col-md-4 col-sm-4 col-xs-12">
+        <!-- <div class="col-md-4 col-sm-4 col-xs-12">
           <form class="group-input">
             <input type='search' id='search-customer' placeholder="Search..." />
             <a class="submit" type="submit" href="#">
               <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
             </a>
           </form>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -97,12 +97,9 @@
         leadUserId = val;
       }
     });
-    
-    
-    
+        
     $(document.body).delegate("input.filter-lead", "click", function(e){
-      e.preventDefault();
-      
+      e.preventDefault();     
       var url = "/leads";
       var travel_from = $("#lead_travel_from").val();
       var travel_to = $("#lead_travel_to").val();
@@ -118,7 +115,6 @@
           travel_to: travel_to
         },
         success: function(data) {
-          console.log("success")
           $('div#listing-table').html(data);
         },
         error: function() {

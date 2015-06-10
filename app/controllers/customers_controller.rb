@@ -26,10 +26,10 @@ class CustomersController < BaseController
   def create
     @customer = Customer.new(customer_params)
     if @customer.save
-      render json: {result: 'ok', redirect_to: customers_url, customer_id: @customer.id,
+      render json: {result: 'ok', redirect_to: customers_url, customer_id: @customer.id, modal_box: true,
         flash: { type: :notice, message: 'Customer details has been saved successfully!' }}
     else
-      render json: {result: 'false', error: @customer.errors}
+      render template: "customers/new"
     end
   end
   
@@ -43,7 +43,7 @@ class CustomersController < BaseController
       render json: {result: 'ok', redirect_to: customers_url,
         flash: { type: :notice, message: 'Customer details has been saved successfully!' }}
     else
-      render json: { result: 'failed', errors: @customer.errors }
+      render template: "customers/edit"
     end
   end
   
