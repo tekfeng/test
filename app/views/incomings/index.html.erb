@@ -34,6 +34,13 @@
                 <li class="select-form-field">
                  <%= select_tag :source_info_cont, options_for_select(Incoming::SOURCE_INFO.collect{|s| [s, s]}), include_blank: "-- Select Source--", name: "search[source_info_cont]"  %>
                 </li>  
+                <li class="date-form-field">
+                  <%= text_field_tag :from_date, "", name: "search[from_date]", class: "date-field"  %>  <span class='calendar-icon'></span>
+                </li> 
+                <li class="date-form-field" >
+                  <%= text_field_tag :to_date, "", name: "search[to_date]", class: "date-field"  %>
+                  <span class='calendar-icon'></span>
+                </li>  
               </ol>  
             <% end %>
           </div>
