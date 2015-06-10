@@ -22,7 +22,7 @@
         <td><%=  incoming.created_at.strftime("%Y-%-m-%d") %></td>
         <td><%=  incoming.customer_name %></td>
         <td><%=  incoming.email_address %></td>
-        <td>sample@source</td>
+        <td><%=  incoming.source_info %></td>
         <td style='text-align: center;'>
           <%= link_to "View", "/incomings/#{incoming.id}", class: 'btn btn-primary' %>
         </td>
