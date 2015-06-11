@@ -1,0 +1,64 @@
+// Place all the styles related to the incomings controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+table#incomings_listing_table {
+  th {
+    color: #fff;
+    &.odd{
+      a.sortable {
+        color: #fff;
+      }
+      background: #8093a5;
+    }
+    &.even {
+      a.sortable {
+        color: #77888f;
+      }
+      background: #ececec;
+    }
+  }
+  td{
+    &.no-data{
+      text-align: center;
+    }
+  }
+}
+
+form.smart-listing-controls {
+  max-width: 325px;
+  margin: 0 auto;
+  ol{
+    li{
+      margin-bottom: 15px;
+      width:325px;
+    }
+    .select-form-field {
+      .sbHolder {
+        border-radius: 6px !important;
+        width: 325px;
+      }
+    }
+    .date-form-field {
+      position: relative;
+      input {
+        width: 325px;
+        margin:0 auto;
+        display:block;
+        border-radius: 5px;
+        box-shadow: 0 1px 2px #dedede inset;
+        border: 1px solid #ccc;
+        padding:7px;
+      }
+      span.calendar-icon {
+        position: absolute;
+        top:6px;
+        right:5px;
+        background-image: url("/assets/calendar-icon.png");
+        background-repeat: no-repeat;
+        width:20px;
+        height:20px;
+      }
+    }
+  }
+}

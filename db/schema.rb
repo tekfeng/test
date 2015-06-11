@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20150611023215) do
+=======
+ActiveRecord::Schema.define(version: 20150609041332) do
+>>>>>>> incoming_model
 
   create_table "add_username_to_users", force: :cascade do |t|
     t.string   "username",   limit: 255
@@ -77,12 +81,15 @@ ActiveRecord::Schema.define(version: 20150611023215) do
     t.datetime "updated_at"
   end
 
+<<<<<<< HEAD
   create_table "departments", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
 
+=======
+>>>>>>> incoming_model
   create_table "incoming_comments", force: :cascade do |t|
     t.integer  "incoming_id", limit: 4
     t.integer  "user_id",     limit: 4

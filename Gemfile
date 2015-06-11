@@ -52,9 +52,9 @@ gem "non-stupid-digest-assets"
 gem 'sidekiq'
 gem 'fullcalendar-rails', '~> 2.1.1.0'
 gem 'momentjs-rails'
-gem 'prawn', '2.0.0'
+gem 'prawn', '~> 2.0.1'
 gem 'prawn-table', '~> 0.2.1'
-
+gem 'ransack', '~> 1.6.6'
 # gem 'capistrano-sidekiq', github: 'seuros/capistrano-sidekiq'
 
 group :development, :test do
