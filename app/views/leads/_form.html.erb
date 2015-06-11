@@ -124,14 +124,34 @@
       leadCustomerId.prepend('<option value="">Select Customer</option>');
       leadCustomerId.val("");
     <% end %>
-    leadCustomerId.selectbox({});    
+      
+    leadCustomerId.selectbox({
+      onChange: function(val) {
+        $('#lead_customer_id option').removeAttr('selected');
+        $('#lead_customer_id').val(val);
+      }
+    });    
     $('#lead_travel_to').datetimepicker({
-     timepicker:false,
-     format:'d/m/Y'
+      timepicker:false,
+      format:'d/m/Y',
+      onChangeDateTime: function (db, $input) {
+        $('#lead_travel_from').datetimepicker({
+          timepicker: false,
+          format:'d-m-Y',
+          maxDate: db,
+        });
+      }
     });    
     $('#lead_travel_from').datetimepicker({
-     timepicker:false,
-     format:'d/m/Y'
+      timepicker:false,
+      format:'d/m/Y',
+      onChangeDateTime: function (db, $input) {
+        $('#lead_travel_to').datetimepicker({
+          timepicker: false,
+          format:'d-m-Y',
+          minDate: db,
+        });
+      }  
     });
     
     //sum-pax

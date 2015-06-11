@@ -6,7 +6,7 @@ class Customer < ActiveRecord::Base
   has_many :leads
   
   validates :email_address, :name, :uniqueness => true
-  validates :email_address, :email => true 
+  # validates :email_address, :email => true 
   validates :name, :contact_number, :address, :country_id, :source_id, :presence => true
   
   def as_json(options={})
