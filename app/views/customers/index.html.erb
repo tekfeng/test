@@ -6,7 +6,7 @@
         <a href="/dashboard">Home</a>
       </li>
       <li>
-        <a href="/dashboard">Sale</a>
+        <a href="/sales/dashboard">Sales</a>
       </li>
       <li class="active">
         <strong>Customer</strong>
@@ -64,15 +64,11 @@
 
 <script language="javascript">
   $(document).ready(function() {
-    var customerCountryId = $('#customer_country_id');
-    customerCountryId.val(0);
-    $('#customer_source_id').val(0);
-    $('#search-customer').val("");
-    customerCountryId.val(0);
-    $('#customer_source_id').val(0);
-    customerCountryId.selectbox({
+    var customerCountryIdSelexBox = $('#customer_country_id');
+    customerCountryIdSelexBox.val(0);   
+    customerCountryIdSelexBox.selectbox({
       onChange: function (val) {
-        var url = "/customers";
+        var url = "/sales/customers";
         var customerCountryId = val;
         var customerSourceId = $('#customer_source_id').val();
         var keyWord = $('#search-customer').val();
@@ -95,11 +91,14 @@
     });
     
     //select source
+    $('#customer_source_id').val(0);
+    $('#search-customer').val("");
+    $('#customer_source_id').val(0);
     $('#customer_source_id').selectbox({
       onChange: function(val){
-        var url = "/customers";
+        var url = "/sales/customers";
         var customerSourceId = val;
-        var customerCountryId = customerCountryId.val();
+        var customerCountryId = customerCountryIdSelexBox.val();
         var keyWord = $('#search-customer').val();
         $.ajax({
           type: "GET",
@@ -121,9 +120,9 @@
     
     //search customer
     $(document.body).delegate("#search-customer", "keyup", function(){
-      var url = "/customers";
+      var url = "/sales/customers";
       var keyWord = $(this).val();
-      var customerCountryId = customerCountryId.val();
+      var customerCountryId = customerCountryIdSelexBox.val();
       var customerSourceId = $('#customer_source_id').val();
       var timeout;
       clearTimeout(timeout);

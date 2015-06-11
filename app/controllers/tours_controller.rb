@@ -1,22 +1,26 @@
 class ToursController < BaseController
+  include SmartListing::Helper::ControllerExtensions
+  helper  SmartListing::Helper
   
+  def index 
+    @tour_categories = TourCategory.all
+    if params[:ajax_call]
+      @tours = Tour.search(params)[:tours]
+      @tours = smart_listing_create(:tours, @tours, partial: "tours/list", default_sort: {name: "asc"}) 
+      render template: "/tours/filter", layout: false
+    else
+      @tours = Tour.all
+      @tours = smart_listing_create(:tours, @tours, partial: "tours/list", default_sort: {name: "asc"}) 
+    end                        
+  end
   
   def dashboard_page
     render template: "dashboard/dashboard_page", layout: "dashboard"
   end
-   
-  def index
-    @tours = Tour.all
-    @tour_categories = TourCategory.all
-    if params[:ajax_call]
-      @tours = Tour.search(params)[:tours]
-      render :partial => 'tours/list', locals: {tours: @tours}
-    end  
-  end
   
   def new
     @tour = Tour.new
-    @tour_categories = TourCategory.all
+    @tours = TourCategory.all
   end
   
   def create
@@ -31,7 +35,7 @@ class ToursController < BaseController
   
   def edit
     @tour = Tour.find_by_id(params[:id])
-    @tour_categories = TourCategory.all
+    @tours = TourCategory.all
   end
 
   def update

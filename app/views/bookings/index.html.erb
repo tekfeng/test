@@ -14,7 +14,7 @@
               <a href="/dashboard">Home</a>
             </li>
             <li>
-              <a href="/dashboard">Sales</a>
+              <a href="/sales/dashboard">Sales</a>
             </li>
             <li class="active">
               <strong>Booking</strong>
@@ -33,7 +33,7 @@
               <%= f.inputs do %>
               <div class= "form-group">
                 <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
-                  <%= f.input :status, :as => :select, collection: Booking.all.collect(&:status).uniq %>
+                  <%= f.input :status, :as => :select, collection: Booking::BOOKING_STATUS %>
                 </div>
                 <div class="col-md-2 col-sm-2 col-xs-12"></div>
               </div>
@@ -119,7 +119,7 @@
       
     $(document.body).delegate("input.filter-booking", "click", function(e){
       e.preventDefault();     
-      var url = "/bookings";
+      var url = "/sales/bookings";
       var travel_from = $("#booking_travel_date").val();
       var travel_to = $("#booking_travel_to").val();
     

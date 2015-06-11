@@ -1,30 +1,23 @@
-<table class='listing-table'>
-  <thead>
-    <tr>
-      <th class="tour-no">No.</th>
-      <th class="tour-thead-code">Tour Code
-          <a class="menu-down" href="#">
-            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-          </a>
-      </th>
-      <th class="tour-thead-name">Tour Name
-        <a class="menu-down" href="#">
-          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-        </a>
-      </th>
-      <th class="tour-thead-category">Tour Category
-        <a class="menu-down" href="#">
-          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-        </a>
-      </th>
-      <th class="tour-action" style='text-align: center;'>Action</th>
-    </tr>
-  </thead>        
-  <tbody>
-    <% if tours.count > 0 %>
-      <% tours.each_with_index do |tour, index| %>
+<% unless smart_listing.empty? %> 
+  <table class='listing-table'>
+    <thead>
+      <tr>
+        <th class="tour-no">No.</th>
+        <th class="customer-thead-name cus-style-gray"><%= smart_listing.sortable "Tour Code", "code" %></th>
+        <th class="customer-thead-name cus-style-white"><%= smart_listing.sortable "Tour Name", "name" %></th>     
+        <th class="tour-thead-category cus-style-gray">Tour Category</th>
+        <th class="tour-action" style='text-align: center;'>Action</th>
+      </tr>
+    </thead>        
+    <tbody>
+      <% smart_listing.collection.each_with_index do |tour, index| %>
         <tr class="<%= cycle('odd', 'even') %>">
-          <td><%= index + 1 %></td>
+          <% if params[:tours_smart_listing] and params[:tours_smart_listing][:page] and  params[:tours_smart_listing][:page].to_i > 0 %>
+          <% index_show = (params[:tours_smart_listing][:page].to_i - 1)*10 + index + 1 %>
+          <% else %>
+          <% index_show = index + 1 %>
+          <% end %>
+          <td><%= index_show %></td>
           <td><%= tour.code %></td>
           <td><%= tour.name.html_safe %></td>
           <td><%= tour.tour_category ? tour.tour_category.name : "N/A" %></td>
@@ -33,10 +26,9 @@
           </td>
         </tr>
       <% end %>
-    <% else %>
-      <tr>
-        <td colspan='5'>No tour available<td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+   <%= smart_listing.paginate  %>
+<% else %>
+  <p class="warning">No records!</p>
+<% end %>  

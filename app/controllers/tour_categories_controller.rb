@@ -1,19 +1,16 @@
 class TourCategoriesController < BaseController
+  include SmartListing::Helper::ControllerExtensions
+  helper  SmartListing::Helper
   
-  def index
-    @tour_categories = TourCategory.all
-    @order = "asc"
+  def index 
     if params[:ajax_call]
-      @tour_categories = TourCategory.search(params)[:tour_categories]
-      if (params[:order].present?)
-        @order = params[:order].to_s
-        @tour_categories = @tour_categories.order("name " + params[:order])
-      else
-        @tour_categories = @tour_categories.order("name asc")
-      end
-      render :partial => "tour_categories/list" ,locals: {tour_categories: @tour_categories} 
-    end
-    
+      @tour_categories = TourCategory.search(params)
+      @tour_categories = smart_listing_create(:tour_categories, @tour_categories, partial: "tour_categories/list", default_sort: {name: "asc"}) 
+      render template: "/tour_categories/filter", layout: false
+    else
+      @tour_categories = TourCategory.all
+      @tour_categories = smart_listing_create(:tour_categories, @tour_categories, partial: "tour_categories/list", default_sort: {name: "asc"}) 
+    end                        
   end
   
   def new

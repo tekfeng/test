@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
          
   has_many :vendors
   validates :email, :uniqueness => true
-  # validates :email, :email => true
+  validates :email, :email => true
    
   def self.search(opts)
     columns_condition = self.columns.inject([]) do |array, el|

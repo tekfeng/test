@@ -84,6 +84,24 @@ ActiveRecord::Schema.define(version: 20150611023215) do
     t.datetime "updated_at",             null: false
   end
 
+  create_table "incoming_comments", force: :cascade do |t|
+    t.integer  "incoming_id", limit: 4
+    t.integer  "user_id",     limit: 4
+    t.text     "content",     limit: 65535
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  create_table "incomings", force: :cascade do |t|
+    t.string   "customer_name", limit: 255
+    t.string   "email_address", limit: 255
+    t.string   "title",         limit: 255
+    t.text     "content",       limit: 65535
+    t.string   "source_info",   limit: 255
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
   create_table "lead_tour_category_tours", force: :cascade do |t|
     t.integer  "tour_id",          limit: 4
     t.integer  "lead_id",          limit: 4

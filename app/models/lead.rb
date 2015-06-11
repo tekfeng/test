@@ -10,9 +10,6 @@ class Lead < ActiveRecord::Base
   after_create :create_default_value
   
   validates :customer_id, :contact_number, :travel_from, :travel_to, :adults, :children, :presence => true
-  validates :contact_number, numericality: { only_integer: true }
-   
-  BOOKING_STATUS = ['Confirm invoice','Need follow up','Replied','Closed','Allocated','Fully booked','No response','Cancel invoice']
     
   def create_default_value
     self.status = "Allocated"   

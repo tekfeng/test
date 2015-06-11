@@ -7,6 +7,8 @@ class Booking < ActiveRecord::Base
   
   validates :customer_id, :contact_number, :travel_date, :travel_to, :number_adult, :number_child, :presence => true
   
+  BOOKING_STATUS = ['Confirm invoice','Need follow up','Replied','Closed','Allocated','Fully booked','No response','Cancel invoice']
+
   def create_booking_code
     if self.booking_number.nil?
       begin

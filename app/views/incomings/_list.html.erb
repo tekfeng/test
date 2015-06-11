@@ -1,0 +1,37 @@
+<table id="incomings_listing_table" class='listing-table vendor-listing-content-tab-vendor-rates'>
+  <thead>
+    <tr>
+      <th class="odd">
+        <%= smart_listing.sortable "Date", :created_at %>
+      </th>
+      <th class="even" >
+        <%= smart_listing.sortable "Name", :customer_name %>
+      </th>
+      <th class="odd">Email Address
+      </th>
+      <th class="even">
+        <%= smart_listing.sortable "Source", :source_info %>
+      </th>
+      <th class="odd" style='text-align: center;'>
+      </th>
+    </tr>
+  </thead>
+  <% if smart_listing.collection.count > 0 %>
+    <% smart_listing.collection.each_with_index do |incoming, index| %>
+      <tr class="<%= cycle('odd', 'even') %>">
+        <td><%=  incoming.created_at.strftime("%Y-%-m-%d") %></td>
+        <td><%=  incoming.customer_name %></td>
+        <td><%=  incoming.email_address %></td>
+        <td><%=  incoming.source_info %></td>
+        <td style='text-align: center;'>
+          <%= link_to "View", "/sales/incomings/#{incoming.id}", class: 'btn btn-primary' %>
+        </td>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr>
+      <td colspan='5' class="no-data" >No Incoming available</td>
+    </tr>
+  <% end %>
+</table>
+<%= smart_listing.paginate  %>
