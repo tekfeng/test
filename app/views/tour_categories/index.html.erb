@@ -27,7 +27,7 @@
       </div>
     </div>  
     <div id="categories_listing">
-      <%= render :partial => 'list', locals: {tour_categories: @tour_categories} %>
+       <%= smart_listing_render(:tour_categories) %>
     </div>
   </div> <!-- ibox -->
 </div>   

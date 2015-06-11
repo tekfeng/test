@@ -867,3 +867,9 @@ form.tour .sbHolder {
 ul.sbOptions li a[rel=""]{
   display: none;
 }
+.home-link {
+  opacity: 0.7;
+  &:hover{
+    opacity: 1;
+  };
+}

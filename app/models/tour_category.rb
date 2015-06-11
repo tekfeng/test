@@ -17,11 +17,9 @@ class TourCategory < ActiveRecord::Base
       array << "lower(#{self.table_name}.#{el.name}) LIKE :keyword" if (el.type == :string or el.type == :text)
       array
     end
-    page = opts[:page] ? opts[:page].to_i : 1
     tour_categories = self.all
     tour_categories = tour_categories.where(columns_condition.join(" OR "), keyword: "%#{opts[:keyword].downcase}%") if opts[:keyword] && opts[:keyword] != ""
-    # tour_categories = tour_categories.page(page).per(10)
-    return {tour_categories: tour_categories, total_page: 1, current_page: page}
+    return tour_categories
   end
   
   def sortable(opts)
