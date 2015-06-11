@@ -97,6 +97,8 @@ GEM
     docile (1.1.5)
     domain_name (0.5.24)
       unf (>= 0.0.5, < 1.0.0)
+    email_validator (1.5.0)
+      activemodel
     erubis (2.7.0)
     eventmachine (1.0.7)
     execjs (2.4.0)
@@ -194,8 +196,8 @@ GEM
       cocaine (~> 0.5.3)
       mime-types
     pdf-core (0.5.1)
-    prawn (2.0.1)
-      pdf-core (~> 0.5.1)
+    prawn (2.0.0)
+      pdf-core (~> 0.5.0)
       ttfunk (~> 1.4.0)
     prawn-table (0.2.1)
     pry (0.10.1)
@@ -351,6 +353,7 @@ DEPENDENCIES
   capybara (~> 2.4.4)
   database_cleaner (~> 1.4.0)
   devise
+  email_validator (~> 1.5.0)
   factory_girl_rails (~> 4.5.0)
   font-awesome-rails
   formnestic (~> 1.0.2)
@@ -366,7 +369,7 @@ DEPENDENCIES
   non-stupid-digest-assets
   nprogress-rails
   paperclip
-  prawn (~> 2.0.0)
+  prawn (= 2.0.0)
   prawn-table (~> 0.2.1)
   rails (= 4.2.0)
   rspec-rails (~> 3.1.0)
@@ -374,13 +377,10 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   shoulda-matchers (~> 2.7.0)
   sidekiq
-  smart_listing
+  smart_listing (~> 1.1.2)
   spring (~> 1.3.6)
   thin
   turbolinks
   uglifier (>= 1.3.0)
   unicorn
   web-console (~> 2.0)
-
-BUNDLED WITH
-   1.10.0.pre.2

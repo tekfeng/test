@@ -2,21 +2,18 @@
 <table class='listing-table'>
   <thead>
     <tr>
-      <th class="no">No.</th>
-    
+      <th class="no">No.</th>    
       <th class="customer-thead-name cus-style-gray"><%= smart_listing.sortable "Customer Name", "name" %></th>
       <th class="customer-thead-email cus-style-white"><%= smart_listing.sortable "Email Address", "email_address" %></th>
       <th class="customer-thead-contact cus-style-gray"><%= smart_listing.sortable "Contact", "contact_number" %></th>
-      <th class="customer-thead-address cus-style-white"><%= smart_listing.sortable "Address", "address" %></th>      
-      
+      <th class="customer-thead-address cus-style-white"><%= smart_listing.sortable "Address", "address" %></th>      s      
       <th class="customer-thead-country">Country</th>
       <th class="customer-thead-source">Source</th>
       
       <th class="customer-action" style='text-align: center;'>Action</th>
     </tr>
   </thead>     
-  <tbody>
-    
+  <tbody>   
     <% smart_listing.collection.each_with_index do |customer, index| %>
       <tr class="<%= cycle('odd', 'even') %>">
         <% if params[:customers_smart_listing] and params[:customers_smart_listing][:page] and  params[:customers_smart_listing][:page].to_i > 0 %>

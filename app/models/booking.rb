@@ -7,6 +7,7 @@ class Booking < ActiveRecord::Base
   
   validates :customer_id, :presence => true
   validates :contact_number, :presence => true
+  validates :contact_number, numericality: { only_integer: true }
   validates :travel_date, :presence => true
   validates :travel_to, :presence => true
   validates :number_adult, :presence => true
@@ -25,13 +26,11 @@ class Booking < ActiveRecord::Base
   def self.search(opts)
     bookings = self.all
     bookings = bookings.where("bookings.status = ?", opts[:booking_status]) if opts[:booking_status]
-    bookings = bookings.where("bookings.user_id = ?", opts[:user_id].to_i) if opts[:user_id] && opts[:user_id].to_i != 0    
-     
+    bookings = bookings.where("bookings.user_id = ?", opts[:user_id].to_i) if opts[:user_id] && opts[:user_id].to_i != 0        
     if opts[:travel_date].present?    
       travel_date = (opts[:travel_date] + " 00:00:00").to_datetime
       bookings = bookings.where("travel_date >= :time_start", time_start: travel_date)  
     end
-
     if opts[:travel_to].present? 
       travel_to = (opts[:travel_to] + " 23:59:59").to_datetime
       bookings = bookings.where("travel_to <= ?", travel_to)  

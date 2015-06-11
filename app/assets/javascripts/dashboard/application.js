@@ -100,6 +100,7 @@ $(function() {
     $('#tour_tour_category_id').val(0);
     
     $('#tour_tour_category_id').selectbox({
+      
       onChange: function (val) {
         var url = "/tours";
         var tourCategoryId = val;
@@ -172,41 +173,15 @@ $(function() {
     },700);
   });
   
-  //category-sort
-  $(document.body).delegate("th.category-name", "click", function(){
-    var url = "/tour_categories";
-    var keyWord = $("input#search-category").val();
-    var order = "asc";
-    if ($(this).data('order') == "asc") {
-      order = "desc";
-    }
-    $.ajax({
-      url: url,
-      type: "GET",
-      data:{
-        keyword: keyWord,
-        order: order
-      },
-      success: function(data){
-        var result = $(data).find("div#listing-table");
-        $('div#listing-table').html(result);
-      },
-      error: function(){
-      }
-    });
-  });
-  
-  
+  // right-navigation for screen 320-768
   $(document).delegate('.navbar-minimalize.minimalize-styl-2', 'click', function(event) {
-    console.log("hahahahhaha")
     event.preventDefault();
     
     if ($(".navbar-default").hasClass("toggle-class-show-hide")) {
       $(".navbar-default").animate({'left': 0});
     }
     else {
-      $(".navbar-default").animate({'left': -225});
-      
+      $(".navbar-default").animate({'left': -225});     
     }
     $(".navbar-default").toggleClass("toggle-class-show-hide")
     
@@ -228,12 +203,8 @@ $(function() {
   });
   
   $(document).on('submit', 'form.ajax-form', function(e) {
-    var _this = this;
-    
-    
-    var noRedirectURLCustomer = $(e.currentTarget).hasClass("convert-customer-to-lead");
-
-    
+    var _this = this;   
+    var noRedirectURLCustomer = $(e.currentTarget).hasClass("convert-customer-to-lead");   
     e.preventDefault(this);
     var formDom = $(this);
     var formData = new FormData(this);
@@ -317,7 +288,6 @@ $(function() {
         } else {
           handleResponseErrors(response.errors, formDom);
         }//end else
-        console.log("aaaaa")
         submitBtn.html("Save Changes").removeAttr("disabled");        
       }
     });

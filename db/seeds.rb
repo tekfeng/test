@@ -9,7 +9,7 @@
 
 if User.count == 0
   user = User.new({ email: 'admin@sample.com', password: 'password', username: "superadmin" })
-  user.save!
+  user.save(validate: false)
 end
 
 if Season.count == 0
@@ -21,11 +21,11 @@ if Season.count == 0
 end
 
 if City.count == 0
-  City.create(name: "Kota kinabalu")
-  City.create(name: "Ranau")
-  City.create(name: "Sandakan")
-  City.create(name: "Miri")
-  City.create(name: "Sabah")
+  City.create(name: "Ho Chi Minh")
+  City.create(name: "Ha Noi")
+  City.create(name: "Kuala Lumpur")
+  City.create(name: "Binangonan")
+  City.create(name: "Bangkok")
 end
 
 if Department.count == 0

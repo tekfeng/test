@@ -7,12 +7,9 @@ class Tour < ActiveRecord::Base
   
   has_many :booking_tour_category_tours, dependent: :destroy
   
-  validates :name, :presence => true
-  validates :name, :uniqueness => true
-  validates :code, :presence => true
-  validates :code, :uniqueness => true
-  validates :tour_category_id, :presence => true
-  
+  validates :name, :code, :tour_category_id, :presence => true
+  validates :name, :code,  :uniqueness => true
+    
   def as_json(options={})
     {
       id: id,
