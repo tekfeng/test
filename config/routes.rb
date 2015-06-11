@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'quotation', controller: 'dashboard', action: 'quotation'
   get 'invoice', controller: 'dashboard', action: 'invoice'
   get 'itinerary', controller: 'dashboard', action: 'itinerary'
+  get 'sales/dashboard', controller: 'sales', action: 'dashboard' 
   
   root :to => 'dashboard#index'
   resources :dashboard
@@ -13,20 +14,17 @@ Rails.application.routes.draw do
       get :tour_of_tour_category
     end
   end
-  resources :customers do
-    collection do
-      get 'dashboard_page'
-    end
-  end
-  resources :leads do
-    
-  end
   
-  resources :bookings do
-    member do  
-      get :convert_to_booking
+  scope 'sales' do
+    resources :incomings
+    resources :customers 
+    resources :leads
+    resources :bookings do
+      member do  
+        get :convert_to_booking
+      end
     end
-  end
+  end  
  
   resources :vendors do
     
@@ -40,7 +38,6 @@ Rails.application.routes.draw do
      end
    end
   
-  resources :incomings
   
   resources :vendor_categories
   resources :vendor_rates do

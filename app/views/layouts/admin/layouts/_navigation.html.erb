@@ -39,33 +39,33 @@
       
       <% elsif Vendor.showing_section(request) == 2 %> 
          
-         <li class="<%= 'active' if params[:controller] == 'customers' and  controller.action_name == 'dashboard_page'%>">
-           <%= link_to "/customers/dashboard_page" do %>
-           <i class="fa fa-cubes"></i> 
-           <span class="nav-label">Dashboard</span>
+         <li class="<%= 'active' if params[:controller] == 'sales' and  controller.action_name == 'dashboard'%>">
+           <%= link_to "/sales/dashboard" do %>
+             <i class="fa fa-cubes"></i> 
+             <span class="nav-label">Dashboard</span>
            <% end %>
          </li>
          
-        <li class="<%= 'active' if params[:controller] == 'customers' and  controller.action_name != 'dashboard_page'%>">
-          <%= link_to "/customers" do %>
+        <li class="<%= 'active' if params[:controller] == 'customers' %>">
+          <%= link_to "/sales/customers" do %>
           <i class="fa fa-cubes"></i> 
           <span class="nav-label">Customers</span>
           <% end %>
         </li>
         <li class="<%= 'active' if params[:controller] == 'leads' %>">
-          <%= link_to "/leads" do %>
+          <%= link_to "/sales/leads" do %>
           <i class="fa fa-cubes"></i> 
           <span class="nav-label">Leads</span>
           <% end %>
         </li>
         <li class="<%= 'active' if params[:controller] == 'bookings' %>">
-          <%= link_to "/bookings" do %>
+          <%= link_to "/sales/bookings" do %>
           <i class="fa fa-cubes"></i> 
           <span class="nav-label">Booking</span>
           <% end %>
         </li>
         <li class="<%= 'active' if params[:controller] == 'incomings' %>">
-          <%= link_to "/incomings" do %>
+          <%= link_to "/sales/incomings" do %>
           <i class="fa fa-cubes"></i> 
           <span class="nav-label">Incoming</span>
           <% end %>

@@ -11,9 +11,9 @@
     </div> <!--0r-->
     <div class="form-group text-center col-md-12 col-sm-12 col-xs-12 ">
       <% if @lead.customer_id %>
-        <div><a href="/customers/<%=@lead.customer_id%>/edit" class="btn btn-primary ud-vd">Edit Customer Information</a></div>
+        <div><a href="/sales/customers/<%=@lead.customer_id%>/edit" class="btn btn-primary ud-vd">Edit Customer Information</a></div>
       <% else %>
-        <div><a href="/customers/new" class="btn btn-primary ud-vd">Add New Customer</a></div>
+        <div><a href="/sales/customers/new" class="btn btn-primary ud-vd">Add New Customer</a></div>
       <% end %>
     </div> <!--btn create-->
     <div class="form-group">

@@ -18,10 +18,15 @@ table#incomings_listing_table {
       background: #ececec;
     }
   }
+  td{
+    &.no-data{
+      text-align: center;
+    }
+  }
 }
 
 form.smart-listing-controls {
-  max-width: 500px;
+  max-width: 325px;
   margin: 0 auto;
   ol{
     li{

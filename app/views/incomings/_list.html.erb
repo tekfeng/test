@@ -24,13 +24,13 @@
         <td><%=  incoming.email_address %></td>
         <td><%=  incoming.source_info %></td>
         <td style='text-align: center;'>
-          <%= link_to "View", "/incomings/#{incoming.id}", class: 'btn btn-primary' %>
+          <%= link_to "View", "/sales/incomings/#{incoming.id}", class: 'btn btn-primary' %>
         </td>
       </tr>
     <% end %>
   <% else %>
     <tr>
-      <td colspan='6'>No Incoming available<td>
+      <td colspan='5' class="no-data" >No Incoming available</td>
     </tr>
   <% end %>
 </table>

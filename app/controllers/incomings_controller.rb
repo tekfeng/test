@@ -1,7 +1,6 @@
-class IncomingsController < BaseController
+class IncomingsController < SalesController
   include SmartListing::Helper::ControllerExtensions
   helper  SmartListing::Helper
-  
   
   def index
     @incomings = Incoming.all 
