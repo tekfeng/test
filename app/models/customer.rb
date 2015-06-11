@@ -9,7 +9,7 @@ class Customer < ActiveRecord::Base
   validates :email_address, :presence => true
   validates :email_address, :uniqueness => true
   validates :contact_number, :presence => true
-  validates :contact_number, numericality: { only_integer: true }
+  validates :contact_number, numericality: { only_integer: true, message: "is not number. Please enter munber" }
   validates :address, :presence => true
   validates :country_id, :presence => true
   validates :source_id, :presence => true

@@ -9,7 +9,7 @@
 
 if User.count == 0
   user = User.new({ email: 'admin@sample.com', password: 'password', username: "superadmin" })
-  user.save!
+  user.save(validate: false)
 end
 
 if Season.count == 0
