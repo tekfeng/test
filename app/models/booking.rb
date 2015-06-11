@@ -5,13 +5,8 @@ class Booking < ActiveRecord::Base
   accepts_nested_attributes_for :booking_tour_category_tours, allow_destroy: true
   after_create :create_booking_code
   
-  validates :customer_id, :presence => true
-  validates :contact_number, :presence => true
+  validates :customer_id, :contact_number, :travel_date, :travel_to, :number_adult, :number_child, :presence => true
   validates :contact_number, numericality: { only_integer: true }
-  validates :travel_date, :presence => true
-  validates :travel_to, :presence => true
-  validates :number_adult, :presence => true
-  validates :number_child, :presence => true
   
   def create_booking_code
     if self.booking_number.nil?

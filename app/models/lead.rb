@@ -9,13 +9,8 @@ class Lead < ActiveRecord::Base
   
   after_create :create_default_value
   
-  validates :customer_id, :presence => true
-  validates :contact_number, :presence => true
+  validates :customer_id, :contact_number, :travel_from, :travel_to, :adults, :children, :presence => true
   validates :contact_number, numericality: { only_integer: true }
-  validates :travel_from, :presence => true
-  validates :travel_to, :presence => true
-  validates :adults, numericality: { only_integer: true }
-  validates :children, numericality: { only_integer: true }
    
   BOOKING_STATUS = ['Confirm invoice','Need follow up','Replied','Closed','Allocated','Fully booked','No response','Cancel invoice']
     
