@@ -50,9 +50,7 @@
           <i class="fa fa-cubes"></i> 
           <span class="nav-label">Users</span>
           <% end %>
-        </li>
-        
-        
+        </li>     
       
       <% elsif Vendor.showing_section(request) == 2 %> 
          
@@ -81,6 +79,7 @@
           <span class="nav-label">Booking</span>
           <% end %>
         </li>
+        
         <li class="<%= 'active' if params[:controller] == 'incomings' %>">
           <%= link_to "/sales/incomings" do %>
           <i class="fa fa-cubes"></i> 

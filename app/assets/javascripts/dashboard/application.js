@@ -217,7 +217,7 @@ $(function() {
             $.cookie('flashMessage', response.flash.message, { path: '/' });
           }//end if
           if (response.customer_id) {
-            document.getElementById("conver-customer-to-lead-url").href="/leads/new?customer_id=" + response.customer_id ; 
+            document.getElementById("conver-customer-to-lead-url").href="/sales/leads/new?customer_id=" + response.customer_id ; 
           }
           if (response.modal_box){
             $('#ajax_modal').modal({

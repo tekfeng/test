@@ -35,7 +35,7 @@
           <td><%= booking.travel_date ? booking.travel_date.strftime("%d-%m-%Y") : "" %></td>
           <td><%= booking.created_at.strftime("%d-%m-%Y") %></td>
           <td><%= booking.customer.try(:name) %></td>
-          <td><%= booking.booking_tour_category_tours.first.tour.try(:code) %></td>
+          <td><%= booking.booking_tour_category_tours.first ? booking.booking_tour_category_tours.first.tour.try(:code) : "N/A"%></td>
           <td><%= booking.status %></td>
           <td><%= booking.user.try(:username) %></td>                           
           <td style='text-align: center;'>

@@ -1,4 +1,4 @@
-<%= semantic_form_for @lead,  :url =>  @lead.new_record? ?  "/leads" : "/leads/#{@lead.id}",  :html => {:method => @lead.new_record? ? :post : :put, :class => @lead.new_record? ? "new-lead" : ""} do |form| %>
+<%= semantic_form_for @lead,  :url =>  @lead.new_record? ?  "/sales/leads" : "/sales/leads/#{@lead.id}",  :html => {:method => @lead.new_record? ? :post : :put, :class => @lead.new_record? ? "new-lead" : ""} do |form| %>
   <%= form.inputs do %>
     <div class= "form-group">
       <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
