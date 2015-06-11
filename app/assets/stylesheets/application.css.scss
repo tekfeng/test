@@ -29,6 +29,7 @@
   width: 100%; height: 770px;
   background-color: #273a49;
   .six-box {
+    
     ul li {
       color: white;
       a.custom-style-a {
@@ -136,4 +137,63 @@
     bottom: 0px;
     text-align: right;
   }
+}
+
+@media screen and (min-width:320px) and (max-width:480px) {
+  .wrapper-content-admin {
+    background-color: #273a49;
+    height: 2200px;
+    width: 100%;
+    .six-box {
+      padding-top: 0px;
+      width: 320px;
+      margin: 0px auto;
+    }
+    .box-borneo{
+      width: 286px;
+      height: 310px;
+      margin-left: 5px !important;
+    }
+  }
+}
+
+
+@media screen and (min-width:480px) and (max-width:640px) {
+  .wrapper-content-admin {
+    background-color: #273a49;
+    height: 2200px;
+    width: 100%;
+    .six-box {
+      margin: 0 auto;
+      padding-top: 0px;
+      width: 320px;
+    }
+  }
+}
+
+
+@media screen and (min-width:640px) and (max-width:768px) {
+  .wrapper-content-admin {
+    background-color: #273a49;
+    height: 2200px;
+    width: 100%;
+    .six-box {
+      margin: 0 auto;
+      padding-top: 0px;
+      width: 320px;
+    }
+  }
+}
+
+@media screen and (min-width:768px) and (max-width:1023px) {
+  .wrapper-content-admin {
+    background-color: #273a49;
+    height: 1150px;
+    width: 100%;
+  .six-box {
+    margin: 0 auto;
+    padding-top: 55px;
+    width: 675px;
+  }
+}
 }
