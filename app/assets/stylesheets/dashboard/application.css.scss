@@ -769,7 +769,7 @@ form.group-select .sbHolder{
   background: white;
   width: 100%;
   border-radius: 4px;
-  
+  margin-top: 15px;
   .sbSelector {
     color: #5e5e5e;
     width: 100%;
@@ -858,4 +858,8 @@ form.booking .formnestic-nested-model-container .formnestic-list-entries-contain
 }
 form.tour .sbHolder {
   margin-top: 5px !important;
+}
+
+.new-user{
+  margin-top: 15px;
 }

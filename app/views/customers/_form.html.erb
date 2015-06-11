@@ -50,13 +50,23 @@
     customerCountry.prepend('<option value="">--Select Country--</option>');
     customerCountry.val("");
     <% end %>
-    customerCountry.selectbox({});
+    customerCountry.selectbox({
+      onChange: function(val) {
+        $('#customer_country_id option').removeAttr('selected');
+        $('#customer_country_id').val(val);
+      }
+    });
     
     var customerSource = $('#customer_source_id');
     <% if controller.action_name != "edit" %>
     customerSource.prepend('<option value="">--Select Source--</option>');
     customerSource.val("");
     <% end %>
-    customerSource.selectbox({});
+    customerSource.selectbox({
+      onChange: function(val) {
+        $('#customer_source_id option').removeAttr('selected');
+        $('#customer_source_id').val(val);
+      }
+    });
   })
 </script>

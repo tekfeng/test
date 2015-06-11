@@ -11,6 +11,7 @@ class Lead < ActiveRecord::Base
   
   validates :customer_id, :presence => true
   validates :contact_number, :presence => true
+  validates :contact_number, numericality: { only_integer: true }
   validates :travel_from, :presence => true
   validates :travel_to, :presence => true
   validates :adults, :presence => true
