@@ -95,60 +95,9 @@ function handleFormSubmitResponse(response) {
 $(function() {
   //category-select
   $(document).ready(function(){
-    $("input#search-category").val("");
-    $("input#search-tour").val("");
-    $('#tour_tour_category_id').val(0);
-    
-    $('#tour_tour_category_id').selectbox({
-      
-      onChange: function (val) {
-        var url = "/tours";
-        var tourCategoryId = val;
-        var keyWord = $('input#search-tour').val();
-          $.ajax({
-            type: "GET",
-            data: {
-              ajax_call: true,
-              tour_category_id: tourCategoryId,
-              keyword: keyWord
-            },
-            url: url,
-            success: function (data) {
-              
-              $('div#listing-table').html(data)
-            },
-            error: function() {
-            }
-          });
-        },
-    });
+    $("input#search-category").val("");   
   });
-  
-  
-  //tour-search
-  $(document.body).delegate("#search-tour, #select-tour-category", "keyup", function(){
-    var url = "/tours";
-    var keyWord = $(this).val();
-    var tourCategoryId = $('#tour_tour_category_id').val();
-    var timeout;
-    clearTimeout(timeout);
-    timeout = setTimeout(function(){
-    $.ajax({
-          url: url,
-          type: "GET",
-          data:{
-            ajax_call: true,
-            tour_category_id: tourCategoryId,
-            keyword: keyWord
-          },
-          success: function(data) {
-            $('div#listing-table').html(data);
-          },
-          error: function() {
-          }
-       });
-     },700);
-  });
+ 
   
   //category- search
   $(document.body).delegate("#search-category", "keyup", function(){
