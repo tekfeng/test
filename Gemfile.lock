@@ -194,8 +194,8 @@ GEM
       cocaine (~> 0.5.3)
       mime-types
     pdf-core (0.5.1)
-    prawn (2.0.1)
-      pdf-core (~> 0.5.1)
+    prawn (2.0.0)
+      pdf-core (~> 0.5.0)
       ttfunk (~> 1.4.0)
     prawn-table (0.2.1)
     pry (0.10.1)
@@ -366,7 +366,7 @@ DEPENDENCIES
   non-stupid-digest-assets
   nprogress-rails
   paperclip
-  prawn (~> 2.0.0)
+  prawn (= 2.0.0)
   prawn-table (~> 0.2.1)
   rails (= 4.2.0)
   rspec-rails (~> 3.1.0)
