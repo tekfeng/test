@@ -100,6 +100,7 @@ $(function() {
     $('#tour_tour_category_id').val(0);
     
     $('#tour_tour_category_id').selectbox({
+      
       onChange: function (val) {
         var url = "/tours";
         var tourCategoryId = val;
@@ -317,7 +318,6 @@ $(function() {
         } else {
           handleResponseErrors(response.errors, formDom);
         }//end else
-        console.log("aaaaa")
         submitBtn.html("Save Changes").removeAttr("disabled");        
       }
     });

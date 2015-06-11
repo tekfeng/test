@@ -431,9 +431,8 @@ form.lead .formnestic-nested-model-container .formnestic-li-fieldset {
     margin-top:20px;
   }
 }
-
-input.btn-primary[type="submit"] {
-  margin-top: -60px;
+#vendor_filter input.btn-primary[type="submit"] {
+  margin-top: 20px;
 }
 
 input.filter-booking[type="submit"] {
@@ -457,4 +456,15 @@ input.filter-booking[type="submit"] {
   color: #ff0000;
   margin-bottom: -10px;
   margin-top: 5px;
+}
+#vendor_filter {
+  li#vendor_submit_action{
+    width: 320px;
+    .filter-style {
+      margin-left: 0px;
+    }
+  }
+  .sbHolder {
+    width: 320px;
+  }
 }

@@ -28,3 +28,21 @@
   </div>
   
 <% end %>
+<script language="javascript">
+  $(document).ready(function() {
+    $('.label').hide();
+    var tourCategory = $('.tour #tour_tour_category_id');
+    <% if controller.action_name != "edit" %>
+    tourCategory.prepend('<option value="">--Select Tour Category--</option>');
+    tourCategory.val("");
+    <% end %>
+    
+    tourCategory.selectbox({
+      onChange: function(val) {
+        $('.tour #tour_tour_category_id option').removeAttr('selected');
+        $('.tour #tour_tour_category_id').val(val);
+      }
+    });
+    
+  })
+</script>

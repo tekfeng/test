@@ -19,7 +19,7 @@
         <% index_show = index + 1 %>
         <% end %>
         <td><%= index_show %></td>
-        <td><%= user.username %></td>
+        <td><%= user.username.present? ? user.username : "N/A" %></td>
         
         <td style='text-align: center;'>
           <%= link_to "", edit_user_path(user), class: 'glyphicon glyphicon-pencil' %>
