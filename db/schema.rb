@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20150611023215) do
     t.string   "contact_number", limit: 255
     t.integer  "number_adult",   limit: 4
     t.integer  "number_child",   limit: 4
+    t.string   "booking_number", limit: 255
   end
 
   create_table "cities", force: :cascade do |t|
