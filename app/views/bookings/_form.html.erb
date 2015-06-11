@@ -63,9 +63,9 @@
       } do |tour| %>       
         <%= tour.inputs do %>
         
-          <%= tour.input :tour_category_id, :as => :select, :collection => TourCategory.all.collect{|t| [t.name, t.id]},:input_html => { :class => 'form-control booking-tour-category', :id => 'booking_tour_category'}, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12 padding-0 form-control "} %>
+          <%= tour.input :tour_category_id, :as => :select, :collection => TourCategory.all.collect{|t| [t.name, t.id]},:input_html => { :class => 'form-control booking-tour-category', :id => 'booking_tour_category'}, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12 padding-0 form-control "}, include_blank: false %>
         
-          <%= tour.input :tour_id, :as => :select , :collection => tour.object.tour_category.nil? ? [] : tour.object.tour_category.tours.collect{|t| [t.name, t.id]}, :input_html => { :class => 'form-control booking-tour', :id => 'booking_tour'}, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12 padding-0"}%>
+          <%= tour.input :tour_id, :as => :select , :collection => tour.object.tour_category.nil? ? [] : tour.object.tour_category.tours.collect{|t| [t.name, t.id]}, :input_html => { :class => 'form-control booking-tour', :id => 'booking_tour'}, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12 padding-0"}, include_blank: false%>
        
             <script language="javascript">
               $(document).ready(function() {
@@ -79,8 +79,8 @@
                 bookingTour.append('<option value="0">Tour Name</option>');
                 bookingTour.val(0);
                 var bookingTourCategory =  $('#booking_tour_category.booking-tour-category').last();
-                bookingTourCategory.append('<option value="0">Tour Category</option>');
-                bookingTourCategory.val(0);
+                bookingTourCategory.prepend('<option value="">Tour Category</option>');
+                bookingTourCategory.val("");
                 
               <% end %>
                 
@@ -91,8 +91,8 @@
                     var tourOfTourCategory = $(this).closest(".formnestic-li-fieldset").find("select#booking_tour.booking-tour");
                     tourOfTourCategory.selectbox("detach");
                     tourOfTourCategory.html('');
-                    tourOfTourCategory.append('<option value="0">Tour Name</option>');
-                    tourOfTourCategory.val(0);
+                    tourOfTourCategory.prepend('<option value="">Tour Name</option>');
+                    tourOfTourCategory.val("");
                       if (category_id !== null) {
                         $.ajax({
                           url:"/tours/" + category_id + "/tour_of_tour_category",
