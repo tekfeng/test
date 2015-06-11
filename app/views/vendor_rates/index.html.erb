@@ -22,7 +22,7 @@
         <div class='ibox-content'>
           
           <div class="clearfix">
-            <div id="vendor_filter">
+            <div id="vendor_filter" class="reservations">
               <% @vendor_new = Vendor.new %>
               <% @vendor_new.vendor_category_id = params[:vendor_categopry_id].to_i if  params[:vendor_categopry_id] %>
               <%= semantic_form_for @vendor_new,  :url => "", :html => {:method => :get }  do |f| %>
