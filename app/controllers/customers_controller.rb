@@ -10,7 +10,7 @@ class CustomersController < BaseController
     @countries = Country.all
     @sources = Source.all
     if params[:ajax_call]
-      @customers = Customer.search(params)[:customers]
+      @customers = Customer.search(params)
       @customers = smart_listing_create(:customers, @customers, partial: "customers/list", default_sort: {name: "asc"}) 
       render template: "/customers/filter", layout: false
     else

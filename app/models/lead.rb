@@ -14,8 +14,8 @@ class Lead < ActiveRecord::Base
   validates :contact_number, numericality: { only_integer: true }
   validates :travel_from, :presence => true
   validates :travel_to, :presence => true
-  validates :adults, :presence => true
-  validates :children, :presence => true
+  validates :adults, numericality: { only_integer: true }
+  validates :children, numericality: { only_integer: true }
    
   BOOKING_STATUS = ['Confirm invoice','Need follow up','Replied','Closed','Allocated','Fully booked','No response','Cancel invoice']
     
@@ -27,13 +27,11 @@ class Lead < ActiveRecord::Base
   def self.search(opts)
     leads = self.all
     leads = leads.where("leads.status = ?", opts[:lead_status]) if opts[:lead_status]
-    leads = leads.where("leads.user_id = ?", opts[:user_id].to_i) if opts[:user_id] && opts[:user_id].to_i != 0    
-     
+    leads = leads.where("leads.user_id = ?", opts[:user_id].to_i) if opts[:user_id] && opts[:user_id].to_i != 0         
     if opts[:travel_from].present?    
       travel_from = (opts[:travel_from] + " 00:00:00").to_datetime
       leads = leads.where("travel_from >= :time_start", time_start: travel_from)  
     end
-
     if opts[:travel_to].present? 
       travel_to = (opts[:travel_to] + " 23:59:59").to_datetime
       leads = leads.where("travel_to <= ?", travel_to)  

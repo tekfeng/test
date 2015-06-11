@@ -34,13 +34,13 @@
           <%= f.inputs do %>
           <div class= "form-group">
             <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
-              <%= f.input :status, :as => :select, collection: Lead.all.collect(&:status).uniq %>
+              <%= f.input :status, :as => :select, collection: Lead.all.collect(&:status).uniq, include_blank: false %>
             </div>
             <div class="col-md-2 col-sm-2 col-xs-12"></div>
           </div><!--select-booking-status-->
           <div class= "form-group">
             <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
-              <%= f.input :user_id, :as => :select, collection: User.all %>
+              <%= f.input :user_id, :as => :select, collection: User.all, include_blank: false %>
             </div>
             <div class="col-md-2 col-sm-2 col-xs-12"></div>
           </div><!--select-sales-person-->
@@ -100,8 +100,8 @@
     }); 
   
     var leadStatus = $("select#lead_status");
-    leadStatus.append('<option value="0">Booking Status</option>');
-    leadStatus.val(0);
+    leadStatus.prepend('<option value="">Booking Status</option>');
+    leadStatus.val("");
     leadStatus.selectbox({
       onChange: function (val, inst) {
         leadStatusValue = val;
@@ -110,8 +110,8 @@
     
     
     var leadSale = $("select#lead_user_id");
-    leadSale.append('<option value="0">Sale Person</option>');
-    leadSale.val(0);
+    leadSale.prepend('<option value="">Sale Person</option>');
+    leadSale.val("");
     leadSale.selectbox({
       onChange: function (val, inst) {
         leadUserId = val;
