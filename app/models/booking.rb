@@ -6,7 +6,6 @@ class Booking < ActiveRecord::Base
   after_create :create_booking_code
   
   validates :customer_id, :contact_number, :travel_date, :travel_to, :number_adult, :number_child, :presence => true
-  validates :contact_number
   
   def create_booking_code
     if self.booking_number.nil?
