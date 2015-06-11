@@ -70,6 +70,15 @@ class LeadsController <  BaseController
   end
   
   
+  def send_pdf_quotation
+   
+    @lead = Lead.find_by_id(params[:id])
+    pdf_file = QuotationPDF.new({}, @lead.customer, @lead)
+    ApplicationMailer.send_ltinerary_pdf(@lead.customer, pdf_file).deliver
+    redirect_to leads_url
+  end
+  
+  
   private
 
   def lead_params

@@ -28,7 +28,9 @@
       </form>
     </div>
   <% else  %>
+    
     <div class="col-md-4 col-sm-4 col-xs-12">
+      <a class="send-quotation" href="/sales/leads/<%=@lead.id%>/send_pdf_quotation" style="margin-left: 15px;">Send Quotation</a>
       <div class="convert-to-booking">Convert to Booking</div>
     </div>
   <% end %>
@@ -54,7 +56,6 @@
             </div>
             <div class='col-md-12 col-sm-12 col-xs-12 text-center'>
               <a class="btn btn-white" href='<%= leads_url %>'>No</a>
-              <!-- <button class="btn btn-primary" type="submit">Yes</button> -->
               <a class="btn btn-white" id="conver-customer-to-lead-url" href='/sales/bookings/<%=@lead.id%>/convert_to_booking'>Yes</a>
             </div>
           </div>

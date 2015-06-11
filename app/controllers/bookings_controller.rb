@@ -2,7 +2,6 @@ class BookingsController < BaseController
   include SmartListing::Helper::ControllerExtensions
   helper  SmartListing::Helper
   
-  
   def index
     if params[:ajax_call]
       @bookings = Booking.search(params)
@@ -29,8 +28,7 @@ class BookingsController < BaseController
             tour_category_id: value[:tour_category_id]
           })
         end
-      end
-      
+      end   
       redirect_to bookings_url
     else
       render template: "bookings/new"
@@ -58,7 +56,10 @@ class BookingsController < BaseController
   end
   
   def send_pdf_mailer
-    
+    @booking = Booking.find_by_id(params[:id])
+    pdf_file = QuotationPDF.new({}, @booking.customer, @booking)
+    ApplicationMailer.send_ltinerary_pdf(@booking.customer, pdf_file).deliver
+    redirect_to bookings_url
   end
   
   private

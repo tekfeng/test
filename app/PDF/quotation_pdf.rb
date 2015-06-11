@@ -1,24 +1,24 @@
 class QuotationPDF < BorneoPDF
   
-  def initialize(options={}, customer = nil)
-     super(options, customer)
-     basic_information
-     detail_information
+  def initialize(options={}, customer = nil , booking= nil)
+    super(options, customer)
+     basic_information(customer, booking)
+     detail_information(customer, booking)
      how_to_book
      advertisement
      reminder
   end
   
-  def basic_information
+  def basic_information(customer, booking)
     grid([2,0], [2,10]).bounding_box do
       indent(10) do
         formatted_text [{text: "QUOTATION", styles: [:bold], size: 16}]
         move_down 5
-        text "Quotation: AB0001"
+        text "AB0001"
         move_down 5
-        text "Date: <sent date>"
+        text "Date: #{booking.created_at.strftime('%d-%m-%Y')}"
         move_down 5
-        text "Prepared by: <Sales Person>"
+        text "Prepared by: #{booking.user.try(:username)}"
       end 
       move_down 10
       dash(1, space: 1, phase: 0)
@@ -28,16 +28,15 @@ class QuotationPDF < BorneoPDF
   end  
   
   
-  def detail_information
+  def detail_information(customer, booking)
     move_down 10
     header = ["No", "Description", "Cost per pax"]
     data = []  
-    data << header
-    
-    
+    data << header 
+
     content_data  =[]
-    content_data << ["TOUR NAME: <tour name>"]
-    content_data << ["TOUR CODE: <tour code>"]
+    content_data << ["TOUR NAME: Tour visit"]
+    content_data << ["TOUR CODE: 000001"]
     content_data << ["DATE: <date>"]
     content_data << ["DURATION: <duration>"]
     content_data << ["MEALS: <meals>"]
