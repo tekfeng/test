@@ -30,14 +30,15 @@ Rails.application.routes.draw do
     resources :customers 
     resources :leads
     resources :bookings do
+      
       member do  
         get :convert_to_booking
+        get :send_pdf_mailer
       end
     end
   end  
  
-  resources :vendors do
-    
+  resources :vendors do    
     collection do
       get 'dashboard_page'
     end

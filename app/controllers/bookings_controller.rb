@@ -57,6 +57,10 @@ class BookingsController < BaseController
     render template: "/bookings/new", locals: {lead: true} 
   end
   
+  def send_pdf_mailer
+    
+  end
+  
   private
 
   def booking_params
