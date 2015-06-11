@@ -769,7 +769,7 @@ form.group-select .sbHolder{
   background: white;
   width: 100%;
   border-radius: 4px;
-  
+  margin-top: 15px;
   .sbSelector {
     color: #5e5e5e;
     width: 100%;
@@ -848,6 +848,18 @@ form.lead .label {
 .ibox-content .search-tour .group-input{
   margin-top: 30px;
 }
-form .formnestic-nested-model-container .formnestic-list-entries-container li {
+form.booking .formnestic-nested-model-container .formnestic-list-entries-container li {
+  margin-top: 15px;
+}
+
+//user
+#user_email_input, #user_contact_number_input{
+  margin-top: 25px;
+}
+form.tour .sbHolder {
+  margin-top: 5px !important;
+}
+
+.new-user{
   margin-top: 15px;
 }

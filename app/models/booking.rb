@@ -7,6 +7,7 @@ class Booking < ActiveRecord::Base
   
   validates :customer_id, :presence => true
   validates :contact_number, :presence => true
+  validates :contact_number, numericality: { only_integer: true }
   validates :travel_date, :presence => true
   validates :travel_to, :presence => true
   validates :number_adult, :presence => true

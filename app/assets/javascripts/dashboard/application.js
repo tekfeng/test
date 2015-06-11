@@ -308,18 +308,16 @@ $(function() {
           }
           
         if (!noRedirectURLCustomer) {  
-          
           if(typeof(Turbolinks) !== 'undefined') {
-             console.log("2222")
             Turbolinks.visit(response.redirect_to);
           } else {
-            console.log("33333")
             document.location = response.redirect_to;
           }
          } 
         } else {
           handleResponseErrors(response.errors, formDom);
         }//end else
+        console.log("aaaaa")
         submitBtn.html("Save Changes").removeAttr("disabled");        
       }
     });
