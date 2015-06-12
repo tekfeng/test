@@ -47,12 +47,14 @@
     </div> <!--aldust+childrent-->
     <div class="form-group">
       <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0 sum-pax-lead">
-        No. of Pax: <p id="sum-pax"></p>
+        No. of Pax: <span id="sum-pax"></span>
       </div>
     </div>
-    <% if @lead.new_record? %>
+
+    <% if @lead.new_record? and @lead.errors.count == 0 %>
       <% @lead.lead_tour_category_tours.new %>
     <% end %>
+    
     <li class="form-group">
       <%= form.semantic_fields_for :lead_tour_category_tours, {
         min_entry: 3,
@@ -62,15 +64,17 @@
       } do |tour| %>   
         <%= tour.inputs do %>
         
-          <%= tour.input :tour_category_id, :as => :select, :collection => TourCategory.all.collect{|t| [t.name, t.id]},:input_html => { :class => 'lead-tour-category', :id => 'lead_tour_category'}, include_blank: false %>  
+          <%= tour.input :tour_category_id, :as => :select, :collection => TourCategory.all.collect{|t| [t.name, t.id]},:input_html => { :class => 'lead-tour-category', :id => 'lead_tour_category'}%>  
          
-          <%= tour.input :tour_id, :as => :select, :collection => tour.object.tour_category.nil? ? [] : tour.object.tour_category.tours.collect{|t| [t.name, t.id]}, :input_html => { :class => 'lead-tour', :id => 'lead_tour'},include_blank: false %>       
+          <%= tour.input :tour_id, :as => :select, :collection => tour.object.tour_category.nil? ? [] : tour.object.tour_category.tours.collect{|t| [t.name, t.id]}, :input_html => { :class => 'lead-tour', :id => 'lead_tour'} %>    
+             
             <script language="javascript">
-              $(document).ready(function() {           
+              $(document).ready(function() {
                 $('.label').hide();         
-                <% if controller.action_name == "edit" %>                              
-                  var leadTour = $('#lead_tour.lead-tour')
-                  var leadTourCategory =  $('#lead_tour_category.lead-tour-category')                          
+                <% if controller.action_name == "edit"  %>                              
+                  var leadTour = $('#lead_tour.lead-tour');
+                  var leadTourCategory =  $('#lead_tour_category.lead-tour-category') ;  
+                                
                 <% else %>
                   var leadTour = $('#lead_tour.lead-tour').last();
                   var leadTourCategory =  $('#lead_tour_category.lead-tour-category').last();                                      
@@ -122,6 +126,40 @@
 
 <script language="javascript">
   $(document).ready(function() {
+    // run first select box for new lead
+    <% if @lead.errors.count > 0 %>
+    var leadTour = $('#lead_tour.lead-tour');
+      var leadTourCategory =  $('#lead_tour_category.lead-tour-category');
+      leadTour.selectbox({});                          
+      leadTourCategory.selectbox({
+        onChange: function (val, inst) {
+          var category_id = val;
+          var tourOfTourCategory = $(this).closest(".formnestic-li-fieldset").find("select#lead_tour.lead-tour");
+          tourOfTourCategory.selectbox("detach");
+          tourOfTourCategory.html('');
+          tourOfTourCategory.prepend('<option value="">Tour Name</option>');
+          tourOfTourCategory.val("");
+          if (category_id !== null) {
+            $.ajax({
+              url:"/tours/" + category_id + "/tour_of_tour_category",
+              data:{'id':category_id},
+              success:function(data){
+                $.each(data, function(index, item) {
+                  var html = '<option value="'+item.id+'">'+item.name+'</option>';
+                  tourOfTourCategory.append(html);
+                })            
+                tourOfTourCategory.selectbox({});            
+              }
+            })
+          } else {
+            tourOfTourCategory.selectbox({});
+          }
+        }                                                        
+      });
+    <% end %>
+    
+    
+    
     $('.label').hide();
     var leadCustomerId = $('#lead_customer_id');
     <% if controller.action_name != "edit" and !@convert_cus_tomer_to_lead %>        

@@ -26,14 +26,6 @@ class LeadsController <  BaseController
     @lead = Lead.new(lead_params)
     @lead.user_id = current_user.id    
     if @lead.save      
-      if params[:lead] and params[:lead][:lead_tour_category_tours_attributes]
-        params[:lead][:lead_tour_category_tours_attributes].each do |key, value|
-          @lead.lead_tour_category_tours.create({
-            tour_id: value[:tour_id].to_i,
-            tour_category_id: value[:tour_category_id]
-          })
-        end
-      end     
       redirect_to leads_url
     else
       render template: "leads/new"
@@ -48,41 +40,25 @@ class LeadsController <  BaseController
   def update
     @lead = Lead.find(params[:id])
     if @lead.update_attributes(lead_params)
-      if params[:lead] and params[:lead][:lead_tour_category_tours_attributes]
-        params[:lead][:lead_tour_category_tours_attributes].each do |key, value|
-          if value[:id]
-            ltour = LeadTourCategoryTour.find_by_id(value[:id].to_i)
-            ltour.tour_id = value[:tour_id].to_i
-            ltour.tour_category_id = value[:tour_category_id].to_i
-            ltour.save(validate: false)
-          else
-            @lead.lead_tour_category_tours.create({
-              tour_id: value[:tour_id].to_i,
-              tour_category_id: value[:tour_category_id]
-            })
-          end             
-        end
-      end      
       redirect_to leads_url
     else
-      render template: "leads/edit"
+      render :action => "edit"
     end
   end
   
   
-  def send_pdf_quotation
-   
+  def send_pdf_quotation 
     @lead = Lead.find_by_id(params[:id])
     pdf_file = QuotationPDF.new({}, @lead.customer, @lead)
     ApplicationMailer.send_ltinerary_pdf(@lead.customer, pdf_file).deliver
     redirect_to leads_url
-  end
-  
+  end 
   
   private
 
   def lead_params
-    params.require(:lead).permit(:customer_id, :travel_from, :travel_to, :status, :sales_person, :adults, :children, :contact_number, :tour_id)
+    params.require(:lead).permit(:customer_id, :travel_from, :travel_to, :status, :sales_person, :adults, :children, :contact_number,
+    lead_tour_category_tours_attributes:[:tour_id, :tour_category_id ,:_destroy])
   end
   
 end
