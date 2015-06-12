@@ -62,3 +62,138 @@ form.smart-listing-controls {
     }
   }
 }
+.incoming-detail{
+  p.title {
+    font-size:14px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    span{
+      font-weight: 500;
+      padding-left: 10px;
+    }
+    &.no-margin {
+      margin: 0;
+      margin-bottom:10px;
+    }
+    &.legend {
+      padding-bottom: 10px;
+      border-bottom: 1px solid #ebebeb;
+    }
+  }
+  p.content {
+    margin-bottom:15px;
+  }
+  .incoming-header {
+    padding-left: 20px;
+    height: auto;
+    border-bottom: 1px solid #ebebeb;
+    p.title {
+      float:left;
+      display:block;
+      margin-bottom:0px;
+      margin-top:6px;
+    }
+    .sbHolder {
+      margin-bottom:8px;
+    }
+  }
+  .sbHolder {
+    display:block;
+    float:right;
+    width: 130px;
+    background: #fff;
+    border-radius: 6px !important;
+    .sbToggle {
+      background-color: #22a98e;
+      height:28px;
+    }
+    
+    .sbSelector {
+      color: #5e5e5e;
+    }
+    .sbOptions{
+      width:130px;
+      background: #fff;
+      li{
+        a{
+          color: #ddd;
+          &:hover {
+            color: #5e5e5e;
+          }
+        }
+      }
+    }
+  }
+  .sbToggle {
+    background: rgba(0, 0, 0, 0) url("/assets/select-icons.png") no-repeat scroll 0 -116px;
+  }
+  .sbToggleOpen {
+      background: rgba(0, 0, 0, 0) url("/assets/select-icons.png") no-repeat scroll 0 -18px;
+  }
+  div.submit-comment-box{
+    padding:0;
+    textarea#comment_input{
+      height: 70px;
+      resize: none;
+      border-radius: 5px;
+      box-shadow: 0 1px 2px #dedede inset;
+      border: 1px solid #ccc;
+      padding:7px;
+      min-width:230px;
+    }
+    div#submit_comment{
+      float: right;
+      margin-top:10px;
+    }
+  }
+  div.user-info{
+    margin: 2px 0px;
+    padding:0;
+    padding-right:10px;
+    min-width:58px;
+    div.info-content {
+      width:48px;
+      float:right;
+      padding-right:10px;
+      display:block;
+      div.name-label {
+        display:block;
+        color: #5e5e5e;
+        font-size: 12px;
+        text-align:center;
+        width:48px;
+      }
+      div.avatar-box {
+        display:block;
+        background: #ccc;
+        overflow:hidden;
+        border-radius: 24px;
+        box-shadow: 0 1px 2px #dedede;
+        border: 1px solid #ccc;
+        width:48px;
+        img{
+          width:auto;
+          height:auto;
+        }
+      }
+    }
+  }
+  ul.comments-box{
+    padding:0;
+    margin-bottom:35px;
+    li{
+      margin-bottom:10px;
+      div.content-box{
+        padding:10px;
+        border: 1px solid #bebebe;
+        min-width:220px;
+        .time-label{
+          text-align: right;
+          .fa{
+            margin-right:2px;
+          }
+        }
+      }
+    }
+  }
+}
