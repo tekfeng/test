@@ -39,25 +39,10 @@ class LeadsController <  BaseController
 
   def update
     @lead = Lead.find(params[:id])
-    if @lead.update_attributes(lead_edit)
-      if params[:lead] and params[:lead][:lead_tour_category_tours_attributes]
-        params[:lead][:lead_tour_category_tours_attributes].each do |key, value|
-          if value[:id]
-            ltour = LeadTourCategoryTour.find_by_id(value[:id].to_i)
-            ltour.tour_id = value[:tour_id].to_i
-            ltour.tour_category_id = value[:tour_category_id].to_i
-            ltour.save(validate: false)
-          else
-            @lead.lead_tour_category_tours.create({
-              tour_id: value[:tour_id].to_i,
-              tour_category_id: value[:tour_category_id]
-            })
-          end             
-        end
-      end
+    if @lead.update_attributes(lead_params)
       redirect_to leads_url
     else
-      render template: "leads/edit"
+      render :action => "edit"
     end
   end
   
@@ -70,11 +55,7 @@ class LeadsController <  BaseController
   end 
   
   private
-  
-  def lead_edit
-    params.require(:lead).permit(:customer_id, :travel_from, :travel_to, :status, :sales_person, :adults, :children, :contact_number)
-  end
-  
+
   def lead_params
     params.require(:lead).permit(:customer_id, :travel_from, :travel_to, :status, :sales_person, :adults, :children, :contact_number,
     lead_tour_category_tours_attributes:[:tour_id, :tour_category_id ,:_destroy])
