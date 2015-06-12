@@ -80,7 +80,7 @@ li#booking_number_child_input input#booking_number_child{
 }
 
 li#booking_number_child_input input#booking_number_child{
-  margin-left: 85px;
+  margin-left: 20%;
 }
 
 form.booking {
@@ -100,7 +100,19 @@ form.booking p{
 #listing-table {
     margin-top: 20px;
 }
-a.send-quotation, .convert-to-booking {
+a.send-quotation {
+  background-color: #1ab394;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  font-size: 13px;
+  padding: 7px 20px;
+  text-align: center;
+  &:hover {
+    background-color: #18a689;
+  };
+} 
+.convert-to-booking {
   background-color: #1ab394;
   border-radius: 4px;
   color: white;

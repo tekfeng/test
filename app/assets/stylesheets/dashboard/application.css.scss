@@ -869,8 +869,29 @@ ul.sbOptions li a[rel=""]{
   display: none;
 }
 .home-link {
+  float: left;
+  width: 120px;
   opacity: 0.7;
   &:hover{
     opacity: 1;
   };
+}
+.dash-board-admin {
+  width: 100%;
+  height: 1100px;
+  float: left;
+}
+.logo-amazing {
+  opacity: 0.5;
+  width: 290px;
+  height: 138px;
+  margin:0px auto;
+  margin-top: 200px;
+  background-image: url("/assets/logo.png");
+}
+form.lead input.submit-lead-obj {
+  margin-top: 0px !important;
+}
+.lead-form-content {
+  padding-bottom: 60px;
 }

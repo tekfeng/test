@@ -15,7 +15,7 @@ class ToursController < BaseController
   end
   
   def dashboard_page
-    render template: "dashboard/dashboard_page", layout: "dashboard"
+   
   end
   
   def new

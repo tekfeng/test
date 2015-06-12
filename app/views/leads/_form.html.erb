@@ -11,7 +11,7 @@
     </div> <!--0r-->
     <div class="form-group text-center col-md-12 col-sm-12 col-xs-12 ">
       <% if @lead.customer_id %>
-        <div><a href="/sales/customers/<%=@lead.customer_id%>/edit" class="btn btn-primary ud-vd">Edit Customer Information</a></div>
+        <div><a href="/sales/customers/<%=@lead.customer_id%>/edit?lead_id=<%=@lead.id%>" class="btn btn-primary ud-vd">Edit Customer Information</a></div>
       <% else %>
         <div><a href="/sales/customers/new" class="btn btn-primary ud-vd">Add New Customer</a></div>
       <% end %>
@@ -112,7 +112,11 @@
     </li>
   <% end %>
   <div class="col-md-12 col-sm-12 col-xs-12 padding-0 text-center">
-    <%= form.action :submit, :label => "save", :button_html => { :class => "btn btn-primary ud-vd" } %>
+    <li id="lead_submit_action" class="action input_action ">
+      <input type="submit" class="btn btn-primary ud-vd submit-lead-obj" value="save" name="commit">
+      <a class="send-quotation" href="/sales/leads/<%=@lead.id%>/send_pdf_quotation" style="margin-left: 15px;">Send Quotation</a>
+    </li>
+     
   </div>
 <% end %>
 

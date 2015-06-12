@@ -237,7 +237,7 @@ $(function() {
         } else {
           handleResponseErrors(response.errors, formDom);
         }//end else
-        submitBtn.html("Save Changes").removeAttr("disabled");        
+        submitBtn.html("Save").removeAttr("disabled");        
       }
     });
   });
