@@ -58,7 +58,7 @@ class LeadsController <  BaseController
 
   def lead_params
     params.require(:lead).permit(:customer_id, :travel_from, :travel_to, :status, :sales_person, :adults, :children, :contact_number,
-    lead_tour_category_tours_attributes:[:tour_id, :tour_category_id ,:_destroy])
+    lead_tour_category_tours_attributes:[:id, :tour_id, :tour_category_id ,:_destroy])
   end
   
 end

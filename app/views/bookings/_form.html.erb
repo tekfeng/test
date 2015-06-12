@@ -48,10 +48,10 @@
     </div> <!--aldust+childrent-->
     <div class="form-group">
       <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0 sum-pax-lead">
-          No. of Pax: <span id="sum-pax"></span>
+          <span style="float: left;">No. of Pax: </span> <span id="sum-pax" style="padding-bottom: 40px; float: left;"></span>
       </div>
     </div>
-    <% if @booking.new_record?  and !lead %>
+    <% if @booking.new_record?  and !lead and @booking.errors.count == 0 %>
       <% @booking.booking_tour_category_tours.new %>
     <% end %>
     <li class="form-group">
@@ -76,8 +76,8 @@
                 var bookingTourCategory =  $('#booking_tour_category.booking-tour-category')
               <% else %>
                 var bookingTour = $('#booking_tour.booking-tour').last();
-                bookingTour.append('<option value="0">Tour Name</option>');
-                bookingTour.val(0);
+                bookingTour.prepend('<option value="0">Tour Name</option>');
+                bookingTour.val("");
                 var bookingTourCategory =  $('#booking_tour_category.booking-tour-category').last();
                 bookingTourCategory.prepend('<option value="">Tour Category</option>');
                 bookingTourCategory.val("");
@@ -127,6 +127,41 @@
 
 <script language="javascript">
   $(document).ready(function() {
+    
+  <% if  @booking.errors.count > 0  %>
+    var bookingTour = $('#booking_tour.booking-tour')
+    var bookingTourCategory =  $('#booking_tour_category.booking-tour-category')
+      
+    bookingTour.selectbox({});  
+    bookingTourCategory.selectbox({
+      onChange: function (val, inst) {
+        var category_id = val;
+        var tourOfTourCategory = $(this).closest(".formnestic-li-fieldset").find("select#booking_tour.booking-tour");
+        tourOfTourCategory.selectbox("detach");
+        tourOfTourCategory.html('');
+        tourOfTourCategory.prepend('<option value="">Tour Name</option>');
+        tourOfTourCategory.val("");
+          if (category_id !== null) {
+            $.ajax({
+              url:"/tours/" + category_id + "/tour_of_tour_category",
+              data:{'id':category_id},
+              success:function(data){
+                $.each(data, function(index, item) {
+                  var html = '<option value="'+item.id+'">'+item.name+'</option>';
+                  tourOfTourCategory.append(html);
+                })            
+                tourOfTourCategory.selectbox({});
+  
+              }
+            })
+          } else {
+            tourOfTourCategory.selectbox({});
+          }
+      	}
+    });
+  <% end %>
+    
+    
     $('.label').hide();
     var bookingCustomerId = $('#booking_customer_id');
         
