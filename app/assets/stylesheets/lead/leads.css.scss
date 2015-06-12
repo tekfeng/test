@@ -21,7 +21,7 @@ hr{
 .form-group input#lead_children{
   width: 90%;
   margin: 0 auto;
-  margin-left: 85px;
+  float: right;
 }
 
 .btn.btn-primary.filter{
@@ -173,7 +173,10 @@ form.select-lead-status .sbHolder{
 }
 
 #lead_adults, #lead_children{
-   width: 100% !important;
+   width: 80% !important;
+}
+#lead_adults {
+  float: left;
 }
 
 
@@ -277,7 +280,7 @@ form.lead .formnestic-nested-model-container {
 
 #lead_children_input,#lead_adults_input{
   padding: 0 !important;
-  width: 80%;
+  width: 100%;
 }
 
 @media (max-width: 1024px) {
@@ -452,6 +455,7 @@ input.filter-booking[type="submit"] {
 }
 
 .form-group p.inline-errors{
+  float: left;
   padding-left: 0px;
   color: #ff0000;
   margin-bottom: -10px;
@@ -468,3 +472,9 @@ input.filter-booking[type="submit"] {
     width: 320px;
   }
 }
+form.lead .formnestic-nested-model-container .formnestic-li-fieldset .sbHolder .sbOptions li {
+  margin-top: 0px;
+  a:link {
+    margin-top: 15px;
+  }
+} 
