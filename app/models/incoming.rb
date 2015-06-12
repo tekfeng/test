@@ -1,5 +1,6 @@
 class Incoming < ActiveRecord::Base
   
+  has_many :incoming_comments, dependent: :destroy
   
   SOURCE_INFO = ["info@amz", "sample" , "borneo@info"]
   

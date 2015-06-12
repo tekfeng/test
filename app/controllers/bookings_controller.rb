@@ -57,6 +57,10 @@ class BookingsController < BaseController
     render template: "/bookings/new", locals: {lead: true} 
   end
   
+  def send_quotation
+    new QuotationPDF(@booking)
+    ApplicationMailer.send_quotation()
+  end  
   private
 
   def booking_params

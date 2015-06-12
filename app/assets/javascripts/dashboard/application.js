@@ -19,7 +19,6 @@
 //= require iCheck/icheck.min.js
 //= require toastr/toastr.min.js
 //= require ekko-lightbox/ekko-lightbox.js
-
 //= require ./libraries/jquery.cookie.js
 //= require nprogress
 //= require nprogress-turbolinks
@@ -34,6 +33,8 @@
 //= require dashboard/fullcalendar.js
 //= require dashboard/jquery.fancybox-1.3.4
 //= require dashboard/jquery.selectbox-0.2
+//= require dashboard/jquery.timeago
+//= require dashboard/sweet-alert
 //= require smart_listing
  
 $(document).ready(function() {    
@@ -54,6 +55,42 @@ $(document).ready(function() {
     });    
     return false
   });
+  
+  $(document.body).delegate("#submit_comment", "click", function(e){
+      e.preventDefault();
+      var url = $(this).data('url');
+      $(this).html('Submiting...');
+      $(this).attr('disabled', 'disabled');
+      var self = this;
+      $.ajax({
+        url: url,
+        type: "POST",
+        data:{
+          content: $("#comment_input").val()
+        },
+        success: function(data){
+          $(self).removeAttr('disabled');
+          $(self).html('Submit');
+          $('#comment_listings').append(data);
+          $(".timeago").timeago();
+          $(".timeago").prepend("<i class='fa fa-clock-o'></i>");
+          var new_count = parseInt($("p#comment_count").data('count')) + 1;
+          $("p#comment_count").data('count', new_count);
+          $("p#comment_count").html("Comments ("+ new_count +")");
+        },
+        error: function(data){
+          $(self).html('Submit');
+          $(self).removeAttr('disabled');
+          swal("Error!", data.responseJSON.reason , "error");
+          
+        }
+      });
+  });
+  
+  $(".timeago").timeago();
+  $(".timeago").prepend("<i class='fa fa-clock-o'></i>");
+  
+  
 });
 
 

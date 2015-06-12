@@ -26,7 +26,11 @@ Rails.application.routes.draw do
   end
   
   scope 'sales' do
-    resources :incomings
+    resources :incomings do
+      member do
+        post :submit_comment
+      end  
+    end  
     resources :customers 
     resources :leads
     resources :bookings do
