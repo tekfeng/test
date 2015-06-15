@@ -1,0 +1,45 @@
+// Place all the styles related to the vendors controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+table.vendor-listing-content{
+  margin-top:20px;
+}
+
+#vendor_vendor_category_id_input .sbHolder,
+#vendor_city_id_input .sbHolder{
+  margin-left: 0px;
+}
+
+#new_vendor .string.input.required.stringish{
+  margin-top: 25px;
+}
+
+#new_vendor .string.input.optional.stringish{
+  margin-top: 25px;
+}
+
+input.btn-primary[type="submit"] {
+  margin-top: 0px;
+  width: 30%;
+}
+
+form li#vendor_submit_action{
+  margin-left: 0px;
+}
+
+#vendor_filter.reservations {
+  li#vendor_submit_action{
+    width: 100%;
+    .filter-style {
+      margin-left: 0px;
+    }
+  }
+  .sbHolder {
+    width: 100%;
+  }
+}
+
+form#new_vendor .form-group .string.input.stringish{
+  margin-top: 25px;
+}

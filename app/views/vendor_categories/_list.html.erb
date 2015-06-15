@@ -1,0 +1,39 @@
+<% unless smart_listing.empty? %> <!--vendor-category-->
+<table class='listing-table vendor-listing-content'>
+  <thead>
+    <tr>
+      <th class="no">No.</th>    
+      <th class="vendor-category-thead-name cus-style-gray"><%= smart_listing.sortable "Vendor Category", "name" %></th>
+      <th class="vendor-number-thead-email cus-style-white"><%= smart_listing.sortable "Number of Vendors", "number_vendor" %></th>
+      <th class="vendor-action cus-style-gray" style='text-align: center;'>Action</th>
+      <th class="action cus-style-white" style='text-align: center;'>Edit</th>
+      
+    </tr>
+  </thead>     
+  <tbody>   
+    <% smart_listing.collection.each_with_index do |vendor_category, index| %>
+      <tr class="<%= cycle('odd', 'even') %>">
+        <% if params[:vendor_categories_smart_listing] and params[:vendor_categories_smart_listing][:page] and  params[:vendor_categories_smart_listing][:page].to_i > 0 %>
+        <% index_show = (params[:vendor_categories_smart_listing][:page].to_i - 1)*10 + index + 1 %>
+        <% else %>
+        <% index_show = index + 1 %>
+        <% end %>
+        <td><%= index_show %></td>
+        <td><%= vendor_category.name.html_safe %></td>
+        <td><%= vendor_category.vendors.present? ?  vendor_category.vendors.count : "0"  %></td>
+        <td style='text-align: center;'>
+          <%= link_to "View List", "/vendors?vendor_category_id=#{vendor_category.id}", class: 'btn btn-blue' %>
+        </td>
+        <td style='text-align: center;'>
+          <%= link_to "", edit_vendor_category_url(vendor_category), class: 'glyphicon glyphicon-pencil' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+ <%= smart_listing.paginate  %>
+
+<% else %>
+  <p class="warning">No records!</p>
+<% end %> 

@@ -5,7 +5,7 @@ class Booking < ActiveRecord::Base
   accepts_nested_attributes_for :booking_tour_category_tours, allow_destroy: true
   after_create :create_booking_code
   
-  validates :customer_id, :contact_number, :travel_date, :travel_to, :number_adult, :number_child, :presence => true
+  validates :customer_id, :contact_number, :travel_date, :travel_to, :presence => true
   
   BOOKING_STATUS = ['Confirm invoice','Need follow up','Replied','Closed','Allocated','Fully booked','No response','Cancel invoice']
 

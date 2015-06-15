@@ -6,18 +6,18 @@
         
         <th class="customer-thead-name cus-style-gray"><%= smart_listing.sortable "Date", "travel_from" %></th>
         
-        <th class="lead-thead-name">Name</th>
+        <th class="lead-thead-name cus-style-white"><%= smart_listing.sortable "Name", "lead.customer.try(:name) " %></th>
           
-        <th class="lead-thead-email">Email Address</th>
+        <th class="lead-thead-email cus-style-gray"><%= smart_listing.sortable "Email Address", "lead.customer.try(:email_address)" %></th>
         
-        <th class="lead-thead-tour-category">Tour Category</th>
+        <th class="lead-thead-tour-category cus-style-white">Tour Category</th>
         
         <th class="lead-thead-email cus-style-gray"><%= smart_listing.sortable "Status", "status" %></th>
         
        
-        <th class="lead-thead-sale">Sale Person</th>
+        <th class="lead-thead-sale cus-style-white"><%= smart_listing.sortable "Sales Person", "lead.user.try(:username)" %></th>
         
-        <th class="lead-action" style='text-align: center;'>Action</th>
+        <th class="lead-action cus-style-gray" style='text-align: center;'>Action</th>
         
       </tr>
     </thead>  

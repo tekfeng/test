@@ -1,20 +1,53 @@
 <%= semantic_form_for @vendor do |f| %>
     <%= f.inputs do %> 
-      <%= f.input :name,  as: :string, :required => false %>
-      <%= f.input :vendor_type, as: :string, :required => false  %>
-      <%= f.input :email, as: :string, :required => false  %>
-      <%= f.input :contact, as: :string, :required => false  %>
-      <%= f.input :fax, as: :string, :required => false  %>
-      <%= f.input :vendor_category_id, as: :select,  collection: VendorCategory.all.collect{|t| [t.name, t.id]} %>
-      <%= f.input :city_id, as: :select,  collection: City.all.collect{|t| [t.name, t.id]} %>
+    <div class= "form-group">
+      <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+        <%= f.input :name,  as: :string, placeholder: "Name" %>
+      </div>
+    </div>
+    <div class= "form-group">
+      <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+        <%= f.input :vendor_type, as: :string, placeholder: "Vendor type" %>
+      </div>
+    </div>
+    <div class= "form-group">
+      <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+        <%= f.input :email, as: :string, placeholder: "Email"  %>
+      </div>
+    </div>
+    <div class= "form-group">
+      <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+        <%= f.input :contact, as: :string, placeholder: "Contact"  %>
+      </div>
+    </div>
+    <div class= "form-group">
+      <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+        <%= f.input :fax, as: :string, placeholder: "Fax."  %>
+      </div>
+    </div>
+    <div class= "form-group">
+      <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+        <%= f.input :vendor_category_id, as: :select,  collection: VendorCategory.all.collect{|t| [t.name, t.id]} %>
+      </div>
+    </div>
+    <div class= "form-group">
+      <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+       <%= f.input :city_id, as: :select,  collection: City.all.collect{|t| [t.name, t.id]} %>
+      </div>
+    </div>
     <% end %>
     <%= f.actions do %>
+    <div class= "form-group">
+      <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
       <%= f.action :submit, :label => "Save", :button_html => { :class => "btn btn-primary save-form-button submit-bt" } %>
+      </div>
+    </div>
     <% end %>
 <% end %>
   
 <script language="javascript">
   $(document).ready(function() {
+    $(".label").hide();
     $("#vendor_vendor_category_id").selectbox();
     $("#vendor_city_id").selectbox();
   });  

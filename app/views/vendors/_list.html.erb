@@ -1,0 +1,46 @@
+<% unless smart_listing.empty? %> <!--vendors-->
+<table class='listing-table vendor-listing-content'>
+  <thead>
+    <tr>
+      <th class="no">No.</th>    
+      <th class="vendor-thead-name cus-style-gray"><%= smart_listing.sortable "Vendor Name", "name" %></th>
+      <th class="vendor-thead-vendor-type cus-style-white"><%= smart_listing.sortable "Vendor Type", "vendor_type" %></th>
+      <th class="vendor-thead-email cus-style-gray"><%= smart_listing.sortable "Email", "email" %></th>
+      <th class="vendor-thead-contact cus-style-white"><%= smart_listing.sortable "Contact", "contact" %></th>       
+      <th class="vendor-thead-fix cus-style-gray"><%= smart_listing.sortable "Fax", "fax" %></th> 
+      <th class="vendor-thead-city cus-style-white"><%= smart_listing.sortable "City", "city_id" %></th> 
+      <th class="vendor-action cus-style-gray" style='text-align: center;'>Action</th>
+      <th class="action cus-style-white" style='text-align: center;'>Edit</th>
+    </tr>
+  </thead>     
+  <tbody>   
+    <% smart_listing.collection.each_with_index do |vendor, index| %>
+      <tr class="<%= cycle('odd', 'even') %>">
+        <% if params[:vendors_smart_listing] and params[:vendors_smart_listing][:page] and  params[:vendors_smart_listing][:page].to_i > 0 %>
+        <% index_show = (params[:vendors_smart_listing][:page].to_i - 1)*10 + index + 1 %>
+        <% else %>
+        <% index_show = index + 1 %>
+        <% end %>
+        <td><%= index_show %></td>
+        <td><%= vendor.name.html_safe  %></td>
+        <td><%= vendor.vendor_type %></td>
+        <td><%= vendor.email %></td>
+        <td><%= vendor.contact %></td>
+        <td><%= vendor.fax %></td>
+        <td><%= vendor.city ? vendor.city.name : "N/A" %></td>
+        <td style='text-align: center;'>
+          <%= link_to "More Details", "/vendors/#{vendor.id}/more_details", class: 'btn btn-blue' %>
+        </td>
+        <td style='text-align: center;'>
+          <%= link_to "Edit", edit_vendor_url(vendor), class: 'btn edit-btn' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+ <%= smart_listing.paginate  %>
+
+<% else %>
+  <p class="warning">No records!</p>
+<% end %>   

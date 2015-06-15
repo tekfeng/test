@@ -423,7 +423,7 @@ form.lead .formnestic-nested-model-container .formnestic-li-fieldset {
 
 
 .btn.btn-primary.filter-lead{
-  width:100px;
+  //width:100px;
 }
 
 #listing-table{
@@ -457,14 +457,4 @@ input.filter-booking[type="submit"] {
   margin-bottom: -10px;
   margin-top: 5px;
 }
-#vendor_filter.reservations {
-  li#vendor_submit_action{
-    width: 320px;
-    .filter-style {
-      margin-left: 0px;
-    }
-  }
-  .sbHolder {
-    width: 320px;
-  }
-}
+

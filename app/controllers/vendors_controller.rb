@@ -1,4 +1,6 @@
 class VendorsController < BaseController
+  include SmartListing::Helper::ControllerExtensions
+  helper  SmartListing::Helper
   
   def dashboard_page
     render template: "dashboard/dashboard_page", layout: "dashboard"
@@ -6,10 +8,14 @@ class VendorsController < BaseController
   
   
   def index   
-    @vendors = Vendor.all
-    if params[:vendor_categopry_id]
-      @vendors = @vendors.where(vendor_category_id: params[:vendor_categopry_id].to_i)
-    end    
+    if params[:ajax_call]
+      @vendors = Vendor.search(params)
+      @vendors = smart_listing_create(:vendors, @vendors, partial: "vendors/list", default_sort: {name: "asc"}) 
+      render template: "/vendors/filter", layout: false     
+    else
+      @vendors = Vendor.all
+      @vendors = smart_listing_create(:vendors, @vendors, partial: "vendors/list", default_sort: {name: "asc"}) 
+    end 
   end
   
   def filter_vendor
