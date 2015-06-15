@@ -1,11 +1,8 @@
 class Tour < ActiveRecord::Base
   belongs_to :tour_category
-  belongs_to :lead
-  belongs_to :booking
-  has_and_belongs_to_many :bookings, join_table: "booking_tours"
-  has_and_belongs_to_many :lead, join_table: "lead_tours"
-  
+    
   has_many :booking_tour_category_tours, dependent: :destroy
+  has_many :lead_tour_category_tours, dependent: :destroy
   
   validates :name, :code, :tour_category_id, :presence => true
   validates :name, :code,  :uniqueness => true

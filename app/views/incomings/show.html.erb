@@ -18,8 +18,54 @@
   </div>
 </div>
 <div class='wrapper wrapper-content'>
-  <div class='ibox white-bg'>
+  <div class='ibox white-bg incoming-detail'>
+    <div class='ibox-title incoming-header clearfix'>
+      <p class='title'>Date: <span><%= @incoming.created_at.strftime("%Y-%-m-%d") %></span></p>
+      <select id="status_select" >
+        <option value="allocated">Allocated</option>
+      </select>  
+    </div>  
     <div class='ibox-content'>
+      <p class='title'>Title: <span><%= @incoming.title %></span></p>
+      <p class='title no-margin'>Content:</p>
+      <p class='content'><%= @incoming.content %></p> 
+      <p id="comment_count" class='title legend' data-count='<%= @incoming.incoming_comments.count %>'>Comments (<%= @incoming.incoming_comments.count %>)</p>
+      <ul id='comment_listings' class='comments-box'>
+        <% @incoming.incoming_comments.each do |comment| %>
+          <%= render partial: 'comment_box', locals: {comment: comment}%>
+        <% end %>
+      </ul>
+      
+      <div class='submit-comment-box container-fluid'>
+        <div class='user-info col-xs-4 col-sm-4 col-md-4 col-lg-4'>
+          <div class='info-content'>
+            <div class='avatar-box'>
+              <img src="/assets/dashboard/persona.png">
+            </div>
+            <div class='name-label'>You</div>
+          </div>  
+        </div>
+        <textarea id="comment_input" class="col-xs-8 col-sm-8 col-md-8 col-lg-8" ></textarea>
+        <div class="col-xs-12 col-sm-12" style="padding:0;">
+          <div id='submit_comment' class='btn btn-primary' data-url="<%= submit_comment_incoming_url(@incoming) %>">Submit Comment</div>
+        </div>  
+      </div>  
+      
     </div>
   </div>
 </div>
+<script language="javascript">
+  $(document).ready(function() {
+    $('.date-field').datetimepicker({
+      timepicker: false,
+      format:'d-m-Y',
+    }); 
+    
+    $("select#status_select").selectbox({
+      onChange: function(val){
+        $("select#status_select").val(val);
+        $("select#status_select").trigger("change");
+      }
+    });
+  });  
+</script>

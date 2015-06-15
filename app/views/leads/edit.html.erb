@@ -1,6 +1,6 @@
 <div class="row wrapper border-bottom white-bg page-heading text-center">
   <div class="col-md-4 col-sm-4 col-xs-12">
-    <div class="edit-lead">
+    <div class="edit-lead" style="margin-top: 15px;">
       <a href="<%= leads_url %>" class="btn btn-white btn-xs pull-left">&larr; Back</a>
     </div>
   </div>
@@ -28,6 +28,7 @@
       </form>
     </div>
   <% else  %>
+    
     <div class="col-md-4 col-sm-4 col-xs-12">
       <div class="convert-to-booking">Convert to Booking</div>
     </div>
@@ -36,7 +37,7 @@
 
 <div class='wrapper wrapper-content'>
   <div class='ibox white-bg'>
-    <div class='ibox-content'>
+    <div class='ibox-content lead-form-content'>
       <%= render 'form' %>
     </div>
   </div>
@@ -53,8 +54,7 @@
               <p>Once a Lead is converted to a Booking, this Lead will be found under Bookings.</p>
             </div>
             <div class='col-md-12 col-sm-12 col-xs-12 text-center'>
-              <a class="btn btn-white" href='<%= leads_url %>'>No</a>
-              <!-- <button class="btn btn-primary" type="submit">Yes</button> -->
+              <a class="btn btn-white" href='<%= edit_lead_url(@lead) %>'>No</a>
               <a class="btn btn-white" id="conver-customer-to-lead-url" href='/sales/bookings/<%=@lead.id%>/convert_to_booking'>Yes</a>
             </div>
           </div>

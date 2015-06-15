@@ -39,7 +39,7 @@
           <td><%= booking.status %></td>
           <td><%= booking.user.try(:username) %></td>                           
           <td style='text-align: center;'>
-           <%= link_to "Send", "/bookings/#{booking.id}/send", class: 'btn btn-primary' %>
+           <%= link_to "Send", "/sales/bookings/#{booking.id}/send_pdf_mailer", class: 'btn btn-primary' %>
           </td>  
         </tr>
       <% end %>

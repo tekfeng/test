@@ -26,18 +26,28 @@ Rails.application.routes.draw do
   end
   
   scope 'sales' do
-    resources :incomings
+    resources :incomings do
+      member do
+        post :submit_comment
+      end  
+    end  
     resources :customers 
-    resources :leads
+    resources :leads do 
+      member do  
+        get :send_pdf_quotation
+      end
+      
+    end
     resources :bookings do
+      
       member do  
         get :convert_to_booking
+        get :send_pdf_mailer
       end
     end
   end  
  
-  resources :vendors do
-    
+  resources :vendors do    
     collection do
       get 'dashboard_page'
     end

@@ -21,7 +21,7 @@ hr{
 .form-group input#lead_children{
   width: 90%;
   margin: 0 auto;
-  margin-left: 85px;
+  float: right;
 }
 
 .btn.btn-primary.filter{
@@ -36,7 +36,7 @@ hr{
   
 }
 
-.new-lead #new{
+.new-booking #new, .new-lead #new{
   margin-top: 20px;
 }
 
@@ -173,11 +173,14 @@ form.select-lead-status .sbHolder{
 }
 
 #lead_adults, #lead_children{
-   width: 100% !important;
+   width: 80% !important;
+}
+#lead_adults {
+  float: left;
 }
 
 
-form.lead div.formnestic-nested-model-container div.formnestic-list-new-entry-link-container a {
+form.booking div.formnestic-nested-model-container div.formnestic-list-new-entry-link-container a, form.lead div.formnestic-nested-model-container div.formnestic-list-new-entry-link-container a {
   float: right;
   display: block;
   background-color: #1ab394;
@@ -277,7 +280,7 @@ form.lead .formnestic-nested-model-container {
 
 #lead_children_input,#lead_adults_input{
   padding: 0 !important;
-  width: 80%;
+  width: 100%;
 }
 
 @media (max-width: 1024px) {
@@ -452,9 +455,27 @@ input.filter-booking[type="submit"] {
 }
 
 .form-group p.inline-errors{
+  float: left;
   padding-left: 0px;
   color: #ff0000;
   margin-bottom: -10px;
   margin-top: 5px;
 }
 
+#vendor_filter.reservations {
+  li#vendor_submit_action{
+    width: 320px;
+    .filter-style {
+      margin-left: 0px;
+    }
+  }
+  .sbHolder {
+    width: 320px;
+  }
+}
+form.lead .formnestic-nested-model-container .formnestic-li-fieldset .sbHolder .sbOptions li {
+  margin-top: 0px;
+  a:link {
+    margin-top: 15px;
+  }
+} 

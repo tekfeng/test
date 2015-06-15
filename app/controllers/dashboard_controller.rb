@@ -5,7 +5,8 @@ class DashboardController < BaseController
   end
   
   def quotation
-    send_data(QuotationPDF.new.render, filename: 'quotation.pdf', disposition: :inline, stream: true, :type => "application/pdf")
+    @lead = Lead.find_by_id(params[:id])
+    send_data(QuotationPDF.new({}, @lead.customer, @lead).render, filename: 'quotation.pdf', disposition: :inline, stream: true, :type => "application/pdf")
   end
   
   def itinerary

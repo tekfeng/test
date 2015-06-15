@@ -29,6 +29,7 @@
  *= require dashboard/fullcalendar.css
  *= require dashboard/jquery.fancybox-1.3.4.css
  *= require dashboard/jquery.selectbox.css
+ *= require dashboard/sweet-alert.css
  *= require incomings
  *= require ./vendors
  *= require_self
@@ -341,6 +342,7 @@ div.logo {
         line-height: 30px;
         position: absolute;
         left: 1px;
+        top: 1px !important;
         text-align: center;
         width: 32px;
     }
@@ -864,27 +866,54 @@ form.tour .sbHolder {
   margin-top: 5px !important;
 }
 
-.new-user{
+.new-user {
   margin-top: 15px;
 }
-ul.sbOptions li a[rel=""]{
+ul.sbOptions li a[rel=""] {
   display: none;
 }
 .home-link {
+  float: left;
+  width: 120px;
   opacity: 0.7;
   &:hover{
     opacity: 1;
   };
 }
 
-input#user_email.form-control, input#user_password.form-control{
+input#user_email.form-control, input#user_password.form-control {
   width: 80%;
 }
 
-.group-input a.submit{
+.group-input a.submit {
   top:1px;
 }
 
-input#user_email.form-control.email{
+input#user_email.form-control.email {
   width: 100%;
+}
+.dash-board-admin {
+  width: 100%;
+  height: 1100px;
+  float: left;
+}
+.logo-amazing {
+  opacity: 0.5;
+  width: 290px;
+  height: 138px;
+  margin:0px auto;
+  margin-top: 200px;
+  background-image: url("/assets/logo.png");
+}
+form.lead input.submit-lead-obj {
+  margin-top: 0px !important;
+}
+.lead-form-content {
+  padding-bottom: 60px;
+}
+.formnestic-list-entries-container li p.inline-errors {
+  margin-left: 17%;
+}
+form.booking .formnestic-list-entries-container fieldset li {
+  height: auto;
 }

@@ -1,11 +1,10 @@
 class BorneoPDF < Prawn::Document
   
   def initialize(options={}, customer = nil)
-     options.merge({:page_layout => :portrait, :page_size => "A4", margin: 5})
-     super(options)
+    super(options.merge({:page_layout => :portrait, :page_size => "A4", margin: 5}))
      define_grid(:columns => 12, :rows => 8, :gutter => 5)
      logo
-     to_customer
+     to_customer(customer)
      from_office
      # grid.show_all
   end
@@ -16,13 +15,13 @@ class BorneoPDF < Prawn::Document
     end
   end  
   
-  def to_customer
+  def to_customer(customer)
     grid([1,0], [1,4]).bounding_box do
       font_size(11)
       indent(15) do
         text "TO"
-        text "<Customer Name>"
-        text "<Email address>"
+        text "#{customer.name}"
+        text "#{customer.email_address}"
       end  
     end  
   end
@@ -32,7 +31,9 @@ class BorneoPDF < Prawn::Document
       move_down 5
       font_size(11)
       text "Malaysia Main Office"
-      text "Amazing Borneo Tours & Events Sdn. Bhd. Co. Licence No. 827148-U MOCAT Licence No. KPL/LN 5746
+      text "Amazing Borneo Tours & Events Sdn. Bhd."
+      text "Co. Licence No. 827148-U MOCAT Licence"
+      text "No. KPL/LN 5746 
       Lot 1-39, Star City North Complex,
       1st Floor, Jalan Asia City, 88000,
       Kota Kinabalu, Sabah, Malaysia"

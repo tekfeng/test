@@ -1,8 +1,6 @@
 class Lead < ActiveRecord::Base
   belongs_to :customer
   belongs_to :user
-  has_many :tours
-  accepts_nested_attributes_for :tours, allow_destroy: true
   
   has_many :lead_tour_category_tours, dependent: :destroy
   accepts_nested_attributes_for :lead_tour_category_tours, allow_destroy: true  
@@ -29,6 +27,18 @@ class Lead < ActiveRecord::Base
       leads = leads.where("travel_to <= ?", travel_to)  
     end   
     return leads    
+  end
+  
+  def number_of_pax
+    if self.adults and self.children
+      self.adults + self.children
+    elsif self.adults
+      self.adults
+    elsif self.children
+      self.children
+    else
+      ""
+    end     
   end
   
 end
