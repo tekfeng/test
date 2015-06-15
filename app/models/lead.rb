@@ -29,6 +29,18 @@ class Lead < ActiveRecord::Base
     return leads    
   end
   
+  def number_of_pax
+    if self.adults and self.children
+      self.adults + self.children
+    elsif self.adults
+      self.adults
+    elsif self.children
+      self.children
+    else
+      ""
+    end     
+  end
+  
 end
 
 

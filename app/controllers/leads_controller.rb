@@ -46,9 +46,10 @@ class LeadsController <  BaseController
     end
   end
   
+  
   def send_pdf_quotation 
     @lead = Lead.find_by_id(params[:id])
-    ApplicationMailer.delay.send_ltinerary_pdf(@lead.customer, @lead).deliver
+    ApplicationMailer.delay.send_quotation_pdf(@lead.customer, @lead)
     redirect_to leads_url
   end 
   

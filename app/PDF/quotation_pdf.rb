@@ -1,24 +1,24 @@
 class QuotationPDF < BorneoPDF
   
-  def initialize(options={}, customer = nil , booking= nil)
+  def initialize(options={}, customer = nil , lead= nil )
     super(options, customer)
-     basic_information(customer, booking)
-     detail_information(customer, booking)
+     basic_information(customer, lead)
+     detail_information(customer , lead)
      how_to_book
      advertisement
      reminder
   end
   
-  def basic_information(customer, booking)
+  def basic_information(customer, lead)
     grid([2,0], [2,10]).bounding_box do
       indent(10) do
         formatted_text [{text: "QUOTATION", styles: [:bold], size: 16}]
         move_down 5
         text "AB0001"
         move_down 5
-        text "Date: #{booking.created_at.strftime('%d-%m-%Y')}"
+        text "Date: #{lead.created_at.strftime('%d-%m-%Y')}"
         move_down 5
-        text "Prepared by: #{booking.user.try(:username)}"
+        text "Prepared by: #{lead.user.try(:username)}"
       end 
       move_down 10
       dash(1, space: 1, phase: 0)
@@ -28,46 +28,48 @@ class QuotationPDF < BorneoPDF
   end  
   
   
-  def detail_information(customer, booking)
+  def detail_information(customer, lead)
     move_down 10
     header = ["No", "Description", "Cost per pax"]
     data = []  
     data << header 
-
-    content_data  =[]
-    content_data << ["TOUR NAME: Tour visit"]
-    content_data << ["TOUR CODE: 000001"]
-    content_data << ["DATE: <date>"]
-    content_data << ["DURATION: <duration>"]
-    content_data << ["MEALS: <meals>"]
-    content_data << [" "]
-    content_data << ["Includes: "]
-    content_data << ["• Return Airport Transfers in clean, comfortable SIC (Seat In Coach)"]
-    content_data << ["• All Meals as stated in Itinerary"]
-    content_data << ["• Rafting equipment, Life Jacket, Rafting Insurance"]
-    content_data << ["• 01 River Guide (For White Water Rafting)"]
-    content_data << ["• 01 MMA Session with Sabahan One FC Fighters"]
-    content_data << ["• 01 English-speaking licensed Tour guide"]
-    content_data << ["• All Land transportation as part of the tours"]
-    content_data << [" "]
-    content_data << ["Accommodation : 03 Nights Accommodation in 3 Star City Hotel (Twin- sharing)"]
-    content_data << [" "]
-    content_table = make_table(content_data, width: 400) do
-      cells.style do |c|
-        c.border_color = 'FFFFFF'
-        c.border_width = 0
-        c.padding = [5,0,0,5]
-        if c.row <= 4 
-          c.font_style = :bold
-          c.size = 12
-        end  
-      end
-    end  
-    row1 = ["01", content_table, ""]
-    cost_row = ["", "Cost per person (Minimum 2 pax)", {content: "MYR690", align: :right}]
-    data << row1
-    data << cost_row
-    table(data, :width => 530, :cell_style =>  {:size => 12}, :column_widths => [40,400,90], :position => 10 ) do
+    
+    lead.lead_tour_category_tours.each_with_index do | lead_tour , index|
+      tour = lead_tour.tour
+      content_data  =[]
+      content_data << ["TOUR NAME: #{tour.name}"]
+      content_data << ["TOUR CODE: #{tour.code}"]
+      content_data << ["DATE: #{lead.travel_from.strftime('%d-%B-%Y')}"]
+      content_data << ["DURATION: 4D3N"]
+      content_data << ["MEALS: 03 Breakfasts, 01 Lunch"]
+      content_data << [" "]
+      content_data << ["Includes: "]
+      content_data << ["• Return Airport Transfers in clean, comfortable SIC (Seat In Coach)"]
+      content_data << ["• All Meals as stated in Itinerary"]
+      content_data << ["• Rafting equipment, Life Jacket, Rafting Insurance"]
+      content_data << ["• 01 River Guide (For White Water Rafting)"]
+      content_data << ["• 01 MMA Session with Sabahan One FC Fighters"]
+      content_data << ["• 01 English-speaking licensed Tour guide"]
+      content_data << ["• All Land transportation as part of the tours"]
+      content_data << [" "]
+      content_data << ["Accommodation : 03 Nights Accommodation in 3 Star City Hotel (Twin- sharing)"]
+      content_data << [" "]
+      content_table = make_table(content_data, width: 400) do
+        cells.style do |c|
+          c.border_color = 'FFFFFF'
+          c.border_width = 0
+          c.padding = [5,0,0,5]
+          if c.row <= 4 
+            c.font_style = :bold
+            c.size = 12
+          end  
+        end
+      end  
+      row1 = ["#{index + 1}", content_table, ""]
+      cost_row = ["", "Cost per person (Minimum 2 pax)", {content: "MYR690", align: :right}]
+      data << row1
+      data << cost_row
+      table(data, :width => 530, :cell_style =>  {:size => 12}, :column_widths => [40,400,90], :position => 10 ) do
         cells.style do |c|
           if c.row == 0 
             c.background_color = '2E3091'
@@ -78,7 +80,9 @@ class QuotationPDF < BorneoPDF
             c.font_style = :bold
           end     
         end
-      end  
+      end
+    end  
+    
   end
   
   def how_to_book
