@@ -920,12 +920,7 @@ form.booking .formnestic-list-entries-container fieldset li {
 .align-center {
   text-align: center;
 }
-form.vendor {
-  .sbHolder {
-    margin-top: 0px;
-  }
-}
-#vendor_filter .sbHolder {
-  margin-top: 20px;
+form.vendor .form-group .string.input.stringish {
+  margin-top: 25px;
 }
 
