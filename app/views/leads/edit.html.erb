@@ -54,7 +54,7 @@
               <p>Once a Lead is converted to a Booking, this Lead will be found under Bookings.</p>
             </div>
             <div class='col-md-12 col-sm-12 col-xs-12 text-center'>
-              <a class="btn btn-white" href='<%= leads_url %>'>No</a>
+              <a class="btn btn-white" href='<%= edit_lead_url(@lead) %>'>No</a>
               <a class="btn btn-white" id="conver-customer-to-lead-url" href='/sales/bookings/<%=@lead.id%>/convert_to_booking'>Yes</a>
             </div>
           </div>

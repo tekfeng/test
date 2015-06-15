@@ -47,7 +47,9 @@
     </div> <!--aldust+childrent-->
     <div class="form-group">
       <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0 sum-pax-lead">
-        <span style="float: left;">No. of Pax: </span><span id="sum-pax" style="padding-bottom: 40px; float: left;"></span>
+        <span style="float: left; margin-right: 7px;">No. of Pax: 
+          
+        </span><span id="sum-pax" style="padding-bottom: 40px; float: left;"><%= @lead.number_of_pax %></span>
       </div>
     </div>
 
@@ -117,8 +119,10 @@
   <% end %>
   <div class="col-md-12 col-sm-12 col-xs-12 padding-0 text-center">
     <li id="lead_submit_action" class="action input_action ">
-      <input type="submit" class="btn btn-primary ud-vd submit-lead-obj" value="save" name="commit">
-      <a class="send-quotation" href="/sales/leads/<%=@lead.id%>/send_pdf_quotation" style="margin-left: 15px;">Send Quotation</a>
+      <input type="submit" class="btn btn-primary ud-vd submit-lead-obj" value="Save" name="commit">
+        <% if !@lead.new_record? %>
+          <a class="send-quotation" href="/sales/leads/<%=@lead.id%>/send_pdf_quotation" style="margin-left: 15px;">Send Quotation</a>
+        <% end %>
     </li>
      
   </div>
@@ -173,20 +177,10 @@
         $('#lead_customer_id').val(val);
       }
     });    
-    $('#lead_travel_to').datetimepicker({
-      timepicker:false,
-      format:'d/m/Y',
-      onChangeDateTime: function (db, $input) {
-        $('#lead_travel_from').datetimepicker({
-          timepicker: false,
-          format:'d-m-Y',
-          maxDate: db,
-        });
-      }
-    });    
+    
     $('#lead_travel_from').datetimepicker({
       timepicker:false,
-      format:'d/m/Y',
+      format:'d-m-Y',
       onChangeDateTime: function (db, $input) {
         $('#lead_travel_to').datetimepicker({
           timepicker: false,
@@ -195,6 +189,20 @@
         });
       }  
     });
+    
+    $('#lead_travel_to').datetimepicker({
+      timepicker:false,
+      format:'d-m-Y',
+      onChangeDateTime: function (db, $input) {
+        $('#lead_travel_from').datetimepicker({
+          timepicker: false,
+          format:'d-m-Y',
+          maxDate: db,
+        });
+      }
+    });   
+     
+    
     
     //sum-pax
     $(document.body).delegate("#lead_adults, #lead_children", "keyup", function(){
