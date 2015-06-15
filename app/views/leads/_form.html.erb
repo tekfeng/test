@@ -47,7 +47,7 @@
     </div> <!--aldust+childrent-->
     <div class="form-group">
       <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0 sum-pax-lead">
-        No. of Pax: <span id="sum-pax"></span>
+        <span style="float: left;">No. of Pax: </span><span id="sum-pax" style="padding-bottom: 40px; float: left;"></span>
       </div>
     </div>
 
@@ -128,7 +128,7 @@
   $(document).ready(function() {
     // run first select box for new lead
     <% if @lead.errors.count > 0 %>
-    var leadTour = $('#lead_tour.lead-tour');
+      var leadTour = $('#lead_tour.lead-tour');
       var leadTourCategory =  $('#lead_tour_category.lead-tour-category');
       leadTour.selectbox({});                          
       leadTourCategory.selectbox({

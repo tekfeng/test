@@ -25,7 +25,6 @@
 //= require summernote/summernote.min.js
 //= require ./select_box/jquery.selectbox-0.2.js
 //= requite customer/customers
-//= requite ./datetimepicker/jquery.datetimepicker.js
 //= require formnestic/formnestic
 //= require dashboard/selectordie.js
 //= require dashboard/jquery.datetimepicker.js

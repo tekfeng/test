@@ -20,15 +20,7 @@ class BookingsController < BaseController
   def create
     @booking = Booking.new(booking_params)
     @booking.user_id = current_user.id    
-    if @booking.save      
-      if params[:booking] and params[:booking][:booking_tour_category_tours_attributes]
-        params[:booking][:booking_tour_category_tours_attributes].each do |key, value|
-          @booking.booking_tour_category_tours.create({
-            tour_id: value[:tour_id].to_i,
-            tour_category_id: value[:tour_category_id]
-          })
-        end
-      end   
+    if @booking.save 
       redirect_to bookings_url
     else
       render template: "bookings/new"
@@ -65,6 +57,6 @@ class BookingsController < BaseController
   private
 
   def booking_params
-    params.require(:booking).permit(:customer_id, :travel_date, :travel_to, :tour_id, :status, :sales_person, :itinerary, :booking_number, :booking_date, :number_adult, :number_child, :contact_number)
+    params.require(:booking).permit(:customer_id, :travel_date, :travel_to, :tour_id, :status, :sales_person, :itinerary, :booking_number, :booking_date, :number_adult, :number_child, :contact_number, booking_tour_category_tours_attributes:[:id, :tour_id, :tour_category_id ,:_destroy])
   end
 end

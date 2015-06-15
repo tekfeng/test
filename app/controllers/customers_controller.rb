@@ -34,23 +34,33 @@ class CustomersController < BaseController
   end
   
   def edit
-    @customer = Customer.find_by_id(params[:id])
-    if params[:lead_id].present?
-      @lead_id =  params[:lead_id].to_i
-    end
+    
+    @customer = Customer.find_by_id(params[:id])   
+    if params[:lead_id]    
+      @params_redirect_to = "?lead_id=#{params[:lead_id]}"
+    elsif params[:booking_lead_id].present?
+      @params_redirect_to = "?booking_lead_id=#{params[:booking_lead_id].to_s}"
+    else
+      @params_redirect_to = ""
+    end    
   end
   
   def update
     @customer = Customer.find(params[:id])    
-    if @customer.update_attributes(customer_params)
-      if params[:lead_id].present?
-        lead_obj_url = '/sales/leads/' + params[:lead_id].to_s + '/edit'
-        render json: {result: 'ok', redirect_to: lead_obj_url,
-          flash: { type: :notice, message: 'Customer details has been saved successfully!' }}
+    if @customer.update_attributes(customer_params)    
+      if params[:lead_id]
+        if params[:lead_id].present?
+          redirect_with_url = '/sales/leads/' + params[:lead_id].to_s + '/edit'
+        else
+          redirect_with_url = '/sales/leads/new?customer_id=' + @customer.id.to_s
+        end
+      elsif params[:booking_lead_id].present?
+        redirect_with_url = '/sales/bookings/' + params[:booking_lead_id].to_s + '/convert_to_booking'        
       else
-        render json: {result: 'ok', redirect_to: customers_url,
-          flash: { type: :notice, message: 'Customer details has been saved successfully!' }}
-      end
+        redirect_with_url = customers_url       
+      end      
+      render json: {result: 'ok', redirect_to: redirect_with_url,
+        flash: { type: :notice, message: 'Customer details has been saved successfully!' }}
     else
       render json: {result: 'failed', errors: @customer.errors}
     end

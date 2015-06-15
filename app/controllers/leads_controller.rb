@@ -46,11 +46,9 @@ class LeadsController <  BaseController
     end
   end
   
-  
   def send_pdf_quotation 
     @lead = Lead.find_by_id(params[:id])
-    pdf_file = QuotationPDF.new({}, @lead.customer, @lead)
-    ApplicationMailer.send_ltinerary_pdf(@lead.customer, pdf_file).deliver
+    ApplicationMailer.delay.send_ltinerary_pdf(@lead.customer, @lead).deliver
     redirect_to leads_url
   end 
   
@@ -58,7 +56,7 @@ class LeadsController <  BaseController
 
   def lead_params
     params.require(:lead).permit(:customer_id, :travel_from, :travel_to, :status, :sales_person, :adults, :children, :contact_number,
-    lead_tour_category_tours_attributes:[:tour_id, :tour_category_id ,:_destroy])
+    lead_tour_category_tours_attributes:[:id, :tour_id, :tour_category_id ,:_destroy])
   end
   
 end

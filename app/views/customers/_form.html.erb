@@ -1,4 +1,4 @@
-<%= semantic_form_for @customer,:url =>  @customer.new_record? ? "/sales/customers" : @lead_id.present? ? "/sales/customers/#{@customer.id}?lead_id=#{@lead_id}" : "/sales/customers/#{@customer.id}", :html => {:method => @customer.new_record? ? :post : :put, :class => @customer.new_record? ? "ajax-form convert-customer-to-lead" : "ajax-form"} do |form| %>
+<%= semantic_form_for @customer,:url =>  @customer.new_record? ? "/sales/customers" : ("/sales/customers/#{@customer.id}" + @params_redirect_to), :html => {:method => @customer.new_record? ? :post : :put, :class => @customer.new_record? ? "ajax-form convert-customer-to-lead" : "ajax-form"} do |form| %>
    <div class= "form-group">
      <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
        <%= form.input :name, :as => :string, placeholder: "Name Customer"%>

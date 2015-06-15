@@ -1,10 +1,11 @@
 class ApplicationMailer < ActionMailer::Base
   default from: APP_CONFIG[:email_sender]
   
-  def send_quotation_pdf(customer, pdf)
+  def send_quotation_pdf(customer, lead)
     @email = customer.email_address
     @name = customer.name
-    attachments["quotation.pdf"] = { :mime_type => 'application/pdf', :content => pdf.render }
+    pdf_file = QuotationPDF.new({}, lead.customer, lead)
+    attachments["quotation.pdf"] = { :mime_type => 'application/pdf', :content => pdf_file.render }
     mail(:to => @email , :subject => "[Amazing Borneo] Quotation")
   end
   
@@ -14,10 +15,12 @@ class ApplicationMailer < ActionMailer::Base
     mail(:to => email , :subject => "[Amazing Borneo] Invoice")
   end
   
-  def send_ltinerary_pdf(customer, pdf)
+  def send_ltinerary_pdf(customer, lead)
     @email = customer.email_address
     @name = customer.name
-    attachments["itinerary.pdf"] = { :mime_type => 'application/pdf', :content => pdf.render }
+    pdf_file = QuotationPDF.new({}, lead.customer, lead)
+    
+    attachments["itinerary.pdf"] = { :mime_type => 'application/pdf', :content => pdf_file.render }
     mail(:to => @email , :subject => "[Amazing Borneo] Itinerary")
   end 
   
