@@ -20,8 +20,8 @@ class BorneoPDF < Prawn::Document
       font_size(11)
       indent(15) do
         text "TO"
-        text "#{customer.name}"
-        text "#{customer.email_address}"
+        text "#{customer.try(:name)}"
+        text "#{customer.try(:email_address)}"
       end  
     end  
   end

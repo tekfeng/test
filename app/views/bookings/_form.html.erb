@@ -48,7 +48,7 @@
     </div> <!--aldust+childrent-->
     <div class="form-group">
       <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0 sum-pax-lead">
-        <span style="float: left;">No. of Pax: </span> <span id="sum-pax" style="padding-bottom: 40px; float: left;"></span>
+        <span style="float: left; margin-right: 7px;">No. of Pax: </span><span id="sum-pax" style="padding-bottom: 40px; float: left;"><%= @booking.number_of_pax %></span>
       </div>
     </div>
     <% if @booking.new_record?  and !lead and @booking.errors.count == 0 %>
