@@ -78,7 +78,7 @@ $(document).ready(function() {
           $("p#comment_count").html("Comments ("+ new_count +")");
         },
         error: function(data){
-          $(self).html('Submit');
+          $(self).html('Post Comment');
           $(self).removeAttr('disabled');
           swal("Error!", data.responseJSON.reason , "error");
           
