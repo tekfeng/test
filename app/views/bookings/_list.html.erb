@@ -39,7 +39,7 @@
           <td><%= booking.status %></td>
           <td><%= booking.user.try(:username) %></td>                           
           <td style='text-align: center;'>
-           <%= link_to "Send", "/sales/bookings/#{booking.id}/send_pdf_mailer", class: 'btn btn-primary' %>
+            <div data-booking-id="<%= booking.id %>" class="btn btn-primary send-pdf-mailer">Send</a>
           </td>  
         </tr>
       <% end %>
@@ -49,3 +49,26 @@
 <% else %>
   <p class="warning">No records!</p>
 <% end %>
+
+<script language="javascript">
+  $(document).ready(function() {
+    
+    $(document.body).delegate(".send-pdf-mailer", "click", function(e){
+      var bookingId = $(this).data("booking-id")
+      $.ajax({
+        type: "GET",
+        url: "/sales/bookings/" + bookingId + "/send_pdf_mailer",
+        success: function (data) {          
+          $('#itinerary_pdf_send').modal({
+            show: true,
+            backdrop: 'static',
+            keyboard: true            
+          });
+          
+        }
+      });          
+    });
+  
+  });  
+  
+</script>

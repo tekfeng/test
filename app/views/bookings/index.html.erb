@@ -68,10 +68,36 @@
   </div>
 </div>
 
+
+<div id="itinerary_pdf_send" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class='modal-dialog'>
+    <div class='modal-content'>
+      <div class='ibox'>
+        <div class='ibox-content container-fluid'>
+          <div id="accept" class= "col-md-12 col-sm-12 col-xs-12">
+            <div class='col-md-12 col-sm-12 col-xs-12'>
+              <p style="font-size: 18px; line-height: 2em;">You have already sent this itinerary to the customer</p>
+            </div>
+            <div class='col-md-12 col-sm-12 col-xs-12 text-center'>
+              <div class="btn btn-white close-modal-box">OK</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>    
+</div>
+
+
    
 
 <script language="javascript">
   $(document).ready(function() {
+        
+    $(document.body).delegate(".close-modal-box", "click", function(e){ 
+      $('#itinerary_pdf_send').modal('hide')              
+    });
+                
     var bookingStatusValue, bookingUserId;
     $('#booking_travel_date,#booking_travel_to').val("");
     $('.label').hide();
