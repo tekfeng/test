@@ -718,8 +718,7 @@ table.listing-table {
   font-weight: 500;
 }
 .submit-bt {
-  //margin-left: 140px;
-  font-size: 15px !important;
+  padding: 5px 30px;
 }
 .form-group-customer form.select-customer-country .sbHolder ul.sbOptions {
   width: 100%;
@@ -756,9 +755,6 @@ form.select-customer-country .sbHolder,
 }
 
 
-li#vendor_vendor_category_id_input, li#vendor_city_id_input {
-  margin-top: 20px;
-}
 .back-button {
   color: white !important;
   background-color: #18A689 !important;
@@ -921,3 +917,15 @@ form.booking .formnestic-list-entries-container fieldset li {
 .mr-top-20 {
   margin-top: 20px;
 }
+.align-center {
+  text-align: center;
+}
+form.vendor {
+  .sbHolder {
+    margin-top: 0px;
+  }
+}
+#vendor_filter .sbHolder {
+  margin-top: 20px;
+}
+

@@ -7,6 +7,8 @@ class Vendor < ActiveRecord::Base
   belongs_to :user_updated_lastest, :class_name => "User", :foreign_key => "user_update_id"
   
   validates :name, :vendor_type, :contact, :fax, :vendor_category_id, :city_id, presence: true
+  validates :email, :uniqueness => true
+  validates :email, :email => true
   
   accepts_nested_attributes_for :vendor_rates, allow_destroy: true
   accepts_nested_attributes_for :rooms, allow_destroy: true
