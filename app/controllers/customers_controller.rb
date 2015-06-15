@@ -34,9 +34,10 @@ class CustomersController < BaseController
   end
   
   def edit
+    
     @customer = Customer.find_by_id(params[:id])   
-    if params[:lead_id].present?
-      @params_redirect_to = "?lead_id=#{params[:lead_id].to_s}"
+    if params[:lead_id]    
+      @params_redirect_to = "?lead_id=#{params[:lead_id]}"
     elsif params[:booking_lead_id].present?
       @params_redirect_to = "?booking_lead_id=#{params[:booking_lead_id].to_s}"
     else
@@ -47,8 +48,12 @@ class CustomersController < BaseController
   def update
     @customer = Customer.find(params[:id])    
     if @customer.update_attributes(customer_params)    
-      if params[:lead_id].present?
-        redirect_with_url = '/sales/leads/' + params[:lead_id].to_s + '/edit'
+      if params[:lead_id]
+        if params[:lead_id].present?
+          redirect_with_url = '/sales/leads/' + params[:lead_id].to_s + '/edit'
+        else
+          redirect_with_url = '/sales/leads/new?customer_id=' + @customer.id.to_s
+        end
       elsif params[:booking_lead_id].present?
         redirect_with_url = '/sales/bookings/' + params[:booking_lead_id].to_s + '/convert_to_booking'        
       else
