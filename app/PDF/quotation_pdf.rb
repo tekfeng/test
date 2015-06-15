@@ -37,8 +37,8 @@ class QuotationPDF < BorneoPDF
     lead.lead_tour_category_tours.each_with_index do | lead_tour , index|
       tour = lead_tour.tour
       content_data  =[]
-      content_data << ["TOUR NAME: #{tour.name}"]
-      content_data << ["TOUR CODE: #{tour.code}"]
+      content_data << ["TOUR NAME: #{tour.try(:name)}"]
+      content_data << ["TOUR CODE: #{tour.try(:code)}"]
       content_data << ["DATE: #{lead.travel_from.strftime('%d-%B-%Y')}"]
       content_data << ["DURATION: 4D3N"]
       content_data << ["MEALS: 03 Breakfasts, 01 Lunch"]
