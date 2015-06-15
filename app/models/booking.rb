@@ -34,4 +34,16 @@ class Booking < ActiveRecord::Base
     return bookings    
   end
   
+  def number_of_pax
+    if self.number_adult and self.number_child
+      self.number_adult + self.number_child
+    elsif self.number_adult
+      self.number_adult
+    elsif self.number_child
+      self.number_child
+    else
+      ""
+    end     
+  end
+  
 end
