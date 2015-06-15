@@ -69,20 +69,21 @@ class QuotationPDF < BorneoPDF
       cost_row = ["", "Cost per person (Minimum 2 pax)", {content: "MYR690", align: :right}]
       data << row1
       data << cost_row
-      table(data, :width => 530, :cell_style =>  {:size => 12}, :column_widths => [40,400,90], :position => 10 ) do
-        cells.style do |c|
-          if c.row == 0 
-            c.background_color = '2E3091'
-            c.text_color = "FFFFFF"
-          end
-          c.border_color = '2E3091'  
-          if c.row == data.size - 1 
-            c.font_style = :bold
-          end     
+      
+     
+    end   
+    table(data, :width => 530, :cell_style =>  {:size => 12}, :column_widths => [40,400,90], :position => 10 ) do
+      cells.style do |c|
+        if c.row == 0 
+          c.background_color = '2E3091'
+          c.text_color = "FFFFFF"
         end
+        c.border_color = '2E3091'  
+        if c.row == data.size - 1 
+          c.font_style = :bold
+        end     
       end
     end  
-    
   end
   
   def how_to_book
