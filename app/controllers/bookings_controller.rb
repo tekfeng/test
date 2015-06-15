@@ -47,10 +47,9 @@ class BookingsController < BaseController
     render template: "/bookings/new", locals: {lead: true} 
   end
   
-  def send_pdf_mailer
+  def send_pdf_mailer    
     @booking = Booking.find_by_id(params[:id])
-    pdf_file = QuotationPDF.new({}, @booking.customer, @booking)
-    ApplicationMailer.send_ltinerary_pdf(@booking.customer, pdf_file).deliver
+    ApplicationMailer.delay.send_ltinerary_pdf(@booking.customer, @booking)
     redirect_to bookings_url
   end
   

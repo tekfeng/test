@@ -14,7 +14,7 @@ class QuotationPDF < BorneoPDF
       indent(10) do
         formatted_text [{text: "QUOTATION", styles: [:bold], size: 16}]
         move_down 5
-        text "AB0001"
+        text "AB#{sprintf('%05d', lead.id)}"
         move_down 5
         text "Date: #{lead.created_at.strftime('%d-%m-%Y')}"
         move_down 5

@@ -15,12 +15,11 @@ class ApplicationMailer < ActionMailer::Base
     mail(:to => email , :subject => "[Amazing Borneo] Invoice")
   end
   
-  def send_ltinerary_pdf(customer, lead)
+  def send_ltinerary_pdf(customer, booking)
     @email = customer.email_address
     @name = customer.name
-    pdf_file = QuotationPDF.new({}, lead.customer, lead)
-    
-    attachments["itinerary.pdf"] = { :mime_type => 'application/pdf', :content => pdf_file.render }
+    pdf_file = ItineraryPDF.new({}, booking.customer, booking)    
+    attachments["ItineraryPDF.pdf"] = { :mime_type => 'application/pdf', :content => pdf_file.render }
     mail(:to => @email , :subject => "[Amazing Borneo] Itinerary")
   end 
   
