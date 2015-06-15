@@ -1,4 +1,4 @@
-<%= semantic_form_for @vendor do |f| %>
+<%= semantic_form_for @vendor, html: { class: 'form-horizontal ajax-form', enctype: 'multipart/form-data' }  do |f| %>
     <%= f.inputs do %> 
     <div class= "form-group">
       <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
