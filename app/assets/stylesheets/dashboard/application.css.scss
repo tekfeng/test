@@ -925,8 +925,13 @@ form.vendor .form-group .string.input.stringish {
 .top-container-box {
   background-color: white;
 }
+
 .label {
   display: none;
+}
+
+.label.label-primary{
+  display: block !important;
 }
 
 .ibox-content .m-b-md h2 {
@@ -964,3 +969,4 @@ form.vendor .formnestic-nested-model-container {
     }
   }
 }
+
