@@ -52,9 +52,10 @@ class VendorsController < BaseController
     @vendor = Vendor.find(params[:id])
     @vendor.user_update_id = current_user.id
     if @vendor.update_attributes(vendor_params)
-      redirect_to :action=>'index'
+      render json: { result: 'ok', redirect_to: vendors_url, 
+        flash: { type: :notice, message: 'Vendor has been created successfully!' }}
     else
-      render :edit
+      render json: { result: 'failed', errors: @vendor.errors }
     end
   end
   
