@@ -69,7 +69,8 @@ $(document).ready(function() {
         },
         success: function(data){
           $(self).removeAttr('disabled');
-          $(self).html('Submit');
+          $(self).html('Post Comment');
+          $("#comment_input").val("");
           $('#comment_listings').append(data);
           $(".timeago").timeago();
           $(".timeago").prepend("<i class='fa fa-clock-o'></i>");
