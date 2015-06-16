@@ -30,7 +30,7 @@
     <div class='ibox-content container-fluid white-bg'>
       <div id="vendor_filter" class="reservations">
         <% @vendor_new = Vendor.new %>
-        <% @vendor_new.vendor_category_id = params[:vendor_categopry_id].to_i if  params[:vendor_categopry_id] %>
+        <% @vendor_new.vendor_category_id = @vendor_categopry_id if  @vendor_categopry_id %>
         <%= semantic_form_for @vendor_new,  :url => "", :html => {:method => :get }  do |f| %>
           <%= f.inputs do %>
           <div class= "form-group">
@@ -59,9 +59,12 @@
   
 <script language="javascript">
   $(document).ready(function() {
+    
     var vendorCategory = $("select#vendor_vendor_category_id");
-    vendorCategory.prepend('<option value="">Vendor Category</option>');
-    vendorCategory.val("");
+    <% if !@vendor_categopry_id.present? %>
+      vendorCategory.prepend('<option value="">Vendor Category</option>');
+      vendorCategory.val("");
+    <% end %>
     vendorCategory.selectbox();
     
     var vendorCity = $("select#vendor_city_id");
