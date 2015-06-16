@@ -7,6 +7,10 @@
           <li>
             <a href="/dashboard">Home</a>
           </li>
+          <li>
+            <a href="/vendors/dashboard_page">Reservation</a>
+          </li>
+          
           <li class="active">
             <strong>Vendors Rates</strong>
           </li>
@@ -80,8 +84,15 @@
   </div>
 </div>
 <script language="javascript">
-  $(document).ready(function() {
-    $("select#vendor_vendor_category_id").selectbox();
-    $("select#vendor_city_id").selectbox();
+  $(document).ready(function() {   
+    var vendorCategory = $("select#vendor_vendor_category_id");
+    vendorCategory.prepend('<option value="">Vendor Category</option>');
+    vendorCategory.val("");
+    vendorCategory.selectbox();
+    
+    var vendorCity = $("select#vendor_city_id");
+    vendorCity.prepend('<option value="">Select City</option>');
+    vendorCity.val("")
+    vendorCity.selectbox();
   });  
 </script>
