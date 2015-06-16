@@ -1,12 +1,16 @@
 <div class='row'>
   <div class='col-lg-12'>
     <div class="row wrapper border-bottom white-bg page-heading">
-      <div class="col-lg-10">
-        <h2>Vendors Rates</h2>
-        <ol class="breadcrumb">
+      <div class="col-lg-12">
+        <h2 style="text-align: center">Vendors Rates</h2>
+        <ol class="breadcrumb" style="text-align: center;">
           <li>
             <a href="/dashboard">Home</a>
           </li>
+          <li>
+            <a href="/vendors/dashboard_page">Reservation</a>
+          </li>
+          
           <li class="active">
             <strong>Vendors Rates</strong>
           </li>
@@ -16,24 +20,35 @@
     
     <div class='wrapper wrapper-content'>
       <div class='ibox'>
-        <div class="ibox-title">
-          <h5 style="text-align: center;">Vendors</h5>                      
-        </div>
-        <div class='ibox-content'>
-          
-          <div class="clearfix">
+        <div class="ibox-title float-left" style="padding-bottom: 25px;">          
+          <div class="clearfix float-left">
             <div id="vendor_filter" class="reservations">
               <% @vendor_new = Vendor.new %>
               <% @vendor_new.vendor_category_id = params[:vendor_categopry_id].to_i if  params[:vendor_categopry_id] %>
               <%= semantic_form_for @vendor_new,  :url => "", :html => {:method => :get }  do |f| %>
                 <%= f.inputs do %>
-                  <%= f.input :vendor_category_id, :as => :select, collection: VendorCategory.all %>
-                  <%= f.input :city_id, :label => "Select City", :as => :select, collection: City.all %>
+                  <div class= "form-group">
+                    <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+                      <%= f.input :vendor_category_id, :as => :select, collection: VendorCategory.all %>
+                    </div>
+                    <div class="col-md-2 col-sm-2 col-xs-12"></div>
+                  </div>
+                  <div class= "form-group">
+                    <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+                      <%= f.input :city_id, :label => "Select City", :as => :select, collection: City.all %>
+                    </div>
+                    <div class="col-md-2 col-sm-2 col-xs-12"></div>
+                  </div>
                 <% end %>
                  <%= f.action :submit, :label => "Filter", :button_html => { :class => "btn btn-primary filter-style" } %>
               <% end %>
             </div>
-          </div>
+          </div>    
+                      
+        </div>
+        <div class='ibox-content float-left'>
+          
+          
           
           <br/>
           <table class='listing-table vendor-listing-content-tab-vendor-rates'>
@@ -69,8 +84,15 @@
   </div>
 </div>
 <script language="javascript">
-  $(document).ready(function() {
-    $("select#vendor_vendor_category_id").selectbox();
-    $("select#vendor_city_id").selectbox();
+  $(document).ready(function() {   
+    var vendorCategory = $("select#vendor_vendor_category_id");
+    vendorCategory.prepend('<option value="">Vendor Category</option>');
+    vendorCategory.val("");
+    vendorCategory.selectbox();
+    
+    var vendorCity = $("select#vendor_city_id");
+    vendorCity.prepend('<option value="">Select City</option>');
+    vendorCity.val("")
+    vendorCity.selectbox();
   });  
 </script>

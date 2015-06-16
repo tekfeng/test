@@ -6,16 +6,17 @@ class VendorsController < BaseController
   end
   
   
-  def index   
-    if params[:ajax_call]
-      @vendors = Vendor.search(params)
-      @vendors = smart_listing_create(:vendors, @vendors, partial: "vendors/list", default_sort: {name: "asc"}) 
-      render template: "/vendors/filter", layout: false     
+  def index  
+    if params[:vendor_category_id]
+      @vendor_categopry_id = params[:vendor_category_id].to_i
+      @vendors = Vendor.where(vendor_category_id: params[:vendor_category_id].to_i)   
+      p @vendors.count
     else
       @vendors = Vendor.all
-      @vendors = smart_listing_create(:vendors, @vendors, partial: "vendors/list", default_sort: {name: "asc"}) 
     end 
+    @vendors = smart_listing_create(:vendors, @vendors, partial: "vendors/list", default_sort: {name: "asc"}) 
   end
+  
   
   def filter_vendor
     @vendors = Vendor.all   
