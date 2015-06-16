@@ -3,7 +3,6 @@ class VendorsController < BaseController
   helper  SmartListing::Helper
   
   def dashboard_page
-    render template: "dashboard/dashboard_page", layout: "dashboard"
   end
   
   

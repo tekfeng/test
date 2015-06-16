@@ -964,3 +964,18 @@ form.vendor .formnestic-nested-model-container {
     }
   }
 }
+a.compare-rate-bt {
+  font-size: 14px;
+  color: white;
+  padding: 5px 20px;
+  background-color: #1ab394;
+  float: right;
+  border-radius: 4px;
+  &:hover {
+    background-color: #18A689;
+  };
+}
+.edit-vendor-rates-st {
+  float: left; width: 100%; margin: 0px; background-color: white; padding-top: 30px;
+  border-top: 3px solid #d3dade;
+}
