@@ -90,7 +90,6 @@
   text-align: right;
 }
 
-
 form.form-horizontal {
   ul.inline-errors {
     margin-top: 10px;
@@ -953,10 +952,23 @@ form.vendor .form-group .string.input.stringish {
   width: 100%;
 }
 .formnestic-nested-model-container li.string.stringish {
+  
   width: 600px;
   margin: 0px auto;
   p.inline-errors {
     margin-left: 0px;
+  }
+}
+
+form.vendor {
+  padding-bottom: 30px;
+  .formnestic-nested-model-container {
+    .formnestic-list-entries-container fieldset {
+      border-bottom: 1px solid #CECCCC;
+    }
+    li.string.stringish {
+      margin-top: 20px;
+    }
   }
 }
 form.vendor .formnestic-nested-model-container {
@@ -987,4 +999,10 @@ a.compare-rate-bt {
 .float-left {
   float:left;
   width: 100%;
+}
+.detail-vendor-time p {
+  padding-left: calc((100% - 600px)/2);
+}
+p.padding-left-cacl {
+  padding-left: calc((100% - 600px)/2);
 }
