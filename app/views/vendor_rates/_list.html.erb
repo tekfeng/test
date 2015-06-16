@@ -1,0 +1,35 @@
+<% unless smart_listing.empty? %> <!--vendor-rates-->
+<table class='listing-table vendor-listing-content-tab-vendor-rates'>
+  <thead>
+    <tr>
+      <th class="no">No.</th>  
+      <th class="vendor-rate-thead-name cus-style-gray"><%= smart_listing.sortable "Name", "name" %></th>
+      <th class="vendor-category-thead-name cus-style-white"><%= smart_listing.sortable "Vendor Category", "vendor.vendor_category ? vendor.vendor_category.name : 'N/A'" %></th>
+      <th class="vendor-city-thead-name cus-style-gray"><%= smart_listing.sortable "City", "vendor.city ? vendor.city.name : 'N/A'" %></th>         
+      <th class="cus-style-white" colspan='2' style='text-align: center;'>Rates</th>
+    </tr>
+  </thead>        
+  <tbody>
+    <% smart_listing.collection.each_with_index do |vendor, index| %>
+    <tr class="<%= cycle('odd', 'even') %>">
+      <% if params[:vendor_rates_smart_listing] and params[:vendor_rates_smart_listing][:page] and  params[:vendor_rates_smart_listing][:page].to_i > 0 %>
+      <% index_show = (params[:vendor_rates_smart_listing][:page].to_i - 1)*10 + index + 1 %>
+      <% else %>
+      <% index_show = index + 1 %>
+      <% end %>
+      <td><%= index_show %></td>
+      <td><%= vendor.name.html_safe %></td>
+      <td><%= vendor.vendor_category ? vendor.vendor_category.name : "N/A" %></td>
+      <td><%= vendor.city ? vendor.city.name : "N/A" %></td>
+                          
+      <td style='text-align: center;'>
+        <%= link_to "View", "/vendor_rates/#{vendor.id}/view_rate", class: 'btn btn-primary' %>
+      </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= smart_listing.paginate  %>
+<% else %>
+ <p class="warning">No records!</p>
+<% end %>
