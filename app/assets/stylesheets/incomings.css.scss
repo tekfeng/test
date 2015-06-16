@@ -91,19 +91,18 @@ form.smart-listing-controls {
     padding-right:20px;
     height: auto;
     p.title {
-      float:left;
+      float:right;
       display:block;
       margin-bottom:0px;
       margin-top:6px;
     }
     .sbHolder {
       margin-bottom:8px;
+      width:100%;
     }
   }
   .sbHolder {
     display:block;
-    float:right;
-    width: 115px;
     background: #fff;
     border-radius: 6px !important;
     .sbToggle {
@@ -115,7 +114,7 @@ form.smart-listing-controls {
       color: #5e5e5e;
     }
     .sbOptions{
-      width:130px;
+      width:100%;
       background: #fff;
       li{
         a{
@@ -206,3 +205,34 @@ form.smart-listing-controls {
     }
   }
 }
+
+@media (min-width: 641px) {
+  .incoming-header {
+     .sbHolder {
+       max-width:250px;
+       float:right;
+     }
+  }
+  
+  .col-xm-6{
+    width: 50%;
+  }
+}
+
+
+@media (min-width: 481px) {
+  .incoming-header {
+     .sbHolder {
+       max-width:250px;
+       float:right;
+     }
+  }
+}
+
+
+@media (max-width: 480px) {
+  .col-xxs-12{
+    width: 100%;
+  }
+}
+
