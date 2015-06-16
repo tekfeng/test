@@ -1,6 +1,15 @@
 class VendorRatesController < BaseController  
+  include SmartListing::Helper::ControllerExtensions
+  helper  SmartListing::Helper
+  
   def index
-    @vendors = Vendor.all
+    if params[:ajax_call]
+      @vendors = smart_listing_create(:vendor_rates, @vendors, partial: 'vendor_rates/list', default_sort: {name: "asc"})
+      render template: "/vendor_rates/filter", layout: false   
+    else
+      @vendors = Vendor.all
+      @vendors = smart_listing_create(:vendor_rates, @vendors, partial: 'vendor_rates/list', default_sort: {name: "asc"})
+    end
   end
   
   def view_rate
