@@ -39,7 +39,7 @@
                   <p class=""> Last Created by: <%= @vendor.user_created.try(:username) %> </p>
                   <p class=""> Last Created on: <%= @vendor.created_at.in_time_zone("Singapore").strftime("%d-%m-%Y") %> </p>                     
                 </div>
-                <hr />
+                <hr style="margin-left: 15px; margin-right: 15px;"/>
                 
                 <div class="detail-vendor-time detail-vendor-info">
                   <p class=""> Vendor name: <%= @vendor.name %> </p>
