@@ -69,7 +69,8 @@ $(document).ready(function() {
         },
         success: function(data){
           $(self).removeAttr('disabled');
-          $(self).html('Submit');
+          $(self).html('Post Comment');
+          $("#comment_input").val("");
           $('#comment_listings').append(data);
           $(".timeago").timeago();
           $(".timeago").prepend("<i class='fa fa-clock-o'></i>");
@@ -78,7 +79,7 @@ $(document).ready(function() {
           $("p#comment_count").html("Comments ("+ new_count +")");
         },
         error: function(data){
-          $(self).html('Submit');
+          $(self).html('Post Comment');
           $(self).removeAttr('disabled');
           swal("Error!", data.responseJSON.reason , "error");
           

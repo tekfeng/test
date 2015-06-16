@@ -77,7 +77,10 @@ form.smart-listing-controls {
     }
     &.legend {
       padding-bottom: 10px;
+      padding-top:10px;
       border-bottom: 1px solid #ebebeb;
+      border-top: 1px solid #ebebeb;
+      
     }
   }
   p.content {
@@ -85,8 +88,8 @@ form.smart-listing-controls {
   }
   .incoming-header {
     padding-left: 20px;
+    padding-right:20px;
     height: auto;
-    border-bottom: 1px solid #ebebeb;
     p.title {
       float:left;
       display:block;
@@ -100,7 +103,7 @@ form.smart-listing-controls {
   .sbHolder {
     display:block;
     float:right;
-    width: 130px;
+    width: 115px;
     background: #fff;
     border-radius: 6px !important;
     .sbToggle {
@@ -132,6 +135,7 @@ form.smart-listing-controls {
   }
   div.submit-comment-box{
     padding:0;
+    padding-right:13px;
     textarea#comment_input{
       height: 70px;
       resize: none;
@@ -139,7 +143,9 @@ form.smart-listing-controls {
       box-shadow: 0 1px 2px #dedede inset;
       border: 1px solid #ccc;
       padding:7px;
-      min-width:230px;
+      min-width:220px;
+      float:right;
+      margin-bottom: 10px;
     }
     div#submit_comment{
       float: right;
@@ -151,6 +157,7 @@ form.smart-listing-controls {
     padding:0;
     padding-right:10px;
     min-width:58px;
+    float:right;
     div.info-content {
       width:48px;
       float:right;
@@ -187,6 +194,8 @@ form.smart-listing-controls {
         padding:10px;
         border: 1px solid #bebebe;
         min-width:220px;
+        margin-bottom:10px;
+        float:right;
         .time-label{
           text-align: right;
           .fa{

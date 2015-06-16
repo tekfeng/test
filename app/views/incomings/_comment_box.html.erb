@@ -1,4 +1,11 @@
 <li class='container-fluid'>
+  <div class="content-box col-xs-10 col-sm-10 col-md-10 col-lg-11 ">
+    <p  class="content"><%= comment.content %></p>
+    <small class="block text-muted time-label timeago" title="<%= comment.created_at.strftime("%Y-%m-%dT%H:%M:%SZ") %>">
+      <i class="fa fa-clock-o"></i>
+        <%= comment.created_at.strftime("%Y-%-m-%d") %>  
+    </small>
+  </div>
   <div class='user-info col-xs-2 col-sm-2 col-md-2 col-lg-1'>
     <div class='info-content'>
       <div class='avatar-box'>
@@ -7,11 +14,5 @@
       <div class='name-label'><%= comment.user.username %></div>
     </div>  
   </div>
-  <div class="content-box col-xs-10 col-sm-10 col-md-10 col-lg-11 ">
-    <p  class="content"><%= comment.content %></p>
-    <small class="block text-muted time-label timeago" title="<%= comment.created_at.strftime("%Y-%m-%dT%H:%M:%SZ") %>">
-      <i class="fa fa-clock-o"></i>
-        <%= comment.created_at.strftime("%Y-%-m-%d") %>  
-    </small>
-  </div>
+  
 </li>
