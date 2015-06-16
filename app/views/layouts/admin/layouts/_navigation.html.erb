@@ -9,10 +9,10 @@
           <a data-toggle="dropdown" class="dropdown-toggle" href="#">
             <span class="clear">
               <span class="block m-t-xs">
-                <strong class="font-bold">Login as</strong>
+                <strong class="font-bold"><%=current_user.username%></strong>
               </span>
               <span class="text-muted text-xs block">
-                <%= current_user.email %>
+                <%= current_user.department ? current_user.department.name : "" %>
               </span>
             </span>
           </a>

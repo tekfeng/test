@@ -925,8 +925,13 @@ form.vendor .form-group .string.input.stringish {
 .top-container-box {
   background-color: white;
 }
+
 .label {
   display: none;
+}
+
+.label.label-primary{
+  display: block !important;
 }
 
 .ibox-content .m-b-md h2 {
@@ -979,3 +984,4 @@ a.compare-rate-bt {
   float: left; width: 100%; margin: 0px; background-color: white; padding-top: 30px;
   border-top: 3px solid #d3dade;
 }
+
