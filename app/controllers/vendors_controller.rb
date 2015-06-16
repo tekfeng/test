@@ -52,9 +52,10 @@ class VendorsController < BaseController
     @vendor = Vendor.find(params[:id])
     @vendor.user_update_id = current_user.id
     if @vendor.update_attributes(vendor_params)
-      redirect_to :action=>'index'
+      render json: { result: 'ok', redirect_to: vendors_url, 
+        flash: { type: :notice, message: 'Vendor has been created successfully!' }}
     else
-      render :edit
+      render json: { result: 'failed', errors: @vendor.errors }
     end
   end
   
@@ -64,33 +65,16 @@ class VendorsController < BaseController
   
   def update_more_details
     @vendor = Vendor.find(params[:id])
-    if params[:vendor][:rooms_attributes]
-      params[:vendor][:rooms_attributes].each do |key, value|
-        if value[:id].present? 
-          room = Room.find_by_id(value[:id].to_i)
-          if room
-            room.name = value[:name]
-          end
-        
-        else
-          room = @vendor.rooms.new({
-            name: value[:name]
-          })
-        end            
-        room.save
-      end
-    end
-     
-    if @vendor.save
+    if @vendor.update_attributes(vendor_params)
       redirect_to vendors_url
     else
-      render json: { result: 'failed', errors: room.errors.full_messages }
+      render :action => "more_details"
     end
   end
   
   private
 
   def vendor_params
-    params.require(:vendor).permit(:name, :email, :fax, :contact, :city_id, :vendor_type, :vendor_category_id)
+    params.require(:vendor).permit(:name, :email, :fax, :contact, :city_id, :vendor_type, :vendor_category_id, rooms_attributes: [:id, :name, :_destroy])
   end
 end

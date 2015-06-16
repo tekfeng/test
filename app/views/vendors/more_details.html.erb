@@ -1,27 +1,54 @@
 <div class='row'>
   <div class='col-lg-12'>
-    <div class='wrapper wrapper-content'>
+    <div class='wrapper wrapper-content' style="padding: 0px;">
       <div class='ibox'>
-        <div class='ibox-content'>
+        <div class='ibox-content' style="padding: 0px;">
           <div class='row'>
+            
             <div class='col-lg-12'>
-              <div class="m-b-md">
-                <h2>More details of <%= @vendor.name.html_safe %></h2>
-                <a href="<%= vendors_path %>" class="btn btn-white btn-xs pull-left back-button">&larr; Back</a>
-                
-                
-                <div class="detail-vendor-time">
-                  <p class="pdl-60"> Last Updated by: <%= @vendor.user_updated_lastest.try(:username) %> </p>
-                  <p class="pdl-60"> Last Updated on: <%= @vendor.updated_at.in_time_zone("Singapore").strftime("%d-%m-%Y") %> </p> 
-                  <p class="pdl-60"> Last Created by: <%= @vendor.user_created.try(:username) %> </p>
-                  <p class="pdl-60"> Last Created on: <%= @vendor.created_at.in_time_zone("Singapore").strftime("%d-%m-%Y") %> </p>                     
+              <div class="top-container-box">
+                <div class="m-b-md top-box-with-breadcrumb">
+                  
+                  <div class="col-md-4 col-sm-4 col-xs-12">
+                    <a href="<%= vendors_path %>" class="btn btn-white btn-xs pull-left back-button mr-top-20">&larr; Back</a>     
+                  </div>
+                  <div class="col-md-4 col-sm-4 col-xs-12">
+                    <h2 style="margin-right: 0px;">More details</h2>
+                    <ol class="breadcrumb" style="text-align: center;">
+                      <li>
+                        <a href="/dashboard">Home</a>
+                      </li>
+                      <li>
+                        <a href="/vendors/dashboard_page">Reservation</a>
+                      </li>
+                      <li class="active">
+                        <strong>Vendors</strong>
+                      </li>
+                    </ol>
+                  </div>
                 </div>
-
+                
               </div>
-              <div class='row'>
-                <div class='col-lg-12'>
+              
+              <div class='row' style="padding-left: 15px; padding-right: 15px;">
+                
+                <div class="detail-vendor-time st-vdt">
+                  <div class="box-header-detail" style="width:230px; margin: 0px auto;">
+                    <p class=""> Last Updated by: <%= @vendor.user_updated_lastest.try(:username) %> </p>
+                    <p class=""> Last Updated on: <%= @vendor.updated_at.in_time_zone("Singapore").strftime("%d-%m-%Y") %> </p> 
+                    <p class=""> Created by: <%= @vendor.user_created.try(:username) %> </p>
+                    <p class=""> Created on: <%= @vendor.created_at.in_time_zone("Singapore").strftime("%d-%m-%Y") %> </p> 
+                  </div>                   
+                </div>
+                
+                <div class='col-lg-12' style="background-color: white; padding-bottom: 30px;">
                   <hr />
                   <p class="pdl-60" style="font-size: 16px; margin-bottom: 30px;">Type of Rooms</p>
+                  <% if @vendor.rooms.count == 0 and @vendor.errors.count == 0 %>                
+                    <% room_1 = @vendor.rooms.new %>
+                    <% room_2 = @vendor.rooms.new %>
+                    <% room_3 = @vendor.rooms.new %>
+                  <% end %>
                   <%= semantic_form_for @vendor, :url => "/vendors/#{@vendor.id}/update_more_details", :html => {:method => :get} do |form| %>
                     <%= form.inputs do %>
                       <li>
@@ -31,12 +58,12 @@
                           new_record_link_label: "+ Add a new room"
                         } do |room| %>       
                           <%= room.inputs do %>   
-                             <%= room.input :name, :label => "Name" ,as: :string, :required => false %>
+                             <%= room.input :name, :label => "Name" ,as: :string, :required => false, input_html: {placeholder: "Name" } %>
                           <% end %>
                         <% end %>
                       </li>
                     <% end %>
-                    <%= form.action :submit, :label => "Update Vendor", :button_html => { :class => "btn btn-primary ud-vd" } %>
+                    <%= form.action :submit, :label => "Save", :button_html => { :class => "btn btn-primary ud-vd" } %>
                   <% end %>    
                   
                 </div>

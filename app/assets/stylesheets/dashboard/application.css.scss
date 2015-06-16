@@ -718,8 +718,7 @@ table.listing-table {
   font-weight: 500;
 }
 .submit-bt {
-  //margin-left: 140px;
-  font-size: 15px !important;
+  padding: 5px 30px;
 }
 .form-group-customer form.select-customer-country .sbHolder ul.sbOptions {
   width: 100%;
@@ -756,15 +755,11 @@ form.select-customer-country .sbHolder,
 }
 
 
-li#vendor_vendor_category_id_input, li#vendor_city_id_input {
-  margin-top: 20px;
-}
 .back-button {
   color: white !important;
   background-color: #18A689 !important;
-  padding: 7px 14px !important;
   border-radius: 5px !important;
-  margin-top: -40px !important;
+  margin-left: 20px;
 }
 .ibox-content h2, .ibox-content h1 {
   text-align: center;
@@ -917,4 +912,55 @@ form.lead input.submit-lead-obj {
 }
 form.booking .formnestic-list-entries-container fieldset li {
   height: auto;
+}
+.mr-top-20 {
+  margin-top: 20px;
+}
+.align-center {
+  text-align: center;
+}
+form.vendor .form-group .string.input.stringish {
+  margin-top: 25px;
+}
+.top-container-box {
+  background-color: white;
+}
+.label {
+  display: none;
+}
+
+.ibox-content .m-b-md h2 {
+  padding-right: 0px;
+  padding-top: 20px;
+}
+.top-box-with-breadcrumb {
+  float: left;
+  margin-bottom: 20px;
+  width: 100%;
+  background-color: white;
+  padding-bottom: 30px;
+}
+.st-vdt {
+  background-color: white;
+  border-top: 3px solid #d3dade;
+  float: left;
+  padding-top: 20px;
+  width: 100%;
+}
+.formnestic-nested-model-container li.string.stringish {
+  width: 600px;
+  margin: 0px auto;
+  p.inline-errors {
+    margin-left: 0px;
+  }
+}
+form.vendor .formnestic-nested-model-container {
+  .formnestic-odd-row {
+    border-bottom: none !important;
+  }
+  .formnestic-list-new-entry-link-container {
+    a {
+      margin-left: calc((100% - 600px)/ 2); 
+    }
+  }
 }
