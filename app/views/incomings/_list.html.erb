@@ -7,12 +7,14 @@
       <th class="even" >
         <%= smart_listing.sortable "Name", :customer_name %>
       </th>
-      <th class="odd">Email Address
+      <th class="odd">
+        <%= smart_listing.sortable "Email Address", :email_address %>
       </th>
       <th class="even">
         <%= smart_listing.sortable "Source", :source_info %>
       </th>
       <th class="odd" style='text-align: center;'>
+        Action
       </th>
     </tr>
   </thead>

@@ -66,12 +66,10 @@ class QuotationPDF < BorneoPDF
         end
       end  
       row1 = ["#{index + 1}", content_table, ""]
-      cost_row = ["", "Cost per person (Minimum 2 pax)", {content: "MYR690", align: :right}]
       data << row1
-      data << cost_row
-      
-     
-    end   
+    end
+    cost_row = ["", "Cost per person (Minimum 2 pax)", {content: "MYR690", align: :right}]
+    data << cost_row
     table(data, :width => 530, :cell_style =>  {:size => 12}, :column_widths => [40,400,90], :position => 10 ) do
       cells.style do |c|
         
@@ -81,7 +79,7 @@ class QuotationPDF < BorneoPDF
         end
         c.border_color = '2E3091'  
       
-        if c.row % 2 == 0
+        if c.row == data.size - 1
           c.font_style = :bold
         end     
       end

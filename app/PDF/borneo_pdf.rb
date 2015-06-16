@@ -1,7 +1,7 @@
 class BorneoPDF < Prawn::Document
   
   def initialize(options={}, customer = nil)
-    super(options.merge({:page_layout => :portrait, :page_size => "A4", margin: 5}))
+    super(options.merge({:page_layout => :portrait, :page_size => "A4", margin: 15}))
      define_grid(:columns => 12, :rows => 8, :gutter => 5)
      logo
      to_customer(customer)

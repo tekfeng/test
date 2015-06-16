@@ -37,6 +37,7 @@
       </ul>
       
       <div class='submit-comment-box container-fluid'>
+        <textarea id="comment_input" class="col-xs-8 col-sm-8 col-md-8 col-lg-8" ></textarea>
         <div class='user-info col-xs-4 col-sm-4 col-md-4 col-lg-4'>
           <div class='info-content'>
             <div class='avatar-box'>
@@ -45,9 +46,8 @@
             <div class='name-label'>You</div>
           </div>  
         </div>
-        <textarea id="comment_input" class="col-xs-8 col-sm-8 col-md-8 col-lg-8" ></textarea>
         <div class="col-xs-12 col-sm-12" style="padding:0;">
-          <div id='submit_comment' class='btn btn-primary' data-url="<%= submit_comment_incoming_url(@incoming) %>">Submit Comment</div>
+          <div id='submit_comment' class='btn btn-primary' data-url="<%= submit_comment_incoming_url(@incoming) %>">Post Comment</div>
         </div>  
       </div>  
       
