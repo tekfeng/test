@@ -83,4 +83,4 @@ end
 gem 'capistrano', '~> 2.15.5'
 gem "smart_listing", '~> 1.1.2'
 gem 'email_validator', '~> 1.5.0'
-
+gem 'exception_notification', '~> 4.1.1'
