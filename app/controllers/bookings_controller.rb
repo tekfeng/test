@@ -49,8 +49,15 @@ class BookingsController < BaseController
   
   def send_pdf_mailer    
     @booking = Booking.find_by_id(params[:id])
+    @booking.check_send_itinerary = true
+    @booking.save(validate: false)
     ApplicationMailer.delay.send_ltinerary_pdf(@booking.customer, @booking)
     redirect_to bookings_url
+  end
+  
+  def check_is_first_send_itinerary
+    @booking = Booking.find_by_id(params[:id])
+    render :json => {sended: @booking.check_send_itinerary}
   end
   
   private

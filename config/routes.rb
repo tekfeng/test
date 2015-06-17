@@ -40,7 +40,8 @@ Rails.application.routes.draw do
     end
     resources :bookings do
       
-      member do  
+      member do
+        get :check_is_first_send_itinerary
         get :convert_to_booking
         get :send_pdf_mailer
       end
