@@ -290,8 +290,15 @@ table.listing-table {
    color: #8093a5;
  }
 
-.btn.btn-primary, .btn.btn-white {
+.btn.btn-primary{
   font-size: 12px;
+  width: 90px;
+  margin: 5px;
+}
+
+.new-user .btn.btn-primary{
+  width: 90px;
+  margin: 0px;
 }
 
 div.modal-loading {
@@ -685,6 +692,11 @@ table.listing-table {
     padding: 30px 20px 20px 20px;
   }
 }
+
+#mtq_slot_available_slot:hover{
+  background-color: #f5f9cf;
+}
+
 #fancybox-overlay {
   opacity: 0.7 !important;
 }
@@ -987,4 +999,12 @@ a.compare-rate-bt {
 .float-left {
   float:left;
   width: 100%;
+}
+
+.listing-table tbody tr.odd:hover td{
+  background: #f0ffd9 none repeat scroll 0 0 !important;
+}
+
+.listing-table tbody tr.even:hover td{
+  background: #f0ffd9 none repeat scroll 0 0 !important;
 }

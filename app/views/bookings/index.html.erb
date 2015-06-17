@@ -1,3 +1,4 @@
+
 <div class='row'>
   <div class='col-lg-12'>
     <div class="row wrapper border-bottom white-bg page-heading">
@@ -60,6 +61,10 @@
             <% end %>
           </div>
         </div>
+        
+       
+          
+          
         <div id="listing-table">
           <%= smart_listing_render(:bookings) %>
         </div>
@@ -74,13 +79,15 @@
     <div class='modal-content'>
       <div class='ibox'>
         <div class='ibox-content container-fluid'>
-          <div id="accept" class= "col-md-12 col-sm-12 col-xs-12">
+          <div id="accept" class= "col-md-12 col-sm-12 col-xs-12" style="overflow: auto;position:relative;">
             <div class='col-md-12 col-sm-12 col-xs-12'>
-              <p style="font-size: 18px; line-height: 2em;">You have already sent this itinerary to the customer</p>
+              <p style="font-size: 18px; line-height: 2em; margin-top: 5px;">You have already sent this itinerary to the customer</p>
+              <p style="margin-bottom: 20px;">Are you sure you want to send this again?</p>
             </div>
             <div class='col-md-12 col-sm-12 col-xs-12 text-center'>
-              <div class="btn btn-white close-modal-box">OK</a>
+              <div class="btn btn-primary close-modal-box">Yes</a>
             </div>
+            <a id="fancybox-close-send" style="top: -90px; right: -15px; display: inline;"></a>
           </div>
         </div>
       </div>
@@ -93,8 +100,15 @@
 
 <script language="javascript">
   $(document).ready(function() {
+    <% @@creat_rendor_to_index ||= false %>
+    <% if @@creat_rendor_to_index %>
+      $.cookie('flashType', "notice", { path: '/' });
+      $.cookie('flashMessage', 'Bookings details has been saved successfully!', { path: '/' });
+      toastr['success']($.cookie('flashMessage'));
+    <%  end %>
+    
         
-    $(document.body).delegate(".close-modal-box", "click", function(e){ 
+    $(document.body).delegate(".close-modal-box, #fancybox-close-send", "click", function(e){ 
       $('#itinerary_pdf_send').modal('hide')              
     });
                 

@@ -21,7 +21,7 @@
 }
 
 .form-group button#done{
-  width: 30%;
+  width: 90px;
   margin-top: 25px;
 }
 
@@ -215,4 +215,13 @@ form .sbHolder {
   color: #ff0000;
   margin-bottom: -10px;
   margin-top: 5px;
+}
+
+.btn.btn-white.modal-box-no, .btn.btn-white.modal-box-yes{
+  margin: 5px;
+  width: 60px;
+}
+
+.new-customer .btn.btn-primary{
+  width: 120px;
 }

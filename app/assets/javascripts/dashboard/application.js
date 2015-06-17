@@ -250,6 +250,8 @@ $(function() {
         if(response.result == 'ok') {
           console.log("1111")
           if(response.flash) {
+            console.log(response.flash.type)
+            console.log(response.flash.message)
             $.cookie('flashType', response.flash.type, { path: '/' });
             $.cookie('flashMessage', response.flash.message, { path: '/' });
           }//end if
@@ -266,9 +268,9 @@ $(function() {
           
         if (!noRedirectURLCustomer) {  
           if(typeof(Turbolinks) !== 'undefined') {
-            Turbolinks.visit(response.redirect_to);
+            // Turbolinks.visit(response.redirect_to);
           } else {
-            document.location = response.redirect_to;
+            // document.location = response.redirect_to;
           }
          } 
         } else {
