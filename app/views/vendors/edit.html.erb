@@ -1,35 +1,36 @@
-<div class='row'>
+<div class="row wrapper border-bottom white-bg page-heading text-center">
   <div class='col-lg-12'>
-    <div class='wrapper wrapper-content'>
-      <div class='ibox'>
-        <div class='ibox-content'>
-          <div class='row'>
-            <div class='col-lg-12'>
-              <div class="m-b-md">
-                <h2 style="text-align: center; color: black; margin-right: 0px;">Edit Vendor</h2>
-                <a href="<%= vendors_url %>" class="btn btn-white btn-xs pull-left back-button">&larr; Back</a>
-              </div>
-               
-               
-              <div class="detail-vendor-time" style="width: 100%; float: left;">
-                <div class="box-header-detail" style="width:230px; margin: 0px auto;">
-                  <p class=""> Last Updated by: <%= @vendor.user_updated_lastest.try(:username) %> </p>
-                  <p class=""> Last Updated on: <%= @vendor.updated_at.in_time_zone("Singapore").strftime("%d-%m-%Y") %> </p> 
-                  <p class=""> Created by: <%= @vendor.user_created.try(:username) %> </p>
-                  <p class=""> Created on: <%= @vendor.created_at.in_time_zone("Singapore").strftime("%d-%m-%Y") %> </p>  
-                </div>                   
-              </div>
-              
-              <div class='row'>
-                <div class='col-lg-12'>
-                  <hr />
-                  <%= render 'form' %>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+    <a href="<%= vendors_url %>" class="btn btn-white btn-xs pull-left mr-top-20">&larr; Back</a>
+    <h2>Edit Vendors</h2>
+    <ol class="breadcrumb">
+      <li>
+       <a href="/dashboard">Home</a>
+      </li>
+      <li>
+        <a href="/vendors/dashboard_page">Reservations</a>
+      </li>
+     <li class="active">
+       <strong>Vendors</strong>
+     </li>
+    </ol>
+  </div>
+</div>
+<div class='wrapper wrapper-content'>
+  <div class='ibox white-bg'>
+    <div class='ibox-content' style="float: left; width: 100%">
+      
+      <div class="detail-vendor-time edit-vendor-top-box-content">
+        <div class="box-header-detail col-md-offset-2 " >
+          <p style="padding: 0px; color: black;"> Last Updated by: <%= @vendor.user_updated_lastest.try(:username) %> </p>
+          <p style="padding: 0px; color: black;"> Last Updated on: <%= @vendor.updated_at.in_time_zone("Singapore").strftime("%d-%m-%Y") %> </p> 
+          <p style="padding: 0px; color: black;"> Created by: <%= @vendor.user_created.try(:username) %> </p>
+          <p style="padding: 0px; color: black;"> Created on: <%= @vendor.created_at.in_time_zone("Singapore").strftime("%d-%m-%Y") %> </p>  
+        </div>                   
+      </div>
+      <div style="width: 90%; margin-left: 5%; border-bottom: 1px solid #cecccc !important; float: left; background-color: white"></div>
+      <div class="detail-vendor-time" style="width: 100%; float: left; background-color: white;">
+        <%= render 'form' %>
       </div>
     </div>
   </div>
-</div>
+</div> 
