@@ -50,24 +50,87 @@
   <p class="warning">No records!</p>
 <% end %>
 
+<div id="itinerary_pdf_send" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+  <div class='modal-dialog'>          
+    <div class='modal-content'>
+      <div class='ibox'>
+        <div class='ibox-content container-fluid'>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <div id="accept" class= "col-md-12 col-sm-12 col-xs-12">
+            <div class='col-md-12 col-sm-12 col-xs-12'>
+              <p style="font-size: 18px; line-height: 2em; font-weight: 600;">Do you want to send Itinerary to customer?</p>
+              <p style="font-size: 14px; margin-bottom: 30px;">An email with an attached pdf of the itinerary will be sent to the customer.</p>
+            </div>
+            <div class='col-md-12 col-sm-12 col-xs-12 text-center'>
+              <div class="btn btn-white close-modal-box" style="padding: 5px 20px;">Yes</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>    
+</div>
+
+<div id="itinerary_pdf_send_next_time" class="modal fade" tabindex="1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+  <div class='modal-dialog'>          
+    <div class='modal-content'>
+      <div class='ibox'>
+        <div class='ibox-content container-fluid'>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <div id="accept" class= "col-md-12 col-sm-12 col-xs-12">
+            <div class='col-md-12 col-sm-12 col-xs-12'>
+              <p style="font-size: 18px; line-height: 2em; font-weight: 600;">You have already sent this Itinerary to the customer.</p>
+              <p style="font-size: 14px; margin-bottom: 30px;">Are you sure you want to send this again?</p>
+            </div>
+            <div class='col-md-12 col-sm-12 col-xs-12 text-center'>
+              <div class="btn btn-white close-modal-box" style="padding: 5px 20px;">Yes</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>    
+</div>
+
 <script language="javascript">
   $(document).ready(function() {
+    var bookingIdSendItinerary;    
     
     $(document.body).delegate(".send-pdf-mailer", "click", function(e){
-      var bookingId = $(this).data("booking-id")
+      bookingIdSendItinerary = $(this).data("booking-id");
       $.ajax({
         type: "GET",
-        url: "/sales/bookings/" + bookingId + "/send_pdf_mailer",
-        success: function (data) {          
-          $('#itinerary_pdf_send').modal({
-            show: true,
-            backdrop: 'static',
-            keyboard: true            
-          });
-          
+        url: "/sales/bookings/" + bookingIdSendItinerary + "/check_is_first_send_itinerary",
+        success: function (data) {   
+          if (data.sended) {
+            $('#itinerary_pdf_send_next_time').modal({
+              show: true,
+              backdrop: 'static',
+              keyboard: true            
+            });  
+          } else {
+            $('#itinerary_pdf_send').modal({
+              show: true,
+              backdrop: 'static',
+              keyboard: true            
+            });  
+          }        
         }
-      });          
+      });                   
     });
+    
+    $(document.body).delegate(".close-modal-box", "click", function(e){      
+      $.ajax({
+        type: "GET",
+        url: "/sales/bookings/" + bookingIdSendItinerary + "/send_pdf_mailer",
+        success: function (data) {          
+          $('#itinerary_pdf_send').modal('hide'); 
+          $('#itinerary_pdf_send_next_time').modal('hide');         
+        }
+      });               
+    });
+            
+    
   
   });  
   

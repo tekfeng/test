@@ -40,7 +40,8 @@ Rails.application.routes.draw do
     end
     resources :bookings do
       
-      member do  
+      member do
+        get :check_is_first_send_itinerary
         get :convert_to_booking
         get :send_pdf_mailer
       end
@@ -77,4 +78,7 @@ Rails.application.routes.draw do
   get '/vendors_controll/filter_vendor', :controller => "vendors", action: "filter_vendor" 
   post "/vendor_rates/:id/update_current_contact/:vendor_id" => 'vendor_rates#update_current_contact'  
   
+  # /vendor_rates/4/update_vendor_rates
+  
+  get "/vendor_rates/:id/update_vendor_rates", :controller => "vendor_rates", action: "view_rate" 
 end

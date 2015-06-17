@@ -17,7 +17,8 @@ class Vendor < ActiveRecord::Base
   
   def create_4_vendor_rates
     for num in 1..4
-      self.vendor_rates.create({rate_type: num})
+      vendor_rates = self.vendor_rates.new({rate_type: num})
+      vendor_rates.save(validate: false)
     end
   end
   
@@ -34,5 +35,6 @@ class Vendor < ActiveRecord::Base
       return 0
     end  
   end
+  
   
 end

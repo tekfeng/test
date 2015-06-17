@@ -144,3 +144,26 @@ a.send-quotation {
     width: 100% !important;
   }
 }
+
+.btn.btn-white.close-modal-box{
+  width: 60px;
+  margin: 5px;
+}
+
+#fancybox-close-send{
+  position: absolute;
+  top: 9px;
+  right: 17px;
+  width: 30px;
+  height: 30px;
+  background-image: url("/assets/close_green.png") !important;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  z-index: 1103;
+  display: none;
+}
+
+.new-booking .btn.btn-primary{
+  width: 100px;
+  margin: 0px;
+}

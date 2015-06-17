@@ -3,6 +3,7 @@ class BookingsController < BaseController
   helper  SmartListing::Helper
   
   def index
+    @@creat_rendor_to_index ||= false
     if params[:ajax_call]
       @bookings = Booking.search(params)
       @bookings = smart_listing_create(:bookings, @bookings, partial: "bookings/list", default_sort: {travel_date: "asc"}) 
@@ -21,9 +22,10 @@ class BookingsController < BaseController
     @booking = Booking.new(booking_params)
     @booking.user_id = current_user.id    
     if @booking.save 
-      redirect_to bookings_url
+      @@creat_rendor_to_index = true
+      redirect_to  bookings_url
     else
-      render template: "bookings/new"
+      render template: "/bookings/new"
     end
   end
   
@@ -49,8 +51,15 @@ class BookingsController < BaseController
   
   def send_pdf_mailer    
     @booking = Booking.find_by_id(params[:id])
+    @booking.check_send_itinerary = true
+    @booking.save(validate: false)
     ApplicationMailer.delay.send_ltinerary_pdf(@booking.customer, @booking)
     redirect_to bookings_url
+  end
+  
+  def check_is_first_send_itinerary
+    @booking = Booking.find_by_id(params[:id])
+    render :json => {sended: @booking.check_send_itinerary}
   end
   
   private

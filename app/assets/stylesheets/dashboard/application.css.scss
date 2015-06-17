@@ -90,7 +90,6 @@
   text-align: right;
 }
 
-
 form.form-horizontal {
   ul.inline-errors {
     margin-top: 10px;
@@ -290,8 +289,15 @@ table.listing-table {
    color: #8093a5;
  }
 
-.btn.btn-primary, .btn.btn-white {
+.btn.btn-primary{
   font-size: 12px;
+  width: 90px;
+  margin: 5px;
+}
+
+.new-user .btn.btn-primary{
+  width: 90px;
+  margin: 0px;
 }
 
 div.modal-loading {
@@ -685,6 +691,11 @@ table.listing-table {
     padding: 30px 20px 20px 20px;
   }
 }
+
+#mtq_slot_available_slot:hover{
+  background-color: #f5f9cf;
+}
+
 #fancybox-overlay {
   opacity: 0.7 !important;
 }
@@ -953,10 +964,23 @@ form.vendor .form-group .string.input.stringish {
   width: 100%;
 }
 .formnestic-nested-model-container li.string.stringish {
+  
   width: 600px;
   margin: 0px auto;
   p.inline-errors {
     margin-left: 0px;
+  }
+}
+
+form.vendor {
+  padding-bottom: 30px;
+  .formnestic-nested-model-container {
+    .formnestic-list-entries-container fieldset {
+      border-bottom: 1px solid #CECCCC !important;
+    }
+    li.string.stringish {
+      margin-top: 20px;
+    }
   }
 }
 form.vendor .formnestic-nested-model-container {
@@ -987,4 +1011,30 @@ a.compare-rate-bt {
 .float-left {
   float:left;
   width: 100%;
+}
+
+.listing-table tbody tr.odd:hover td{
+  background: #f0ffd9 none repeat scroll 0 0 !important;
+}
+
+.listing-table tbody tr.even:hover td{
+  background: #f0ffd9 none repeat scroll 0 0 !important;
+}
+.detail-vendor-time p {
+  padding-left: calc((100% - 600px)/2);
+}
+p.padding-left-cacl {
+  padding-left: calc((100% - 600px)/2);
+}
+.ibox-content {
+  padding-bottom: 50px;
+}
+#itinerary_pdf_send .ibox-content, #itinerary_pdf_send_next_time .ibox-content {
+  padding-top: 0px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  .close {
+    font-size: 40px !important;
+    height: 35px;
+  }
 }

@@ -117,7 +117,7 @@
   <% end %>
   <div class="col-md-12 col-sm-12 col-xs-12 padding-0 text-center">
     <li id="lead_submit_action" class="action input_action ">
-      <input type="submit" class="btn btn-primary ud-vd submit-lead-obj" value="Save" name="commit">
+      <input type="submit" class="btn btn-primary submit-lead-obj" value="Save" name="commit">
         <% if !@lead.new_record? %>
           <a class="send-quotation" href="/sales/leads/<%=@lead.id%>/send_pdf_quotation" style="margin-left: 15px;">Send Quotation</a>
         <% end %>

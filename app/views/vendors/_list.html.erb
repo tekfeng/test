@@ -1,4 +1,5 @@
 <% unless smart_listing.empty? %> <!--vendors-->
+
 <table class='listing-table vendor-listing-content'>
   <thead>
     <tr>
@@ -8,7 +9,7 @@
       <th class="vendor-thead-email cus-style-gray"><%= smart_listing.sortable "Email", "email" %></th>
       <th class="vendor-thead-contact cus-style-white"><%= smart_listing.sortable "Contact", "contact" %></th>       
       <th class="vendor-thead-fix cus-style-gray"><%= smart_listing.sortable "Fax", "fax" %></th> 
-      <th class="vendor-thead-city cus-style-white"><%= smart_listing.sortable "City", "city_id" %></th> 
+      <th class="vendor-thead-city cus-style-white">City</th> 
       <th class="vendor-action cus-style-gray" style='text-align: center;'>Action</th>
       <th class="action cus-style-white" style='text-align: center;'>Edit</th>
     </tr>
@@ -32,12 +33,13 @@
           <%= link_to "More Details", "/vendors/#{vendor.id}/more_details", class: 'btn btn-blue' %>
         </td>
         <td style='text-align: center;'>
-          <%= link_to "Edit", edit_vendor_url(vendor), class: 'btn edit-btn' %>
+          <%= link_to "", edit_vendor_url(vendor), class: 'glyphicon glyphicon-pencil' %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
 
  <%= smart_listing.paginate  %>
 
