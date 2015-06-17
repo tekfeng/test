@@ -25,8 +25,10 @@ class LeadsController <  BaseController
   def create
     @lead = Lead.new(lead_params)
     @lead.user_id = current_user.id    
-    if @lead.save      
-      redirect_to leads_url
+    if @lead.save
+      @leads = Lead.all
+      @leads = smart_listing_create(:leads, @leads, partial: "leads/list", default_sort: {travel_from: "asc"}) 
+      render template: "leads/index", locals: { show_flash: true}
     else
       render template: "leads/new"
     end
@@ -40,7 +42,9 @@ class LeadsController <  BaseController
   def update
     @lead = Lead.find(params[:id])
     if @lead.update_attributes(lead_params)
-      redirect_to leads_url
+      @leads = Lead.all
+      @leads = smart_listing_create(:leads, @leads, partial: "leads/list", default_sort: {travel_from: "asc"}) 
+      render template: "leads/index", locals: { show_flash: true}
     else
       render :action => "edit"
     end

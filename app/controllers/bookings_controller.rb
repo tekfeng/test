@@ -3,7 +3,6 @@ class BookingsController < BaseController
   helper  SmartListing::Helper
   
   def index
-    @@creat_rendor_to_index ||= false
     if params[:ajax_call]
       @bookings = Booking.search(params)
       @bookings = smart_listing_create(:bookings, @bookings, partial: "bookings/list", default_sort: {travel_date: "asc"}) 
@@ -22,8 +21,9 @@ class BookingsController < BaseController
     @booking = Booking.new(booking_params)
     @booking.user_id = current_user.id    
     if @booking.save 
-      @@creat_rendor_to_index = true
-      redirect_to  bookings_url
+      @bookings = Booking.all
+      @bookings = smart_listing_create(:bookings, @bookings, partial: "bookings/list", default_sort: {travel_date: "asc"})
+      render template: "bookings/index", locals: { show_flash: true}
     else
       render template: "/bookings/new"
     end

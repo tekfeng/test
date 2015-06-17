@@ -60,11 +60,7 @@
                <%= f.action :submit, :label => "Filter", :button_html => { :class => "btn btn-primary filter-booking" } %>
             <% end %>
           </div>
-        </div>
-        
-       
-          
-          
+        </div> 
         <div id="listing-table">
           <%= smart_listing_render(:bookings) %>
         </div>
@@ -75,11 +71,13 @@
 
 <script language="javascript">
   $(document).ready(function() {
-    <% @@creat_rendor_to_index ||= false %>
-    <% if @@creat_rendor_to_index %>
+    <% show_flash ||= false %>
+    <% if show_flash %>
       $.cookie('flashType', "notice", { path: '/' });
-      $.cookie('flashMessage', 'Bookings details has been saved successfully!', { path: '/' });
+      $.cookie('flashMessage', 'Booking has been saved successfully!', { path: '/' });
       toastr['success']($.cookie('flashMessage'));
+      $.removeCookie('flashType', { path: '/' });
+      $.removeCookie('flashMessage', { path: '/' });
     <%  end %>
     
     var bookingStatusValue, bookingUserId;
@@ -92,7 +90,7 @@
         $('#booking_travel_to').datetimepicker({
           timepicker: false,
           format:'d-m-Y',
-           minDate: db,
+          minDate: db,
         });
       }     
     });     
