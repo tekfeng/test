@@ -8,7 +8,8 @@
         row_addable: true,
         new_record_link_label: "+ Create a new Ad-hoc rate"
       } do |vendor_rate| %>       
-        <%= vendor_rate.inputs do %>          
+        <%= vendor_rate.inputs do %>
+             
             <a class="btn btn-primary pull-right" href="/vendor_rates/<%=vendor_rate.object.id %>/edit_rate?vendor_id=<%= @vendor.id %>">Enter Rates</a>
             
             <% case vendor_rate.object.rate_type %> 
@@ -35,9 +36,7 @@
                } do |competitor| %>
                   <%= competitor.inputs do %>
                     <%= competitor.input :name, as: :string, :input_html => { placeholder: "Competitor Name" } %>
-                  <% end %>
-                
-                    
+                  <% end %>                   
              <% end %>
              
             <% else %> 
