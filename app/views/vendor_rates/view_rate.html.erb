@@ -6,7 +6,7 @@
         <div class='ibox-content'>
           <div class='row'>
             <div class='col-lg-12' style="padding: 0px;">
-              <div class="m-b-md top-box-with-breadcrumb">  
+              <div class="m-b-md top-box-with-breadcrumb">
                 <div class="col-md-4 col-sm-4 col-xs-12">
                   <a href="<%= vendors_path %>" class="btn btn-white btn-xs pull-left back-button mr-top-20">&larr; Back</a>     
                 </div>
@@ -17,10 +17,10 @@
                       <a href="/dashboard">Home</a>
                     </li>
                     <li>
-                      <a href="/vendors/dashboard_page">Reservation</a>
+                      <a href="/vendors/dashboard_page">Reservations</a>
                     </li>
                     <li class="active">
-                      <strong>Vendors</strong>
+                      <strong>Vendor Rates</strong>
                     </li>
                   </ol>
                 </div>
@@ -34,20 +34,20 @@
                   <p class="updated-notifi"><%=@vendor.name %> is updated successfull !</p>
                 <% end %>
                 <div class="detail-vendor-time">
-                  <p class="pdl-60"> Last Updated by: <%= @vendor.user_updated_lastest.try(:username) %> </p>
-                  <p class="pdl-60"> Last Updated on: <%= @vendor.updated_at.in_time_zone("Singapore").strftime("%d-%m-%Y") %> </p> 
-                  <p class="pdl-60"> Last Created by: <%= @vendor.user_created.try(:username) %> </p>
-                  <p class="pdl-60"> Last Created on: <%= @vendor.created_at.in_time_zone("Singapore").strftime("%d-%m-%Y") %> </p>                     
+                  <p> Last Updated by: <%= @vendor.user_updated_lastest.try(:username) %> </p>
+                  <p> Last Updated on: <%= @vendor.updated_at.in_time_zone("Singapore").strftime("%d-%m-%Y") %> </p> 
+                  <p> Last Created by: <%= @vendor.user_created.try(:username) %> </p>
+                  <p> Last Created on: <%= @vendor.created_at.in_time_zone("Singapore").strftime("%d-%m-%Y") %> </p>                     
                 </div>
-                <hr />
+                <hr style="margin-left: 15px; margin-right: 15px;"/>
                 
-                <div class="detail-vendor-info">
-                  <p class="pdl-60"> Vendor name: <%= @vendor.name %> </p>
-                  <p class="pdl-60"> Vendor type: <%= @vendor.vendor_type %> </p>
-                  <p class="pdl-60"> Vendor category: <%= @vendor.vendor_category.try(:name) %> </p>
-                  <p class="pdl-60"> Vendor Eamil address: <%= @vendor.email %> </p>
-                  <p class="pdl-60"> Vendor Contact number: <%= @vendor.contact %> </p>
-                  <p class="pdl-60"> Vendor Fax number: <%= @vendor.fax %> </p>
+                <div class="detail-vendor-time detail-vendor-info">
+                  <p> Vendor name: <%= @vendor.name %> </p>
+                  <p> Vendor type: <%= @vendor.vendor_type %> </p>
+                  <p> Vendor category: <%= @vendor.vendor_category.try(:name) %> </p>
+                  <p> Vendor Eamil address: <%= @vendor.email %> </p>
+                  <p> Vendor Contact number: <%= @vendor.contact %> </p>
+                  <p> Vendor Fax number: <%= @vendor.fax %> </p>
                 </div>
                 
                 

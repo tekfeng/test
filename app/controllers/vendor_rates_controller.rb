@@ -16,7 +16,7 @@ class VendorRatesController < BaseController
     @vendor = Vendor.find_by_id(params[:id])
   end
 
-  def update_vendor_rates
+  def update_vendor_rates_old
     @vendor = Vendor.find_by_id(params[:id])
     params[:vendor][:vendor_rates_attributes].each do |key, value|
       if value[:id].present? # update value for vendor rate
@@ -48,6 +48,16 @@ class VendorRatesController < BaseController
       end      
     end    
     render template: "vendor_rates/view_rate", locals: {updated:  true }   
+  end
+  
+  def update_vendor_rates
+    @vendor = Vendor.find_by_id(params[:id])
+    if @vendor.update_attributes(vendor_params)
+      render template: "vendor_rates/view_rate", locals: {updated:  true }   
+    else
+      p @vendor.errors.full_messages
+      render template: "vendor_rates/view_rate"
+    end
   end
   
   def edit_rate
@@ -98,7 +108,7 @@ class VendorRatesController < BaseController
   private
 
   def vendor_params
-    params.require(:vendor).permit(:name, :email, :fax, :contact, :city_id, :vendor_type, :vendor_category_id)
+    params.require(:vendor).permit(:name, :email, :fax, :contact, :city_id, :vendor_type, :vendor_category_id, vendor_rates_attributes: [:id, :effective, :expired, :remarks, :_destroy, competitors_attributes: [:id, :name, :_destroy]])
   end
     
 end

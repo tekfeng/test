@@ -18,7 +18,7 @@
               <a href="/sales/dashboard">Sales</a>
             </li>
             <li class="active">
-              <strong>Booking</strong>
+              <strong>Bookings</strong>
             </li>
           </ol>
         </div>
@@ -71,32 +71,7 @@
       </div>
     </div>
   </div>
-</div>
-
-
-<div id="itinerary_pdf_send" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class='modal-dialog'>
-    <div class='modal-content'>
-      <div class='ibox'>
-        <div class='ibox-content container-fluid'>
-          <div id="accept" class= "col-md-12 col-sm-12 col-xs-12" style="overflow: auto;position:relative;">
-            <div class='col-md-12 col-sm-12 col-xs-12'>
-              <p style="font-size: 18px; line-height: 2em; margin-top: 5px;">You have already sent this itinerary to the customer</p>
-              <p style="margin-bottom: 20px;">Are you sure you want to send this again?</p>
-            </div>
-            <div class='col-md-12 col-sm-12 col-xs-12 text-center'>
-              <div class="btn btn-primary close-modal-box">Yes</a>
-            </div>
-            <a id="fancybox-close-send" style="top: -90px; right: -15px; display: inline;"></a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>    
-</div>
-
-
-   
+</div>   
 
 <script language="javascript">
   $(document).ready(function() {
@@ -107,11 +82,6 @@
       toastr['success']($.cookie('flashMessage'));
     <%  end %>
     
-        
-    $(document.body).delegate(".close-modal-box, #fancybox-close-send", "click", function(e){ 
-      $('#itinerary_pdf_send').modal('hide')              
-    });
-                
     var bookingStatusValue, bookingUserId;
     $('#booking_travel_date,#booking_travel_to').val("");
     $('.label').hide();

@@ -90,7 +90,6 @@
   text-align: right;
 }
 
-
 form.form-horizontal {
   ul.inline-errors {
     margin-top: 10px;
@@ -965,10 +964,23 @@ form.vendor .form-group .string.input.stringish {
   width: 100%;
 }
 .formnestic-nested-model-container li.string.stringish {
+  
   width: 600px;
   margin: 0px auto;
   p.inline-errors {
     margin-left: 0px;
+  }
+}
+
+form.vendor {
+  padding-bottom: 30px;
+  .formnestic-nested-model-container {
+    .formnestic-list-entries-container fieldset {
+      border-bottom: 1px solid #CECCCC !important;
+    }
+    li.string.stringish {
+      margin-top: 20px;
+    }
   }
 }
 form.vendor .formnestic-nested-model-container {
@@ -1007,4 +1019,22 @@ a.compare-rate-bt {
 
 .listing-table tbody tr.even:hover td{
   background: #f0ffd9 none repeat scroll 0 0 !important;
+}
+.detail-vendor-time p {
+  padding-left: calc((100% - 600px)/2);
+}
+p.padding-left-cacl {
+  padding-left: calc((100% - 600px)/2);
+}
+.ibox-content {
+  padding-bottom: 50px;
+}
+#itinerary_pdf_send .ibox-content, #itinerary_pdf_send_next_time .ibox-content {
+  padding-top: 0px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  .close {
+    font-size: 40px !important;
+    height: 35px;
+  }
 }
