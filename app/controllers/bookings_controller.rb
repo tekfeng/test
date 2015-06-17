@@ -23,7 +23,7 @@ class BookingsController < BaseController
     if @booking.save 
       redirect_to bookings_url
     else
-      render template: "bookings/new"
+      render template: "/bookings/new"
     end
   end
   
