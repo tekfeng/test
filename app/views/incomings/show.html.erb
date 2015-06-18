@@ -98,8 +98,6 @@
   </div>    
 </div>
 
-
-
 <script language="javascript">
   $(document).ready(function() {
     $('.date-field').datetimepicker({
@@ -108,11 +106,18 @@
     }); 
     
     var userIdIncomingCreateLead;
-    $("select#incoming_user_id").selectbox({
+    
+    var incoming_user_id = $("select#incoming_user_id");
+    <% if @incoming.user_id.nil? %>        
+      incoming_user_id.prepend('<option value="">Allocated</option>');
+      incoming_user_id.val("");
+    <% end %>
+    
+    incoming_user_id.selectbox({
       onChange: function(val){        
         userIdIncomingCreateLead = val;
-        $("select#incoming_user_id").val(val);
-        $("select#incoming_user_id").trigger("change");
+        incoming_user_id.val(val);
+        incoming_user_id.trigger("change");
         
         $('#incoming_allocated_for_user').modal({
           show: true,
@@ -147,8 +152,7 @@
         });  
       }  else {
         $('#incoming_allocated_for_user').modal('hide');         
-      }   
-                   
+      }                      
     });
     
     

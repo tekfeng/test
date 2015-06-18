@@ -55,9 +55,14 @@ class IncomingsController < SalesController
       action = "edit"
       lead.user = user
     end
-        
+    
+    incoming.user = user
+    incoming.save   
+    
     lead.save(validate: false)
-    user.notifications.create(message: "One Lead was #{action} and bin to you")
+    notifi = user.notifications.create(message: "You have been allocated to a new lead [#{incoming.try(:email_address)}].")
+    notifi.notifitable = lead
+    notifi.save
     render json: { status: "ok", action: action }
   end     
   

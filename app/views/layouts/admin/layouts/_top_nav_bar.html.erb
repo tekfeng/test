@@ -23,15 +23,14 @@
             <% end %>
           </a>
         
-        <ul class="dropdown-menu dropdown-alerts">
-         
-          <% current_user.notifications.each do |notification| %>
+        <ul class="dropdown-menu dropdown-alerts">      
+          <% current_user.notifications.order("updated_at desc").each do |notification| %>
             <li class="notifi-li-st">
-              <a>
+              <a href="<%= notification.url %>">
                 <div class="<% notification.is_read ? '' : 'new-message'%>">
                   <i class="fa fa-envelope fa-fw"></i> <%= notification.message %>
                   <small class="block text-muted time-label timeago" title="<%= notification.created_at.strftime("%Y-%m-%dT%H:%M:%SZ") %>">
-                    <i class="fa fa-clock-o"></i>
+                    <i class="fa fa-clock-o" style="margin-right: 5px;"></i>
                       <%= notification.created_at.strftime("%Y-%-m-%d") %>  
                   </small>
                 </div>
@@ -51,7 +50,7 @@
 <script language="javascript">
   $(document).ready(function() {
     $(".timeago").timeago();
-    $(".timeago").prepend("<i class='fa fa-clock-o'></i>");
+    $(".timeago").prepend("<i class='fa fa-clock-o' style='margin-right: 5px;'></i>");
     
     $(document.body).delegate('.notification-icon-count', 'click', function() {
       $.ajax({

@@ -2,6 +2,8 @@ class Lead < ActiveRecord::Base
   belongs_to :customer
   belongs_to :user
   
+  
+  has_many :notifications, as: :notifitable
   has_many :lead_tour_category_tours, dependent: :destroy
   accepts_nested_attributes_for :lead_tour_category_tours, allow_destroy: true  
   

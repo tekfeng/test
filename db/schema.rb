@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150618080123) do
+ActiveRecord::Schema.define(version: 20150618095105) do
 
   create_table "add_username_to_users", force: :cascade do |t|
     t.string   "username",   limit: 255
@@ -139,11 +139,13 @@ ActiveRecord::Schema.define(version: 20150618080123) do
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.integer  "user_id",    limit: 4
-    t.text     "message",    limit: 65535
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
-    t.boolean  "is_read",    limit: 1,     default: false
+    t.integer  "user_id",          limit: 4
+    t.text     "message",          limit: 65535
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
+    t.boolean  "is_read",          limit: 1,     default: false
+    t.string   "notifitable_type", limit: 255
+    t.integer  "notifitable_id",   limit: 4
   end
 
   create_table "rooms", force: :cascade do |t|
