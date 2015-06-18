@@ -289,10 +289,9 @@ table.listing-table {
    color: #8093a5;
  }
 
-.btn.btn-primary{
+.btn.btn-primary[type="submit"]{
   font-size: 12px;
   width: 90px;
-  margin: 5px;
 }
 
 .new-user .btn.btn-primary{
@@ -911,7 +910,7 @@ input#user_email.form-control.email {
 }
 form.lead input.submit-lead-obj {
   margin-top: 0px !important;
-  width: 130px;
+  width: 130px !important;
 }
 .lead-form-content {
   padding-bottom: 60px;
@@ -1027,13 +1026,15 @@ p.padding-left-cacl {
 .ibox-content {
   padding-bottom: 50px;
 }
-#itinerary_pdf_send .ibox-content, #itinerary_pdf_send_next_time .ibox-content {
-  padding-top: 0px;
-  padding-right: 10px;
-  padding-bottom: 10px;
-  .close {
-    font-size: 40px !important;
-    height: 35px;
+#itinerary_pdf_send, #itinerary_pdf_send_next_time, #ajax_modal, #convert_lead_to_booking_modal {
+  .ibox-content {
+    padding-top: 0px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    .close {
+      font-size: 40px !important;
+      height: 35px;
+    }
   }
 }
 .edit-vendor-top-box-content {
@@ -1064,4 +1065,22 @@ ol.breadcrumb {
 .more-detail-vendor form.vendor .formnestic-nested-model-container .formnestic-list-entries-container fieldset {
   border-bottom: none !important;
   margin-bottom: 0px;
+}
+li#booking_number_adult_input p.inline-errors {
+  position: absolute;
+  top: 120px;
+}
+.btn-primary.pull-left {
+  font-size: 12px;
+}
+.no-box-redirect-url {
+  background-color: #18a689;
+  border-radius: 3px;
+  color: white;
+  margin-top: 20px;
+  padding: 5px 26px;
+  margin-right: 10px;
+  &:hover{
+    color: white;
+  };
 }

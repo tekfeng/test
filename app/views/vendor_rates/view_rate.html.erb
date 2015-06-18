@@ -45,12 +45,11 @@
                   <p> Vendor name: <%= @vendor.name %> </p>
                   <p> Vendor type: <%= @vendor.vendor_type %> </p>
                   <p> Vendor category: <%= @vendor.vendor_category.try(:name) %> </p>
-                  <p> Vendor Eamil address: <%= @vendor.email %> </p>
+                  <p> Vendor Email address: <%= @vendor.email %> </p>
                   <p> Vendor Contact number: <%= @vendor.contact %> </p>
                   <p> Vendor Fax number: <%= @vendor.fax %> </p>
                 </div>
-                
-                
+                               
                 <div class='col-lg-12'>
                   <hr />
                   <%= render 'rate_form' %>

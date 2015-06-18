@@ -4,11 +4,13 @@ class Booking < ActiveRecord::Base
   has_many :booking_tour_category_tours, dependent: :destroy
   accepts_nested_attributes_for :booking_tour_category_tours, allow_destroy: true
   after_create :create_booking_code
-  
+    
   validates :customer_id, :contact_number, :travel_date, :travel_to, :presence => true
-  validates :contact_number, numericality: { only_integer: true }
+  # validates :contact_number, numericality: true
+  validate :validate_num_of_pax
   
-  BOOKING_STATUS = ['Confirm invoice', 'Need follow up', 'Replied', 'Closed', 'Unpaid', 'Allocated', 'Fully booked', 'No response', 'Cancel invoice']
+  
+  BOOKING_STATUS = ['Confirm invoice', 'Need follow up', 'Replied', 'Closed', 'Unpaid', 'Allocated', 'Fully booked']
 
   def create_booking_code
     if self.booking_number.nil?
@@ -35,6 +37,15 @@ class Booking < ActiveRecord::Base
     return bookings    
   end
   
+  def validate_num_of_pax
+    value_return = true
+    if self.number_of_pax == 0
+      self.errors.add(:number_adult, "Number of Pax at least 1")
+      value_return = false  
+    end
+    return value_return
+  end
+  
   def number_of_pax
     if self.number_adult and self.number_child
       self.number_adult + self.number_child
@@ -43,7 +54,7 @@ class Booking < ActiveRecord::Base
     elsif self.number_child
       self.number_child
     else
-      ""
+      0
     end     
   end
   

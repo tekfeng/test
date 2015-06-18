@@ -113,9 +113,7 @@
                 });
     
               });  
-            </script>
-            
-            
+            </script>            
         <% end %>
       <% end %>
     </li>
@@ -165,7 +163,7 @@
     $('.label').hide();
     var bookingCustomerId = $('#booking_customer_id');
         
-    <% if !lead and  @booking.errors.count == 0%>
+    <% if !lead and ((@booking.errors.count == 0) or (@booking.errors.count > 0 and !@booking.customer_id ) )%>
       bookingCustomerId.prepend('<option value="0">Select Customer</option>');
       bookingCustomerId.val("");
     <% end %>

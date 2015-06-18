@@ -48,14 +48,15 @@
     <div class='modal-content'>
       <div class='ibox'>
         <div class='ibox-content container-fluid'>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <div id="accept" class= "col-md-12 col-sm-12 col-xs-12">
-            <div class='col-md-12 col-sm-12 col-xs-12'>
-              <h3 style="text-align: center;">Do you want to convert this Lead to a Booking?</h3>
-              <p>Once a Lead is converted to a Booking, this Lead will be found under Bookings.</p>
+            <div class='col-md-12 col-sm-12 col-xs-12' style="padding: 0px;">
+              <p style="font-size: 18px; line-height: 2em; font-weight: 600;">Do you want to convert this Lead to a Booking?</p>
+              <p style="font-size: 14px; margin-bottom: 30px;">Once a Lead is converted to a Booking, this Lead will be found under Bookings.</p>
             </div>
-            <div class='col-md-12 col-sm-12 col-xs-12 text-center'>
-              <a class="btn btn-white" href='<%= edit_lead_url(@lead) %>'>No</a>
-              <a class="btn btn-white" id="conver-customer-to-lead-url" href='/sales/bookings/<%=@lead.id%>/convert_to_booking'>Yes</a>
+            <div class='col-md-12 col-sm-12 col-xs-12 text-center'>              
+              <a class="no-box-redirect-url close-modal-box">No</a>
+              <a class="no-box-redirect-url" id="conver-customer-to-lead-url" href='/sales/bookings/<%=@lead.id%>/convert_to_booking'>Yes</a>
             </div>
           </div>
         </div>
@@ -73,5 +74,13 @@
         keyboard: true
       });
     });
+    $(document.body).delegate(".close-modal-box", "click", function(e){
+      e.preventDefault();
+      $('#convert_lead_to_booking_modal').modal('hide');
+      return false;
+    });
+    
   });  
+  
+  
 </script>

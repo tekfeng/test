@@ -8,7 +8,7 @@ class Customer < ActiveRecord::Base
   validates :email_address, :name, :uniqueness => true
   validates :email_address, :email => true
   validates :name, :contact_number, :address, :country_id, :source_id, :presence => true
-  
+  validates :contact_number , numericality: true
   def as_json(options={})
     {
       id: id,

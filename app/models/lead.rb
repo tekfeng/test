@@ -8,7 +8,7 @@ class Lead < ActiveRecord::Base
   after_create :create_default_value
   
   validates :customer_id, :contact_number, :travel_from, :travel_to, :presence => true
-  validates :contact_number, numericality: { only_integer: true }
+  validates :contact_number, numericality: true
     
   def create_default_value
     self.status = "Allocated"   
