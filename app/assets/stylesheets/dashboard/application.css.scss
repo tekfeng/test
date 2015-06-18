@@ -939,7 +939,7 @@ form.vendor .form-group .string.input.stringish {
 }
 
 .label.label-primary{
-  display: block !important;
+  display: block ;
 }
 
 .ibox-content .m-b-md h2 {
@@ -1026,7 +1026,7 @@ p.padding-left-cacl {
 .ibox-content {
   padding-bottom: 50px;
 }
-#itinerary_pdf_send, #itinerary_pdf_send_next_time, #ajax_modal, #convert_lead_to_booking_modal, #quotation_pdf_send_next_time {
+#itinerary_pdf_send, #itinerary_pdf_send_next_time, #ajax_modal, #convert_lead_to_booking_modal, #quotation_pdf_send_next_time , #incoming_allocated_for_user, #success_mess_after_create_lead{
   .ibox-content {
     padding-top: 0px;
     padding-right: 10px;
@@ -1088,4 +1088,16 @@ li#booking_number_adult_input p.inline-errors {
   height: 30px;
   margin-top: 20px;
   padding-top: 5px;
+}
+.notifi-li-st {
+  border-bottom: 1px solid;
+}
+ul.navbar-top-links li a.notification-icon-count i {
+  &:hover{
+    color: green;
+  };
+}
+ul.dropdown-alerts {
+  max-height: 250px;
+  overflow: auto;
 }

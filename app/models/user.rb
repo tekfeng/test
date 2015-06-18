@@ -1,8 +1,9 @@
 class User < ActiveRecord::Base
-  has_many :booking
+  has_many :bookings
   has_many :leads
+  has_many :incomings
   belongs_to :department
-  
+  has_many :notifications
   
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
@@ -21,6 +22,10 @@ class User < ActiveRecord::Base
     users = self.all
     users = users.where(columns_condition.join(" OR "), keyword: "%#{opts[:keyword].downcase}%" ) if opts[:keyword] && opts[:keyword] != ""
     return users
+  end
+  
+  def status_unread
+    self.notifications.where(is_read: false)
   end
   
 end

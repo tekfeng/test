@@ -29,10 +29,14 @@ Rails.application.routes.draw do
     resources :incomings do
       member do
         post :submit_comment
+        post :create_lead_base_on_ic
       end  
     end  
     resources :customers 
     resources :leads do 
+      collection do
+        get 'read_notification'
+      end
       member do  
         get :send_pdf_quotation
       end

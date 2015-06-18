@@ -57,6 +57,11 @@ class LeadsController <  BaseController
     redirect_to leads_url
   end 
   
+  def read_notification
+    current_user.notifications.update_all(:is_read => true)
+    render json: {status: "ok"}
+  end
+  
   private
 
   def lead_params

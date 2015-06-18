@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150617030414) do
+ActiveRecord::Schema.define(version: 20150618080123) do
 
   create_table "add_username_to_users", force: :cascade do |t|
     t.string   "username",   limit: 255
@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 20150617030414) do
     t.string   "source_info",   limit: 255
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+    t.integer  "user_id",       limit: 4
   end
 
   create_table "lead_tour_category_tours", force: :cascade do |t|
@@ -127,6 +128,7 @@ ActiveRecord::Schema.define(version: 20150617030414) do
     t.datetime "updated_at",                 null: false
     t.string   "status",         limit: 255
     t.integer  "user_id",        limit: 4
+    t.integer  "incoming_id",    limit: 4
   end
 
   create_table "mtq_slots", force: :cascade do |t|
@@ -134,6 +136,14 @@ ActiveRecord::Schema.define(version: 20150617030414) do
     t.integer  "available_slot", limit: 4
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.text     "message",    limit: 65535
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.boolean  "is_read",    limit: 1,     default: false
   end
 
   create_table "rooms", force: :cascade do |t|

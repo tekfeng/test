@@ -21,9 +21,11 @@
   <div class='ibox white-bg incoming-detail'>
     <div class='ibox-title incoming-header container-fluid'>
       <div class="col-xxs-12 col-xs-6 col-xm-6 col-sm-6 col-md-6 padding-0" style="float:right;">
-        <select id="status_select" >
-          <option value="allocated">Allocated To</option>
-        </select>
+          <%= semantic_form_for @incoming do |f| %>
+            <%= f.inputs do %>
+              <%= f.input :user_id, :as => :select, :collection => @users, include_blank: false %>
+            <% end %>
+          <% end %>
       </div>
       <p class='title col-xxs-12 col-xs-6 col-sm-6 col-md-6 padding-0'>Date: <span><%= @incoming.created_at.strftime("%Y-%-m-%d") %></span></p>
     </div>  
@@ -56,6 +58,48 @@
     </div>
   </div>
 </div>
+
+<div id="incoming_allocated_for_user" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class='modal-dialog'>
+    <div class='modal-content'>
+      <div class='ibox'>
+        <div class='ibox-content container-fluid'>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <div id="accept" class= "col-md-12 col-sm-12 col-xs-12">
+            <div class='col-md-12 col-sm-12 col-xs-12' style="padding: 0px;">
+              <p style="font-size: 18px; line-height: 2em; font-weight: 600;">Do you want to allocated for this User?</p>
+              <p style="font-size: 14px; margin-bottom: 30px;">Once a Lead will be create base on that incoming.</p>
+            </div>
+            <div class='col-md-12 col-sm-12 col-xs-12 text-center'>              
+              <a class="no-box-redirect-url close-modal-box-ic">No</a>
+              <a class="no-box-redirect-url close-modal-box-ic yes-create-lead-base-on-ic">Yes</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>    
+</div>
+
+<div id="success_mess_after_create_lead" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class='modal-dialog'>
+    <div class='modal-content'>
+      <div class='ibox'>
+        <div class='ibox-content container-fluid' style="padding-bottom: 0px;">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <div id="accept" class= "col-md-12 col-sm-12 col-xs-12">
+            <div class='col-md-12 col-sm-12 col-xs-12' style="padding: 0px;">
+              <p class="change-action-name" style="font-size: 18px; line-height: 2em; font-weight: 600; color: green;">A Lead was created base on that incoming</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>    
+</div>
+
+
+
 <script language="javascript">
   $(document).ready(function() {
     $('.date-field').datetimepicker({
@@ -63,11 +107,50 @@
       format:'d-m-Y',
     }); 
     
-    $("select#status_select").selectbox({
-      onChange: function(val){
-        $("select#status_select").val(val);
-        $("select#status_select").trigger("change");
+    var userIdIncomingCreateLead;
+    $("select#incoming_user_id").selectbox({
+      onChange: function(val){        
+        userIdIncomingCreateLead = val;
+        $("select#incoming_user_id").val(val);
+        $("select#incoming_user_id").trigger("change");
+        
+        $('#incoming_allocated_for_user').modal({
+          show: true,
+          backdrop: 'static',
+          keyboard: true            
+        });    
       }
     });
+    
+    $(document.body).delegate(".close-modal-box-ic", "click", function(e){
+      console.log($(e.currentTarget)) 
+      if ($(e.currentTarget).hasClass("yes-create-lead-base-on-ic")) {
+        $.ajax({
+          type: "POST",
+          url: "/sales/incomings/" + userIdIncomingCreateLead + "/create_lead_base_on_ic?ic_id=" + <%= @incoming.id %>,
+          success: function (data) {
+            
+            if (data.status == "ok") {
+              if (data.action == "edit"){
+                $('#success_mess_after_create_lead .change-action-name').html("Lead base on that incoming is update successfull");
+              }
+                           
+              $('#incoming_allocated_for_user').modal('hide');   
+              $('#success_mess_after_create_lead').modal({
+                show: true,
+                backdrop: 'static',
+                keyboard: true            
+              }); 
+            }          
+            
+          }
+        });  
+      }  else {
+        $('#incoming_allocated_for_user').modal('hide');         
+      }   
+                   
+    });
+    
+    
   });  
 </script>

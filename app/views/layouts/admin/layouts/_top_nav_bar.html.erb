@@ -15,10 +15,30 @@
         <span class="m-r-sm text-muted welcome-message">Welcome to Amazing Borneo.</span>
       </li>
       <li>
-        <a class="dropdown-toggle count-info" href="#" data-toggle="dropdown" aria-expanded="false">
-          <i class="fa fa-bell"></i>
-          <span class="label label-primary">2</span>
-        </a>
+        
+          <a class="dropdown-toggle count-info notification-icon-count"  href="" data-toggle="dropdown" aria-expanded="false">
+            <i class="fa fa-bell"></i>
+            <% if current_user.status_unread.count > 0 %>
+              <span class="label label-primary status_count"><%= current_user.status_unread.count %></span>
+            <% end %>
+          </a>
+        
+        <ul class="dropdown-menu dropdown-alerts">
+         
+          <% current_user.notifications.each do |notification| %>
+            <li class="notifi-li-st">
+              <a>
+                <div class="<% notification.is_read ? '' : 'new-message'%>">
+                  <i class="fa fa-envelope fa-fw"></i> <%= notification.message %>
+                  <small class="block text-muted time-label timeago" title="<%= notification.created_at.strftime("%Y-%m-%dT%H:%M:%SZ") %>">
+                    <i class="fa fa-clock-o"></i>
+                      <%= notification.created_at.strftime("%Y-%-m-%d") %>  
+                  </small>
+                </div>
+              </a>
+            </li>  
+          <% end %>        
+        </ul>
       </li>
       <li>
         <a href="/users/sign_out">
@@ -28,3 +48,20 @@
     </ul>
   </nav>
 </div>
+<script language="javascript">
+  $(document).ready(function() {
+    $(".timeago").timeago();
+    $(".timeago").prepend("<i class='fa fa-clock-o'></i>");
+    
+    $(document.body).delegate('.notification-icon-count', 'click', function() {
+      $.ajax({
+        type: "GET",
+        url: "/sales/leads/read_notification",
+        success: function (data) {
+          $(".status_count").html("");
+          $(".status_count").css("display", "none")
+        }
+      });         
+    });
+  })
+</script>

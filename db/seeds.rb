@@ -29,10 +29,10 @@ if City.count == 0
 end
 
 if Department.count == 0
-  Department.create(name: "Department 1")
-  Department.create(name: "Department 2")
-  Department.create(name: "Department 3")
-  Department.create(name: "Department 4")
+  Department.create(name: "Sales")
+  Department.create(name: "Reservations")
+  Department.create(name: "Operations")
+  Department.create(name: "Finance")
 end
 
 if Country.count == 0
