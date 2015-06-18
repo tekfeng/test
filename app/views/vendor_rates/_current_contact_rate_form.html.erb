@@ -1,13 +1,16 @@
 <%= semantic_form_for @vendor_rate,  :url => "/vendor_rates/#{@vendor_rate.id}/update_current_contact/#{@vendor.id}", :html => {:method => :post, :multipart => true }  do |f| %>
   <%= f.inputs do %>
     <% if @vendor_rate.rate_type != 4 %>
+      <div class="col-md-12">
+        <span class="file-name-show"><%= f.object.contract_file.exists? ? f.object.contract_file_file_name : "no file" %></span>
+        <a href="/vendor_rates/<%= @vendor_rate.id %>/download_files">
+          <span class="download"> Download</span>
+        </a>
+      </div>
       <%= f.input :contract_file, :as => :file %>
-      <% if f.object.contract_file.exists? %>
-        <span class="file-name-show"><%= f.object.contract_file_file_name %></span>
-      <% end %>
-      <a href="/vendor_rates/<%= @vendor_rate.id %>/download_files">
-        <span class="download"> Download</span>
-      </a>
+      
+     
+      
     <% end %>
   <% end %>
    
