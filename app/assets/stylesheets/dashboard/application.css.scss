@@ -489,17 +489,15 @@ form.vendor_rate {
   span.download {
     background-image: url("/assets/download_icon.png");
     background-repeat: no-repeat;
-    background-position: 6px 7px;
+    background-position: 6px 10px;
     color: white;
-    background-color: black;
-    padding: 4px 25px;
-    border: 1px solid black;
+    background-color: #22a98e;
+    padding: 6px 25px;
+    border: 1px solid #22a98e;
     border-radius: 5px;
     cursor: pointer;
     float: left;
-    &:hover {
-      background-color: #212020;
-    };
+   
   }
 }
 #salary_table {
@@ -553,11 +551,11 @@ tbody th {
   background-position: 4px 10px;
 }
 .file-name-show {
-  background: white none repeat scroll 0 0;
-  left: 254px;
-  position: absolute;
-  top: 47px;
-  width: 105px;
+  float: left;
+  color: black;
+  margin-right: 15px;
+  font-size: 16px;
+  line-height: 2.3em;
 }
 p.inline-errors {
   color: red;
@@ -1037,4 +1035,33 @@ p.padding-left-cacl {
     font-size: 40px !important;
     height: 35px;
   }
+}
+.edit-vendor-top-box-content {
+  width: 100%; float: left; background-color: white;
+  border-top: 3px solid #d3dade;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.detail-vendor-time .form-group {
+  margin: 0px;
+}
+.margin-left-0 {
+  margin-left: 0px !important;
+}
+ol.breadcrumb li a {
+  color: black;
+  font-size: 15px;
+  font-weight: 400;
+}
+h2 {
+  color: black;
+  font-weight: 100;
+  
+}
+ol.breadcrumb {
+  text-align: center;
+}
+.more-detail-vendor form.vendor .formnestic-nested-model-container .formnestic-list-entries-container fieldset {
+  border-bottom: none !important;
+  margin-bottom: 0px;
 }

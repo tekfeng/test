@@ -89,6 +89,7 @@ class VendorRatesController < BaseController
     if @vendor_rate.save
       render template: "vendor_rates/edit_rate", locals: { updated:  true, competitor_id: @competitor_id}   
     else
+      p @vendor_rate.errors.full_messages
       render template: "vendor_rates/edit_rate"
     end
   end

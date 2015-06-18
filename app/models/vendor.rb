@@ -1,12 +1,15 @@
 class Vendor < ActiveRecord::Base
   belongs_to :city
   belongs_to :vendor_category
+  
   has_many :vendor_rates, dependent: :destroy
   has_many :rooms, dependent: :destroy
+  
   belongs_to :user_created, :class_name => "User", :foreign_key => "user_create_id"
   belongs_to :user_updated_lastest, :class_name => "User", :foreign_key => "user_update_id"
   
   validates :name, :vendor_type, :contact, :fax, :vendor_category_id, :city_id, presence: true
+  validates :contact, :fax, numericality: true
   validates :email, :uniqueness => true
   validates :email, :email => true
   

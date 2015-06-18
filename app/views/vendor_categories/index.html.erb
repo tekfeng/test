@@ -6,8 +6,11 @@
         <li>
           <a href="/dashboard">Home</a>
         </li>
+        <li>
+          <a href="/vendors/dashboard_page">Reservations</a>
+        </li>
         <li class="active">
-          <strong>Vendor Category</strong>
+          <strong>Vendor Categories</strong>
         </li>
       </ol>
     </div>
@@ -15,9 +18,9 @@
 </div>
 <div class='wrapper wrapper-content'>
   <div class='ibox'>
-    <div class='ibox-content container-fluid white-bg'>
+    <div class='ibox-content container-fluid' style="background-color: #F3F3F4 ; padding-top: 2px; padding-bottom: 2px; padding-left: 0px;">
       <div class='clearfix'>
-        <%= link_to 'Add New', new_vendor_category_url, class: "btn btn-primary pull-left" %>
+        <%= link_to 'Add New', new_vendor_category_url, class: "btn btn-primary pull-left margin-left-0" %>
       </div>
     </div>
     <div id="listing-table vendor-listing-content">
