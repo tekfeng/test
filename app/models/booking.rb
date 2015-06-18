@@ -6,6 +6,7 @@ class Booking < ActiveRecord::Base
   after_create :create_booking_code
   
   validates :customer_id, :contact_number, :travel_date, :travel_to, :presence => true
+  validates :contact_number, numericality: { only_integer: true }
   
   BOOKING_STATUS = ['Confirm invoice', 'Need follow up', 'Replied', 'Closed', 'Unpaid', 'Allocated', 'Fully booked', 'No response', 'Cancel invoice']
 

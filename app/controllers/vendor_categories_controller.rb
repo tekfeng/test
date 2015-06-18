@@ -21,10 +21,11 @@ class VendorCategoriesController < BaseController
   def create
     @vendor_category = VendorCategory.new(vendor_category_params)
     if @vendor_category.save
-      render json: { result: 'ok', redirect_to: vendor_categories_url, 
-        flash: { type: :notice, message: 'VendorCategories has been created successfully!' }}
+      @vendor_categories = VendorCategory.all
+      @vendor_categories = smart_listing_create(:vendor_categories, @vendor_categories, partial: "vendor_categories/list", default_sort: {name: "asc"}) 
+      render template: "vendor_categories/index", locals: { show_flash: true}
     else
-      render json: { result: 'failed', errors: @vendor_category.errors }
+      render template: "vendor_categories/new"
     end
   end
   

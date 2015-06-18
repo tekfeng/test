@@ -60,6 +60,15 @@
 <script language="javascript">
   $(document).ready(function() {
     
+    <% show_flash ||= false %>
+    <% if show_flash %>
+      $.cookie('flashType', "notice", { path: '/' });
+      $.cookie('flashMessage', 'vendor has been saved successfully!', { path: '/' });
+      toastr['success']($.cookie('flashMessage'));
+      $.removeCookie('flashType', { path: '/' });
+      $.removeCookie('flashMessage', { path: '/' });
+    <%  end %>
+    
     var vendorCategory = $("select#vendor_vendor_category_id");
     <% if !@vendor_categopry_id.present? %>
       vendorCategory.prepend('<option value="">Vendor Category</option>');

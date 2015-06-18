@@ -13,8 +13,9 @@ class VendorsController < BaseController
       p @vendors.count
     else
       @vendors = Vendor.all
+      @vendors = smart_listing_create(:vendors, @vendors, partial: "vendors/list", default_sort: {name: "asc"}) 
     end 
-    @vendors = smart_listing_create(:vendors, @vendors, partial: "vendors/list", default_sort: {name: "asc"}) 
+    
   end
   
   
@@ -37,10 +38,11 @@ class VendorsController < BaseController
     @vendor = Vendor.new(vendor_params)
     @vendor.user_create_id = current_user.id
     if @vendor.save
-      render json: { result: 'ok', redirect_to: vendors_url, 
-        flash: { type: :notice, message: 'Vendor has been created successfully!' }}
+      @vendors = Vendor.all
+      @vendors = smart_listing_create(:vendors, @vendors, partial: "vendors/list", default_sort: {name: "asc"}) 
+      render template: "vendors/index", locals: { show_flash: true}
     else
-      render json: { result: 'failed', errors: @vendor.errors }
+      render template: "vendors/new"
     end
   end
   
@@ -52,10 +54,11 @@ class VendorsController < BaseController
     @vendor = Vendor.find(params[:id])
     @vendor.user_update_id = current_user.id
     if @vendor.update_attributes(vendor_params)
-      render json: { result: 'ok', redirect_to: vendors_url, 
-        flash: { type: :notice, message: 'Vendor has been created successfully!' }}
+      @vendors = Vendor.all
+      @vendors = smart_listing_create(:vendors, @vendors, partial: "vendors/list", default_sort: {name: "asc"}) 
+      render template: "vendors/index", locals: { show_flash: true}
     else
-      render json: { result: 'failed', errors: @vendor.errors }
+      render :action => "edit"
     end
   end
   

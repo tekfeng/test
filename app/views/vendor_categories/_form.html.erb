@@ -1,7 +1,8 @@
-<%= form_for @vendor_category, html: { class: 'form-horizontal ajax-form', enctype: 'multipart/form-data' } do |form| %>
- <div class="form-group">
-   <div class = "col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
-      <%= form.text_field :name, as: :string, class: 'form-control', placeholder: "Name Vendor Category" %>
+<%= semantic_form_for @vendor_category,  :url => "/vendor_categories",  :html => {:method => :post} do |f| %>
+ <%= f.inputs do %> 
+ <div class= "form-group">
+   <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+     <%= f.input :name,  as: :string, placeholder: "Name Vendor Category" %>
    </div>
    <div class = "col-md-2 col-sm-2 col-xs-12"></div>
  </div>
@@ -12,5 +13,11 @@
       <button class="btn btn-primary save-form-button" type="submit">Save</button>
     </div>
   </div>
-  
+  <% end %>
 <% end %>
+
+<script language="javascript">
+  $(document).ready(function() {
+    $(".label").hide();
+  });  
+</script>

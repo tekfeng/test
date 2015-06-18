@@ -268,9 +268,9 @@ $(function() {
           
         if (!noRedirectURLCustomer) {  
           if(typeof(Turbolinks) !== 'undefined') {
-            // Turbolinks.visit(response.redirect_to);
+            Turbolinks.visit(response.redirect_to);
           } else {
-            // document.location = response.redirect_to;
+            document.location = response.redirect_to;
           }
          } 
         } else {
