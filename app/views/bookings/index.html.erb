@@ -107,8 +107,7 @@
     });  
     
     var bookingStatus = $('#booking_status');
-    bookingStatus.append('<option value="0">Payment Status</option>');
-    bookingStatus.val(0);
+    bookingStatus.prepend('<option value="">Payment Status</option>');
     bookingStatus.selectbox({
       onChange: function (val, inst) {
         bookingStatusValue = val;

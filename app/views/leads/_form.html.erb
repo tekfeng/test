@@ -119,14 +119,61 @@
     <li id="lead_submit_action" class="action input_action ">
       <input type="submit" class="btn btn-primary submit-lead-obj" value="Save" name="commit">
         <% if !@lead.new_record? %>
-          <a class="send-quotation" href="/sales/leads/<%=@lead.id%>/send_pdf_quotation" style="margin-left: 15px;">Send Quotation</a>
+          <div class="btn btn-primary send-quotation" data-lead-id="<%= @lead.id %>" style="font-size: 12px; width: 130px;">Send Quotation</a>
+          <!-- <a class="send-quotation" href="/sales/leads/<%=@lead.id%>/send_pdf_quotation" style="margin-left: 15px;">Send Quotation</a> -->
         <% end %>
     </li>
   </div>
 <% end %>
 
+<div id="quotation_pdf_send_next_time" class="modal fade" tabindex="1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+  <div class='modal-dialog'>          
+    <div class='modal-content'>
+      <div class='ibox'>
+        <div class='ibox-content container-fluid'>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <div id="accept" class= "col-md-12 col-sm-12 col-xs-12">
+            <div class='col-md-12 col-sm-12 col-xs-12'>
+              <p style="font-size: 18px; line-height: 2em; font-weight: 600;">Send quotation to client</p>
+              <p style="font-size: 14px; margin-bottom: 5px;">Do you want to send quotation based on this booking?</p>
+              <p style="font-size: 14px; margin-bottom: 30px;">An email with an attached pdf of the quotation will be sent.</p>
+            </div>
+            <div class='col-md-12 col-sm-12 col-xs-12 text-center'>
+              <div class="btn btn-white close-modal-box-quo" style="padding: 5px 20px;">Yes</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>    
+</div>
+
+
 <script language="javascript">
   $(document).ready(function() {
+    var leadIdSendQuotation;    
+    $(document.body).delegate(".send-quotation", "click", function(e){
+      leadIdSendQuotation = $(this).data("lead-id");    
+      $('#quotation_pdf_send_next_time').modal({
+        show: true,
+        backdrop: 'static',
+        keyboard: true            
+      });                 
+    });
+    
+    $(document.body).delegate(".close-modal-box-quo", "click", function(e){      
+      $.ajax({
+        type: "GET",
+        url: "/sales/leads/" + leadIdSendQuotation + "/send_pdf_quotation",
+        success: function (data) {          
+          $('#quotation_pdf_send_next_time').modal('hide');         
+        }
+      });               
+    });
+    
+    
+    
+    
     // run first select box for new lead
     <% if @lead.errors.count > 0 %>
       var leadTour = $('#lead_tour.lead-tour');
