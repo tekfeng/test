@@ -503,10 +503,13 @@ form.vendor_rate {
   th, td {
     border: 1px solid gray;
     padding: 5px;
+    color: #767a7a;
+    font-size: 16px;
+    font-weight: 500;
   }
   input {
     border: none;
-    background-color: #F5F9CF;
+    background-color: white;
     width: 45%;
     border-radius: 5px;
     border: 1px solid;
@@ -1131,4 +1134,19 @@ form.custom-style-vdr ol {
   float: left;
   padding: 0px;
   padding-left: calc((100% - 630px) / 2);
+}
+.vendor_rate #salary_table th.style-column-even {
+  background-color: #8093a4;
+  color: white;
+  font-weight: 500;
+  font-size: 15px;
+  padding: 13px 20px;
+}
+
+.vendor_rate #salary_table th.style-column-old {
+  background-color: #ebebeb;
+  color: #767a7a;
+  font-weight: 500;
+  font-size: 15px;
+  padding: 13px 20px;
 }
