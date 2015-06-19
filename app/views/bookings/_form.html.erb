@@ -69,7 +69,6 @@
        
             <script language="javascript">
               $(document).ready(function() {
-                $('.label').hide();
                              
               <% if lead %>
                 var bookingTour = $('#booking_tour.booking-tour')
@@ -160,7 +159,6 @@
   <% end %>
     
     
-    $('.label').hide();
     var bookingCustomerId = $('#booking_customer_id');
         
     <% if !lead and ((@booking.errors.count == 0) or (@booking.errors.count > 0 and !@booking.customer_id ) )%>

@@ -70,7 +70,6 @@
              
             <script language="javascript">
               $(document).ready(function() {
-                $('.label').hide();         
                 <% if controller.action_name == "edit"  %>                              
                   var leadTour = $('#lead_tour.lead-tour');
                   var leadTourCategory =  $('#lead_tour_category.lead-tour-category') ;  
@@ -208,7 +207,6 @@
     
     
     
-    $('.label').hide();
     var leadCustomerId = $('#lead_customer_id');
     <% if controller.action_name != "edit" and !@convert_cus_tomer_to_lead %>        
       leadCustomerId.prepend('<option value="">Select Customer</option>');

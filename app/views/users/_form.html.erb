@@ -33,7 +33,6 @@
 <% end %>
 <script language="javascript">
   $(document).ready(function() {
-    $('.label').hide();
     var userCountry = $('#user_department_id');
     <% if controller.action_name != "edit" %>
     userCountry.prepend('<option value="">--Select Department--</option>');

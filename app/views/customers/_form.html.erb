@@ -44,7 +44,6 @@
 <% end %>
 <script language="javascript">
   $(document).ready(function() {
-    $('.label').hide();
     var customerCountry = $('#customer_country_id');
     <% if controller.action_name != "edit" %>
     customerCountry.prepend('<option value="">--Select Country--</option>');

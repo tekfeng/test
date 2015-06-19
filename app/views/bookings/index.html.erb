@@ -81,7 +81,6 @@
     
     var bookingStatusValue, bookingUserId;
     $('#booking_travel_date,#booking_travel_to').val("");
-    $('.label').hide();
     $('#booking_travel_date').datetimepicker({
       timepicker: false,
       format:'d-m-Y',
@@ -108,6 +107,7 @@
     
     var bookingStatus = $('#booking_status');
     bookingStatus.prepend('<option value="">Payment Status</option>');
+    bookingStatus.val("")
     bookingStatus.selectbox({
       onChange: function (val, inst) {
         bookingStatusValue = val;
