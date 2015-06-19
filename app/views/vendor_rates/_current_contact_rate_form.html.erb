@@ -1,4 +1,4 @@
-<%= semantic_form_for @vendor_rate,  :url => "/vendor_rates/#{@vendor_rate.id}/update_current_contact/#{@vendor.id}", :html => {:method => :post, :multipart => true }  do |f| %>
+<%= semantic_form_for @vendor_rate,  :url => "/vendor_rates/#{@vendor_rate.id}/update_current_contact/#{@vendor.id}", :html => {:method => :post, :multipart => true, :class => "custom-style-vdr" }  do |f| %>
   <%= f.inputs do %>
     <% if @vendor_rate.rate_type != 4 %>
       <div class="col-md-12" style="padding-left: 0px; margin-bottom: 12px;">
@@ -34,8 +34,8 @@
         <thead>
           <tr>
             <th> Seasons/ Room Type</th>
-            <% @vendor.rooms.each do |room| %>
-              <th><span class="arrow-down"></span><%=room.name %></th>
+            <% @vendor.rooms.each_with_index do |room, index| %>
+              <th class="<%= index % 2 == 0 ? 'cus-style-white' : 'cus-style-gray'%>" ><span class="arrow-down"></span><%=room.name %></th>
             <% end %>
           </tr>
         </thead>
@@ -57,7 +57,7 @@
       </table>
 	  </div>
 	</div>  
-  <%= f.action :submit, :label => "Update Competitor Rate", :button_html => { :class => "btn btn-primary ud-vd" } %>      
+  <%= f.action :submit, :label => "Save", :button_html => { :class => "btn btn-primary ud-vd" } %>      
 <% end %>
 <script language="javascript">
   $(document).ready(function(){

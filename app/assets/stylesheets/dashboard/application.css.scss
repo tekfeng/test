@@ -495,15 +495,14 @@ form.vendor_rate {
     border: 1px solid #22a98e;
     border-radius: 5px;
     cursor: pointer;
-    float: left;
-   
+    float: left;  
   }
 }
 #salary_table {
+  margin: 0px auto;
   th, td {
     border: 1px solid gray;
     padding: 5px;
-   
   }
   input {
     border: none;
@@ -1127,4 +1126,9 @@ input#vendor_rate_contract_file {
   float: right;
   width: 115px;
   margin-bottom: 15px;
+}
+form.custom-style-vdr ol {
+  float: left;
+  padding: 0px;
+  padding-left: calc((100% - 630px) / 2);
 }
