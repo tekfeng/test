@@ -9,8 +9,11 @@
         new_record_link_label: "+ Create a new Ad-hoc rate"
       } do |vendor_rate| %>       
         <%= vendor_rate.inputs do %>
-             
-            <a class="btn btn-primary pull-right" href="/vendor_rates/<%=vendor_rate.object.id %>/edit_rate?vendor_id=<%= @vendor.id %>">Enter Rates</a>
+             <% if (vendor_rate.object.effective.nil? and vendor_rate.object.rate_type !=3) or (vendor_rate.object.rate_type ==3 and vendor_rate.object.competitors.count == 0) %>
+               <a class="btn btn-primary pull-right" disabled href="/vendor_rates/<%=vendor_rate.object.id %>/edit_rate?vendor_id=<%= @vendor.id %>">Enter Rates</a>
+             <% else%>
+               <a class="btn btn-primary pull-right" href="/vendor_rates/<%=vendor_rate.object.id %>/edit_rate?vendor_id=<%= @vendor.id %>">Enter Rates</a>
+            <% end %>
             
             <% case vendor_rate.object.rate_type %> 
             <% when 1 %>               

@@ -550,11 +550,10 @@ tbody th {
   background-position: 4px 10px;
 }
 .file-name-show {
-  float: left;
   color: black;
-  margin-right: 15px;
   font-size: 16px;
   line-height: 2.3em;
+  float: left; width: 170px; text-align: center
 }
 p.inline-errors {
   color: red;
@@ -1004,6 +1003,7 @@ a.compare-rate-bt {
 .edit-vendor-rates-st {
   float: left; width: 100%; margin: 0px; background-color: white; padding-top: 30px;
   border-top: 3px solid #d3dade;
+  border-bottom: 1px solid #e0e0df;
 }
 .float-left {
   float:left;
@@ -1107,4 +1107,24 @@ li.notifi-li-st {
     padding-left: 10px !important;
     padding-right: 5px !important;
   }
+}
+
+li#vendor_rate_contract_file_input {
+  margin: 0px;
+}
+input#vendor_rate_contract_file {
+  width: 290px;
+}
+.upload-file-cus {
+  width: 100%; position: absolute; height: 100%; left: 0px; top: 0px; z-index: 9999; background-color: #22A98E;
+  color: white; 
+  text-align: center;
+  cursor: default;
+  padding-top: 5px;
+  font-size: 15px;
+}
+.bt-dl-fl {
+  float: right;
+  width: 115px;
+  margin-bottom: 15px;
 }

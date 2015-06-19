@@ -1,16 +1,30 @@
 <%= semantic_form_for @vendor_rate,  :url => "/vendor_rates/#{@vendor_rate.id}/update_current_contact/#{@vendor.id}", :html => {:method => :post, :multipart => true }  do |f| %>
   <%= f.inputs do %>
     <% if @vendor_rate.rate_type != 4 %>
-      <div class="col-md-12">
-        <span class="file-name-show"><%= f.object.contract_file.exists? ? f.object.contract_file_file_name : "no file" %></span>
-        <a href="/vendor_rates/<%= @vendor_rate.id %>/download_files">
-          <span class="download"> Download</span>
-        </a>
+      <div class="col-md-12" style="padding-left: 0px; margin-bottom: 12px;">
+        <div clas="fn-and-btdl" style="width: 290px; float: left">
+          <span class="file-name-show"><%= f.object.contract_file.exists? ? f.object.contract_file_file_name.truncate(20) : "No file selected" %></span>
+          <% if f.object.contract_file.exists? %>
+            <a href="/vendor_rates/<%= @vendor_rate.id %>/download_files" class="bt-dl-fl">
+              <span class="download"> Download</span>
+            </a>
+            <div style="float: left; position: relative;">
+              <span class="upload-file-cus">Replace file</span>
+              <%= f.input :contract_file %> 
+            </div>
+          <% else %>
+           
+            <a disabled >
+              <span class="download" class="bt-dl-fl"> Download</span>
+            </a>
+            <div style="float: left; position: relative;">
+              <span class="upload-file-cus">Up load file</span>
+              <%= f.input :contract_file %> 
+            </div>
+          <% end %>
+        </div>
       </div>
-      <%= f.input :contract_file, :as => :file %>
-      
-     
-      
+          
     <% end %>
   <% end %>
    
@@ -45,4 +59,12 @@
 	</div>  
   <%= f.action :submit, :label => "Update Competitor Rate", :button_html => { :class => "btn btn-primary ud-vd" } %>      
 <% end %>
-
+<script language="javascript">
+  $(document).ready(function(){
+    $(document.body).delegate(".upload-file-cus", "click", function(e){      
+      $("input#vendor_rate_contract_file").click();     
+    });
+    
+    
+  });
+</script>

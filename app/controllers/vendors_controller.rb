@@ -9,13 +9,11 @@ class VendorsController < ReservationsController
   def index  
     if params[:vendor_category_id]
       @vendor_categopry_id = params[:vendor_category_id].to_i
-      @vendors = Vendor.where(vendor_category_id: params[:vendor_category_id].to_i)   
-      p @vendors.count
+      @vendors = Vendor.where(vendor_category_id: params[:vendor_category_id].to_i)         
     else
-      @vendors = Vendor.all
-      @vendors = smart_listing_create(:vendors, @vendors, partial: "vendors/list", default_sort: {name: "asc"}) 
+      @vendors = Vendor.all      
     end 
-    
+    @vendors = smart_listing_create(:vendors, @vendors, partial: "vendors/list", default_sort: {name: "asc"}) 
   end
   
   
