@@ -1,0 +1,47 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-12">
+    <h2 style="text-align: center;">Notifications</h2>
+    <ol class="breadcrumb">
+      <li>
+        <a href="/">Home</a>
+      </li>
+      
+      <li class="active">
+        <strong>Notifications</strong>
+      </li>
+    </ol>
+  </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeIn">
+  <div class="row">
+    <div class="wid-40" style="margin: 0px auto; width: 600px;">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title" style="float: left; width: 100%;">
+          <h5>List Notifications</h5>     
+        </div>
+        <div class="ibox-content" style="background-color: white;">
+          <% @user.notifications.limit(5).order("updated_at desc").each do |notification| %>
+            <a href="<%=notification.url%>" class="alert-link">
+              <div class="alert alert-info">
+                <%= notification.message %>
+                <small style="margin-top: 5px;" class="block text-muted time-label timeago" title="<%= notification.created_at.strftime("%Y-%m-%dT%H:%M:%SZ") %>">
+                  <i class="fa fa-clock-o" style="margin-right: 5px;"></i>
+                    <%= notification.created_at.strftime("%Y-%-m-%d") %>  
+                </small>
+              </div>
+            </a>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+           
+</div>
+<script language="javascript">
+  $(document).ready(function() {
+    $(".timeago").timeago();
+    $(".timeago").prepend("<i class='fa fa-clock-o' style='margin-right: 5px;'></i>");
+  })
+</script>
+    

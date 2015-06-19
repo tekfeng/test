@@ -62,6 +62,11 @@ class LeadsController <  BaseController
     render json: {status: "ok"}
   end
   
+  def notifications_of_user
+    @user = current_user
+    render partial: "/leads/notifications_of_user.html.erb"
+  end
+  
   private
 
   def lead_params

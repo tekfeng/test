@@ -14,6 +14,7 @@
       <li>
         <span class="m-r-sm text-muted welcome-message">Welcome to Amazing Borneo.</span>
       </li>
+      
       <li>
         
           <a class="dropdown-toggle count-info notification-icon-count"  href="" data-toggle="dropdown" aria-expanded="false">
@@ -23,21 +24,33 @@
             <% end %>
           </a>
         
-        <ul class="dropdown-menu dropdown-alerts">      
-          <% current_user.notifications.order("updated_at desc").each do |notification| %>
-            <li class="notifi-li-st">
-              <a href="<%= notification.url %>">
-                <div class="<% notification.is_read ? '' : 'new-message'%>">
-                  <i class="fa fa-envelope fa-fw"></i> <%= notification.message %>
-                  <small class="block text-muted time-label timeago" title="<%= notification.created_at.strftime("%Y-%m-%dT%H:%M:%SZ") %>">
-                    <i class="fa fa-clock-o" style="margin-right: 5px;"></i>
-                      <%= notification.created_at.strftime("%Y-%-m-%d") %>  
-                  </small>
-                </div>
-              </a>
-            </li>  
-          <% end %>        
-        </ul>
+        <% if current_user.notifications.count > 0 %>
+          <ul class="dropdown-menu dropdown-alerts">      
+            <% current_user.notifications.limit(5).order("updated_at desc").each do |notification| %>
+              <li class="notifi-li-st" style="float: left;">
+                <a href="<%= notification.url %>" style="float: left;">
+                  <div class="<% notification.is_read ? '' : 'new-message'%>">
+                    <div class="mess-notifi" style="float: left; width: 280px;" ><%= notification.message %></div>
+                    <div class="time-notifi" style="float: left; width: 120px;">
+                      <small class="block text-muted time-label timeago" title="<%= notification.created_at.strftime("%Y-%m-%dT%H:%M:%SZ") %>">
+                        <i class="fa fa-clock-o" style="margin-right: 5px;"></i><%= notification.created_at.strftime("%Y-%-m-%d") %>  
+                      </small>                     
+                    </div>
+                  </div>
+                </a>
+              </li>  
+            <% end %>
+            <li style="float: left; width: 100%;">
+              <div class="text-center link-block" style="width: 100%; text-align: center;">
+                <a class="list-notifications-of-user" style="margin-top: 15px;">
+                  <strong>See All Alerts</strong>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+              </div>
+            </li>       
+          </ul>
+        <% end %>
+        
       </li>
       <li>
         <a href="/users/sign_out">
@@ -62,5 +75,17 @@
         }
       });         
     });
+    
+    $(document.body).delegate('.list-notifications-of-user', 'click', function() {
+       console.log("aaaaa")
+      $.ajax({
+        type: "GET",
+        url: "/sales/leads/notifications_of_user",       
+        success: function (data) {
+          $(".navbar-static-top").css("background-color", "#F3F3F4");
+          $(".main-view-yield").html(data)
+        }
+      });         
+    });        
   })
 </script>

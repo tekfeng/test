@@ -1090,7 +1090,7 @@ li#booking_number_adult_input p.inline-errors {
   padding-top: 5px;
 }
 .notifi-li-st {
-  border-bottom: 1px solid;
+  border-bottom: 1px solid #d2d9dd;
 }
 ul.navbar-top-links li a.notification-icon-count i {
   &:hover{
@@ -1100,4 +1100,11 @@ ul.navbar-top-links li a.notification-icon-count i {
 ul.dropdown-alerts {
   max-height: 250px;
   overflow: auto;
+}
+li.notifi-li-st {
+  padding: 0px;
+  a {
+    padding-left: 10px !important;
+    padding-right: 5px !important;
+  }
 }

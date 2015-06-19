@@ -36,9 +36,11 @@ Rails.application.routes.draw do
     resources :leads do 
       collection do
         get 'read_notification'
+        get :notifications_of_user
       end
       member do  
         get :send_pdf_quotation
+        
       end
       
     end
