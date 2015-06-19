@@ -1,4 +1,4 @@
-class TourCategoriesController < BaseController
+class TourCategoriesController < AdminsController
   include SmartListing::Helper::ControllerExtensions
   helper  SmartListing::Helper
   

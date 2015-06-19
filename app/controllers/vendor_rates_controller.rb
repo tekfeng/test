@@ -1,4 +1,4 @@
-class VendorRatesController < BaseController  
+class VendorRatesController < ReservationsController  
   include SmartListing::Helper::ControllerExtensions
   helper  SmartListing::Helper
   

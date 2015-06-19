@@ -68,7 +68,7 @@
     $(document.body).delegate('.notification-icon-count', 'click', function() {
       $.ajax({
         type: "GET",
-        url: "/sales/leads/read_notification",
+        url: "/notifications/read_notification",
         success: function (data) {
           $(".status_count").html("");
           $(".status_count").css("display", "none")
@@ -80,7 +80,7 @@
        console.log("aaaaa")
       $.ajax({
         type: "GET",
-        url: "/sales/leads/notifications_of_user",       
+        url: "/notifications/notifications_of_user",       
         success: function (data) {
           $(".navbar-static-top").css("background-color", "#F3F3F4");
           $(".main-view-yield").html(data)

@@ -1,4 +1,4 @@
-class MtqSlotsController < BaseController
+class MtqSlotsController < ReservationsController
   
   def index   
     @mtq_slots = MtqSlot.all

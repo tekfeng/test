@@ -1,4 +1,4 @@
-class BookingsController < BaseController
+class BookingsController < SalesController
   include SmartListing::Helper::ControllerExtensions
   helper  SmartListing::Helper
   

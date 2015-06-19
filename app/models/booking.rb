@@ -40,7 +40,7 @@ class Booking < ActiveRecord::Base
   def validate_num_of_pax
     value_return = true
     if self.number_of_pax == 0
-      self.errors.add(:number_adult, "Number of Pax at least 1")
+      self.errors.add(:number_adult, "Must be at least 1")
       value_return = false  
     end
     return value_return

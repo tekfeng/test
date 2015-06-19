@@ -1,4 +1,4 @@
-class CustomersController < BaseController
+class CustomersController < SalesController
   include SmartListing::Helper::ControllerExtensions
   helper  SmartListing::Helper
   

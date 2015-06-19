@@ -1,4 +1,4 @@
-class LeadsController <  BaseController
+class LeadsController <  SalesController
   include SmartListing::Helper::ControllerExtensions
   helper  SmartListing::Helper
   
@@ -56,16 +56,6 @@ class LeadsController <  BaseController
     ApplicationMailer.delay.send_quotation_pdf(@lead.customer, @lead)
     redirect_to leads_url
   end 
-  
-  def read_notification
-    current_user.notifications.update_all(:is_read => true)
-    render json: {status: "ok"}
-  end
-  
-  def notifications_of_user
-    @user = current_user
-    render partial: "/leads/notifications_of_user.html.erb"
-  end
   
   private
 

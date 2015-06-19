@@ -34,10 +34,6 @@ Rails.application.routes.draw do
     end  
     resources :customers 
     resources :leads do 
-      collection do
-        get 'read_notification'
-        get :notifications_of_user
-      end
       member do  
         get :send_pdf_quotation
         
@@ -87,4 +83,13 @@ Rails.application.routes.draw do
   # /vendor_rates/4/update_vendor_rates
   
   get "/vendor_rates/:id/update_vendor_rates", :controller => "vendor_rates", action: "view_rate" 
+  
+  
+  resources :notifications do
+    collection do
+      get 'read_notification'
+      get 'notifications_of_user'
+    end
+  end
+
 end

@@ -8,7 +8,7 @@
 
 
 if User.count == 0
-  user = User.new({ email: 'admin@sample.com', password: 'password', username: "superadmin" })
+  user = User.new({ email: 'admin@sample.com', password: 'password', username: "superadmin", is_superadmin: true})
   user.save(validate: false)
 end
 
@@ -29,10 +29,10 @@ if City.count == 0
 end
 
 if Department.count == 0
-  Department.create(name: "Sales")
-  Department.create(name: "Reservations")
-  Department.create(name: "Operations")
-  Department.create(name: "Finance")
+  Department.create(id: 1, name: "Sales")
+  Department.create(id: 2, name: "Reservations")
+  Department.create(id: 3, name: "Operations")
+  Department.create(id: 4, name: "Finance")
 end
 
 if Country.count == 0

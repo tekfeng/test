@@ -1,4 +1,4 @@
-class UsersController < BaseController
+class UsersController < AdminsController
   
   include SmartListing::Helper::ControllerExtensions
   helper  SmartListing::Helper
