@@ -22,8 +22,11 @@
               <th><%= season.name %></th>
               <% @vendor.rooms.each do |room| %>
                 <td>
+                  <% price = SeasonRoomPrice.find_price_competitor(season.id, room.id, @vendor_rate.rate_type, @vendor_rate.try(:id), @competitor_id) || 0 %>
+                  <% price_with_gst_7_percent = price + price*7/100 %>
+                  
                   <input class="" type="text" value="<%= SeasonRoomPrice.find_price_competitor(season.id, room.id, @vendor_rate.rate_type, @vendor_rate.try(:id), @competitor_id) %>" name="room_price[<%=room.id%>_<%=season.id%>_<%=@vendor_rate.rate_type%>_<%=@vendor_rate.id%>_<%=@competitor_id%>]" maxlength="10">
-                  <span class="span-behind-input" style="min-height: 27px;"><%=SeasonRoomPrice.find_price_competitor(season.id, room.id, @vendor_rate.rate_type, @vendor_rate.try(:id), @competitor_id)%></span>
+                  <span class="span-behind-input" style="min-height: 27px;"><%= price_with_gst_7_percent == 0 ? "GST" : price_with_gst_7_percent %></span>
                 </td>
               <% end %>
             </tr>
@@ -32,7 +35,7 @@
       </table>
 	  </div>
 	</div>  
-  <%= f.action :submit, :value => "Save", :button_html => { :class => "btn btn-primary ud-vd eeee" } %>      
+  <%= f.action :submit, :label => "Save", :value => "Save", :button_html => { :class => "btn btn-primary ud-vd eeee" } %>      
 <% end %>
 </div>
 
