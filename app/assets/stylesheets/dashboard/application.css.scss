@@ -516,7 +516,13 @@ form.vendor_rate {
     float: left;
     padding: 3px;
     color: #767a7a;
+    
   }
+  
+}
+input:focus {
+  background-color: #F5F9CF !important;
+  border: 1px solid #aaa !important;
 }
 .span-behind-input {
   background-color: #adadad;
