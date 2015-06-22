@@ -103,13 +103,16 @@
         url: "/sales/bookings/" + bookingIdSendItinerary + "/check_is_first_send_itinerary",
         success: function (data) {   
           if (data.sended) {
+            $('#itinerary_pdf_send_next_time .close-modal-box').removeAttr("disabled");
             $('#itinerary_pdf_send_next_time').modal({
               show: true,
               backdrop: 'static',
               keyboard: true            
             });  
           } else {
+            $('#itinerary_pdf_send .close-modal-box').removeAttr("disabled");
             $('#itinerary_pdf_send').modal({
+              
               show: true,
               backdrop: 'static',
               keyboard: true            
@@ -120,6 +123,7 @@
     });
     
     $(document.body).delegate(".close-modal-box", "click", function(e){
+      $(this).attr("disabled", "disabled");
       $('#itinerary_pdf_send').modal('hide'); 
       $('#itinerary_pdf_send_next_time').modal('hide');            
       $.ajax({
