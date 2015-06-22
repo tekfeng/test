@@ -124,6 +124,7 @@
     
     $(document.body).delegate(".close-modal-box", "click", function(e){
       $(this).attr("disabled", "disabled");
+      // console.log('click');
       $('#itinerary_pdf_send').modal('hide'); 
       $('#itinerary_pdf_send_next_time').modal('hide');            
       $.ajax({

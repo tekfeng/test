@@ -6,8 +6,11 @@ class VendorsController < ReservationsController
   end
   
   def index 
-    @vendors = Vendor.all.joins(:city)     
-    if params[:ajax_call] 
+    @vendors = Vendor.all.joins(:city)    
+    if params[:vendor_category_id]
+      @vendors = @vendors.where(vendor_category_id: params[:vendor_category_id].to_i)
+      @vendors = smart_listing_create(:vendors, @vendors, partial: "vendors/list", default_sort: {name: "asc"}) 
+    elsif params[:ajax_call] 
       if params[:category_id].present?
         @vendors = @vendors.where(vendor_category_id: params[:category_id].to_i)
       end
