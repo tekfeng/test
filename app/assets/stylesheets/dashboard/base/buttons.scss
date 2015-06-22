@@ -42,6 +42,8 @@
   background-color: $navy;
   border-color: $navy;
   color: white;
+  font-size: 12px !important;
+  min-width: 90px;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
