@@ -123,6 +123,7 @@
     });
     
     $(document.body).delegate(".close-modal-box", "click", function(e){
+      e.preventDefault();
       $(this).attr("disabled", "disabled");
       // console.log('click');
       $('#itinerary_pdf_send').modal('hide'); 
@@ -132,10 +133,9 @@
         url: "/sales/bookings/" + bookingIdSendItinerary + "/send_pdf_mailer",
         success: function (data) {   
         }
-      });               
-    });
-            
-    
+      });
+      return false;          
+    });    
   
   });  
   
