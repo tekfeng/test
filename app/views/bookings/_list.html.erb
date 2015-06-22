@@ -119,13 +119,13 @@
       });                   
     });
     
-    $(document.body).delegate(".close-modal-box", "click", function(e){      
+    $(document.body).delegate(".close-modal-box", "click", function(e){
+      $('#itinerary_pdf_send').modal('hide'); 
+      $('#itinerary_pdf_send_next_time').modal('hide');            
       $.ajax({
         type: "GET",
         url: "/sales/bookings/" + bookingIdSendItinerary + "/send_pdf_mailer",
-        success: function (data) {          
-          $('#itinerary_pdf_send').modal('hide'); 
-          $('#itinerary_pdf_send_next_time').modal('hide');         
+        success: function (data) {   
         }
       });               
     });

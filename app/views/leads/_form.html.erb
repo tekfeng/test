@@ -159,12 +159,13 @@
       });                 
     });
     
-    $(document.body).delegate(".close-modal-box-quo", "click", function(e){      
+    $(document.body).delegate(".close-modal-box-quo", "click", function(e){   
+      $('#quotation_pdf_send_next_time').modal('hide');      
       $.ajax({
         type: "GET",
         url: "/sales/leads/" + leadIdSendQuotation + "/send_pdf_quotation",
         success: function (data) {          
-          $('#quotation_pdf_send_next_time').modal('hide');         
+                
         }
       });               
     });
