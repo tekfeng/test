@@ -495,7 +495,7 @@ form.vendor_rate {
     border: 1px solid #22a98e;
     border-radius: 5px;
     cursor: pointer;
-    float: left;  
+    float: right;  
   }
 }
 #salary_table {
@@ -515,12 +515,12 @@ form.vendor_rate {
     border: 1px solid;
     float: left;
     padding: 3px;
-    color: black;
+    color: #767a7a;
   }
 }
 .span-behind-input {
   background-color: #adadad;
-  color: black;
+  color: #767a7a;
   float: left;
   margin-left: 5%;
   padding: 5px;
@@ -1149,4 +1149,9 @@ form.custom-style-vdr ol {
   font-weight: 500;
   font-size: 15px;
   padding: 13px 20px;
+}
+p.no-room {
+  padding-left: calc((100% - 630px) / 2);
+  color: red;
+  font-size: 14px;
 }

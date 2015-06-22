@@ -27,37 +27,45 @@
           
     <% end %>
   <% end %>
-   
-	<div class='content' style="margin-bottom: 30px; margin-top: 30px;">
-	  <div class='column-inside'>
-      <table class='salary-table' id='salary_table'>
-        <thead>
-          <tr>
-            <th class="style-column-even"> Seasons/ Room Type</th>
-            <% @vendor.rooms.each_with_index do |room, index| %>
-              <th class="<%= index % 2 == 0 ? 'style-column-old' : 'style-column-even'%>" ><%=room.name %></th>
-            <% end %>
-          </tr>
-        </thead>
-        <tbody>
-          <% Season.all.each do |season| %>
+  
+  <% if @vendor.rooms.count == 0 %>
+    <p class="no-room" > Please add room for this Vendor! </p>
+  <% else %>
+  	<div class='content' style="margin-bottom: 30px; margin-top: 30px;">
+  	  <div class='column-inside'>
+        <table class='salary-table' id='salary_table'>
+          <thead>
             <tr>
-              <th><%= season.name %></th>
-              <% @vendor.rooms.each do |room| %>
-                <td>
-                  <% price = SeasonRoomPrice.find_price(season.id, room.id, @vendor_rate.rate_type, @vendor_rate.try(:id)) || 0 %>
-                  <% price_with_gst_7_percent = price + price*7/100 %>
-                  <input class="" type="text" value="<%= SeasonRoomPrice.find_price(season.id, room.id, @vendor_rate.rate_type, @vendor_rate.try(:id)) %>" name="room_price[<%=room.id%>_<%=season.id%>_<%=@vendor_rate.rate_type%>_<%=@vendor_rate.id%>]" maxlength="10">
-                  <span class="span-behind-input"><%= price_with_gst_7_percent %></span>
-                </td>
+              <th class="style-column-even"> Seasons/ Room Type</th>
+              <% @vendor.rooms.each_with_index do |room, index| %>
+                <th class="<%= index % 2 == 0 ? 'style-column-old' : 'style-column-even'%>" ><%=room.name %></th>
               <% end %>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
-	  </div>
-	</div>  
+          </thead>
+          <tbody>
+            <% Season.all.each do |season| %>
+              <tr>
+                <th><%= season.name %></th>
+                <% @vendor.rooms.each do |room| %>
+                  <td>
+                    <% price = SeasonRoomPrice.find_price(season.id, room.id, @vendor_rate.rate_type, @vendor_rate.try(:id)) || 0 %>
+                    <% price_with_gst_7_percent = price + price*7/100 %>
+                    <input class="" type="text" value="<%= SeasonRoomPrice.find_price(season.id, room.id, @vendor_rate.rate_type, @vendor_rate.try(:id)) %>" name="room_price[<%=room.id%>_<%=season.id%>_<%=@vendor_rate.rate_type%>_<%=@vendor_rate.id%>]" maxlength="10">
+                    <span class="span-behind-input"><%= price_with_gst_7_percent %></span>
+                  </td>
+                <% end %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+  	  </div>
+  	</div>
+  <% end %>  
+  
+  
   <%= f.action :submit, :label => "Save", :button_html => { :class => "btn btn-primary ud-vd" } %>      
+  
+  
 <% end %>
 <script language="javascript">
   $(document).ready(function(){
