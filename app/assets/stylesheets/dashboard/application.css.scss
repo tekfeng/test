@@ -1164,3 +1164,6 @@ p.no-room {
   color: red;
   font-size: 14px;
 }
+select.lead-tour, select.booking-tour {
+  display: none !important;
+}
