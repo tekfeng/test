@@ -9,7 +9,7 @@ class UsersController < AdminsController
       @users = smart_listing_create(:users, @users, partial: "users/list", default_sort: {username: "asc"}) 
       render template: "/users/filter", layout: false
     else
-      @users = User.all
+      @users = User.all.joins(:department)
       @users = smart_listing_create(:users, @users, partial: "users/list", default_sort: {username: "asc"}) 
     end                        
   end

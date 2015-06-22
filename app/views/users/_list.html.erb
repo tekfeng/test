@@ -5,6 +5,8 @@
       <th class="cus-style-gray">No.</th>
     
       <th class="cus-style-white"><%= smart_listing.sortable "Name", "username" %></th>
+      <th class="cus-style-gray"><%= smart_listing.sortable "Email", "email" %></th>
+      <th class="cus-style-white"><%= smart_listing.sortable "Department", "departments.name" %></th>
       
       <th class="cus-style-gray" style='text-align: center;'>Action</th>
     </tr>
@@ -20,7 +22,8 @@
         <% end %>
         <td><%= index_show %></td>
         <td><%= user.username.present? ? user.username : "N/A" %></td>
-        
+        <td><%= user.email %></td>
+        <td><%= user.department.try(:name) %></td>
         <td style='text-align: center;'>
           <%= link_to "", edit_user_path(user), class: 'glyphicon glyphicon-pencil' %>
         </td>

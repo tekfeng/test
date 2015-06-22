@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
       array << "lower(#{self.table_name}.#{el.name}) LIKE :keyword" if (el.type == :string or el.type == :text)
       array
     end   
-    users = self.all
+    users = self.all.joins(:department)
     users = users.where(columns_condition.join(" OR "), keyword: "%#{opts[:keyword].downcase}%" ) if opts[:keyword] && opts[:keyword] != ""
     return users
   end
