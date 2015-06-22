@@ -1,7 +1,7 @@
 <h2 style="margin: 0px; padding: 12px 0px; text-align: center; background-color: #1ab394; color: white; font-size: 18px;">Change MTQ SLOT</h2>
 <%= form_for @mtq_slot, html: { class: 'form-horizontal ajax-form', enctype: 'multipart/form-data' } do |form| %> 
   <div class='form-group'>
-  	<label class='control-label text-align-right' style="font-size: 16px; width: 135px; float: left; color: #A9A9A9">Avaliable Slot</label>
+  	<label class='control-label text-align-right' style="font-size: 16px; width: 135px; float: left; color: #404040; font-weight: 500;">Avaliable Slot</label>
     <div class='' style="width: 220px;float: left; margin-left: 10px; ">
       <%= form.text_field :available_slot, class: 'form-control'%>
     </div>
@@ -9,7 +9,7 @@
   
   <div class="form-group" style="margin-top: 35px;">
     <div class="col-sm-4 col-sm-offset-4">
-      <button class="btn btn-primary save-form-button" type="submit" data-id="<%= @mtq_slot.id %>">Save Changes</button>
+      <button class="btn btn-primary save-form-button" type="submit" data-id="<%= @mtq_slot.id %>" style="width: auto;">Save Changes</button>
     </div>
   </div>
 <% end %>
