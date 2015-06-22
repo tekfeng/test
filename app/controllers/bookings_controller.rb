@@ -5,10 +5,10 @@ class BookingsController < SalesController
   def index
     if params[:ajax_call]
       @bookings = Booking.search(params)
-      @bookings = smart_listing_create(:bookings, @bookings, partial: "bookings/list", default_sort: {travel_date: "asc"}) 
+      @bookings = smart_listing_create(:bookings, @bookings, partial: "bookings/list") 
       render template: "/bookings/filter", layout: false     
     else
-      @bookings = Booking.all
+      @bookings = Booking.all.joins(:customer).joins(:user)
       @bookings = smart_listing_create(:bookings, @bookings, partial: "bookings/list", default_sort: {travel_date: "asc"}) 
     end
   end
@@ -60,6 +60,12 @@ class BookingsController < SalesController
   def check_is_first_send_itinerary
     @booking = Booking.find_by_id(params[:id])
     render :json => {sended: @booking.check_send_itinerary}
+  end
+  
+  def tour_of_tour_category
+    tour_category = TourCategory.find_by_id(params[:id].to_i)
+    tours = tour_category.tours
+    render json: tours.as_json('selectbox')
   end
   
   private

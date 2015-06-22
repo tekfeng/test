@@ -20,9 +20,6 @@ Rails.application.routes.draw do
     collection do
       get 'dashboard_page'
     end
-    member do
-      get :tour_of_tour_category
-    end
   end
   
   scope 'sales' do
@@ -40,9 +37,9 @@ Rails.application.routes.draw do
       end
       
     end
-    resources :bookings do
-      
+    resources :bookings do      
       member do
+        get :tour_of_tour_category
         get :check_is_first_send_itinerary
         get :convert_to_booking
         get :send_pdf_mailer

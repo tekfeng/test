@@ -23,7 +23,7 @@ class Booking < ActiveRecord::Base
   end
   
   def self.search(opts)
-    bookings = self.all
+    bookings = self.all.joins(:customer).joins(:user)
     bookings = bookings.where("bookings.status = ?", opts[:booking_status]) if opts[:booking_status]
     bookings = bookings.where("bookings.user_id = ?", opts[:user_id].to_i) if opts[:user_id] && opts[:user_id].to_i != 0        
     if opts[:travel_date].present?    

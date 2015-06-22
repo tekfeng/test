@@ -93,8 +93,7 @@
                     tourOfTourCategory.val("");
                     if (category_id !== null) {
                       $.ajax({
-                        url:"/tours/" + category_id + "/tour_of_tour_category",
-                        data:{'id':category_id},
+                        url:"/sales/bookings/" + category_id + "/tour_of_tour_category",
                         success:function(data){
                           $.each(data, function(index, item) {
                             var html = '<option value="'+item.id+'">'+item.name+'</option>';
@@ -188,8 +187,7 @@
           tourOfTourCategory.val("");
           if (category_id !== null) {
             $.ajax({
-              url:"/tours/" + category_id + "/tour_of_tour_category",
-              data:{'id':category_id},
+              url:"/sales/bookings/" + category_id + "/tour_of_tour_category",
               success:function(data){
                 $.each(data, function(index, item) {
                   var html = '<option value="'+item.id+'">'+item.name+'</option>';

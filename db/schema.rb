@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150619032832) do
+ActiveRecord::Schema.define(version: 20150622032718) do
 
   create_table "add_username_to_users", force: :cascade do |t|
     t.string   "username",   limit: 255
@@ -39,7 +39,6 @@ ActiveRecord::Schema.define(version: 20150619032832) do
     t.string   "itinerary",            limit: 255
     t.datetime "created_at",                                       null: false
     t.datetime "updated_at",                                       null: false
-    t.string   "name",                 limit: 255
     t.integer  "customer_id",          limit: 4
     t.datetime "travel_to"
     t.string   "contact_number",       limit: 255

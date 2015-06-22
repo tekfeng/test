@@ -6,17 +6,17 @@
         
         <th class="customer-thead-name cus-style-gray"><%= smart_listing.sortable "Booking Number", "booking_number" %></th>
         
-        <th class="cus-style-white">Travel Date</th>
+        <th class="cus-style-white"><%= smart_listing.sortable "Travel Date", "travel_date" %></th></th>
         
         <th class="customer-thead-name cus-style-gray"><%= smart_listing.sortable "Booking Date", "created_at" %></th>
         
-        <th class="booking-name cus-style-white"><%= smart_listing.sortable "Name", "name" %></th>
+        <th class="booking-name cus-style-white"><%= smart_listing.sortable "Name", "customers.name" %></th>
         
         <th class="booking-tour-code cus-style-gray">Tour Code</th>
         
         <th class="customer-thead-name cus-style-white"><%= smart_listing.sortable "Status", "status" %></th>
         
-        <th class="booking-sale cus-style-gray"><%= smart_listing.sortable "Sales Person", "booking.user.try(:username)" %></th>
+        <th class="booking-sale cus-style-gray"><%= smart_listing.sortable "Sales Person", "users.username" %></th>
         
         <th class="booking-action" style='text-align: center;'>Itinerary</th>
       </tr>
@@ -35,7 +35,7 @@
           <td><%= booking.travel_date ? booking.travel_date.strftime("%d-%m-%Y") : "" %></td>
           <td><%= booking.created_at.strftime("%d-%m-%Y") %></td>
           <td><%= booking.customer.try(:name) %></td>
-          <td><%= booking.booking_tour_category_tours.first ? booking.booking_tour_category_tours.first.tour.try(:code) : "N/A"%></td>
+          <td><%= booking.booking_tour_category_tours.count > 0 ? booking.booking_tour_category_tours.joins(:tour).collect{|x| [x.tour.try(:code)]}.join(", ") : "N/A"%></td>
           <td><%= booking.status %></td>
           <td><%= booking.user.try(:username) %></td>                           
           <td style='text-align: center;'>
