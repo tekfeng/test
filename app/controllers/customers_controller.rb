@@ -11,11 +11,11 @@ class CustomersController < SalesController
     @sources = Source.all
     if params[:ajax_call]
       @customers = Customer.search(params)
-      @customers = smart_listing_create(:customers, @customers, partial: "customers/list", default_sort: {name: "asc"}) 
+      @customers = smart_listing_create(:customers, @customers, partial: "customers/list", default_sort: {created_at: "desc"}) 
       render template: "/customers/filter", layout: false
     else
       @customers = Customer.all
-      @customers = smart_listing_create(:customers, @customers, partial: "customers/list", default_sort: {name: "asc"}) 
+      @customers = smart_listing_create(:customers, @customers, partial: "customers/list", default_sort: {created_at: "desc"}) 
     end                        
   end
   

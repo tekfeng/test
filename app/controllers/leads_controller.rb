@@ -6,11 +6,11 @@ class LeadsController <  SalesController
   def index
     if params[:ajax_call]
       @leads = Lead.search(params)
-      @leads = smart_listing_create(:leads, @leads, partial: "leads/list", default_sort: {travel_from: "asc"}) 
+      @leads = smart_listing_create(:leads, @leads, partial: "leads/list", default_sort: {created_at: "desc"}) 
       render template: "/leads/filter", layout: false     
     else
       @leads = Lead.all
-      @leads = smart_listing_create(:leads, @leads, partial: "leads/list", default_sort: {travel_from: "asc"}) 
+      @leads = smart_listing_create(:leads, @leads, partial: "leads/list", default_sort: {created_at: "desc"}) 
     end
   end
   
@@ -27,7 +27,7 @@ class LeadsController <  SalesController
     @lead.user_id = current_user.id    
     if @lead.save
       @leads = Lead.all
-      @leads = smart_listing_create(:leads, @leads, partial: "leads/list", default_sort: {travel_from: "asc"}) 
+      @leads = smart_listing_create(:leads, @leads, partial: "leads/list", default_sort: {created_at: "desc"}) 
       render template: "leads/index", locals: { show_flash: true}
     else
       render template: "leads/new"
@@ -43,7 +43,7 @@ class LeadsController <  SalesController
     @lead = Lead.find(params[:id])
     if @lead.update_attributes(lead_params)
       @leads = Lead.all
-      @leads = smart_listing_create(:leads, @leads, partial: "leads/list", default_sort: {travel_from: "asc"}) 
+      @leads = smart_listing_create(:leads, @leads, partial: "leads/list", default_sort: {created_at: "desc"}) 
       render template: "leads/index", locals: { show_flash: true}
     else
       render :action => "edit"

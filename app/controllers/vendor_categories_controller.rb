@@ -6,11 +6,11 @@ class VendorCategoriesController < ReservationsController
     @vendor_categories = VendorCategory.all
     if params[:ajax_call]
       @vendor_categories = VendorCategory.search(params)
-      @vendor_categories = smart_listing_create(:vendor_categories, @vendor_categories, partial: "vendor_categories/list", default_sort: {name: "asc"}) 
+      @vendor_categories = smart_listing_create(:vendor_categories, @vendor_categories, partial: "vendor_categories/list", default_sort: {created_at: "desc"}) 
       render template: "/vendors/filter", layout: false     
     else
       @vendor_categories = VendorCategory.all
-      @vendor_categories = smart_listing_create(:vendor_categories, @vendor_categories, partial: "vendor_categories/list", default_sort: {name: "asc"}) 
+      @vendor_categories = smart_listing_create(:vendor_categories, @vendor_categories, partial: "vendor_categories/list", default_sort: {created_at: "desc"})  
     end 
   end
   
@@ -22,7 +22,7 @@ class VendorCategoriesController < ReservationsController
     @vendor_category = VendorCategory.new(vendor_category_params)
     if @vendor_category.save
       @vendor_categories = VendorCategory.all
-      @vendor_categories = smart_listing_create(:vendor_categories, @vendor_categories, partial: "vendor_categories/list", default_sort: {name: "asc"}) 
+      @vendor_categories = smart_listing_create(:vendor_categories, @vendor_categories, partial: "vendor_categories/list", default_sort: {created_at: "desc"}) 
       render template: "vendor_categories/index", locals: { show_flash: true}
     else
       render template: "vendor_categories/new"

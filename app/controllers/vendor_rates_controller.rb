@@ -12,10 +12,10 @@ class VendorRatesController < ReservationsController
       if params[:city_id].present?
         @vendors = @vendors.where(city_id: params[:city_id].to_i)
       end 
-      @vendors = smart_listing_create(:vendor_rates, @vendors, partial: "vendor_rates/list", default_sort: {name: "asc"}) 
+      @vendors = smart_listing_create(:vendor_rates, @vendors, partial: "vendor_rates/list", default_sort: {created_at: "desc"}) 
       render template: "/vendor_rates/filter", layout: false         
     end
-    @vendors = smart_listing_create(:vendor_rates, @vendors, partial: "vendor_rates/list", default_sort: {name: "asc"})      
+    @vendors = smart_listing_create(:vendor_rates, @vendors, partial: "vendor_rates/list", default_sort: {created_at: "desc"})  
   end
   
   def view_rate

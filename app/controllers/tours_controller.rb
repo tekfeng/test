@@ -6,11 +6,11 @@ class ToursController < AdminsController
     @tour_categories = TourCategory.all
     if params[:ajax_call]
       @tours = Tour.search(params)[:tours]
-      @tours = smart_listing_create(:tours, @tours, partial: "tours/list", default_sort: {name: "asc"}) 
+      @tours = smart_listing_create(:tours, @tours, partial: "tours/list", default_sort: {created_at: "desc"}) 
       render template: "/tours/filter", layout: false
     else
       @tours = Tour.all
-      @tours = smart_listing_create(:tours, @tours, partial: "tours/list", default_sort: {name: "asc"}) 
+      @tours = smart_listing_create(:tours, @tours, partial: "tours/list", default_sort: {created_at: "desc"}) 
     end                        
   end
   

@@ -9,7 +9,7 @@ class BookingsController < SalesController
       render template: "/bookings/filter", layout: false     
     else
       @bookings = Booking.all.joins(:customer).joins(:user)
-      @bookings = smart_listing_create(:bookings, @bookings, partial: "bookings/list", default_sort: {travel_date: "asc"}) 
+      @bookings = smart_listing_create(:bookings, @bookings, partial: "bookings/list", default_sort: {created_at: "desc"}) 
     end
   end
   
@@ -22,7 +22,7 @@ class BookingsController < SalesController
     @booking.user_id = current_user.id    
     if @booking.save 
       @bookings = Booking.all
-      @bookings = smart_listing_create(:bookings, @bookings, partial: "bookings/list", default_sort: {travel_date: "asc"})
+      @bookings = smart_listing_create(:bookings, @bookings, partial: "bookings/list", default_sort: {created_at: "desc"})
       render template: "bookings/index", locals: { show_flash: true}
     else
       render template: "/bookings/new"

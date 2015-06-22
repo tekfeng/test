@@ -9,7 +9,7 @@ class VendorsController < ReservationsController
     @vendors = Vendor.all.joins(:city)    
     if params[:vendor_category_id]
       @vendors = @vendors.where(vendor_category_id: params[:vendor_category_id].to_i)
-      @vendors = smart_listing_create(:vendors, @vendors, partial: "vendors/list", default_sort: {name: "asc"}) 
+      @vendors = smart_listing_create(:vendors, @vendors, partial: "vendors/list", default_sort: {created_at: "desc"}) 
     elsif params[:ajax_call] 
       if params[:category_id].present?
         @vendors = @vendors.where(vendor_category_id: params[:category_id].to_i)
@@ -17,10 +17,10 @@ class VendorsController < ReservationsController
       if params[:city_id].present?
         @vendors = @vendors.where(city_id: params[:city_id].to_i)
       end 
-      @vendors = smart_listing_create(:vendors, @vendors, partial: "vendors/list", default_sort: {name: "asc"}) 
+      @vendors = smart_listing_create(:vendors, @vendors, partial: "vendors/list", default_sort: {created_at: "desc"}) 
       render template: "/vendors/filter", layout: false         
     end 
-    @vendors = smart_listing_create(:vendors, @vendors, partial: "vendors/list", default_sort: {name: "asc"}) 
+    @vendors = smart_listing_create(:vendors, @vendors, partial: "vendors/list", default_sort: {created_at: "desc"}) 
   end  
   
   def new
@@ -32,7 +32,7 @@ class VendorsController < ReservationsController
     @vendor.user_create_id = current_user.id
     if @vendor.save
       @vendors = Vendor.all
-      @vendors = smart_listing_create(:vendors, @vendors, partial: "vendors/list", default_sort: {name: "asc"}) 
+      @vendors = smart_listing_create(:vendors, @vendors, partial: "vendors/list", default_sort: {created_at: "desc"}) 
       render template: "vendors/index", locals: { show_flash: true}
     else
       render template: "vendors/new"
@@ -48,7 +48,7 @@ class VendorsController < ReservationsController
     @vendor.user_update_id = current_user.id
     if @vendor.update_attributes(vendor_params)
       @vendors = Vendor.all
-      @vendors = smart_listing_create(:vendors, @vendors, partial: "vendors/list", default_sort: {name: "asc"}) 
+      @vendors = smart_listing_create(:vendors, @vendors, partial: "vendors/list", default_sort: {created_at: "desc"}) 
       render template: "vendors/index", locals: { show_flash: true}
     else
       render :action => "edit"

@@ -6,11 +6,11 @@ class UsersController < AdminsController
   def index
     if params[:ajax_call]
       @users = User.search(params)
-      @users = smart_listing_create(:users, @users, partial: "users/list", default_sort: {username: "asc"}) 
+      @users = smart_listing_create(:users, @users, partial: "users/list", default_sort: {created_at: "desc"}) 
       render template: "/users/filter", layout: false
     else
       @users = User.all.joins(:department)
-      @users = smart_listing_create(:users, @users, partial: "users/list", default_sort: {username: "asc"}) 
+      @users = smart_listing_create(:users, @users, partial: "users/list", default_sort: {created_at: "desc"}) 
     end                        
   end
   
