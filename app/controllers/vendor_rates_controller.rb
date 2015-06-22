@@ -3,13 +3,19 @@ class VendorRatesController < ReservationsController
   helper  SmartListing::Helper
   
   def index
-    if params[:ajax_call]
-      @vendors = smart_listing_create(:vendor_rates, @vendors, partial: 'vendor_rates/list', default_sort: {name: "asc"})
-      render template: "/vendor_rates/filter", layout: false   
-    else
-      @vendors = Vendor.all
-      @vendors = smart_listing_create(:vendor_rates, @vendors, partial: 'vendor_rates/list', default_sort: {name: "asc"})
+    @vendors = Vendor.all.joins(:vendor_category)
+     
+    if params[:ajax_call] 
+      if params[:category_id].present?
+        @vendors = @vendors.where(vendor_category_id: params[:category_id].to_i)
+      end
+      if params[:city_id].present?
+        @vendors = @vendors.where(city_id: params[:city_id].to_i)
+      end 
+      @vendors = smart_listing_create(:vendor_rates, @vendors, partial: "vendor_rates/list", default_sort: {name: "asc"}) 
+      render template: "/vendor_rates/filter", layout: false         
     end
+    @vendors = smart_listing_create(:vendor_rates, @vendors, partial: "vendor_rates/list", default_sort: {name: "asc"})      
   end
   
   def view_rate

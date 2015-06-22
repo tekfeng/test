@@ -5,28 +5,20 @@ class VendorsController < ReservationsController
   def dashboard_page
   end
   
-  
-  def index  
-    if params[:vendor_category_id]
-      @vendor_categopry_id = params[:vendor_category_id].to_i
-      @vendors = Vendor.where(vendor_category_id: params[:vendor_category_id].to_i)         
-    else
-      @vendors = Vendor.all      
+  def index 
+    @vendors = Vendor.all      
+    if params[:ajax_call] 
+      if params[:category_id].present?
+        @vendors = @vendors.where(vendor_category_id: params[:category_id].to_i)
+      end
+      if params[:city_id].present?
+        @vendors = @vendors.where(city_id: params[:city_id].to_i)
+      end 
+      @vendors = smart_listing_create(:vendors, @vendors, partial: "vendors/list", default_sort: {name: "asc"}) 
+      render template: "/vendors/filter", layout: false         
     end 
     @vendors = smart_listing_create(:vendors, @vendors, partial: "vendors/list", default_sort: {name: "asc"}) 
-  end
-  
-  
-  def filter_vendor
-    @vendors = Vendor.all   
-    if params[:category_id].present?
-      @vendors = @vendors.where(vendor_category_id: params[:category_id].to_i)
-    end    
-    if params[:city_id].present?
-      @vendors = @vendors.where(city_id: params[:city_id].to_i)
-    end      
-    render partial: "/#{params[:render_to_view]}/vendor_table"   
-  end
+  end  
   
   def new
     @vendor = Vendor.new

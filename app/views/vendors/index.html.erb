@@ -31,7 +31,7 @@
       <div id="vendor_filter" class="reservations">
         <% @vendor_new = Vendor.new %>
         <% @vendor_new.vendor_category_id = @vendor_categopry_id if  @vendor_categopry_id %>
-        <%= semantic_form_for @vendor_new,  :url => "", :html => {:method => :get }  do |f| %>
+        <%= semantic_form_for @vendor_new,  :url => "/vendors", :html => {:method => :get }  do |f| %>
           <%= f.inputs do %>
           <div class= "form-group">
             <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
@@ -46,7 +46,7 @@
             <div class="col-md-2 col-sm-2 col-xs-12"></div>
           </div>
           <% end %>
-           <%= f.action :submit, :label => "Filter", :button_html => { :class => "btn btn-primary filter-style" } %>
+           <%= f.action :submit, :label => "Filter", :button_html => { :class => "btn btn-primary filter-style filter-vendors" } %>
         <% end %>
       </div>
     </div>
@@ -80,5 +80,27 @@
     vendorCity.prepend('<option value="">Select City</option>');
     vendorCity.val("")
     vendorCity.selectbox();
+    
+    
+    
+    $(document.body).delegate('.filter-vendors', 'click', function() {
+      var category_id = $("#vendor_vendor_category_id").val();
+      var city_id = $("#vendor_city_id").val();
+      $.ajax({
+        type: "GET",
+        url: "/vendors",
+        data: {
+          category_id: category_id,
+          city_id: city_id,
+          ajax_call: true,
+        },
+        success: function (data) {
+          $(".listing-table").html(data)
+        }
+      });    
+      return false
+    });
+      
+      
   });  
 </script>

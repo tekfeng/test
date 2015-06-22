@@ -36,24 +36,7 @@
 //= require dashboard/sweet-alert
 //= require smart_listing
  
-$(document).ready(function() {    
-  $(document.body).delegate('.filter-style', 'click', function() {
-    var category_id = $("#vendor_vendor_category_id").val();
-    var city_id = $("#vendor_city_id").val();
-    $.ajax({
-      type: "GET",
-      url: "/vendors_controll/filter_vendor",
-      data: {
-        category_id: category_id,
-        city_id: city_id,
-        render_to_view: window.location.pathname.split("/")[1]
-      },
-      success: function (data) {
-        $(".listing-table").html(data)
-      }
-    });    
-    return false
-  });
+$(document).ready(function() {
   
   $(document.body).delegate("#submit_comment", "click", function(e){
       e.preventDefault();
