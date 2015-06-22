@@ -94,48 +94,7 @@
 
 <script language="javascript">
   $(document).ready(function() {
-    var bookingIdSendItinerary;    
-    
-    $(document.body).delegate(".send-pdf-mailer", "click", function(e){
-      bookingIdSendItinerary = $(this).data("booking-id");
-      $.ajax({
-        type: "GET",
-        url: "/sales/bookings/" + bookingIdSendItinerary + "/check_is_first_send_itinerary",
-        success: function (data) {   
-          if (data.sended) {
-            $('#itinerary_pdf_send_next_time .close-modal-box').removeAttr("disabled");
-            $('#itinerary_pdf_send_next_time').modal({
-              show: true,
-              backdrop: 'static',
-              keyboard: true            
-            });  
-          } else {
-            $('#itinerary_pdf_send .close-modal-box').removeAttr("disabled");
-            $('#itinerary_pdf_send').modal({
-              
-              show: true,
-              backdrop: 'static',
-              keyboard: true            
-            });  
-          }        
-        }
-      });                   
-    });
-    
-    $(document.body).delegate(".close-modal-box", "click", function(e){
-      e.preventDefault();
-      $(this).attr("disabled", "disabled");
-      // console.log('click');
-      $('#itinerary_pdf_send').modal('hide'); 
-      $('#itinerary_pdf_send_next_time').modal('hide');            
-      $.ajax({
-        type: "GET",
-        url: "/sales/bookings/" + bookingIdSendItinerary + "/send_pdf_mailer",
-        success: function (data) {   
-        }
-      });
-      return false;          
-    });    
+
   
   });  
   
