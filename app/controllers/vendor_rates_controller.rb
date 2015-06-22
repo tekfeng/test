@@ -3,7 +3,7 @@ class VendorRatesController < ReservationsController
   helper  SmartListing::Helper
   
   def index
-    @vendors = Vendor.all.joins(:vendor_category)
+    @vendors = Vendor.all.joins(:vendor_category).joins(:city)
      
     if params[:ajax_call] 
       if params[:category_id].present?

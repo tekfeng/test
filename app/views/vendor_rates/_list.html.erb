@@ -5,7 +5,7 @@
       <th class="no">No.</th>  
       <th class="vendor-rate-thead-name cus-style-gray"><%= smart_listing.sortable "Name", "name" %></th>
       <th class="vendor-category-thead-name cus-style-white"><%= smart_listing.sortable "Vendor Category", "vendor_categories.name" %></th>
-      <th class="vendor-city-thead-name cus-style-gray"><%= smart_listing.sortable "City", "vendor.city ? vendor.city.name : 'N/A'" %></th>         
+      <th class="vendor-city-thead-name cus-style-gray"><%= smart_listing.sortable "City", "cities.name" %></th>         
       <th class="cus-style-white" colspan='2' style='text-align: center;'>Rates</th>
     </tr>
   </thead>        

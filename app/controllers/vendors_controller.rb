@@ -6,7 +6,7 @@ class VendorsController < ReservationsController
   end
   
   def index 
-    @vendors = Vendor.all      
+    @vendors = Vendor.all.joins(:city)     
     if params[:ajax_call] 
       if params[:category_id].present?
         @vendors = @vendors.where(vendor_category_id: params[:category_id].to_i)
