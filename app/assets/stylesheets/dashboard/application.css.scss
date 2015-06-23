@@ -464,6 +464,7 @@ form li#vendor_submit_action {
   padding: 5px 18px;
   line-height:4em;
   float: right;
+  margin-top: 35px;
 }
 ol {
   list-style: none;
@@ -496,6 +497,8 @@ form.vendor_rate {
     border-radius: 5px;
     cursor: pointer;
     float: right;  
+    font-size: 14px;
+    font-weight: 200;
   }
 }
 #salary_table {
@@ -525,7 +528,7 @@ input:focus {
   border: 1px solid #aaa !important;
 }
 .span-behind-input {
-  background-color: #adadad;
+  background-color: #eaeaea;
   color: #767a7a;
   float: left;
   margin-left: 5%;
@@ -1132,7 +1135,9 @@ input#vendor_rate_contract_file {
   text-align: center;
   cursor: default;
   padding-top: 5px;
-  font-size: 15px;
+  font-size: 14px;
+  border-radius: 4px;
+  font-weight: 200;
 }
 .bt-dl-fl {
   float: right;

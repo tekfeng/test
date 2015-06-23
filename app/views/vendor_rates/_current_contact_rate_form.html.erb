@@ -3,6 +3,7 @@
     <% if @vendor_rate.rate_type != 4 %>
       <div class="col-md-12" style="padding-left: 0px; margin-bottom: 12px;">
         <div clas="fn-and-btdl" style="width: 290px; float: left">
+          <div style="font-size: 20px; margin-bottom: 15px; color: #424242; font-weight: 600;">Upload contract file here</div>
           <span class="file-name-show"><%= f.object.contract_file.exists? ? f.object.contract_file_file_name.truncate(20) : "No file selected" %></span>
           <% if f.object.contract_file.exists? %>
             <a href="/vendor_rates/<%= @vendor_rate.id %>/download_files" class="bt-dl-fl">
@@ -47,10 +48,10 @@
               <tr>
                 <th><%= season.name %></th>
                 <% @vendor.rooms.each do |room| %>
-                  <td>
+                  <td class="parent-cls">
                     <% price = SeasonRoomPrice.find_price(season.id, room.id, @vendor_rate.rate_type, @vendor_rate.try(:id)) || 0 %>
                     <% price_with_gst_7_percent = price + price*7/100 %>
-                    <input class="" type="text" value="<%= SeasonRoomPrice.find_price(season.id, room.id, @vendor_rate.rate_type, @vendor_rate.try(:id)) %>" name="room_price[<%=room.id%>_<%=season.id%>_<%=@vendor_rate.rate_type%>_<%=@vendor_rate.id%>]" maxlength="10">
+                    <input class="value-price-of-room" type="text" value="<%= SeasonRoomPrice.find_price(season.id, room.id, @vendor_rate.rate_type, @vendor_rate.try(:id)) %>" name="room_price[<%=room.id%>_<%=season.id%>_<%=@vendor_rate.rate_type%>_<%=@vendor_rate.id%>]" maxlength="10">
                     <span class="span-behind-input"><%= price_with_gst_7_percent == 0 ? "GST" : price_with_gst_7_percent %></span>
                   </td>
                 <% end %>
@@ -73,6 +74,14 @@
       $("input#vendor_rate_contract_file").click();     
     });
     
+    $("input#vendor_rate_contract_file").change(function(e){
+      $(".file-name-show").html(($(this).val()).substring(0, 20))
+    });
     
+    $("input.value-price-of-room").change(function(e){
+      var price = $(this).val();
+      var price_with_tax = parseInt(price, 10) + parseInt(price*7/100 , 10)
+      $(e.currentTarget).closest("td.parent-cls").find("span.span-behind-input").html(price_with_tax);      
+    })
   });
 </script>
