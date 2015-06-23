@@ -22,11 +22,11 @@
             <tr>
               <th><%= season.name %></th>
               <% @vendor.rooms.each do |room| %>
-                <td>
+                <td class="parent-cls-competitor">
                   <% price = SeasonRoomPrice.find_price_competitor(season.id, room.id, @vendor_rate.rate_type, @vendor_rate.try(:id), @competitor_id) || 0 %>
                   <% price_with_gst_7_percent = price + price*7/100 %>
                   
-                  <input class="" type="text" value="<%= SeasonRoomPrice.find_price_competitor(season.id, room.id, @vendor_rate.rate_type, @vendor_rate.try(:id), @competitor_id) %>" name="room_price[<%=room.id%>_<%=season.id%>_<%=@vendor_rate.rate_type%>_<%=@vendor_rate.id%>_<%=@competitor_id%>]" maxlength="10">
+                  <input class="value-price-of-room-competitor" type="text" value="<%= SeasonRoomPrice.find_price_competitor(season.id, room.id, @vendor_rate.rate_type, @vendor_rate.try(:id), @competitor_id) %>" name="room_price[<%=room.id%>_<%=season.id%>_<%=@vendor_rate.rate_type%>_<%=@vendor_rate.id%>_<%=@competitor_id%>]" maxlength="10">
                   <span class="span-behind-input" style="min-height: 27px;"><%= price_with_gst_7_percent == 0 ? "GST" : price_with_gst_7_percent %></span>
                 </td>
               <% end %>
@@ -43,6 +43,14 @@
 <script language="javascript">
   
  $(document).ready(function(){
+   
+   $("input.value-price-of-room-competitor").change(function(e){
+     var price_c = $(this).val();
+     var price_with_tax_c = parseFloat(price_c, 10) + parseFloat(price_c*7/100 , 10)
+     $(e.currentTarget).closest("td.parent-cls-competitor").find("span.span-behind-input").html(price_with_tax_c);      
+   })
+   
+   
    $(document.body).delegate("span.competitor-name", "click", function(e) {
      $("span.competitor-name").removeClass("active");
      $(this).addClass("active");

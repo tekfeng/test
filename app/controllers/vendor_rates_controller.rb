@@ -3,8 +3,7 @@ class VendorRatesController < ReservationsController
   helper  SmartListing::Helper
   
   def index
-    @vendors = Vendor.all.joins(:vendor_category).joins(:city)
-     
+    @vendors = Vendor.all.joins(:vendor_category).joins(:city)     
     if params[:ajax_call] 
       if params[:category_id].present?
         @vendors = @vendors.where(vendor_category_id: params[:category_id].to_i)
@@ -80,7 +79,7 @@ class VendorRatesController < ReservationsController
   private
 
   def vendor_params
-    params.require(:vendor).permit(:name, :email, :fax, :contact, :city_id, :vendor_type, :vendor_category_id, vendor_rates_attributes: [:id, :effective, :expired, :remarks, :_destroy, competitors_attributes: [:id, :name, :_destroy]])
+    params.require(:vendor).permit(:name, :email, :fax, :contact, :city_id, :vendor_type, :vendor_category_id, vendor_rates_attributes: [:id, :rate_type, :effective, :expired, :remarks, :_destroy, competitors_attributes: [:id, :name, :_destroy]])
   end
     
 end

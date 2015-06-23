@@ -15,9 +15,11 @@
             <tr>
               <th><%= season.name %></th>
               <% @vendor.rooms.each do |room| %>
-                <td>
-                  <input class="" type="text" value="<%= SeasonRoomPrice.find_price_competitor(season.id, room.id, @vendor_rate.rate_type, @vendor_rate.try(:id), @competitor_id, ) %>" name="room_price[<%=room.id%>_<%=season.id%>_<%=@vendor_rate.rate_type%>_<%=@vendor_rate.id%>_<%=@competitor_id%>]" maxlength="10">
-                  <span class="span-behind-input">185</span>
+                <td class="parent-cls-competitor">
+                  <% price = SeasonRoomPrice.find_price_competitor(season.id, room.id, @vendor_rate.rate_type, @vendor_rate.try(:id), @competitor_id) || 0 %>
+                  <% price_with_gst_7_percent = price + price*7/100 %>
+                  <input class="value-price-of-room-competitor" type="text" value="<%= SeasonRoomPrice.find_price_competitor(season.id, room.id, @vendor_rate.rate_type, @vendor_rate.try(:id), @competitor_id, ) %>" name="room_price[<%=room.id%>_<%=season.id%>_<%=@vendor_rate.rate_type%>_<%=@vendor_rate.id%>_<%=@competitor_id%>]" maxlength="10">
+                  <span class="span-behind-input"><%= price_with_gst_7_percent == 0 ? "GST" : price_with_gst_7_percent %></span>
                 </td>
               <% end %>
             </tr>
@@ -28,3 +30,13 @@
 	</div>  
   <%= f.action :submit, :label => "Save", :button_html => { :class => "btn btn-primary ud-vd" } %>      
 <% end %>
+<script language="javascript">
+ $(document).ready(function(){
+   
+   $("input.value-price-of-room-competitor").change(function(e){
+     var price_c = $(this).val();
+     var price_with_tax_c = parseFloat(price_c, 10) + parseFloat(price_c*7/100 , 10)
+     $(e.currentTarget).closest("td.parent-cls-competitor").find("span.span-behind-input").html(price_with_tax_c);      
+   })
+ });
+</script>

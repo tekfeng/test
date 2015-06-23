@@ -1,6 +1,6 @@
 <%= semantic_form_for @vendor_rate,  :url => "/vendor_rates/#{@vendor_rate.id}/update_current_contact/#{@vendor.id}", :html => {:method => :post, :multipart => true, :class => "custom-style-vdr" }  do |f| %>
   <%= f.inputs do %>
-    <% if @vendor_rate.rate_type != 4 %>
+    <% if @vendor_rate.rate_type and @vendor_rate.rate_type != 4 %>
       <div class="col-md-12" style="padding-left: 0px; margin-bottom: 12px;">
         <div clas="fn-and-btdl" style="width: 290px; float: left">
           <div style="font-size: 20px; margin-bottom: 15px; color: #424242; font-weight: 600;">Upload contract file here</div>
@@ -15,8 +15,8 @@
             </div>
           <% else %>
            
-            <a disabled >
-              <span class="download" class="bt-dl-fl"> Download</span>
+            <a disabled class="bt-dl-fl">
+              <span class="download"> Download</span>
             </a>
             <div style="float: left; position: relative;">
               <span class="upload-file-cus">Up load file</span>
@@ -29,7 +29,7 @@
     <% end %>
   <% end %>
   
-  <% if @vendor.rooms.count == 0 %>
+  <% if @vendor.rooms.count == 0 %>   
     <p class="no-room" > Please add room for this Vendor! </p>
   <% else %>
   	<div class='content' style="margin-bottom: 30px; margin-top: 30px;">
@@ -80,7 +80,7 @@
     
     $("input.value-price-of-room").change(function(e){
       var price = $(this).val();
-      var price_with_tax = parseInt(price, 10) + parseInt(price*7/100 , 10)
+      var price_with_tax = parseFloat(price, 10) + parseFloat(price*7/100 , 10)
       $(e.currentTarget).closest("td.parent-cls").find("span.span-behind-input").html(price_with_tax);      
     })
   });

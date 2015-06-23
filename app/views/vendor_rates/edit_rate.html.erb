@@ -77,7 +77,7 @@
                 <div class='row' style="width: 100%; float: left; margin: 0px;">
                   <div class='col-lg-12' style="padding: 25px 0px; background-color: white;">
                     <% case @vendor_rate.rate_type %> 
-                    <% when 1, 2, 4 %> 
+                    <% when 1, 2, 4, nil %> 
                       <%= render 'current_contact_rate_form' %>
                     <% when 3 %>
                       <%= render 'competitor_rate_form' %>
