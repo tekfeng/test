@@ -21,47 +21,12 @@ class VendorRatesController < ReservationsController
   def view_rate
     @vendor = Vendor.find_by_id(params[:id])
   end
-
-  def update_vendor_rates_old
-    @vendor = Vendor.find_by_id(params[:id])
-    params[:vendor][:vendor_rates_attributes].each do |key, value|
-      if value[:id].present? # update value for vendor rate
-        vendor_rate = VendorRate.find_by_id(value[:id].to_i)
-        if vendor_rate
-          vendor_rate.effective = value[:effective]
-          vendor_rate.expired = value[:expired]
-          vendor_rate.remarks = value[:remarks]
-          if value[:competitors_attributes] # update competitor list name
-            value[:competitors_attributes].each do |key_in, value_in|
-              if value_in[:id]
-                competitor = Competitor.find_by_id(value_in[:id].to_i)
-                competitor.name = value_in[:name]
-                competitor.save
-              else
-                vendor_rate.competitors.create({name: value_in[:name]})
-              end       
-            end
-          end         
-        end
-        vendor_rate.save
-      else
-        vendor_rate_new = @vendor.vendor_rates.create({
-          rate_type: 4,
-          effective: value[:effective],
-          expired: value[:expired],
-          remarks: value[:remarks]
-        })
-      end      
-    end    
-    render template: "vendor_rates/view_rate", locals: {updated:  true }   
-  end
   
   def update_vendor_rates
     @vendor = Vendor.find_by_id(params[:id])
     if @vendor.update_attributes(vendor_params)
       render template: "vendor_rates/view_rate", locals: {updated:  true }   
     else
-      p @vendor.errors.full_messages
       render template: "vendor_rates/view_rate"
     end
   end

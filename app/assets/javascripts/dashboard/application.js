@@ -345,4 +345,17 @@ $(document).ready(function() {
     return false;          
   });    
   
+  
+  $(document.body).delegate(".icon-customer-remove-ad-hoc", "click", function(e){
+    e.preventDefault();
+    confirmAccept = confirm("Are you sure you want to destroy this?");
+    if (confirmAccept ==true) {
+      var parentFieldset = $(e.currentTarget).closest("fieldset.inputs.formnestic-li-fieldset");
+      parentFieldset.hide();
+      parentFieldset.find("input.destroy-this-obj").val(true)
+    } 
+    
+    return false;          
+  }); 
+  
 });
