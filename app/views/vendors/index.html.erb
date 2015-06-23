@@ -60,13 +60,13 @@
 <script language="javascript">
   $(document).ready(function() {
     
-    <% show_flash ||= false %>
-    <% if show_flash %>
+    <% if flash[:notice] %>
       $.cookie('flashType', "notice", { path: '/' });
       $.cookie('flashMessage', 'vendor has been saved successfully!', { path: '/' });
       toastr['success']($.cookie('flashMessage'));
       $.removeCookie('flashType', { path: '/' });
       $.removeCookie('flashMessage', { path: '/' });
+      <% flash[:notice] = false %>
     <%  end %>
     
     var vendorCategory = $("select#vendor_vendor_category_id");

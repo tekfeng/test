@@ -1,4 +1,4 @@
-<%= semantic_form_for @vendor_category,  :url => "/vendor_categories",  :html => {:method => :post} do |f| %>
+<%= semantic_form_for @vendor_category, :url =>  @vendor_category.new_record? ?  "/vendor_categories" : "/vendor_categories/#{@vendor_category.id}",  :html => {:method => @vendor_category.new_record? ? :post : :put } do |f| %>
  <%= f.inputs do %> 
  <div class= "form-group">
    <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">

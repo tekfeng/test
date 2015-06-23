@@ -21,9 +21,8 @@ class VendorCategoriesController < ReservationsController
   def create
     @vendor_category = VendorCategory.new(vendor_category_params)
     if @vendor_category.save
-      @vendor_categories = VendorCategory.all
-      @vendor_categories = smart_listing_create(:vendor_categories, @vendor_categories, partial: "vendor_categories/list", default_sort: {created_at: "desc"}) 
-      render template: "vendor_categories/index", locals: { show_flash: true}
+      flash[:notice] = true
+      redirect_to vendor_categories_url
     else
       render template: "vendor_categories/new"
     end
@@ -33,13 +32,25 @@ class VendorCategoriesController < ReservationsController
     @vendor_category = VendorCategory.find_by_id(params[:id])
   end
 
+  
+  def update
+    @vendor = Vendor.find(params[:id])
+    @vendor.user_update_id = current_user.id
+    if @vendor.update_attributes(vendor_params)
+      flash[:notice] = true
+      redirect_to vendor_categories_url
+    else
+      render :action => "edit"
+    end
+  end
+  
   def update
     @vendor_category = VendorCategory.find(params[:id])
     if @vendor_category.update_attributes(vendor_category_params)
-      render json: {result: 'ok', redirect_to: vendor_categories_url, 
-        flash: { type: :notice, message: 'VendorCategories details has been saved successfully!' }}
+      flash[:notice] = true
+      redirect_to vendor_categories_url
     else
-      render json: { result: 'failed', errors: @vendor_category.errors }
+      render :action => "edit"
     end
   end
   

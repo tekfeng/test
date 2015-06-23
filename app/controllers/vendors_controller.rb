@@ -31,9 +31,8 @@ class VendorsController < ReservationsController
     @vendor = Vendor.new(vendor_params)
     @vendor.user_create_id = current_user.id
     if @vendor.save
-      @vendors = Vendor.all
-      @vendors = smart_listing_create(:vendors, @vendors, partial: "vendors/list", default_sort: {created_at: "desc"}) 
-      render template: "vendors/index", locals: { show_flash: true}
+      flash[:notice] = true
+      redirect_to vendors_url
     else
       render template: "vendors/new"
     end
@@ -47,9 +46,8 @@ class VendorsController < ReservationsController
     @vendor = Vendor.find(params[:id])
     @vendor.user_update_id = current_user.id
     if @vendor.update_attributes(vendor_params)
-      @vendors = Vendor.all
-      @vendors = smart_listing_create(:vendors, @vendors, partial: "vendors/list", default_sort: {created_at: "desc"}) 
-      render template: "vendors/index", locals: { show_flash: true}
+      flash[:notice] = true
+      redirect_to vendors_url
     else
       render :action => "edit"
     end

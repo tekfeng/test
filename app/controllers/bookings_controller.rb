@@ -21,9 +21,8 @@ class BookingsController < SalesController
     @booking = Booking.new(booking_params)
     @booking.user_id = current_user.id    
     if @booking.save 
-      @bookings = Booking.all
-      @bookings = smart_listing_create(:bookings, @bookings, partial: "bookings/list", default_sort: {created_at: "desc"})
-      render template: "bookings/index", locals: { show_flash: true}
+      flash[:notice] = true
+      redirect_to bookings_url
     else
       render template: "/bookings/new"
     end

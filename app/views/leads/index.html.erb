@@ -73,13 +73,13 @@
   $(document).ready(function() {
     
     
-  <% show_flash ||= false %>
-  <% if show_flash %>
+  <% if flash[:notice] %>
     $.cookie('flashType', "notice", { path: '/' });
     $.cookie('flashMessage', 'Lead has been saved successfully!', { path: '/' });
     toastr['success']($.cookie('flashMessage'));
     $.removeCookie('flashType', { path: '/' });
     $.removeCookie('flashMessage', { path: '/' });
+    <% flash[:notice] = false %>
   <%  end %>
     
     
