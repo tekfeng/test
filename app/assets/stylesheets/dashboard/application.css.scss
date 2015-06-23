@@ -1184,3 +1184,14 @@ p.no-room {
 select.lead-tour, select.booking-tour {
   display: none !important;
 }
+#vendor_filter_rs {
+  a.icon-search-style span.glyphicon.glyphicon-search {
+    font-size: 16px;
+    position: absolute;
+    left: 6px;
+    top: 8px;
+  }
+  input.input-search-mini-box {
+    padding-left: 25px;
+  }
+}

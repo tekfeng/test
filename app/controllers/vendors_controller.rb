@@ -20,6 +20,8 @@ class VendorsController < ReservationsController
       @vendors = smart_listing_create(:vendors, @vendors, partial: "vendors/list", default_sort: {created_at: "desc"}) 
       render template: "/vendors/filter", layout: false         
     end 
+    
+    @vendors = Vendor.ransack(params[:search_rs]).result if params[:search_rs] 
     @vendors = smart_listing_create(:vendors, @vendors, partial: "vendors/list", default_sort: {created_at: "desc"}) 
   end  
   

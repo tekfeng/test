@@ -15,6 +15,9 @@ class Vendor < ActiveRecord::Base
   
   accepts_nested_attributes_for :vendor_rates, allow_destroy: true
   accepts_nested_attributes_for :rooms, allow_destroy: true
+  
+  scope :search_all, -> (word) {where("name LIKE :word or vendor_type LIKE :word or email LIKE :word or contact LIKE :word or fax LIKE :word", word: "%#{word}%")}  
+  
    
   after_create :create_4_vendor_rates
   
@@ -38,6 +41,16 @@ class Vendor < ActiveRecord::Base
       return 0
     end  
   end
+  
+  def self.ransackable_scopes(auth_object = nil)
+    if auth_object.try(:admin?)
+      # allow admin users access to all three methods
+    else
+      # allow other users to search on active and hired_since only
+      %i(active search_all)
+    end
+  end
+  
   
   
 end
