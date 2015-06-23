@@ -34,17 +34,6 @@ class VendorCategoriesController < ReservationsController
 
   
   def update
-    @vendor = Vendor.find(params[:id])
-    @vendor.user_update_id = current_user.id
-    if @vendor.update_attributes(vendor_params)
-      flash[:notice] = true
-      redirect_to vendor_categories_url
-    else
-      render :action => "edit"
-    end
-  end
-  
-  def update
     @vendor_category = VendorCategory.find(params[:id])
     if @vendor_category.update_attributes(vendor_category_params)
       flash[:notice] = true

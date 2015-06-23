@@ -527,6 +527,10 @@ input:focus {
   background-color: #F5F9CF !important;
   border: 1px solid #aaa !important;
 }
+input[type="submit"]:focus {
+  background-color: #18A689 !important;
+}
+
 .span-behind-input {
   background-color: #eaeaea;
   color: #767a7a;
