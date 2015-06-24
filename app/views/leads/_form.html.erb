@@ -70,11 +70,11 @@
              
             <script language="javascript">
               $(document).ready(function() {
-                <% if controller.action_name == "edit"  %>                              
+                <% if controller.action_name == "edit" and tour.object.tour_category_id  %>                              
                   var leadTour = $('#lead_tour.lead-tour');
                   var leadTourCategory =  $('#lead_tour_category.lead-tour-category') ;  
-                                
-                <% else %>
+                <% elsif  controller.action_name == "edit" and tour.object.tour_category_id.nil?  %>  
+                 
                   var leadTour = $('#lead_tour.lead-tour').last();
                   var leadTourCategory =  $('#lead_tour_category.lead-tour-category').last();                                      
                   leadTour.prepend('<option value="">Tour Name</option>');
@@ -149,27 +149,7 @@
 
 <script language="javascript">
   $(document).ready(function() {
-    var leadIdSendQuotation;    
-    $(document.body).delegate(".send-quotation", "click", function(e){
-      leadIdSendQuotation = $(this).data("lead-id");    
-      $('#quotation_pdf_send_next_time').modal({
-        show: true,
-        backdrop: 'static',
-        keyboard: true            
-      });                 
-    });
-    
-    $(document.body).delegate(".close-modal-box-quo", "click", function(e){   
-      $('#quotation_pdf_send_next_time').modal('hide');      
-      $.ajax({
-        type: "GET",
-        url: "/sales/leads/" + leadIdSendQuotation + "/send_pdf_quotation",
-        success: function (data) {          
-                
-        }
-      });               
-    });    
-    
+        
     // run first select box for new lead
     <% if @lead.errors.count > 0 %>
       var leadTour = $('#lead_tour.lead-tour');

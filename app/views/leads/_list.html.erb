@@ -34,7 +34,7 @@
           <td><%= lead.travel_from ? lead.travel_from.strftime("%d-%m-%Y") : "" %></td>    
           <td><%= lead.customer.try(:name) %></td>
           <td><%= lead.customer.try(:email_address) %></td>
-          <td><%= lead.lead_tour_category_tours.first ? lead.lead_tour_category_tours.first.tour_category.try(:name) : "N/A" %></td>
+          <td><%= lead.lead_tour_category_tours.count > 0 ? lead.lead_tour_category_tours.joins(:tour_category).collect{|x| [x.tour.try(:name)]}.join(", ").truncate(40) : "N/A" %></td>
           <td><%= lead.status %></td>
           <td><%= lead.user.try(:username) %></td>
           <td style='text-align: center;'>

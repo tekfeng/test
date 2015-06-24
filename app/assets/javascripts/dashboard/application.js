@@ -358,4 +358,25 @@ $(document).ready(function() {
     return false;          
   }); 
   
+  var leadIdSendQuotation;    
+  $(document.body).delegate(".send-quotation", "click", function(e){
+    leadIdSendQuotation = $(this).data("lead-id");    
+    $('#quotation_pdf_send_next_time').modal({
+      show: true,
+      backdrop: 'static',
+      keyboard: true            
+    });                 
+  });
+  
+  $(document.body).delegate(".close-modal-box-quo", "click", function(e){   
+    $('#quotation_pdf_send_next_time').modal('hide');      
+    $.ajax({
+      type: "GET",
+      url: "/sales/leads/" + leadIdSendQuotation + "/send_pdf_quotation",
+      success: function (data) {          
+              
+      }
+    });               
+  });   
+  
 });
