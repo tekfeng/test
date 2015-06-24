@@ -67,8 +67,9 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <div id="accept" class= "col-md-12 col-sm-12 col-xs-12">
             <div class='col-md-12 col-sm-12 col-xs-12' style="padding: 0px;">
-              <p style="font-size: 18px; line-height: 2em; font-weight: 600;">Do you want to allocated for this User?</p>
-              <p style="font-size: 14px; margin-bottom: 30px;">Once a Lead will be create base on that incoming.</p>
+              <p style="font-size: 18px; line-height: 2em; font-weight: 600;">Do you want to allocate this lead to the user?</p>
+              <p class="append-username" style="font-size: 14px; margin-bottom: 3px;">Lead will be allocated to user</p>
+              <p style="font-size: 14px; margin-bottom: 30px;">A lead will be created based on this incoming item.</p>
             </div>
             <div class='col-md-12 col-sm-12 col-xs-12 text-center'>              
               <a class="no-box-redirect-url close-modal-box-ic">No</a>
@@ -114,21 +115,29 @@
     <% end %>
     
     incoming_user_id.selectbox({
-      onChange: function(val){        
+      onChange: function(val){ 
+        
         userIdIncomingCreateLead = val;
         incoming_user_id.val(val);
         incoming_user_id.trigger("change");
-        
-        $('#incoming_allocated_for_user').modal({
-          show: true,
-          backdrop: 'static',
-          keyboard: true            
-        });    
+        $.ajax({
+          type: "GET",
+          url: "/sales/incomings/" + val + "/get_username",
+          success: function (data) {
+            var text = "Lead will be allocated to " + data.name 
+            $("p.append-username").html(text)
+            $('#incoming_allocated_for_user').modal({
+              show: true,
+              backdrop: 'static',
+              keyboard: true            
+            }); 
+          }
+        });
+           
       }
     });
     
     $(document.body).delegate(".close-modal-box-ic", "click", function(e){
-      console.log($(e.currentTarget)) 
       if ($(e.currentTarget).hasClass("yes-create-lead-base-on-ic")) {
         $.ajax({
           type: "POST",
@@ -137,7 +146,7 @@
             
             if (data.status == "ok") {
               if (data.action == "edit"){
-                $('#success_mess_after_create_lead .change-action-name').html("Lead base on that incoming is update successfull");
+                $('#success_mess_after_create_lead .change-action-name').html("Lead is successfully created and allocated to a user");
               }
                            
               $('#incoming_allocated_for_user').modal('hide');   

@@ -27,6 +27,11 @@ class IncomingsController < SalesController
     end    
   end
   
+  def get_username
+    user = User.find_by_id(params[:id])
+    render json: {name: user.username }
+  end
+  
   def create_lead_base_on_ic
     action = ""
     incoming = Incoming.find_by_id(params[:ic_id].to_i)

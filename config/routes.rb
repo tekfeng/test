@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       member do
         post :submit_comment
         post :create_lead_base_on_ic
+        get  :get_username
       end  
     end  
     resources :customers 
