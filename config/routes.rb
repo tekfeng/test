@@ -87,6 +87,8 @@ Rails.application.routes.draw do
     collection do
       get 'read_notification'
       get 'notifications_of_user'
+      get 'edit_profile'
+      post 'update_profile'
     end
   end
 

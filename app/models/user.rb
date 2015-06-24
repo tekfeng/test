@@ -13,7 +13,14 @@ class User < ActiveRecord::Base
   validates :email, :email => true
   validates :username, :contact_number, :department_id, :presence => true
   validates :contact_number, numericality: true
-   
+  
+  has_attached_file :avatar, 
+                    :styles => { :medium => "110x110#" }, 
+                    :convert_options => { :all => "-quality 50 -strip" }
+                    
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+  validates_attachment_presence :avatar
+  
   def self.search(opts)
     columns_condition = self.columns.inject([]) do |array, el|
       array << "lower(#{self.table_name}.#{el.name}) LIKE :keyword" if (el.type == :string or el.type == :text)

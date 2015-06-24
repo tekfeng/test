@@ -379,4 +379,20 @@ $(document).ready(function() {
     });               
   });   
   
+  $(document.body).delegate("a.edit-profile", "click", function(e){   
+   
+    $.ajax({
+      type: "GET",
+      url: "/notifications/edit_profile",
+      success: function (data) {          
+        $(".navbar-static-top").css("background-color", "#F3F3F4");
+        $(".main-view-yield").html(data)      
+      }
+    });   
+  });  
+  
+  $(document.body).delegate("span.up-file-avatar", "click", function(e){   
+    $(".edit-profile-user-form li#user_avatar_input input").click()
+  });  
+  
 });

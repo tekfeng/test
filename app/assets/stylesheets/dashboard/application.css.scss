@@ -1195,3 +1195,54 @@ select.lead-tour, select.booking-tour {
     padding-left: 25px;
   }
 }
+.edit-profile-user-form {
+  li#user_contact_number_input {
+    margin-top: 10px;
+  }
+  li#user_avatar_input {
+    width: 70px;
+    height: 70px;
+    margin: 31px auto 0;
+  }
+  .label {
+    display: block;
+    background-color: white;
+    font-size: 14px;
+    font-weight: 500;
+    padding-left: 0px;
+    margin-left: 0px;
+  }
+  ol {
+    padding: 0px;
+    li input {
+      width: 85% !important;
+    }
+  }
+}
+.left-form-edu {
+  float: left;
+  width: 50%;
+}
+.style-bt-edu {
+  bottom: -50px;
+  position: absolute;
+  right: 42%;
+}
+.title-input-edu {
+  font-size: 18px;
+  font-weight: 600;
+}
+span.up-file-avatar {
+  background-color: white;
+  height: 110px;
+  margin: 31px auto 0;
+  position: absolute;
+  right: 82px;
+  width: 110px;
+  z-index: 999;
+//  border: 1px solid #E7EAEC;
+  text-align: center;
+  font-size: 14px;
+  cursor: pointer;
+//  background-image: url("/assets/choose_file.png");
+}
