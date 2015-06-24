@@ -73,8 +73,7 @@
                 <% if controller.action_name == "edit" and tour.object.tour_category_id  %>                              
                   var leadTour = $('#lead_tour.lead-tour');
                   var leadTourCategory =  $('#lead_tour_category.lead-tour-category') ;  
-                <% elsif  controller.action_name == "edit" and tour.object.tour_category_id.nil?  %>  
-                 
+                <% else %>                 
                   var leadTour = $('#lead_tour.lead-tour').last();
                   var leadTourCategory =  $('#lead_tour_category.lead-tour-category').last();                                      
                   leadTour.prepend('<option value="">Tour Name</option>');
