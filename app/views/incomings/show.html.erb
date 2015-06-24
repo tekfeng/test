@@ -90,7 +90,7 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <div id="accept" class= "col-md-12 col-sm-12 col-xs-12">
             <div class='col-md-12 col-sm-12 col-xs-12' style="padding: 0px;">
-              <p class="change-action-name" style="font-size: 18px; line-height: 2em; font-weight: 600; color: green;">Lead is successfully created and allocated to a user</p>
+              <p class="change-action-name" style="font-size: 18px; line-height: 2em; font-weight: 600; color: green;">Lead is successfully created and allocated to a user!</p>
             </div>
           </div>
         </div>
@@ -107,6 +107,8 @@
     }); 
     
     var userIdIncomingCreateLead;
+    var currentUserID = $("select#incoming_user_id").val()
+    console.log("current user id", currentUserID);
     
     var incoming_user_id = $("select#incoming_user_id");
     <% if @incoming.user_id.nil? %>        
@@ -115,8 +117,7 @@
     <% end %>
     
     incoming_user_id.selectbox({
-      onChange: function(val){ 
-        
+      onChange: function(val){      
         userIdIncomingCreateLead = val;
         incoming_user_id.val(val);
         incoming_user_id.trigger("change");
@@ -137,8 +138,9 @@
       }
     });
     
-    $(document.body).delegate(".close-modal-box-ic", "click", function(e){
+    $(document.body).delegate(".close-modal-box-ic, .modal-content .close", "click", function(e){
       if ($(e.currentTarget).hasClass("yes-create-lead-base-on-ic")) {
+        currentUserID = userIdIncomingCreateLead;
         $.ajax({
           type: "POST",
           url: "/sales/incomings/" + userIdIncomingCreateLead + "/create_lead_base_on_ic?ic_id=" + <%= @incoming.id %>,
@@ -146,7 +148,7 @@
             
             if (data.status == "ok") {
               if (data.action == "edit"){
-                $('#success_mess_after_create_lead .change-action-name').html("Lead is successfully created and allocated to a user");
+                $('#success_mess_after_create_lead .change-action-name').html("Lead is successfully created and allocated to a user!");
               }
                            
               $('#incoming_allocated_for_user').modal('hide');   
@@ -160,7 +162,31 @@
           }
         });  
       }  else {
-        $('#incoming_allocated_for_user').modal('hide');         
+        $("select#incoming_user_id").selectbox("detach");
+        $("select#incoming_user_id").val(currentUserID);
+        $("select#incoming_user_id").selectbox({
+          onChange: function(val){      
+            userIdIncomingCreateLead = val;
+            incoming_user_id.val(val);
+            incoming_user_id.trigger("change");
+            $.ajax({
+              type: "GET",
+              url: "/sales/incomings/" + val + "/get_username",
+              success: function (data) {
+                var text = "Lead will be allocated to " + data.name 
+                $("p.append-username").html(text)
+                $('#incoming_allocated_for_user').modal({
+                  show: true,
+                  backdrop: 'static',
+                  keyboard: true            
+                }); 
+              }
+            });
+           
+          }
+        });            
+        $('#incoming_allocated_for_user').modal('hide');        
+                
       }                      
     });
     
