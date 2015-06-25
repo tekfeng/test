@@ -52,6 +52,11 @@
   }
 } 
 
+@media screen and (min-width:320px) and (max-width:1220px) {
+  div.formnestic-nested-model-container fieldset.formnestic-li-fieldset div.formnestic-minus-button-container {
+    margin-right: 88px ;
+  }
+}
 
 @media screen and (min-width:320px) and (max-width:768px) {
   .toggle-class-show-hide {
