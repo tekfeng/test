@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
                     :convert_options => { :all => "-quality 50 -strip" }
                     
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
-  validates_attachment_presence :avatar
+  # validates_attachment_presence :avatar
   
   def self.search(opts)
     columns_condition = self.columns.inject([]) do |array, el|

@@ -395,4 +395,8 @@ $(document).ready(function() {
     $(".edit-profile-user-form li#user_avatar_input input").click()
   });  
   
+  $(document.body).delegate(".add-saving-after-click", "click", function(e){
+    $(e.currentTarget).val("Saving...").html("Saving...").attr("disabled", "disabled");
+  });  
+  
 });

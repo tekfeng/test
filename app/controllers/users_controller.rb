@@ -40,6 +40,7 @@ class UsersController < AdminsController
     if @user.update_attributes(users_params)        
       redirect_to users_url    
     else
+      p @user.errors.full_messages
       render :action => "edit"
     end
   end
