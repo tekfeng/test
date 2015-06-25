@@ -19,14 +19,14 @@
       
       
       <div class="col-md-4 col-sm-4 col-xs-12">
-        <div class='ibox-content container-fluid white-bg' style="padding-top: 40px; padding-bottom: 0px;">
+        <div class='ibox-content container-fluid white-bg' style="padding-top: 40px; padding-bottom: 0px; padding-right: 0px; float: right;">
         
           <div id="vendor_filter_rs">
             <%= smart_listing_controls_for(:vendor_categories) do %>
             <ol class='filter-form-group' >
-              <li class="date-form-field">
+              <li class="date-form-field" style="width: 220px;">
               
-                <%= text_field_tag :name, "", name: "search_rs[search_all]", class: "input-search-mini-box", placeholder: "Search..."  %> 
+                <%= text_field_tag :name, "", name: "search_rs[search_all]", class: "input-search-mini-box", placeholder: "Search"  %> 
                 <a class="submit icon-search-style" style="color: #ccc;">
                   <span aria-hidden="true" class="glyphicon glyphicon-search"></span>
                 </a>
