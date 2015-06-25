@@ -351,7 +351,14 @@ $(document).ready(function() {
     confirmAccept = confirm("Are you sure you want to destroy this?");
     if (confirmAccept ==true) {
       var parentFieldset = $(e.currentTarget).closest("fieldset.inputs.formnestic-li-fieldset");
+      // var parentFieldsetli = parentFieldset.find("li");
       parentFieldset.hide();
+      if ($("p.tt-ad-hoc-rate:visible").length == 0) {
+        $(".formnestic-list-new-entry-link-container").last().prepend('<p class="padding-left-cacl tt-ad-hoc-rate tt-ad-hoc-rate-js" style="font-size: 20px; margin-bottom: 30px; text-align: left;">Ad-hoc Rates</p>')
+      } else {       
+        $(".tt-ad-hoc-rate-js").hide();
+      }
+      // parentFieldset.css("border-bottom", "none !important");
       parentFieldset.find("input.destroy-this-obj").val(true)
     } 
     
@@ -396,7 +403,10 @@ $(document).ready(function() {
   });  
   
   $(document.body).delegate(".add-saving-after-click", "click", function(e){
+    e.preventDefault();
     $(e.currentTarget).val("Saving...").html("Saving...").attr("disabled", "disabled");
+    $(this).closest('form').submit();
+    return false;
   });  
   
 });

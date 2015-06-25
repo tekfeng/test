@@ -101,7 +101,7 @@ var Formnestic = {
   },
   
   addNewListEntry: function(linkDom, associationName, content) {
-    console.log(333)
+    // console.log(333)
     var newId = new Date().getTime();
     var regexp = new RegExp("new_" + associationName, "g");
     var linkDomContainer = $(linkDom).parent();
