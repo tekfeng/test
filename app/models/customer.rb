@@ -6,9 +6,18 @@ class Customer < ActiveRecord::Base
   has_many :leads
   
   validates :email_address, :name, :uniqueness => true
-  validates :email_address, :email => true
-  validates :name, :contact_number, :address, :country_id, :source_id, :presence => true
-  validates :contact_number , numericality: true
+  validates :email_address, :email => true, :if => :email_not_blank
+  validates :name, :contact_number, :address, :country_id, :source_id, :email_address, :presence => true
+  validates :contact_number , numericality: true, :if => :contact_number_not_blank
+  
+  def email_not_blank
+    self.email_address != ""
+  end
+  
+  def contact_number_not_blank
+    self.contact_number != ""
+  end
+  
   def as_json(options={})
     {
       id: id,

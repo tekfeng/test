@@ -10,9 +10,9 @@ class User < ActiveRecord::Base
          
   has_many :vendors
   validates :email, :uniqueness => true
-  validates :email, :email => true
+  validates :email, :email => true, :if => :email_not_blank
   validates :username, :contact_number, :department_id, :presence => true
-  validates :contact_number, numericality: true
+  validates :contact_number, numericality: true, :if => :contact_number_not_blank
   
   has_attached_file :avatar, 
                     :styles => { :medium => "110x110#" }, 
@@ -20,6 +20,14 @@ class User < ActiveRecord::Base
                     
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   # validates_attachment_presence :avatar
+  
+  def contact_number_not_blank
+    self.contact_number != ""
+  end
+  
+  def email_not_blank
+    self.email != ""
+  end
   
   def self.search(opts)
     columns_condition = self.columns.inject([]) do |array, el|
