@@ -25,12 +25,12 @@ div.formnestic-nested-model-container fieldset.formnestic-li-fieldset {
     margin-bottom: 10px;
   }  
   div.formnestic-minus-button-container {
-    position: absolute;
-    top: 7px;
-    right: 0;
-    font-size: 20px;
     color: #fff;
     cursor: pointer;
+    float: right;
+    font-size: 20px;
+    margin-right: 130px;
+    margin-top: 20px;
   }
   
 }

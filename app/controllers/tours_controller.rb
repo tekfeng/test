@@ -10,7 +10,7 @@ class ToursController < AdminsController
       render template: "/tours/filter", layout: false
     else
       @tours = Tour.all
-      @tours = smart_listing_create(:tours, @tours, partial: "tours/list", default_sort: {created_at: "desc"}) 
+      @tours = smart_listing_create(:tours, @tours, partial: "tours/list", default_sort: {created_at: "desc"})
     end                        
   end
   

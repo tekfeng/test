@@ -35,4 +35,24 @@ class User < ActiveRecord::Base
     self.notifications.where(is_read: false)
   end
   
+  def update_password(data)
+    if !self.new_record?
+      errors.add(:password, "The new password is required") if data[:password].length == 0
+      errors.add(:password_confirmation, "The confirm password is required") if data[:password_confirmation].length == 0
+      
+      if data[:current_password].length == 0
+        errors.add(:current_password, "The old password is required") 
+      elsif !valid_password?(data[:current_password])
+        errors.add(:current_password, "Please enter correct password")
+      elsif data[:password] != data[:password_confirmation]
+        errors.add(:password, "Your password and confirmation password do not match")
+        errors.add(:password_confirmation, "Your password and confirmation password do not match")
+      elsif errors.messages.blank?
+        self.password = data[:password]
+        return self.save(validates: false)
+      end
+    end
+    return false
+  end
+  
 end

@@ -432,7 +432,7 @@ form.booking {
  
 }
 form.edit-vendor-rates .formnestic-nested-model-container .formnestic-minus-button-container {
-  color: #1ab394 !important;
+  color: gray !important;
   display: block;
   right: 20% !important;
   top: 20px !important;
@@ -1196,6 +1196,16 @@ select.lead-tour, select.booking-tour {
   }
 }
 .edit-profile-user-form {
+  ol li label.label {
+    font-weight: 700;
+  }
+  li.stringish input {
+    border-radius: 0px;
+    box-shadow: none;
+  }
+  li.password {
+    padding-top:15px;
+  }
   li#user_contact_number_input {
     margin-top: 10px;
   }
@@ -1224,9 +1234,14 @@ select.lead-tour, select.booking-tour {
   width: 50%;
 }
 .style-bt-edu {
-  bottom: -50px;
+  bottom: -35px;
   position: absolute;
-  right: 42%;
+  right: 39%;
+  width: 123px !important;
+  font-weight: 700;
+}
+.style-bt-edu.edit-prf {
+  bottom: -50px;
 }
 .title-input-edu {
   font-size: 18px;

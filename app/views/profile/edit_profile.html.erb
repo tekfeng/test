@@ -20,7 +20,7 @@
         <div class="ibox-title" style="float: left; width: 100%; padding-left: 20px; padding-bottom: 80px;">
           <div class="col-md-12" style="padding: 0px;">
             
-            <%= semantic_form_for @user, :url => "/notifications/update_profile", :html => {:class => "edit-profile-user-form", :method => :post, :multipart => true} do |f| %>
+            <%= semantic_form_for @user, :url => "/profile/update_profile", :html => {:class => "edit-profile-user-form", :method => :post, :multipart => true} do |f| %>
               <%= f.inputs do %>
                 <div class="left-form-edu" style="border-right: 1px solid #E7EAEC;">
                   <div class="title-input-edu">Update your details</div>
@@ -40,7 +40,7 @@
                 </div>
               <% end %>
               <%= f.actions do %>
-                <%= f.action :submit, :as => :button, :value => "Save change", :label => "Save change", :button_html => {:class => "btn btn-primary style-bt-edu"}%>
+                <%= f.action :submit, :as => :button, :value => "Save changes", :label => "Save change", :button_html => {:class => "btn btn-primary style-bt-edu edit-prf"}%>
               <% end %>
             <% end %>
           </div>
@@ -53,6 +53,17 @@
 </div>
 <script language="javascript">
   $(document).ready(function() {
+    
+  <% if flash[:update_profile] %>
+    $.cookie('flashType', "notice", { path: '/' });
+    $.cookie('flashMessage', 'Your profile has been saved successfully!', { path: '/' });
+    toastr['success']($.cookie('flashMessage'));
+    $.removeCookie('flashType', { path: '/' });
+    $.removeCookie('flashMessage', { path: '/' });
+    <% flash[:update_profile] = false %>
+  <%  end %>
+    
+    
     function readURL(input) {
       if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -65,7 +76,6 @@
     $(".edit-profile-user-form input#user_avatar").change(function(){
         readURL(this);
     });
-    
-  })
+  });
 </script>
     

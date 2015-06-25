@@ -91,5 +91,14 @@ Rails.application.routes.draw do
       post 'update_profile'
     end
   end
+  
+  resources :profile do
+    collection do
+      get 'edit_profile'
+      post 'update_profile'
+      get 'change_password'
+      post 'update_password'
+    end
+  end
 
 end
