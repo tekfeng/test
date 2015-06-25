@@ -75,10 +75,10 @@
                 var bookingTourCategory =  $('#booking_tour_category.booking-tour-category')
               <% else %>
                 var bookingTour = $('#booking_tour.booking-tour').last();
-                bookingTour.prepend('<option value="0">Tour Name</option>');
+                bookingTour.prepend('<option value="0">Select Tour</option>');
                 bookingTour.val("");
                 var bookingTourCategory =  $('#booking_tour_category.booking-tour-category').last();
-                bookingTourCategory.prepend('<option value="">Tour Category</option>');
+                bookingTourCategory.prepend('<option value="">Select Tour Category</option>');
                 bookingTourCategory.val("");
                 
               <% end %>
@@ -90,7 +90,7 @@
                     var tourOfTourCategory = $(this).closest(".formnestic-li-fieldset").find("select#booking_tour.booking-tour");
                     tourOfTourCategory.selectbox("detach");
                     tourOfTourCategory.html('');
-                    tourOfTourCategory.prepend('<option value="">Tour Name</option>');
+                    tourOfTourCategory.prepend('<option value="">Select Tour</option>');
                     tourOfTourCategory.val("");
                       if (category_id !== null) {
                         $.ajax({
@@ -136,7 +136,7 @@
         var tourOfTourCategory = $(this).closest(".formnestic-li-fieldset").find("select#booking_tour.booking-tour");
         tourOfTourCategory.selectbox("detach");
         tourOfTourCategory.html('');
-        tourOfTourCategory.prepend('<option value="">Tour Name</option>');
+        tourOfTourCategory.prepend('<option value="">Select Tour</option>');
         tourOfTourCategory.val("");
           if (category_id !== null) {
             $.ajax({

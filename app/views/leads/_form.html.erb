@@ -88,7 +88,7 @@
                     var tourOfTourCategory = $(this).closest(".formnestic-li-fieldset").find("select#lead_tour.lead-tour");
                     tourOfTourCategory.selectbox("detach");
                     tourOfTourCategory.html('');
-                    tourOfTourCategory.prepend('<option value="">Tour Name</option>');
+                    tourOfTourCategory.prepend('<option value="">Select Tour</option>');
                     tourOfTourCategory.val("");
                     if (category_id !== null) {
                       $.ajax({
@@ -159,7 +159,7 @@
           var tourOfTourCategory = $(this).closest(".formnestic-li-fieldset").find("select#lead_tour.lead-tour");
           tourOfTourCategory.selectbox("detach");
           tourOfTourCategory.html('');
-          tourOfTourCategory.prepend('<option value="">Tour Name</option>');
+          tourOfTourCategory.prepend('<option value="">Select Tour</option>');
           tourOfTourCategory.val("");
           if (category_id !== null) {
             $.ajax({
