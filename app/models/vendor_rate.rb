@@ -4,7 +4,7 @@ class VendorRate < ActiveRecord::Base
   has_many :competitors
   has_many :season_room_prices  
   
-  validates :effective, :expired, presence: true, :unless => :is_competitor_rate
+  validates :effective, :expired, presence: true, :if => :is_current_rate
   
   accepts_nested_attributes_for :competitors, allow_destroy: true
 
@@ -23,6 +23,10 @@ class VendorRate < ActiveRecord::Base
     else
       false
     end
+  end
+  
+  def is_current_rate
+    self.rate_type == 1
   end
   
   def check_validate

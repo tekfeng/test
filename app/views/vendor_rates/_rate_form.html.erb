@@ -11,24 +11,24 @@
       } do |vendor_rate| %>       
         <%= vendor_rate.inputs do %>
              <% if (vendor_rate.object.effective.nil? and vendor_rate.object.rate_type !=3) or (vendor_rate.object.rate_type ==3 and vendor_rate.object.competitors.count == 0) %>
-               <a class="btn btn-primary pull-right" disabled href="/vendor_rates/<%=vendor_rate.object.id %>/edit_rate?vendor_id=<%= @vendor.id %>">Enter Rates</a>
+               <a class="btn btn-primary pull-right enter-rates-btn" disabled="disabled" href="/vendor_rates/<%=vendor_rate.object.id %>/edit_rate?vendor_id=<%= @vendor.id %>">Enter Rates</a>
              <% else%>
-               <a class="btn btn-primary pull-right" href="/vendor_rates/<%=vendor_rate.object.id %>/edit_rate?vendor_id=<%= @vendor.id %>">Enter Rates</a>
+               <a class="btn btn-primary pull-right enter-rates-btn" href="/vendor_rates/<%=vendor_rate.object.id %>/edit_rate?vendor_id=<%= @vendor.id %>">Enter Rates</a>
             <% end %>
             
             <% case vendor_rate.object.rate_type %> 
             <% when 1 %>               
               <p class="padding-left-cacl" style="font-size: 20px; margin-bottom: 30px;"><%= "Current Contract Rate status" %></p>
-              <%= vendor_rate.input :effective, as: :string , :required => false, :input_html => { :class => 'input-icon-select-date', placeholder: "Effective Date"} %>
-              <%= vendor_rate.input :expired, as: :string, :required => false, :input_html => { :class => 'input-icon-select-date', placeholder: "Expired Date"} %>
+              <%= vendor_rate.input :effective, as: :string , :required => false, :input_html => { :class => 'input-icon-select-date effective-date-check', placeholder: "Effective Date"} %>
+              <%= vendor_rate.input :expired, as: :string, :required => false, :input_html => { :class => 'input-icon-select-date expired-date-check', placeholder: "Expired Date"} %>
               <p class="padding-left-cacl" style="margin-top: 20px; margin-bottom: 20px;"> Remaining Validity: [Auto-computation] </p>
               <%= vendor_rate.input :remarks, :label => "Remarks" ,as: :string, :required => false, :input_html => { placeholder: "Remarks (if any)" } %>
               <%= vendor_rate.input :rate_type, as: :hidden, :input_html => { :value => 1 } %>
             <% when 2 %> 
              
               <p class="padding-left-cacl" style="font-size: 20px; margin-bottom: 30px;"><%= "Next Contract Rate status" %></p> 
-              <%= vendor_rate.input :effective, as: :string , :required => false, :input_html => { :class => 'input-icon-select-date', placeholder: "Effective Date"} %>
-              <%= vendor_rate.input :expired, as: :string, :required => false, :input_html => { :class => 'input-icon-select-date', placeholder: "Expired Date"} %>
+              <%= vendor_rate.input :effective, as: :string , :required => false, :input_html => { :class => 'input-icon-select-date effective-date-check', placeholder: "Effective Date"} %>
+              <%= vendor_rate.input :expired, as: :string, :required => false, :input_html => { :class => 'input-icon-select-date expired-date-check', placeholder: "Expired Date"} %>
               <%= vendor_rate.input :remarks, as: :string, :required => false, :input_html => { placeholder: "Remarks (if any)" } %>
               <%= vendor_rate.input :rate_type, as: :hidden, :input_html => { :value => 2 } %>
             <% when 3 %> 
@@ -51,8 +51,8 @@
                 <div class="formnestic-list-item-minus-button icon-cancel-circled"></div>
               </div>
               <p class="padding-left-cacl tt-ad-hoc-rate" style="font-size: 20px; margin-bottom: 30px;"><%= "Ad-hoc Rates" %></p>
-              <%= vendor_rate.input :effective, as: :string , :required => false, :input_html => { :class => 'input-icon-select-date effec-date', placeholder: "Effective Date"}, :wrapper_html => { :class => "show-button-remove" } %>
-              <%= vendor_rate.input :expired, as: :string, :required => false, :input_html => { :class => 'input-icon-select-date expired-date', placeholder: "Expired Date"} %>
+              <%= vendor_rate.input :effective, as: :string , :required => false, :input_html => { :class => 'input-icon-select-date effec-date effective-date-check', placeholder: "Effective Date"}, :wrapper_html => { :class => "show-button-remove" } %>
+              <%= vendor_rate.input :expired, as: :string, :required => false, :input_html => { :class => 'input-icon-select-date expired-date expired-date-check', placeholder: "Expired Date"} %>
               <%= vendor_rate.input :remarks, as: :string, :required => false, :input_html => { placeholder: "Remarks (if any)" } %>
               <%= vendor_rate.input :_destroy, :as => :hidden, :input_html => { :class => 'destroy-this-obj'}%>
               <%= vendor_rate.input :rate_type, as: :hidden, :input_html => { :value => 4 } %>
@@ -61,6 +61,20 @@
           
           <script language="javascript">
             $(document).ready(function() {
+              $(".effective-date-check").change(function(e){
+                var parentClst = $(this).closest(".inputs.formnestic-li-fieldset");
+                if (parentClst.find("input.expired-date-check").val()){
+                  parentClst.find(".enter-rates-btn").removeAttr("disabled");
+                }
+              });
+    
+              $(".expired-date-check").change(function(e){
+                var parentClst = $(this).closest(".inputs.formnestic-li-fieldset");
+                if (parentClst.find("input.effective-date-check").val()){
+                  parentClst.find(".enter-rates-btn").removeAttr("disabled");
+                }
+              });
+              
                $('.input-icon-select-date.effec-date').last().datetimepicker({
                  timepicker: false,
                  format:'d-m-Y',
@@ -89,6 +103,20 @@
 
 <script language="javascript">
   $(document).ready(function(){
+    
+    $(".effective-date-check").change(function(e){
+      var parentClst = $(this).closest(".inputs.formnestic-li-fieldset");
+      if (parentClst.find("input.expired-date-check").val()){
+        parentClst.find(".enter-rates-btn").removeAttr("disabled");
+      }
+    });
+    
+    $(".expired-date-check").change(function(e){
+      var parentClst = $(this).closest(".inputs.formnestic-li-fieldset");
+      if (parentClst.find("input.effective-date-check").val()){
+        parentClst.find(".enter-rates-btn").removeAttr("disabled");
+      }
+    });
     
     
     
