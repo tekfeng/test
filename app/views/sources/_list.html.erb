@@ -1,0 +1,85 @@
+<% unless smart_listing.empty? %> 
+  <table class='listing-table'>
+    <thead>
+      <tr>
+        <th class="source-no cus-style-white">No.</th>
+        <th class="customer-thead-name cus-style-gray"><%= smart_listing.sortable "Name", "name" %></th>        
+        <th class="source-action cus-style-white" style='text-align: center;'>Action</th>
+      </tr>
+    </thead>        
+    <tbody>
+      <% smart_listing.collection.each_with_index do |source, index| %>
+        <tr class="<%= cycle('odd', 'even') %>">
+          <% if params[:sources_smart_listing] and params[:sources_smart_listing][:page] and  params[:sources_smart_listing][:page].to_i > 0 %>
+          <% index_show = (params[:sources_smart_listing][:page].to_i - 1)*10 + index + 1 %>
+          <% else %>
+          <% index_show = index + 1 %>
+          <% end %>
+          <td><%= index_show %></td>
+          <td><%= source.name %></td>
+         
+          <td style='text-align: center;'>
+            <div style="width: 50%; float: left;">
+              <%= link_to "", edit_source_url(source), class: 'glyphicon glyphicon-pencil' %>
+            </div>
+            
+            <div style="width: 50%; float: left;">
+              <% if source.active %>
+                <a class="btn btn-warning deactive-obj-btn toogle-active" data-id="<%=source.id%>">Deactive</a>
+              <% else %>             
+               <a class="btn btn-success active-obj-btn toogle-active" data-id="<%=source.id%>">Active</a>
+              <% end %>
+            </div>
+            
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+   <%= smart_listing.paginate  %>
+<% else %>
+  <p class="warning">No records!</p>
+<% end %>  
+<script language="javascript">
+  $(document).ready(function() {
+     
+    $(document.body).delegate("a.toogle-active", "click", function(e){
+      
+      var currentTarget = $(e.currentTarget)
+      var sourceID = $(this).data("id");
+      var url = "/sources/" + sourceID + "/toogle_active";
+      if (currentTarget.hasClass("deactive-obj-btn")){
+        currentTarget.html("deactiving...")
+      }else {
+        currentTarget.html("Activing...")
+      }
+      $.ajax({
+        url: url,
+        type: "GET",
+        data:{
+          ajax_call: true,
+        },
+        success: function(data) {
+          if (data.success){
+            if (currentTarget.hasClass("deactive-obj-btn")){              
+              currentTarget.removeClass("deactive-obj-btn btn-warning");
+              currentTarget.html("Active")
+              currentTarget.addClass("active-obj-btn btn-success")
+            } else {
+              currentTarget.removeClass("active-obj-btn btn-success");
+              currentTarget.html("Deactive")
+              currentTarget.addClass("deactive-obj-btn btn-warning")
+            }
+              
+          }
+        },
+        error: function() {
+        }
+      });
+      
+    });
+    
+  });
+  
+</script>
+

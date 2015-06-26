@@ -1279,3 +1279,13 @@ span.up-file-avatar {
 div.formnestic-nested-model-container fieldset.formnestic-li-fieldset div.formnestic-minus-button-container {
   color: gray !important;
 }
+.form-control::-moz-placeholder {
+  color: #d8d4d4;
+}
+.btn.btn-success {
+  background-color: #5bb65b;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  &:hover {
+     background-color: #53A653;
+  };
+}

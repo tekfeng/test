@@ -59,7 +59,14 @@
           <i class="fa fa-cubes"></i> 
           <span class="nav-label">Users</span>
           <% end %>
-        </li>     
+        </li>
+        
+        <li class="<%= 'active' if params[:controller] == 'sources'%>">
+          <%= link_to "/sources" do %>
+          <i class="fa fa-cubes"></i> 
+          <span class="nav-label">Sources</span>
+          <% end %>
+        </li>    
       
       <% elsif session[:current_menu] == 'sales' %> 
          

@@ -1,9 +1,9 @@
 class User < ActiveRecord::Base
   has_many :bookings
   has_many :leads
-  has_many :incomings
+  has_many :incomings, dependent: :destroy
   belongs_to :department
-  has_many :notifications
+  has_many :notifications, dependent: :destroy
   
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable

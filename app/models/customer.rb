@@ -2,10 +2,10 @@ class Customer < ActiveRecord::Base
   belongs_to :country 
   belongs_to :source
   
-  has_many :bookings
-  has_many :leads
+  has_many :bookings, dependent: :destroy
+  has_many :leads, dependent: :destroy
   
-  after_create :default_name_and_email
+  after_create :default_name_and_email_not_nil_in_special_case
   
   validates :email_address, :name, :uniqueness => true
   validates :email_address, :email => true, :if => :email_not_blank
@@ -20,7 +20,7 @@ class Customer < ActiveRecord::Base
     self.contact_number != ""
   end
   
-  def default_name_and_email
+  def default_name_and_email_not_nil_in_special_case
     self.name = "" if self.name.nil?
     self.email_address = "" if self.email_address.nil?
     self.save(validate: false)

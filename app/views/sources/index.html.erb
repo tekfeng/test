@@ -1,0 +1,63 @@
+<div class="row wrapper border-bottom white-bg page-heading text-center">
+  <h2>Sources</h2>
+  <ol class="breadcrumb">
+    <li>
+      <a href="/dashboard">Home</a>
+    </li>
+    <li class="active">
+      <strong>Sources</strong>
+    </li>
+  </ol>
+</div>
+<div class='wrapper wrapper-content'>
+  <div class='ibox'>
+    <div class='ibox-content container-fluid  white-bg'>
+      <div class="col-md-12 col-sm-12 col-xs-12 padding-0">
+        <div>
+          <%= link_to 'New Source', new_source_url, class: "btn btn-primary pull-left" %>
+        </div>
+      </div>
+      <div class="col-md-5 col-sm-5 col-xs-12 padding-0"></div>
+      
+      <div class="col-md-5 col-md-offset-2 col-sm-5 col-sm-offset-2 col-xs-12 padding-0 search-source">
+          <form class="group-input">
+            <input type='search' id='search-source' placeholder="Search..." />
+            <a class="submit" type="submit" href="#">
+              <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+            </a>
+          </form>
+        </div>
+    </div> <!--ibox-content-->
+    <div id="listing-table">
+      <%= smart_listing_render(:sources) %>
+    </div>
+  </div> <!--ibox-->
+</div> <!--wrapper-content-->
+<script language="javascript">
+  $(document).ready(function() {    
+    
+    $(document.body).delegate("#search-source", "keyup", function(){
+      var url = "/sources";
+      var keyWord = $(this).val();
+      var timeout;
+      clearTimeout(timeout);
+      timeout = setTimeout(function(){
+      $.ajax({
+            url: url,
+            type: "GET",
+            data:{
+              ajax_call: true,
+              keyword: keyWord
+            },
+            success: function(data) {
+              $('div#listing-table').html(data);
+            },
+            error: function() {
+            }
+         });
+       },700);
+    });
+    
+  });
+  
+</script>

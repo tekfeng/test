@@ -43,17 +43,6 @@ if Country.count == 0
   Country.create(name: "Malaysia")
 end
 
-
-if Source.count == 0
-  Source.create(name: "source name 1")
-  Source.create(name: "source name 2")
-  Source.create(name: "source name 3")
-  Source.create(name: "source name 4")
-  Source.create(name: "source name 5")
-end
-
-
-
 # if HomePage.count == 0
 #   HomePage.create({
 #     hero_header: 'Grounded by science. Inspired by you.',

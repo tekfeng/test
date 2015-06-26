@@ -1,5 +1,5 @@
 class Country < ActiveRecord::Base
-  has_many :customer
+  has_many :customer, dependent: :destroy
   validates :name, :presence => true
   validates :name, :uniqueness => true
   

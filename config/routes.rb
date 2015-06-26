@@ -72,6 +72,13 @@ Rails.application.routes.draw do
   end
   
   resources :mtq_slots
+  
+  resources :sources do
+    member do
+      get :toogle_active
+    end    
+  end
+  
   post "/mtq_slot/edit_ajax", :controller => "mtq_slots", action: "edit_mtq_slot"
   get "/up_mtq_slots/updated_ajax", :controller => "mtq_slots", action: "updated_ajax" 
   get '/vendor_rates_controll/filter_table_by_competitor', :controller => "vendor_rates", action: "filter_table_by_competitor"

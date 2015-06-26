@@ -1,5 +1,5 @@
 class VendorCategory < ActiveRecord::Base
-  has_many :vendors
+  has_many :vendors, dependent: :destroy
   validates :name, presence: true
   validate :name_uniqueness
   

@@ -1,8 +1,8 @@
 class VendorRate < ActiveRecord::Base
   # rate_type value 1: contact current rate, 2:next contact rate, 3: competitor rate, 4: ad-hoc rate
   belongs_to :vendor
-  has_many :competitors
-  has_many :season_room_prices  
+  has_many :competitors, dependent: :destroy
+  has_many :season_room_prices, dependent: :destroy
   
   validates :effective, :expired, presence: true, :if => :is_current_rate
   
