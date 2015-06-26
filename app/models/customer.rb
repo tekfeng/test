@@ -5,6 +5,8 @@ class Customer < ActiveRecord::Base
   has_many :bookings
   has_many :leads
   
+  after_create :default_name_and_email
+  
   validates :email_address, :name, :uniqueness => true
   validates :email_address, :email => true, :if => :email_not_blank
   validates :name, :contact_number, :address, :country_id, :source_id, :email_address, :presence => true
@@ -16,6 +18,12 @@ class Customer < ActiveRecord::Base
   
   def contact_number_not_blank
     self.contact_number != ""
+  end
+  
+  def default_name_and_email
+    self.name = "" if self.name.nil?
+    self.email_address = "" if self.email_address.nil?
+    self.save(validate: false)
   end
   
   def as_json(options={})
