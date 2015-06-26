@@ -8,7 +8,7 @@ class CustomersController < SalesController
   
   def index
     @countries = Country.all
-    @sources = Source.all
+    @sources = Source.is_active
     if params[:ajax_call]
       @customers = Customer.search(params)
       @customers = smart_listing_create(:customers, @customers, partial: "customers/list", default_sort: {created_at: "desc"}) 

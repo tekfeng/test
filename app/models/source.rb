@@ -9,6 +9,9 @@ class Source < ActiveRecord::Base
     return sources
   end
   
+  def self.is_active
+    Source.where(active: true)
+  end
   
   def as_json(options={})
     {

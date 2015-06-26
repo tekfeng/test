@@ -31,7 +31,7 @@
    </div>
    <div class= "form-group">
      <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0 lead-group-select">
-       <%= form.input :source_id,:as => :select ,:collection =>Source.all.collect{|t| [t.name, t.id]} ,class: 'form-control lead-group-select', include_blank: false%>
+       <%= form.input :source_id,:as => :select ,:collection =>Source.is_active.collect{|t| [t.name, t.id]} ,class: 'form-control lead-group-select', include_blank: false%>
      </div>
      <div class="col-md-2 col-sm-2 col-xs-12"></div>
    </div>
