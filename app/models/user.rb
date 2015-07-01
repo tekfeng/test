@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   validates :contact_number, numericality: true, :if => :contact_number_not_blank
   
   has_attached_file :avatar, 
-                    :styles => { :medium => "110x110#" }, 
+                    :styles => { :medium => "110x110#", :avatar => "50x50#" }, 
                     :convert_options => { :all => "-quality 50 -strip" }
                     
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/

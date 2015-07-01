@@ -9,7 +9,7 @@
   <div class='user-info col-xs-2 col-sm-2 col-md-2 col-lg-1'>
     <div class='info-content'>
       <div class='avatar-box'>
-        <img src="/assets/dashboard/persona.png">
+        <img src="<%= current_user.avatar.exists? ? current_user.avatar.url(:avatar) : "/assets/dashboard/persona.png"%>">
       </div>
       <div class='name-label'><%= comment.user.username %></div>
     </div>  

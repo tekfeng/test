@@ -32,7 +32,7 @@
             <%= smart_listing_controls_for(:incomings) do %>
               <ol class='filter-form-group' >
                 <li class="select-form-field">
-                 <%= select_tag :source_info_cont, options_for_select(Incoming::SOURCE_INFO.collect{|s| [s, s]}), include_blank: "-- Select Source--", name: "search[source_info_cont]"  %>
+                 <%= select_tag :source_info_cont, options_for_select(Incoming::SOURCE_INFO.collect{|s| [s, s]}), include_blank: "-- Select Incoming Source --", name: "search[source_info_cont]"  %>
                 </li>  
                 <li class="date-form-field">
                   <%= text_field_tag :created_at_gteq, "", name: "search[created_at_gteq]", class: "date-field", placeholder: "From Date"  %>  <span class='calendar-icon'></span>

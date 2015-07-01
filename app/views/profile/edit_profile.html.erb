@@ -55,11 +55,13 @@
   $(document).ready(function() {
     
   <% if flash[:update_profile] %>
+    
     $.cookie('flashType', "notice", { path: '/' });
     $.cookie('flashMessage', 'Your profile has been saved successfully!', { path: '/' });
     toastr['success']($.cookie('flashMessage'));
     $.removeCookie('flashType', { path: '/' });
     $.removeCookie('flashMessage', { path: '/' });
+    $(".img-circle.avatar-user").attr('src', '<%=@image_src%>');
     <% flash[:update_profile] = false %>
   <%  end %>
     
