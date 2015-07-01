@@ -1,5 +1,7 @@
 <% unless smart_listing.empty? %>
+ 
 <table class='listing-table'>
+  <%= smart_listing.pagination_per_page_links %>
   <thead>
     <tr>
       <th class="no">No.</th>    
@@ -37,6 +39,7 @@
 </table>
 
  <%= smart_listing.paginate  %>
+
 
 <% else %>
   <p class="warning">No records!</p>
