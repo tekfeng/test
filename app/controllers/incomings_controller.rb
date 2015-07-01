@@ -3,8 +3,16 @@ class IncomingsController < SalesController
   helper  SmartListing::Helper
   
   def index
-    @incomings = Incoming.all 
+    @incomings = Incoming.all
+    
     @incomings = Incoming.ransack(params[:search]).result if params[:search] 
+    
+    if params[:search_rs].present? and params[:search_rs][:search_all].present?
+      p "1212121"
+      @incomings = Incoming.ransack(params[:search_rs]).result 
+    end
+    
+    
     @incomings = smart_listing_create(:incomings, @incomings, partial: "incomings/list") 
   end
   

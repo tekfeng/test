@@ -94,7 +94,7 @@ form.smart-listing-controls {
       float:right;
       display:block;
       margin-bottom:0px;
-      margin-top:6px;
+      margin-top:10px;
     }
     .sbHolder {
       margin-bottom:8px;
@@ -134,7 +134,7 @@ form.smart-listing-controls {
   }
   div.submit-comment-box{
     padding:0;
-    padding-right:13px;
+    padding-right:0px;
     textarea#comment_input{
       height: 70px;
       resize: none;
@@ -223,7 +223,7 @@ form.smart-listing-controls {
 @media (min-width: 481px) {
   .incoming-header {
      .sbHolder {
-       max-width:250px;
+       max-width:400px;
        float:right;
      }
   }
@@ -236,3 +236,6 @@ form.smart-listing-controls {
   }
 }
 
+ul li.container-fluid {
+  padding: 0px;
+}

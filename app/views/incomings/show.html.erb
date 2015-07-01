@@ -28,10 +28,11 @@
           <% end %>
       </div>
       <p class='title col-xxs-12 col-xs-6 col-sm-6 col-md-6 padding-0'>Date: <span><%= @incoming.created_at.strftime("%Y-%-m-%d") %></span></p>
+      <p class='title col-xxs-12 col-xs-6 col-sm-6 col-md-6 padding-0'>Title: <span><%= @incoming.title %></span></p>
+      <p class='title no-margin col-xxs-12 col-xs-6 col-sm-6 col-md-6 padding-0'>Content:</p>
     </div>  
-    <div class='ibox-content'>
-      <p class='title'>Title: <span><%= @incoming.title %></span></p>
-      <p class='title no-margin'>Content:</p>
+    <div class='ibox-content' style="padding-top: 5px;">
+      
       <p class='content'><%= @incoming.content %></p> 
       <p id="comment_count" class='title legend' data-count='<%= @incoming.incoming_comments.count %>'>Comments (<%= @incoming.incoming_comments.count %>)</p>
       <ul id='comment_listings' class='comments-box'>
