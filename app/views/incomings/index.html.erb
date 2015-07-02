@@ -30,23 +30,29 @@
         <div class='ibox-content container-fluid white-bg'>
           <div id="vendor_filter">
             <%= smart_listing_controls_for(:incomings) do %>
-              <ol class='filter-form-group' >
-                <li class="select-form-field">
-                 <%= select_tag :source_info_cont, options_for_select(Incoming::SOURCE_INFO.collect{|s| [s, s]}), include_blank: "-- Select Incoming Source --", name: "search[source_info_cont]"  %>
-                </li>
+              <div class="form-group filter input-append">
+                <ol class='filter-form-group' >
+                  <li class="select-form-field">
+                   <%= select_tag :source_info_cont, options_for_select(Incoming::SOURCE_INFO.collect{|s| [s, s]}), include_blank: "-- Select Incoming Source --", name: "search[source_info_cont]"  %>
+                  </li>
                 
-                <li class="date-form-field">
-                  <%= text_field_tag :customer_name_eq, "", name: "search_rs[search_all]", class: "", placeholder: "Customer name or email"  %>
-                </li>
+                  <li class="date-form-field">
+                    <%= text_field_tag :customer_name_eq, "", name: "search_rs[search_all]", class: "", placeholder: "Customer name or email"  %>
+                  </li>
                 
-                <li class="date-form-field">
-                  <%= text_field_tag :created_at_gteq, "", name: "search[created_at_gteq]", class: "date-field", placeholder: "From Date"  %>  <span class='calendar-icon'></span>
-                </li> 
-                <li class="date-form-field" >
-                  <%= text_field_tag :created_at_lteq, "", name: "search[created_at_lteq]", class: "date-field", placeholder: "To Date"  %>
-                  <span class='calendar-icon'></span>
-                </li>  
-              </ol>  
+                  <li class="date-form-field">
+                    <%= text_field_tag :created_at_gteq, "", name: "search[created_at_gteq]", class: "date-field", placeholder: "From Date"  %>  <span class='calendar-icon'></span>
+                  </li> 
+                  <li class="date-form-field" >
+                    <%= text_field_tag :created_at_lteq, "", name: "search[created_at_lteq]", class: "date-field", placeholder: "To Date"  %>
+                    <span class='calendar-icon'></span>
+                  </li>  
+                
+                  <li>
+                    <input type="submit" class="btn btn-primary filter-booking" value="Filter" name="commit" style="margin-left: 37%;">
+                  </li>
+                </ol>  
+              </div> 
             <% end %>
           </div>
         </div>
@@ -59,6 +65,12 @@
 </div>
 <script language="javascript">
   $(document).ready(function() {
+    
+    $(document.body).delegate("#vendor_filter ol.filter-form-group li input", "change", function(e){
+      e.preventDefault();
+      return false;
+    });  
+    
     $('.date-field').datetimepicker({
       timepicker: false,
       format:'d-m-Y',
@@ -70,6 +82,9 @@
         $("select#source_info_cont").trigger("change");
       }
     });
+    
+    
+  
   });  
 </script>
 

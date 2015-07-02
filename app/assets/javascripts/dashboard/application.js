@@ -35,6 +35,7 @@
 //= require dashboard/jquery.timeago
 //= require dashboard/sweet-alert
 //= require smart_listing
+//= require dashboard/summernote.min.js  
  
 $(document).ready(function() {
   
@@ -406,8 +407,15 @@ $(document).ready(function() {
      inputDdHodUser.val(1)
     } else {
       inputDdHodUser.val(0)
-    }
-    
+    } 
   });  
+  
+  $(document.body).delegate("span.calendar-icon", "click", function(e){
+    e.preventDefault();
+    var currentTarget = $(e.currentTarget);
+    currentTarget.closest("li.date-form-field").find("input").focus();
+    return false;
+  });  
+  
   
 });

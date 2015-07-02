@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150702023706) do
+ActiveRecord::Schema.define(version: 20150702070101) do
 
   create_table "add_username_to_users", force: :cascade do |t|
     t.string   "username",   limit: 255
@@ -193,6 +193,9 @@ ActiveRecord::Schema.define(version: 20150702023706) do
     t.datetime "updated_at"
     t.integer  "lead_id",          limit: 4
     t.integer  "booking_id",       limit: 4
+    t.float    "price_per_person", limit: 24
+    t.text     "description",      limit: 65535
+    t.integer  "min_number_pax",   limit: 4
   end
 
   create_table "users", force: :cascade do |t|

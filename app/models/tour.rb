@@ -4,9 +4,22 @@ class Tour < ActiveRecord::Base
   has_many :booking_tour_category_tours, dependent: :destroy
   has_many :lead_tour_category_tours, dependent: :destroy
   
-  validates :name, :code, :tour_category_id, :presence => true
+  validates :name, :code, :price_per_person, :min_number_pax, :tour_category_id, :presence => true
   validates :name, :code,  :uniqueness => true
-    
+  validate :min_number_pax, :check_number, :if => :min_number_pax_not_blank
+  
+  
+  def min_number_pax_not_blank
+    self.min_number_pax != ""
+  end
+  
+  def check_number
+    if self.min_number_pax.to_i < 0
+      errors.add(:min_number_pax, "Invalid number")
+      return false
+    end
+  end
+  
   def as_json(options={})
     {
       id: id,

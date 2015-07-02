@@ -26,10 +26,10 @@ class ToursController < AdminsController
   def create
     @tour = Tour.new(tour_params)
     if @tour.save
-      render json: { result: 'ok', redirect_to: tours_url, 
-        flash: { type: :notice, message: 'Tour has been created successfully!' }}
+      flash[:notice_tour] = true
+      redirect_to "/tours"
     else
-      render json: { result: 'failed', errors: @tour.errors }
+      render :action => "new"
     end
   end
   
@@ -41,16 +41,16 @@ class ToursController < AdminsController
   def update
     @tour = Tour.find(params[:id])
     if @tour.update_attributes(tour_params)
-      render json: {result: 'ok', redirect_to: tours_url, 
-        flash: { type: :notice, message: 'Tour details has been saved successfully!' }}
+      flash[:notice_tour] = true     
+      redirect_to "/tours"    
     else
-      render json: { result: 'failed', errors: @tour.errors }
+      render :action => "edit"
     end
   end
   
   private
 
   def tour_params
-    params.require(:tour).permit(:name, :code, :tour_category_id)
+    params.require(:tour).permit(:name, :code, :tour_category_id, :price_per_person, :description, :min_number_pax)
   end
 end
