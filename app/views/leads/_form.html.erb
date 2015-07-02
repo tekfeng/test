@@ -50,7 +50,7 @@
         <span style="float: left; margin-right: 7px;">No. of Pax: </span><span id="sum-pax" style="padding-bottom: 40px; float: left;"><%= @lead.number_of_pax %></span>
       </div>
     </div>
-
+    
     <% if @lead.new_record? and @lead.errors.count == 0 %>
       <% @lead.lead_tour_category_tours.new %>
     <% end %>
@@ -111,6 +111,17 @@
         <% end %>
       <% end %>
     </li>
+    
+    <div class="form-group col-md-12" style="padding:20px 0px 0px 0px; border-top: 1px dashed">
+     
+      <div class = "col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+        <div class="off1">Select Office </div>
+        <div class="off2">*The corresponding address of the selected will appear on the quotation sent.</div>
+        <%= form.input :office, :as => :select, :collection => ["Kota Kinabalu Office", "Singapore Office"], include_blank: false %>
+      </div>
+      <div class = "col-md-2 col-sm-2 col-xs-12"></div>
+    </div>
+    
   <% end %>
   <div class="col-md-12 col-sm-12 col-xs-12 padding-0 text-center">
     <li id="lead_submit_action" class="action input_action ">
@@ -192,7 +203,9 @@
         $('#lead_customer_id option').removeAttr('selected');
         $('#lead_customer_id').val(val);
       }
-    });    
+    });
+    
+    $("#lead_office").selectbox();
     
     $('#lead_travel_from').datetimepicker({
       timepicker:false,

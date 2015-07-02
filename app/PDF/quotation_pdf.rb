@@ -1,7 +1,7 @@
 class QuotationPDF < BorneoPDF
   
   def initialize(options={}, customer = nil , lead= nil )
-    super(options, customer)
+    super(options, customer, lead)
      basic_information(customer, lead)
      detail_information(customer , lead)
      how_to_book

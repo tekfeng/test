@@ -9,7 +9,7 @@ class Lead < ActiveRecord::Base
   
   after_create :create_default_value
   
-  validates :customer_id, :contact_number, :travel_from, :travel_to, :presence => true
+  validates :customer_id, :contact_number, :travel_from, :travel_to, :office, :presence => true
   validates :contact_number, numericality: true, :if => :contact_number_not_blank
   
   def contact_number_not_blank
