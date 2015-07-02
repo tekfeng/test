@@ -39,6 +39,11 @@
  
 $(document).ready(function() {
   
+ 
+  
+  
+  
+  
   $(document.body).delegate("#submit_comment", "click", function(e){
       e.preventDefault();
       var url = $(this).data('url');

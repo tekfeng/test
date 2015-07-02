@@ -20,7 +20,19 @@
             </li>
           </ol>
         </div>
-        <div class="col-md-4 col-sm-4 col-xs-12">
+        <div class="col-md-4 col-sm-4 col-xs-12 padding-0 search-incoming-rest">
+          <div class="col-md-12 col-sm-12 col-xs-12 padding-0 search">
+            <%= smart_listing_controls_for(:incomings) do %>
+              <div class="form-group filter input-append">
+                <li class="date-form-field" style="list-style: none; margin-top:40px;">
+                  <a style="color: #ccc; position: absolute" class="submit icon-search-style">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                  </a>
+                  <%= text_field_tag :customer_name, "", name: "search_rs[search_all]", class: "", placeholder: "Customer name or email"  %>
+                </li>
+              </div>
+              <% end %>
+          </div>
         </div>
       </div>
     </div>
@@ -35,11 +47,9 @@
                   <li class="select-form-field">
                    <%= select_tag :source_info_cont, options_for_select(Incoming::SOURCE_INFO.collect{|s| [s, s]}), include_blank: "-- Select Incoming Source --", name: "search[source_info_cont]"  %>
                   </li>
-                
-                  <li class="date-form-field">
-                    <%= text_field_tag :customer_name_eq, "", name: "search_rs[search_all]", class: "", placeholder: "Customer name or email"  %>
-                  </li>
-                
+              
+                  
+                                
                   <li class="date-form-field">
                     <%= text_field_tag :created_at_gteq, "", name: "search[created_at_gteq]", class: "date-field", placeholder: "From Date"  %>  <span class='calendar-icon'></span>
                   </li> 
@@ -47,12 +57,12 @@
                     <%= text_field_tag :created_at_lteq, "", name: "search[created_at_lteq]", class: "date-field", placeholder: "To Date"  %>
                     <span class='calendar-icon'></span>
                   </li>  
-                
+              
                   <li>
                     <input type="submit" class="btn btn-primary filter-booking" value="Filter" name="commit" style="margin-left: 37%;">
                   </li>
-                </ol>  
-              </div> 
+                </ol>
+              </div>
             <% end %>
           </div>
         </div>
@@ -67,9 +77,11 @@
   $(document).ready(function() {
     
     $(document.body).delegate("#vendor_filter ol.filter-form-group li input", "change", function(e){
+      console.log("change")
       e.preventDefault();
+      e.stopImmediatePropagation();
       return false;
-    });  
+    });
     
     $('.date-field').datetimepicker({
       timepicker: false,
