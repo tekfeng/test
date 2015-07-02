@@ -386,18 +386,6 @@ $(document).ready(function() {
     });               
   });   
   
-  // $(document.body).delegate("a.edit-profile", "click", function(e){
-  //
-  //   $.ajax({
-  //     type: "GET",
-  //     url: "/notifications/edit_profile",
-  //     success: function (data) {
-  //       $(".navbar-static-top").css("background-color", "#F3F3F4");
-  //       $(".main-view-yield").html(data)
-  //     }
-  //   });
-  // });
-  
   $(document.body).delegate("span.up-file-avatar", "click", function(e){   
     $(".edit-profile-user-form li#user_avatar_input input").click()
   });  
@@ -407,6 +395,19 @@ $(document).ready(function() {
     $(e.currentTarget).val("Saving...").html("Saving...").attr("disabled", "disabled");
     $(this).closest('form').submit();
     return false;
+  });  
+  
+  $(document.body).delegate(".is-header-depart-chexbox", "click", function(e){
+    e.preventDefault(); 
+    var currentTarget = $(e.currentTarget);
+    var inputDdHodUser = currentTarget.closest(".select-hod-user").find("input");
+    currentTarget.toggleClass("active");
+    if (currentTarget.hasClass("active")){
+     inputDdHodUser.val(1)
+    } else {
+      inputDdHodUser.val(0)
+    }
+    
   });  
   
 });

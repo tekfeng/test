@@ -24,6 +24,19 @@
      </div>
      <div class="col-md-2 col-sm-2 col-xs-12"></div>
    </div>
+   
+   <div class= "form-group">
+     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0 select-hod-user" style="margin-top:20px;">
+       <%= form.input :is_head_of_department, wrapper_html:{class: 'hidden'} %>
+       <% if form.object.is_head_of_department %>
+         <span class="is-header-depart-chexbox active"></span>
+       <% else %>
+         <span class="is-header-depart-chexbox"></span>
+        <% end %>
+       <span style="  font-size: 15px; line-height: 16px; padding-left: 9px;"> Head of Department </span>
+     </div>
+   </div>
+   
    <div class="form-group text-center">
      <div class="col-md-12 col-sm-12 col-xs-12 padding-0">
        <button class="btn btn-primary save-form-button add-saving-after-click" id="done" type="submit">Save</button>
@@ -39,5 +52,7 @@
     userCountry.val("");
     <% end %>
     userCountry.selectbox({}); 
+    
+    
   })
 </script>

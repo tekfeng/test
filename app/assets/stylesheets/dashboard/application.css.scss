@@ -1298,3 +1298,20 @@ div.formnestic-nested-model-container fieldset.formnestic-li-fieldset div.formne
 .listing-table {
   margin-top: 50px;
 }
+.avatar-user {
+  cursor: pointer;
+}
+.is-header-depart-chexbox {
+  width: 18px;
+  height: 18px;
+  float: left;
+  background: url("/assets/dashboard/uncheck_icon.png");
+  background-repeat: no-repeat;     
+}
+.is-header-depart-chexbox.active {
+  background: url("/assets/dashboard/checked_icon.png");
+  background-repeat: no-repeat;     
+}
+.hd-hod-user {
+  display: none;
+}

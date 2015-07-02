@@ -1,7 +1,7 @@
 class ItineraryPDF < BorneoPDF
   
   def initialize(options={}, customer = nil, booking = nil )
-     super(options, customer)
+     super(options, customer, nil, booking)
      basic_information(booking)
   end
   

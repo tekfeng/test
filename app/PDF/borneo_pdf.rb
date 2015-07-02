@@ -1,11 +1,16 @@
 class BorneoPDF < Prawn::Document
   
-  def initialize(options={}, customer = nil, lead = nil)
+  def initialize(options={}, customer = nil, lead = nil, booking = nil)
     super(options.merge({:page_layout => :portrait, :page_size => "A4", margin: 15}))
      define_grid(:columns => 12, :rows => 8, :gutter => 5)
      logo
      to_customer(customer)
-     from_office(lead)
+     if lead       
+       from_office(lead, true)
+     elsif booking
+       from_office(booking, false)
+     end
+       
      # grid.show_all
   end
   
@@ -26,18 +31,45 @@ class BorneoPDF < Prawn::Document
     end  
   end
   
-  def from_office(lead)
+  def from_office(lead_or_booking, is_lead)
+    p "abc"
     grid([0,7], [1,11]).bounding_box do
       move_down 5
       font_size(11)
-      text "Malaysia Main Office"
-      text "Amazing Borneo Tours & Events Sdn. Bhd."
-      text "Co. Licence No. 827148-U MOCAT Licence"
-      text "No. KPL/LN 5746"
-      text "#{lead.try(:office)}"
-      text "tel: +6088-448409 fax: +6088-448509"
-      text "email: info@amazingborneo.com"
-      text "website: www.Amazing-Borneo.com"
+      if is_lead
+        p "is lead"
+        if lead_or_booking.try(:office) == "Singapore Office"
+          text "Singapore Sales Office"
+          text "Amazing Borneo Travel & Events"
+          text "Co. Reg. No. 53143855D TA Licence"
+          text "No. 01847"
+          text "511 Guillemard Rd #02-14 Grandlink Square Singapore 399849"
+          text "tel: +65 6841 3009 fax: +65 6841 4009 mobile: +65 92979846"
+          text "email: wanting@amazingborneo.com"
+        else
+          text "Malaysia Main Office"
+          text "Amazing Borneo Tours & Events Sdn. Bhd."
+          text "Co. Licence No. 827148-U MOCAT Licence"
+          text "No. KPL/LN 5746"
+          text "Lot 1-39, Star City North Complex,"
+          text "1st Floor, Jalan Asia City, 88000,"
+          text "Kota Kinabalu, Sabah, Malaysia"
+          text "tel: +6088-448409 fax: +6088-448509"
+          text "email: info@amazingborneo.com"
+          text "website: www.Amazing-Borneo.com"
+        end     
+      else
+        text "Malaysia Main Office"
+        text "Amazing Borneo Tours & Events Sdn. Bhd."
+        text "Co. Licence No. 827148-U MOCAT Licence"
+        text "No. KPL/LN 5746"
+        text "Lot 1-39, Star City North Complex,"
+        text "1st Floor, Jalan Asia City, 88000,"
+        text "Kota Kinabalu, Sabah, Malaysia"
+        text "tel: +6088-448409 fax: +6088-448509"
+        text "email: info@amazingborneo.com"
+        text "website: www.Amazing-Borneo.com"
+      end
     end  
   end  
   

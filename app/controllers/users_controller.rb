@@ -23,6 +23,7 @@ class UsersController < AdminsController
     random_password = Rails.env == "development" ? "password" : (0...8).map { (65 + rand(26)).chr }.join
     @user.password = random_password   
     if @user.save
+      flash[:notice_user] = true
       ApplicationMailer.welcome_user(@user, random_password).deliver
       redirect_to "/users"
     else
@@ -37,10 +38,10 @@ class UsersController < AdminsController
 
   def update
     @user = User.find_by_id(params[:id])
-    if @user.update_attributes(users_params)        
+    if @user.update_attributes(users_params)   
+      flash[:notice_user] = true     
       redirect_to users_url    
     else
-      # p @user.errors.full_messages
       render :action => "edit"
     end
   end
@@ -50,6 +51,6 @@ class UsersController < AdminsController
   
   
   def users_params
-    params.require(:user).permit(:username, :email, :contact_number, :department_id)
+    params.require(:user).permit(:username, :email, :contact_number, :department_id, :is_head_of_department)
   end
 end

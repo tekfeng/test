@@ -3,9 +3,11 @@
     <ul class="nav" id="side-menu">
       <li class="nav-header">
         <div class="dropdown profile-element">
-          <span>
-            <img alt="image" class="img-circle avatar-user" src="<%= current_user.avatar.exists? ? current_user.avatar.url(:avatar) : "/assets/dashboard/persona.png"%>">
-          </span>
+          <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+            <span class="clear">
+              <img alt="image" class="img-circle avatar-user" src="<%= current_user.avatar.exists? ? current_user.avatar.url(:avatar) : "/assets/dashboard/persona.png"%>">
+            </span>
+          </a>
           <a data-toggle="dropdown" class="dropdown-toggle" href="#">
             <span class="clear">
               <span class="block m-t-xs">

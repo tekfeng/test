@@ -59,7 +59,6 @@ Rails.application.routes.draw do
      end
    end
   
-  
   resources :vendor_categories
   resources :vendor_rates do
     member do

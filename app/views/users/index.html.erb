@@ -38,6 +38,17 @@
 
 <script language="javascript">
   $(document).ready(function() {
+    
+  <% if flash[:notice_user] %>
+    $.cookie('flashType', "notice", { path: '/' });
+    $.cookie('flashMessage', 'User has been saved successfully!', { path: '/' });
+    toastr['success']($.cookie('flashMessage'));
+    $.removeCookie('flashType', { path: '/' });
+    $.removeCookie('flashMessage', { path: '/' });
+    <% flash[:notice_user] = false %>
+  <%  end %>
+    
+    
     $('#search-user').val("");
     $(document.body).delegate("#search-user", "keyup", function(){
       var url = "/users";
