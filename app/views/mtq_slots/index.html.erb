@@ -38,7 +38,8 @@
              </div>
           </div>
         </div>
-        <div class='ibox-content'>     
+        <div class='ibox-content' style="position:relative;">   
+     
           <div id='calendar'></div>
         </div>         
       </div>
@@ -48,21 +49,40 @@
 <% events =  MtqSlot.mtq_slot_all_date.to_s.gsub('"', '').html_safe %>
 <script language="javascript">
 
-  $(document).ready(function() {
-    $('#calendar').fullCalendar({
-      theme: true,
-      header: {
-        left: 'prev,next today',
-				center: 'title',
-				right: 'month,agendaWeek,agendaDay'
-			},
-			editable: true,
-			eventLimit: true, // allow "more" link when too many events
-			events: <%= events %>
-		});
+  $(document).ready(function() { 
+    
+    $('#calendar').fullCalendar(
+      {
+        theme: true,
+        header: {
+          left: 'prev, today',
+  				center: 'title',
+  				right: 'next'
+  			},
+  			editable: true,
+  			eventLimit: true, // allow "more" link when too many events
+  			events: <%= events %>,   
+  		},
+      function() {
+        $(".fc-center").prepend('<div class="chosen-date-modify"></div>');
+      }
+    );
+    
+    $(".chosen-date-modify").datetimepicker({
+      timepicker: false,
+      format:'d-m-Y',
+      onChangeDateTime: function (db, $input) {
+        $('#calendar').fullCalendar( 'gotoDate', db )
+      }
+    });
+    
+    $(document.body).delegate(".ui-widget-content .fc-content-skeleton td", 'click', function(e) {
+      var index = $(e.currentTarget).index() + 1;
+      $(e.currentTarget).closest(".fc-row").find('.fc-bg td:nth-child('+ index +')').click();     
+    });
     
     
-    $(document.body).delegate(".ui-widget-content .fc-day-grid td.ui-widget-content", 'click', function(e) {
+    $(document.body).delegate(".ui-widget-content .fc-day-grid .fc-bg td.ui-widget-content", 'click', function(e) {
       var date = $(this).data("date");
       $.ajax({
         type     : "POST",

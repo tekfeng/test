@@ -1359,3 +1359,13 @@ input#tour_min_number_pax {
     padding-left: 43px;
   }
 }
+
+.chosen-date-modify {
+  height: 30px;
+  width: 30px;  
+  background-image: url("/assets/dashboard/calendar-icon.png");
+  background-repeat: no-repeat ;
+  background-position: 3px 3px;
+  
+  cursor: pointer;
+}

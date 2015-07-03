@@ -22,7 +22,7 @@ var fc = $.fullCalendar = { version: "2.3.1" };
 var fcViews = fc.views = {};
 
 
-$.fn.fullCalendar = function(options) {
+$.fn.fullCalendar = function(options, callback) {
 	var args = Array.prototype.slice.call(arguments, 1); // for a possible method call
 	var res = this; // what this function will return (this jQuery object by default)
 
@@ -48,6 +48,8 @@ $.fn.fullCalendar = function(options) {
 			calendar = new fc.CalendarBase(element, options);
 			element.data('fullCalendar', calendar);
 			calendar.render();
+      if(typeof(callback) == 'function') { callback.call(); }
+      
 		}
 	});
 	
@@ -211,7 +213,7 @@ function enableCursor() {
 // By default, all elements that are shorter than the recommended height are expanded uniformly, not considering
 // any other els that are already too tall. if `shouldRedistribute` is on, it considers these tall rows and 
 // reduces the available height.
-function distributeHeight(els, availableHeight, shouldRedistribute) {
+function distributeHeight(els, availableHeight, shouldRedistribute, callback) {
 
 	// *FLOORING NOTE*: we floor in certain places because zoom can give inaccurate floating-point dimensions,
 	// and it is better to be shorter than taller, to avoid creating unnecessary scrollbars.
@@ -260,6 +262,8 @@ function distributeHeight(els, availableHeight, shouldRedistribute) {
 			$(el).height(newHeight);
 		}
 	});
+  
+  if(typeof(callback) == 'function') { callback.call(); }
 }
 
 
