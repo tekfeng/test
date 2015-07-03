@@ -1369,3 +1369,15 @@ input#tour_min_number_pax {
   
   cursor: pointer;
 }
+#calendar .fc-toolbar .fc-center {
+  h2{
+    margin-left: 17px;
+    margin-right: 10px;
+  }
+  .fc-today-button {
+    color: black;
+    font-weight: 500;
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    border: 1px solid #c4c6ca;
+  }
+}
