@@ -27,13 +27,13 @@
           </div>
           <div class="col-md-4 box-slot-available">
             <div class="box-slot-available-content current-next-m">
-              <div>Available slots in <%= (DateTime.now + 1.month).strftime("%B-%Y")%></div>
+              <div>Available slots in <%= (DateTime.now + 1.month).strftime("%b-%Y")%></div>
               <div class="number"><%= MtqSlot.available_slot_in_next1_month%></div>
              </div >
           </div>
           <div class="col-md-4 box-slot-available">
             <div class="box-slot-available-content current-next-next-m">
-              <div>Available slots in <%= (DateTime.now + 1.month + 1.month).strftime("%B-%Y") %></div>
+              <div>Available slots in <%= (DateTime.now + 1.month + 1.month).strftime("%b-%Y") %></div>
               <div class="number"><%= MtqSlot.available_slot_in_next2_month%></div>
              </div>
           </div>
