@@ -75,11 +75,16 @@
                   var leadTourCategory =  $('#lead_tour_category.lead-tour-category') ;  
                 <% else %>                 
                   var leadTour = $('#lead_tour.lead-tour').last();
-                  var leadTourCategory =  $('#lead_tour_category.lead-tour-category').last();                                      
-                  leadTour.prepend('<option value="">Select Tour</option>');
-                  leadTour.val("");              
-                  leadTourCategory.prepend('<option value="">Select Tour Category</option>');
-                  leadTourCategory.val("");                                   
+                  var leadTourCategory =  $('#lead_tour_category.lead-tour-category').last();
+                  <% if tour.object.tour_id.nil? %>          
+                    leadTour.prepend('<option value="">Select Tour</option>');
+                    leadTour.val("");    
+                  <% end %>
+                  <% if tour.object.tour_category_id.nil? %>          
+                    leadTourCategory.prepend('<option value="">Select Tour Category</option>');
+                    leadTourCategory.val("");     
+                  <% end %>  
+                                                  
                 <% end %>                                           
                 leadTour.selectbox({});                          
                 leadTourCategory.selectbox({
@@ -161,6 +166,7 @@
         
     // run first select box for new lead
     <% if @lead.errors.count > 0 %>
+     
       var leadTour = $('#lead_tour.lead-tour');
       var leadTourCategory =  $('#lead_tour_category.lead-tour-category');
       leadTour.selectbox({});                          
@@ -193,7 +199,7 @@
     
     
     var leadCustomerId = $('#lead_customer_id');
-    <% if controller.action_name != "edit" and !@convert_cus_tomer_to_lead %>        
+    <% if controller.action_name != "edit" and !@convert_cus_tomer_to_lead and @lead.customer_id.nil? %>        
       leadCustomerId.prepend('<option value="">Select Customer</option>');
       leadCustomerId.val("");
     <% end %>
