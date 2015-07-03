@@ -37,14 +37,14 @@ class BorneoPDF < Prawn::Document
       move_down 5
       font_size(11)
       if is_lead
-        p "is lead"
         if lead_or_booking.try(:office) == "Singapore Office"
           text "Singapore Sales Office"
           text "Amazing Borneo Travel & Events"
           text "Co. Reg. No. 53143855D TA Licence"
           text "No. 01847"
           text "511 Guillemard Rd #02-14 Grandlink Square Singapore 399849"
-          text "tel: +65 6841 3009 fax: +65 6841 4009 mobile: +65 92979846"
+          text "tel: +65 6841 3009 fax: +65 6841 4009"
+          text "mobile: +65 92979846"
           text "email: wanting@amazingborneo.com"
         else
           text "Malaysia Main Office"
