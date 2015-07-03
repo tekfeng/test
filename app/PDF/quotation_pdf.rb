@@ -88,56 +88,65 @@ class QuotationPDF < BorneoPDF
   
   def how_to_book
     start_new_page
-    formatted_text [{text: "HOW TO BOOK", styles: [:bold], size: 16}]
-    move_down 10
-    text "Kindly get back to us ASAP for immediate reservations and guaranteed bookings once we have informed you on the availability."
-    move_down 15
-    text "a) 50% Deposit payment required within 5 days upon receiving invoice for securing of accommodation."
-    move_down 15
-    text "50% BALANCE payment will be required 1 month before tour date"
-    text "OR"
-    move_down 15
-    text "b) Full payment within 3 days upon receiving invoice for booking of tours within 1 month of the travel date."
-    move_down 15
-    formatted_text [{text: "INFORMATION ABOUT PAYMENT:", styles: [:bold]}]
-    move_down 10
-    text "We accept payments by cash, credit card or bank transfer."
-    move_down 20
-    dash(1, space: 1, phase: 0)
-    stroke_horizontal_line 0, 550
-    undash      
+    
+    span(500, :position => :center) do
+      move_down 20
+      formatted_text [{text: "HOW TO BOOK", styles: [:bold], size: 16}]
+      move_down 10
+      text "Kindly get back to us ASAP for immediate reservations and guaranteed bookings once we have informed you on the availability."
+      move_down 15
+      text "a) 50% Deposit payment required within 5 days upon receiving invoice for securing of accommodation."
+      move_down 15
+      text "50% BALANCE payment will be required 1 month before tour date"
+      text "OR"
+      move_down 15
+      text "b) Full payment within 3 days upon receiving invoice for booking of tours within 1 month of the travel date."
+      move_down 15
+      formatted_text [{text: "INFORMATION ABOUT PAYMENT:", styles: [:bold]}]
+      move_down 10
+      text "We accept payments by cash, credit card or bank transfer."
+      move_down 20
+      dash(1, space: 1, phase: 0)
+      stroke_horizontal_line 0, 500
+      undash    
+    end
+     
   end  
   
   def advertisement
-    move_down 20
-    formatted_text [{text: "WHY SHOULD I CLIMB WITH AMAZING BORNEO TOURS?", styles: [:bold]}]
-    move_down 10
-    text "1. We Are the Licensed Land Tour Operator in Malaysia & Licensed Travel Agent in Singapore."
-    text "2. We Are Supported By MATTA, SABAH TOURISM BOARD & SINGAPORE TOURISM BOARD."
-    text "3. We Are ISO 9001 certified for Quality Management System – this Guarantees that YOUR Booking and Climb is handled with Proper Procedures of the Highest Standard."
-    text "4. We use Legal & Licensed Climb Permits by Sabah Parks Authority."
-    text "5. We Are the Mount Kinabalu Mountain People."
-    text "6. We Handle Thousands of Climbers from Around the World Every Year."
-    text "7. We Have Multiple Daily Departures To & Fro between Kinabalu Park and Kota Kinabalu City Centre."
-    text "8. We Have our Head Office In Kota Kinabalu City Centre, Contingency Base In Kinabalu Park and At The Foot Of Mount Kinabalu, and our Sales Office in Singapore."
-    text "9. We Have A Strong Network with the Locals, Hoteliers, & Suppliers in Borneo."
-    text "10. Your Safety is Always our Highest Priority."
-    text "11. We Are Able To Handle Crisis & Emergencies Efficiently"
-    text "12. We Dedicate Mountain Guides for Your Group Only – No Co-Sharing With Other Climbers So You Can Trek At Your Own Pace."
-    text "13. Our Mountain Guides are Carefully Selected and First-Aid trained."
-    text "14. We Provide Clean and Reliable Vehicles for You to Travel Comfortably."
-    text "15. Our Climb Packages Rates Are Most Competitive With High Standard Service Quality"
-    text "16. No Hidden or Extra Costs in Our Pricing."
-    text "17. We Provide the Latest Updates Of Mount Kinabalu’s Weather Conditions Accurately."
-    text "18. We are Committed to Responsible Tourism."
-    text "19. We Provide Personalized & Dedicated Services – your Mount Kinabalu climb trip can be tailor- made to include Other Tours & Accommodation in the Whole of Sabah."
-    text "20. Come Join Us & Start Your Mount Kinabalu Adventure With Us Today!"
+    span(500, :position => :center) do
+      move_down 20
+      formatted_text [{text: "WHY SHOULD I CLIMB WITH AMAZING BORNEO TOURS?", styles: [:bold]}]
+      move_down 10
+      text "1. We Are the Licensed Land Tour Operator in Malaysia & Licensed Travel Agent in Singapore."
+      text "2. We Are Supported By MATTA, SABAH TOURISM BOARD & SINGAPORE TOURISM BOARD."
+      text "3. We Are ISO 9001 certified for Quality Management System – this Guarantees that YOUR Booking and Climb is handled with Proper Procedures of the Highest Standard."
+      text "4. We use Legal & Licensed Climb Permits by Sabah Parks Authority."
+      text "5. We Are the Mount Kinabalu Mountain People."
+      text "6. We Handle Thousands of Climbers from Around the World Every Year."
+      text "7. We Have Multiple Daily Departures To & Fro between Kinabalu Park and Kota Kinabalu City Centre."
+      text "8. We Have our Head Office In Kota Kinabalu City Centre, Contingency Base In Kinabalu Park and At The Foot Of Mount Kinabalu, and our Sales Office in Singapore."
+      text "9. We Have A Strong Network with the Locals, Hoteliers, & Suppliers in Borneo."
+      text "10. Your Safety is Always our Highest Priority."
+      text "11. We Are Able To Handle Crisis & Emergencies Efficiently"
+      text "12. We Dedicate Mountain Guides for Your Group Only – No Co-Sharing With Other Climbers So You Can Trek At Your Own Pace."
+      text "13. Our Mountain Guides are Carefully Selected and First-Aid trained."
+      text "14. We Provide Clean and Reliable Vehicles for You to Travel Comfortably."
+      text "15. Our Climb Packages Rates Are Most Competitive With High Standard Service Quality"
+      text "16. No Hidden or Extra Costs in Our Pricing."
+      text "17. We Provide the Latest Updates Of Mount Kinabalu’s Weather Conditions Accurately."
+      text "18. We are Committed to Responsible Tourism."
+      text "19. We Provide Personalized & Dedicated Services – your Mount Kinabalu climb trip can be tailor- made to include Other Tours & Accommodation in the Whole of Sabah."
+      text "20. Come Join Us & Start Your Mount Kinabalu Adventure With Us Today!"
+    end
   end    
   
   def reminder
-    move_down 20
-    text "NO BOOKING has been made at this moment."
-    text "Once I have received your confirmation, we will make reservations and invoice will be issued thereafter."
+    span(500, :position => :center) do
+      move_down 20
+      text "NO BOOKING has been made at this moment."
+      text "Once I have received your confirmation, we will make reservations and invoice will be issued thereafter."
+    end
   end  
   
 end  
