@@ -1377,7 +1377,11 @@ input#tour_min_number_pax {
   .fc-today-button {
     color: black;
     font-weight: 500;
+    background-color: #EEEEF2;
     background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
     border: 1px solid #c4c6ca;
+    &:hover {
+      background-color:#F9F9F9;
+    };
   }
 }
