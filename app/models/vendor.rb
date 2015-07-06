@@ -16,16 +16,24 @@ class Vendor < ActiveRecord::Base
   accepts_nested_attributes_for :vendor_rates, allow_destroy: true
   accepts_nested_attributes_for :rooms, allow_destroy: true
   
-  scope :search_all, -> (word) {where("name LIKE :word or vendor_type LIKE :word or email LIKE :word or contact LIKE :word or fax LIKE :word", word: "%#{word}%")}  
+  scope :search_all, -> (word) {where("vendors.name LIKE :word or vendors.vendor_type LIKE :word or vendors.email LIKE :word or vendors.contact LIKE :word or vendors.fax LIKE :word", word: "%#{word}%")}  
   
    
   after_create :create_4_vendor_rates
+  after_save :save_number_vendor
   
   def create_4_vendor_rates
     for num in 1..4
       vendor_rates = self.vendor_rates.new({rate_type: num})
       vendor_rates.save(validate: false)
     end
+   
+  end
+  
+  def save_number_vendor
+    category = self.vendor_category
+    category.number_vendor = category.vendors.count
+    category.save(validate: false)
   end
   
   def self.showing_section(request)

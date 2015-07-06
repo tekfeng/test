@@ -252,8 +252,8 @@
 		defaultSelect:true, // 2.1.0
 		
 		scrollMonth:false,
-		scrollTime:true,
-		scrollInput:true,
+		scrollTime:false,
+		scrollInput:false,
 		
 		lazyInit:false,
 		

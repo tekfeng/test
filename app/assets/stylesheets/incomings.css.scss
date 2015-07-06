@@ -112,6 +112,7 @@ form.smart-listing-controls {
     
     .sbSelector {
       color: black;
+      width: auto !important;
     }
     .sbOptions{
       width:100%;
@@ -209,7 +210,7 @@ form.smart-listing-controls {
 @media (min-width: 641px) {
   .incoming-header {
      .sbHolder {
-       max-width:400px;
+       max-width:270px;
        float:right;
      }
   }
@@ -239,3 +240,13 @@ form.smart-listing-controls {
 ul li.container-fluid {
   padding: 0px;
 }
+//.main-view-yield .wrapper-content .incoming-detail .incoming-header form li#incoming_user_id_input {
+//  float: left;
+//  .sbHolder {
+//    float: left;
+//    width: auto ;
+//    a {
+//      float: right;
+//    }
+//  }
+//}
