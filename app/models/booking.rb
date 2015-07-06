@@ -55,11 +55,11 @@ class Booking < ActiveRecord::Base
   
   def number_of_pax
     if self.number_adult and self.number_child
-      self.number_adult + self.number_child
+      self.number_adult.to_i + self.number_child.to_i
     elsif self.number_adult
-      self.number_adult
+      self.number_adult.to_i
     elsif self.number_child
-      self.number_child
+      self.number_child.to_i
     else
       0
     end     

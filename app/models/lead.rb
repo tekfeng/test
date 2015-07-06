@@ -10,6 +10,30 @@ class Lead < ActiveRecord::Base
   
   after_create :create_default_value
   
+  validate :validate_num_of_pax
+  
+  def validate_num_of_pax
+    value_return = true
+    if self.number_of_pax == 0
+      self.errors.add(:adults, "should be numbers")
+      self.errors.add(:children, "should be numbers")
+      value_return = false  
+    end
+    return value_return
+  end
+  
+  def number_of_pax
+    if self.adults and self.children
+      self.adults.to_i + self.children.to_i
+    elsif self.adults
+      self.adults.to_i
+    elsif self.children
+      self.children.to_i
+    else
+      0
+    end     
+  end
+  
   validates :customer_id, :contact_number, :travel_from, :travel_to, :office, :presence => true
   validates :contact_number, numericality: true, :if => :contact_number_not_blank
   
