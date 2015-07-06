@@ -27,12 +27,12 @@
     </div>
     <div class= "form-group">
       <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
-        <%= f.input :vendor_category_id, as: :select,  collection: VendorCategory.all.collect{|t| [t.name, t.id]} %>
+        <%= f.input :vendor_category_id, as: :select,  collection: VendorCategory.all.collect{|t| [t.name, t.id]} , :include_blank => false  %>
       </div>
     </div>
     <div class= "form-group">
       <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
-       <%= f.input :city_id, as: :select,  collection: City.all.collect{|t| [t.name, t.id]} %>
+       <%= f.input :city_id, as: :select,  collection: City.all.collect{|t| [t.name, t.id]}  , :include_blank => false %>
       </div>
     </div>
     <% end %>

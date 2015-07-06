@@ -64,9 +64,9 @@
       } do |tour| %>   
         <%= tour.inputs do %>
         
-          <%= tour.input :tour_category_id, :as => :select, :collection => TourCategory.all.collect{|t| [t.name, t.id]},:input_html => { :class => 'lead-tour-category', :id => 'lead_tour_category'}%>  
+          <%= tour.input :tour_category_id, :as => :select, :collection => TourCategory.all.collect{|t| [t.name, t.id]},:input_html => { :class => 'lead-tour-category', :id => 'lead_tour_category'} , :include_blank => false %>  
          
-          <%= tour.input :tour_id, :as => :select, :collection => tour.object.tour_category.nil? ? [] : tour.object.tour_category.tours.collect{|t| [t.name, t.id]}, :input_html => { :class => 'lead-tour', :id => 'lead_tour'} %>    
+          <%= tour.input :tour_id, :as => :select, :collection => tour.object.tour_category.nil? ? [] : tour.object.tour_category.tours.collect{|t| [t.name, t.id]}, :input_html => { :class => 'lead-tour', :id => 'lead_tour'} , :include_blank => false  %>    
              
             <script language="javascript">
               $(document).ready(function() {

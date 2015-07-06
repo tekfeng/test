@@ -32,7 +32,6 @@ class BorneoPDF < Prawn::Document
   end
   
   def from_office(lead_or_booking, is_lead)
-    p "abc"
     grid([0,7], [1,11]).bounding_box do
       move_down 5
       font_size(11)

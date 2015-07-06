@@ -12,8 +12,7 @@ class Booking < ActiveRecord::Base
    
   validate :validate_num_of_pax
   
-  
-  BOOKING_STATUS = ['Confirm invoice', 'Need follow up', 'Replied', 'Closed', 'Unpaid', 'Allocated', 'Fully booked']
+  BOOKING_STATUS = ['Unpaid', 'Paid 50%', 'Paid 100%']
   
   def contact_number_not_blank
     self.contact_number != ""
@@ -32,8 +31,8 @@ class Booking < ActiveRecord::Base
   
   def self.search(opts)
     bookings = self.all.joins(:customer).joins(:user)
-    bookings = bookings.where("bookings.status = ?", opts[:booking_status]) if opts[:booking_status]
-    bookings = bookings.where("bookings.user_id = ?", opts[:user_id].to_i) if opts[:user_id] && opts[:user_id].to_i != 0        
+    bookings = bookings.where("bookings.status = ?", opts[:booking_status]) if opts[:booking_status].present? 
+    bookings = bookings.where("bookings.user_id = ?", opts[:user_id].to_i) if opts[:user_id].present?      
     if opts[:travel_date].present?    
       travel_date = (opts[:travel_date] + " 00:00:00").to_datetime
       bookings = bookings.where("travel_date >= :time_start", time_start: travel_date)  

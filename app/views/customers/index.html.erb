@@ -31,6 +31,7 @@
          </a>
         </form>
       </div>
+      
       <div class= "form-group-customer">
        <div class="col-md-5 col-sm-5 col-xs-12 padding-0">
          <form class="select-customer-country">
@@ -64,13 +65,14 @@
 
 <script language="javascript">
   $(document).ready(function() {
+    var customerCountryId;
+    var customerSourceId;
     var customerCountryIdSelexBox = $('#customer_country_id');
     customerCountryIdSelexBox.val(0);   
     customerCountryIdSelexBox.selectbox({
       onChange: function (val) {
         var url = "/sales/customers";
-        var customerCountryId = val;
-        var customerSourceId = $('#customer_source_id').val();
+        customerCountryId = val;
         var keyWord = $('#search-customer').val();
         $.ajax({
           type: "GET",
@@ -94,11 +96,11 @@
     $('#customer_source_id').val(0);
     $('#search-customer').val("");
     $('#customer_source_id').val(0);
+    
     $('#customer_source_id').selectbox({
       onChange: function(val){
         var url = "/sales/customers";
-        var customerSourceId = val;
-        var customerCountryId = customerCountryIdSelexBox.val();
+        customerSourceId = val;
         var keyWord = $('#search-customer').val();
         $.ajax({
           type: "GET",
@@ -143,9 +145,6 @@
             }
          });
        },700);
-    });
-    
-   
-    
+    });    
   })
 </script>

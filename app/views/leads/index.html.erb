@@ -34,7 +34,7 @@
           <%= f.inputs do %>
           <div class= "form-group">
             <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
-              <%= f.input :status, :as => :select, collection: Booking::BOOKING_STATUS , include_blank: false %>
+              <%= f.input :status, :as => :select, collection: Lead::LEAD_STATUS , include_blank: false %>
             </div>
             <div class="col-md-2 col-sm-2 col-xs-12"></div>
           </div><!--select-booking-status-->

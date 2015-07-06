@@ -10,7 +10,8 @@
   
   <div class= "form-group">
     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
-       <%= form.input :description %>
+      <div class="if-bl-intq">Information bellow will be found in the Quotation.</div>
+      <%= form.input :description %>
     </div>
     <div class="col-md-2 col-sm-2 col-xs-12"></div>
   </div>
@@ -19,10 +20,10 @@
   <div class="form-group">
     <div class="price-per-person-1 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
       <div class="price-per-person col-md-6 col-sm-12 col-xs-12 padding-0">
-        <%= form.input :price_per_person, :as => :string, placeholder: "Price per person", input_html:{class: "form-control"}%>
+        <%= form.input :price_per_person, :as => :string, placeholder: "Price per person (MYR)", input_html:{class: "form-control"}%>
       </div>
       <div class="min-of-pax col-md-6 col-sm-12 col-xs-12 padding-0">
-        <%= form.input :min_number_pax, :as => :number, placeholder: "minimum number of pax", input_html:{class: "form-control"}%>
+        <%= form.input :min_number_pax, :as => :number, placeholder: "Minimum number of pax", input_html:{class: "form-control"}%>
       </div>
     </div>
     <div class = "col-md-2 col-sm-2 col-xs-12"></div>
@@ -39,7 +40,7 @@
   
  <div class= "form-group">
    <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
-      <%= form.input :tour_category_id, :as => :select, :collection => TourCategory.all.collect{|t| [t.name, t.id]}%>
+      <%= form.input :tour_category_id, :as => :select, :collection => TourCategory.all.collect{|t| [t.name, t.id]} , :include_blank => false %>
     </div>
     <div class="col-md-2 col-sm-2 col-xs-12"></div>
   </div>

@@ -2,6 +2,7 @@ class Lead < ActiveRecord::Base
   belongs_to :customer
   belongs_to :user
   
+  LEAD_STATUS = ['Confirm invoice', 'Need follow up', 'Replied', 'Closed', 'Unpaid', 'Allocated', 'Fully booked']
   
   has_many :notifications, as: :notifitable
   has_many :lead_tour_category_tours, dependent: :destroy
@@ -23,8 +24,8 @@ class Lead < ActiveRecord::Base
   
   def self.search(opts)
     leads = self.all
-    leads = leads.where("leads.status = ?", opts[:lead_status]) if opts[:lead_status]
-    leads = leads.where("leads.user_id = ?", opts[:user_id].to_i) if opts[:user_id] && opts[:user_id].to_i != 0         
+    leads = leads.where("leads.status = ?", opts[:lead_status]) if opts[:lead_status].present?
+    leads = leads.where("leads.user_id = ?", opts[:user_id].to_i) if opts[:user_id].present? 
     if opts[:travel_from].present?    
       travel_from = (opts[:travel_from] + " 00:00:00").to_datetime
       leads = leads.where("travel_from >= :time_start", time_start: travel_from)  

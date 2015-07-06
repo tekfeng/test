@@ -900,9 +900,9 @@ form.tour .sbHolder {
 .new-user {
   margin-top: 15px;
 }
-ul.sbOptions li a[rel=""] {
-  display: none;
-}
+//ul.sbOptions li a[rel=""] {
+//  display: none;
+//}
 .home-link {
   float: left;
   width: 120px;
@@ -1384,4 +1384,9 @@ input#tour_min_number_pax {
       background-color:#F9F9F9;
     };
   }
+}
+.if-bl-intq {
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: black;
 }

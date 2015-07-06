@@ -20,7 +20,7 @@
    
    <div class= "form-group">
      <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0 select-source">
-       <%= form.input :department_id,:as => :select ,:collection => Department.all.collect{|t| [t.name, t.id]} ,class: ' lead-group-select'%>
+       <%= form.input :department_id,:as => :select ,:collection => Department.all.collect{|t| [t.name, t.id]} ,class: ' lead-group-select' , :include_blank => false %>
      </div>
      <div class="col-md-2 col-sm-2 col-xs-12"></div>
    </div>

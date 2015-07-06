@@ -29,13 +29,13 @@
                 <%= f.inputs do %>
                   <div class= "form-group">
                     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
-                      <%= f.input :vendor_category_id, :as => :select, collection: VendorCategory.all %>
+                      <%= f.input :vendor_category_id, :as => :select, collection: VendorCategory.all , :include_blank => false  %>
                     </div>
                     <div class="col-md-2 col-sm-2 col-xs-12"></div>
                   </div>
                   <div class= "form-group">
                     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
-                      <%= f.input :city_id, :label => "Select City", :as => :select, collection: City.all %>
+                      <%= f.input :city_id, :label => "Select City", :as => :select, collection: City.all  , :include_blank => false %>
                     </div>
                     <div class="col-md-2 col-sm-2 col-xs-12"></div>
                   </div>
@@ -54,21 +54,30 @@
 </div>
 
 <script language="javascript">
-  $(document).ready(function() {   
+  $(document).ready(function() {
+    var category_id;
+    var city_id;
+    
     var vendorCategory = $("select#vendor_vendor_category_id");
     vendorCategory.prepend('<option value="">Vendor Category</option>');
     vendorCategory.val("");
-    vendorCategory.selectbox();
+    vendorCategory.selectbox({
+      onChange: function (val, inst) {
+        category_id = val;
+      }
+    });
     
     var vendorCity = $("select#vendor_city_id");
     vendorCity.prepend('<option value="">Select City</option>');
     vendorCity.val("")
-    vendorCity.selectbox();
+    vendorCity.selectbox({
+      onChange: function (val, inst) {
+        city_id = val;
+      }
+    });
     
     
     $(document.body).delegate('.filter-vendors-rates', 'click', function() {
-      var category_id = $("#vendor_vendor_category_id").val();
-      var city_id = $("#vendor_city_id").val();
       $.ajax({
         type: "GET",
         url: "/vendor_rates",
