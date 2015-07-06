@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   
   resources :tour_categories
   
+  resources :countries
+  
   resources :tours do
     collection do
       get 'dashboard_page'

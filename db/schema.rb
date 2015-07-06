@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150702070101) do
+ActiveRecord::Schema.define(version: 20150706092449) do
 
   create_table "add_username_to_users", force: :cascade do |t|
     t.string   "username",   limit: 255
@@ -65,6 +65,8 @@ ActiveRecord::Schema.define(version: 20150702070101) do
     t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "on_the_top", limit: 1,   default: false
+    t.string   "code",       limit: 255
   end
 
   create_table "customers", force: :cascade do |t|

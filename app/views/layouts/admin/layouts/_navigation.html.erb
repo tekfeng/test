@@ -69,6 +69,13 @@
           <span class="nav-label">Sources</span>
           <% end %>
         </li>    
+        
+        <li class="<%= 'active' if params[:controller] == 'countries'%>">
+          <%= link_to "/countries" do %>
+          <i class="fa fa-cubes"></i> 
+          <span class="nav-label">Countries</span>
+          <% end %>
+        </li>
       
       <% elsif session[:current_menu] == 'sales' %> 
          

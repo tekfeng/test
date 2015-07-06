@@ -1,0 +1,43 @@
+<% unless smart_listing.empty? %> 
+  <%= smart_listing.pagination_per_page_links %>
+  <table class='listing-table'>
+    <thead>
+      <tr>
+        <th class="country-no cus-style-white">No.</th>
+        <th class="customer-thead-name cus-style-gray"><%= smart_listing.sortable "Name", "name" %></th>        
+        <th class="country-action cus-style-white" style='text-align: center;'>Action</th>
+      </tr>
+    </thead>        
+    <tbody>
+      <% smart_listing.collection.each_with_index do |country, index| %>
+        <tr class="<%= cycle('odd', 'even') %>">
+          <% if params[:countries_smart_listing] and params[:countries_smart_listing][:page] and  params[:countries_smart_listing][:page].to_i > 0 %>
+          <% index_show = (params[:countries_smart_listing][:page].to_i - 1)*10 + index + 1 %>
+          <% else %>
+          <% index_show = index + 1 %>
+          <% end %>
+          <td><%= index_show %></td>
+          <td><%= country.name %></td>
+         
+          <td style='text-align: center;'>
+            <div style="width: 100%; float: left;">
+              <%= link_to "", edit_country_url(country), class: 'glyphicon glyphicon-pencil' %>
+            </div>        
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+   <%= smart_listing.paginate  %>
+<% else %>
+  <p class="warning">No records!</p>
+<% end %>  
+<script language="javascript">
+  $(document).ready(function() {
+     
+   
+    
+  });
+  
+</script>
+

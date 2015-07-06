@@ -36,11 +36,23 @@ if Department.count == 0
 end
 
 if Country.count == 0
-  Country.create(name: "Vietname")
-  Country.create(name: "Singapore")
-  Country.create(name: "Lao")
-  Country.create(name: "China")
   Country.create(name: "Malaysia")
+  Country.create(name: "Singapore")
+  Country.create(name: "Vietnam")
+  Country.create(name: "Thailand")
+  Country.create(name: "Indonesia")
+  
+  Country.all.each do |c|
+    c.on_the_top = true
+    c.save
+  end
+  
+  countries = JSON.parse(File.read("#{Rails.root}/db/data/countries.json"))
+  countries.each do |country|
+    Country.create({name: country['name'], code: country['code']})
+  end
+  
+  
 end
 
 # if HomePage.count == 0
