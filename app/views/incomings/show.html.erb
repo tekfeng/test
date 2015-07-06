@@ -100,7 +100,6 @@
     </div>
   </div>    
 </div>
-<%= @incoming.user.try(:id)%>
 
 <script language="javascript">
   $(document).ready(function() {
@@ -108,9 +107,7 @@
       timepicker: false,
       format:'d-m-Y',
     }); 
-    
-    
-    
+    var text_jquery;    
     var userIdIncomingCreateLead;
     var currentUserID = $("select#incoming_user_id").val()
     
@@ -121,10 +118,11 @@
     <% end %>
     
     incoming_user_id.selectbox({
-      onChange: function(val){      
+      onChange: function(val){        
         userIdIncomingCreateLead = val;
         incoming_user_id.val(val);
         incoming_user_id.trigger("change");
+        
         $.ajax({
           type: "GET",
           url: "/sales/incomings/" + val + "/get_username",
@@ -137,31 +135,35 @@
               keyboard: true            
             }); 
           }
-        });
-           
+        });       
       }
     });
-    
-    $(document.body).delegate(".close-modal-box-ic, .modal-content .close", "click", function(e){
+
+    $(document.body).delegate(".close-modal-box-ic,#incoming_allocated_for_user .modal-content .close", "click", function(e){
+      e.preventDefault();
       if ($(e.currentTarget).hasClass("yes-create-lead-base-on-ic")) {
-        currentUserID = userIdIncomingCreateLead;
+         currentUserID = userIdIncomingCreateLead;
+         $(".sbHolder ul li a").show();
+         text_jquery = ".sbHolder ul li a[rel=" + currentUserID + "]";
         $.ajax({
           type: "POST",
           url: "/sales/incomings/" + userIdIncomingCreateLead + "/create_lead_base_on_ic?ic_id=" + <%= @incoming.id %>,
           success: function (data) {
+           
             
+            $(text_jquery).hide();            
             if (data.status == "ok") {
               if (data.action == "edit"){
                 $('#success_mess_after_create_lead .change-action-name').html("Lead is successfully created and allocated to a user!");
               }
-                           
-              $('#incoming_allocated_for_user').modal('hide');   
+
+              $('#incoming_allocated_for_user').modal('hide');
               $('#success_mess_after_create_lead').modal({
                 show: true,
                 backdrop: 'static',
-                keyboard: true            
-              }); 
-            }          
+                keyboard: true
+              });
+            } 
             
           }
         });  
@@ -169,7 +171,7 @@
         $("select#incoming_user_id").selectbox("detach");
         $("select#incoming_user_id").val(currentUserID);
         $("select#incoming_user_id").selectbox({
-          onChange: function(val){      
+          onChange: function(val){
             userIdIncomingCreateLead = val;
             incoming_user_id.val(val);
             incoming_user_id.trigger("change");
@@ -177,20 +179,20 @@
               type: "GET",
               url: "/sales/incomings/" + val + "/get_username",
               success: function (data) {
-                var text = "Lead will be allocated to " + data.name 
+                var text = "Lead will be allocated to " + data.name
                 $("p.append-username").html(text)
                 $('#incoming_allocated_for_user').modal({
                   show: true,
                   backdrop: 'static',
-                  keyboard: true            
-                }); 
+                  keyboard: true
+                });
               }
             });
-           
+
           }
-        });            
-        $('#incoming_allocated_for_user').modal('hide');        
-                
+        });
+        $('#incoming_allocated_for_user').modal('hide');     
+        $(".sbHolder ul li a[rel=" + currentUserID + "]").hide();        
       }                      
     });
     

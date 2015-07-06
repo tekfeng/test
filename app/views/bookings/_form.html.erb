@@ -75,11 +75,16 @@
                 var bookingTourCategory =  $('#booking_tour_category.booking-tour-category')
               <% else %>
                 var bookingTour = $('#booking_tour.booking-tour').last();
-                bookingTour.prepend('<option value="0">Select Tour</option>');
-                bookingTour.val("");
                 var bookingTourCategory =  $('#booking_tour_category.booking-tour-category').last();
-                bookingTourCategory.prepend('<option value="">Select Tour Category</option>');
-                bookingTourCategory.val("");
+                <% if tour.object.tour_id.nil? %>    
+                  bookingTour.prepend('<option value="0">Select Tour</option>');
+                  bookingTour.val("");
+                <% end %>
+                
+               <% if tour.object.tour_category_id.nil? %>       
+                  bookingTourCategory.prepend('<option value="">Select Tour Category</option>');
+                  bookingTourCategory.val("");
+                <% end %>
                 
               <% end %>
                 
@@ -160,7 +165,7 @@
     
     var bookingCustomerId = $('#booking_customer_id');
         
-    <% if !lead and ((@booking.errors.count == 0) or (@booking.errors.count > 0 and !@booking.customer_id ) )%>
+    <% if !lead and ((@booking.errors.count == 0) or (@booking.errors.count > 0 and !@booking.customer_id ) ) and @booking.customer_id.nil? %>
       bookingCustomerId.prepend('<option value="0">Select Customer</option>');
       bookingCustomerId.val("");
     <% end %>
