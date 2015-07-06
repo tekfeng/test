@@ -14,13 +14,12 @@ class CountriesController < AdminsController
 
   def update
     @country = Country.find(params[:id])
-      
-    if @country.update_attributes(country_params)
-      render json: {result: 'ok', redirect_to: countries_url, 
-        flash: { type: :notice, message: 'Country details has been saved successfully!' }}
-    else
-      render json: { result: 'failed', errors: @country.errors }
-    end
+    @country.on_the_top = false
+    @country.save
+    @countryU = Country.find(params[:country][:id].to_i) 
+    @countryU.on_the_top = true
+    @countryU.save
+    redirect_to countries_url
   end
   
   

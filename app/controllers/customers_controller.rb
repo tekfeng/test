@@ -7,7 +7,7 @@ class CustomersController < SalesController
   end
   
   def index
-    @countries = Country.all
+    @countries = Country.order("on_the_top DESC")
     @sources = Source.is_active
     if params[:ajax_call]
       @customers = Customer.search(params)
