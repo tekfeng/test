@@ -97,7 +97,12 @@ Rails.application.routes.draw do
       get 'notifications_of_user'
       get 'edit_profile'
       post 'update_profile'
+      get "clear_all_notifications_of_user"
     end
+    
+    member do
+      get :destroy_notification_of_user
+    end   
   end
   
   resources :profile do

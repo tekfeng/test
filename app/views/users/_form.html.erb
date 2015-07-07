@@ -48,11 +48,9 @@
   $(document).ready(function() {
     var userCountry = $('#user_department_id');
     <% if controller.action_name != "edit" %>
-    userCountry.prepend('<option value="">--Select Department--</option>');
-    userCountry.val("");
+      userCountry.prepend('<option value="">--Select Department--</option>');
+      userCountry.val("");
     <% end %>
-    userCountry.selectbox({}); 
-    
-    
+    userCountry.selectbox({});   
   })
 </script>

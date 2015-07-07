@@ -25,19 +25,23 @@
           </a>
         
         <% if current_user.notifications.count > 0 %>
-          <ul class="dropdown-menu dropdown-alerts">      
+          <ul class="dropdown-menu dropdown-alerts">
+            <li><span class="cl-all-btn">Clear all</span></li>  
             <% current_user.notifications.limit(5).order("updated_at desc").each do |notification| %>
               <li class="notifi-li-st" style="float: left;">
                 <a href="<%= notification.url %>" style="float: left;">
                   <div class="<% notification.is_read ? '' : 'new-message'%>">
                     <div class="mess-notifi" style="float: left; width: 280px;" ><%= notification.message %></div>
-                    <div class="time-notifi" style="float: left; width: 120px;">
+                    <div class="time-notifi" style="float: left; width: 110px;">
                       <small class="block text-muted time-label timeago" title="<%= notification.created_at.strftime("%Y-%m-%dT%H:%M:%SZ") %>">
                         <i class="fa fa-clock-o" style="margin-right: 5px;"></i><%= notification.created_at.strftime("%Y-%-m-%d") %>  
                       </small>                     
                     </div>
+                    <button type="button" class="close destroy-item-notification" data-id="<%=notification.id%>" data-dismiss="alert" aria-hidden="true" style="margin-top:4%;">×</button>
                   </div>
+                 
                 </a>
+                
               </li>  
             <% end %>
             <li style="float: left; width: 100%;">
@@ -48,6 +52,11 @@
                 </a>
               </div>
             </li>       
+          </ul>
+          
+        <% else %>
+          <ul class="dropdown-menu dropdown-alerts">
+            <li style="color: red; text-align: center; font-size: 14px;">Empty notification !</li>
           </ul>
         <% end %>
         
@@ -77,7 +86,6 @@
     });
     
     $(document.body).delegate('.list-notifications-of-user', 'click', function() {
-       console.log("aaaaa")
       $.ajax({
         type: "GET",
         url: "/notifications/notifications_of_user",       

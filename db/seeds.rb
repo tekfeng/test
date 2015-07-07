@@ -47,7 +47,9 @@ if Country.count == 0
     c.save
   end
   
-  countries = JSON.parse(File.read("#{Rails.root}/db/data/countries.json"))
+
+  
+  countries = JSON.parse(File.read("/home/app/www/boneo/current/db/data/countries.json"))
   countries.each do |country|
     Country.create({name: country['name'], code: country['code']})
   end

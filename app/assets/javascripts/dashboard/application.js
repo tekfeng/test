@@ -39,7 +39,37 @@
  
 $(document).ready(function() {
   
- 
+  $(document.body).delegate('.cl-all-btn', 'click', function() {
+    confirmAccept = confirm("Are you sure you want to clear all notifications?");
+    if (confirmAccept ==true) {
+      $.ajax({
+        type: "GET",
+        url: "/notifications/clear_all_notifications_of_user",       
+        success: function (data) {
+          $("ul.dropdown-menu.dropdown-alerts li.notifi-li-st").hide();
+          $("ul.dropdown-menu.dropdown-alerts").html('<li style="color: red; text-align: center; font-size: 14px;">Empty notification !</li>');
+          $("ul.dropdown-menu.dropdown-alerts").closest("li.open").removeClass("open");
+        }
+      });
+    }
+    return false;     
+  });
+  
+  $(document.body).delegate('.destroy-item-notification', 'click', function(e) {
+    confirmAccept = confirm("Are you sure you want to destroy this?");
+    var id = $(this).data("id");
+    console.log(id)
+    if (confirmAccept ==true) {
+      $.ajax({
+        type: "GET",
+        url: "/notifications/" + id + "/destroy_notification_of_user",       
+        success: function (data) {
+          $(e.currentTarget).closest("li.notifi-li-st").hide();
+        }
+      });
+    }
+    return false;     
+  });
   
   
   
