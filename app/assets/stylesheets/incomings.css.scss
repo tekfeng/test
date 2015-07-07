@@ -90,6 +90,7 @@ form.smart-listing-controls {
     padding-left: 40px;
     padding-right: 40px;
     height: auto;
+    
     p.title {
       float:right;
       display:block;
@@ -224,7 +225,7 @@ form.smart-listing-controls {
 @media (min-width: 481px) {
   .incoming-header {
      .sbHolder {
-       max-width:400px;
+       max-width:270px;
        float:right;
      }
   }
