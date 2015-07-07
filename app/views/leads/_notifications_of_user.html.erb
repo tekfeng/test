@@ -21,7 +21,7 @@
           <h5>List Notifications</h5>     
         </div>
         <div class="ibox-content" style="background-color: white;">
-          <% @user.notifications.limit(5).order("updated_at desc").each do |notification| %>
+          <% @user.notifications.order("updated_at desc").each do |notification| %>
             <a href="<%=notification.url%>" class="alert-link">
               <div class="alert alert-info">
                 <%= notification.message %>
