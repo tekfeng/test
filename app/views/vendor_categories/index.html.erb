@@ -3,7 +3,7 @@
     <div class="row wrapper border-bottom white-bg page-heading text-center">
       <div class="col-md-4 col-sm-4 col-xs-12"></div>
       <div class="col-md-4 col-sm-4 col-xs-12">
-        <h2>Vendor Categories</h2>
+        <h2>Supplier Categories</h2>
         <ol class="breadcrumb">
           <li>
             <a href="/dashboard">Home</a>
@@ -12,7 +12,7 @@
             <a href="/vendors/dashboard_page">Reservations</a>
           </li>
           <li class="active">
-            <strong>Vendor Categories</strong>
+            <strong>Supplier Categories</strong>
           </li>
         </ol>
       </div>
@@ -59,7 +59,7 @@
   $(document).ready(function() { 
   <% if flash[:notice] %>
     $.cookie('flashType', "notice", { path: '/' });
-    $.cookie('flashMessage', 'Vendor-Category has been saved successfully!', { path: '/' });
+    $.cookie('flashMessage', 'Supplier-Category has been saved successfully!', { path: '/' });
     toastr['success']($.cookie('flashMessage'));
     $.removeCookie('flashType', { path: '/' });
     $.removeCookie('flashMessage', { path: '/' });

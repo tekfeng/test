@@ -7,7 +7,7 @@
         </div>
       </div>
       <div class="col-md-4 col-sm-4 col-xs-12">
-        <h2>Vendors</h2>
+        <h2>Suppliers</h2>
         <ol class="breadcrumb">
           <li>
             <a href="/dashboard">Home</a>
@@ -16,7 +16,7 @@
             <a href="/vendors/dashboard_page">Reservations</a>
           </li>
           <li class="active">
-            <strong>Vendors</strong>
+            <strong>Suppliers</strong>
           </li>
         </ol>
       </div>
@@ -91,7 +91,7 @@
     
     var vendorCategory = $("select#vendor_vendor_category_id");
     <% if !@vendor_categopry_id.present? %>
-      vendorCategory.prepend('<option value="">-- Vendor Category --</option>');
+      vendorCategory.prepend('<option value="">-- Supplier Category --</option>');
       vendorCategory.val("");
     <% end %>
     vendorCategory.selectbox({

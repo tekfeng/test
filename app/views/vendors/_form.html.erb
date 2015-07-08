@@ -2,12 +2,12 @@
     <%= f.inputs do %> 
     <div class= "form-group">
       <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
-        <%= f.input :name,  as: :string, placeholder: "Vendor Name" %>
+        <%= f.input :name,  as: :string, placeholder: "Supplier Name" %>
       </div>
     </div>
     <div class= "form-group">
       <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
-        <%= f.input :vendor_type, as: :string, placeholder: "Vendor type" %>
+        <%= f.input :vendor_type, as: :string, placeholder: "Supplier type" %>
       </div>
     </div>
     <div class= "form-group">
@@ -50,7 +50,7 @@
     var vendorCategoryId = $("#vendor_vendor_category_id");
     var city = $("#vendor_city_id")
     <% if controller.action_name != "edit" %>
-      vendorCategoryId.prepend('<option value="">--  Vendor Category  --</option>');
+      vendorCategoryId.prepend('<option value="">--  Supplier Category  --</option>');
       vendorCategoryId.val("");
       city.prepend('<option value="">--  Select City  --</option>');
       city.val("");

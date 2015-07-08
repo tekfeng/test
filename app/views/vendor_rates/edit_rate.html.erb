@@ -35,12 +35,12 @@
                         <a href="/vendors/dashboard_page">Reservations</a>
                       </li>
                       <li class="active">
-                        <strong>Vendor Rates</strong>
+                        <strong>Supplier Rates</strong>
                       </li>
                     </ol>
                   </div>
                   <% if updated %>
-                    <p class="updated-notifi">Vendor Rates updated successfull !</p>
+                    <p class="updated-notifi">Supplier Rates updated successfull !</p>
                   <% end %> 
                 </div>                  
               </div>
@@ -69,9 +69,9 @@
                   </div>
                 
                   <div class="detail-vendor-time detail-vendor-info" style="font-size: 16px; line-height: 1.2em;">
-                    <p> Vendor name: <%= @vendor.name %> </p>
-                    <p> Vendor type: <%= @vendor.vendor_type %> </p>
-                    <p> Vendor category: <%= @vendor.vendor_category.try(:name) %> </p>
+                    <p> Supplier name: <%= @vendor.name %> </p>
+                    <p> Supplier type: <%= @vendor.vendor_type %> </p>
+                    <p> Supplier category: <%= @vendor.vendor_category.try(:name) %> </p>
                   </div>                
                 </div>               
                 <div class='row' style="width: 100%; float: left; margin: 0px;">
