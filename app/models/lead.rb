@@ -8,34 +8,32 @@ class Lead < ActiveRecord::Base
   has_many :lead_tour_category_tours, dependent: :destroy
   accepts_nested_attributes_for :lead_tour_category_tours, allow_destroy: true  
   
-  after_create :create_default_value
+  validates :customer_id, :contact_number, :travel_from, :travel_to, :office, :presence => true
+  validates :contact_number, numericality: true, :if => :contact_number_not_blank
   
+  validates :adults, numericality: true, :if => :adult_not_blank
+  validates :children, numericality: true, :if => :children_not_blank
   validate :validate_num_of_pax
+  
+  after_create :create_default_value
   
   def validate_num_of_pax
     value_return = true
     if self.number_of_pax == 0
-      self.errors.add(:adults, "should be numbers")
-      self.errors.add(:children, "should be numbers")
+      self.errors.add(:adults, "Number of pax must be at least 1")
       value_return = false  
     end
     return value_return
   end
   
-  def number_of_pax
-    if self.adults and self.children
-      self.adults.to_i + self.children.to_i
-    elsif self.adults
-      self.adults.to_i
-    elsif self.children
-      self.children.to_i
-    else
-      0
-    end     
+  
+  def children_not_blank
+    self.children.present?
   end
   
-  validates :customer_id, :contact_number, :travel_from, :travel_to, :office, :presence => true
-  validates :contact_number, numericality: true, :if => :contact_number_not_blank
+  def adult_not_blank
+    self.adults.present?
+  end
   
   def contact_number_not_blank
     self.contact_number != ""
@@ -69,7 +67,7 @@ class Lead < ActiveRecord::Base
     elsif self.children
       self.children
     else
-      ""
+      0
     end     
   end
   

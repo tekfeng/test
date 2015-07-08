@@ -106,7 +106,7 @@
     });  
     
     var bookingStatus = $('#booking_status');
-    bookingStatus.prepend('<option value="">Payment Status</option>');
+    bookingStatus.prepend('<option value="">-- Payment Status --</option>');
     bookingStatus.val("")
     bookingStatus.selectbox({
       onChange: function (val, inst) {
@@ -115,7 +115,7 @@
     });
     
     var bookingUserIdSelexBox = $("select#booking_user_id");
-    bookingUserIdSelexBox.prepend('<option value="">Sales Person</option>');
+    bookingUserIdSelexBox.prepend('<option value="">-- Sales Person --</option>');
     bookingUserIdSelexBox.val("");
     bookingUserIdSelexBox.selectbox({
       onChange: function (val, inst) {

@@ -113,7 +113,7 @@
     
     var incoming_user_id = $("select#incoming_user_id");
     <% if @incoming.user_id.nil? %>        
-      incoming_user_id.prepend('<option value="">Allocated</option>');
+      incoming_user_id.prepend('<option value="">-- Allocated --</option>');
       incoming_user_id.val("");
     <% end %>
     

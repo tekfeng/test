@@ -82,7 +82,7 @@
                 <% end %>
                 
                <% if tour.object.tour_category_id.nil? %>       
-                  bookingTourCategory.prepend('<option value="">Select Tour Category</option>');
+                  bookingTourCategory.prepend('<option value="">-- Select Tour Category --</option>');
                   bookingTourCategory.val("");
                 <% end %>
                 
@@ -95,7 +95,7 @@
                     var tourOfTourCategory = $(this).closest(".formnestic-li-fieldset").find("select#booking_tour.booking-tour");
                     tourOfTourCategory.selectbox("detach");
                     tourOfTourCategory.html('');
-                    tourOfTourCategory.prepend('<option value="">Select Tour</option>');
+                    tourOfTourCategory.prepend('<option value="">-- Select Tour --</option>');
                     tourOfTourCategory.val("");
                       if (category_id !== null) {
                         $.ajax({
@@ -141,7 +141,7 @@
         var tourOfTourCategory = $(this).closest(".formnestic-li-fieldset").find("select#booking_tour.booking-tour");
         tourOfTourCategory.selectbox("detach");
         tourOfTourCategory.html('');
-        tourOfTourCategory.prepend('<option value="">Select Tour</option>');
+        tourOfTourCategory.prepend('<option value="">-- Select Tour --</option>');
         tourOfTourCategory.val("");
           if (category_id !== null) {
             $.ajax({

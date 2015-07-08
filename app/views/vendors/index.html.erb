@@ -91,7 +91,7 @@
     
     var vendorCategory = $("select#vendor_vendor_category_id");
     <% if !@vendor_categopry_id.present? %>
-      vendorCategory.prepend('<option value="">Vendor Category</option>');
+      vendorCategory.prepend('<option value="">-- Vendor Category --</option>');
       vendorCategory.val("");
     <% end %>
     vendorCategory.selectbox({
@@ -101,7 +101,7 @@
     });
     
     var vendorCity = $("select#vendor_city_id");
-    vendorCity.prepend('<option value="">Select City</option>');
+    vendorCity.prepend('<option value="">-- Select City --</option>');
     vendorCity.val("")
     vendorCity.selectbox({
       onChange: function (val, inst) {

@@ -46,7 +46,7 @@
   $(document).ready(function() {
     var customerCountry = $('#customer_country_id');
     <% if controller.action_name != "edit" %>
-    customerCountry.prepend('<option value="">--Select Country--</option>');
+    customerCountry.prepend('<option value="">-- Select Country --</option>');
     customerCountry.val("");
     <% end %>
     customerCountry.selectbox({
@@ -58,7 +58,7 @@
     
     var customerSource = $('#customer_source_id');
     <% if controller.action_name != "edit" %>
-    customerSource.prepend('<option value="">--Select Source--</option>');
+    customerSource.prepend('<option value="">-- Select Source --</option>');
     customerSource.val("");
     <% end %>
     customerSource.selectbox({

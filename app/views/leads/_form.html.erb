@@ -81,12 +81,12 @@
                                     
                 <% if tour.object.tour_id.nil? %> 
                   console.log("hehehehhe")         
-                  leadTour.prepend('<option value="">Select Tour</option>');
+                  leadTour.prepend('<option value="">-- Select Tour --</option>');
                   leadTour.val("");    
                 <% end %>
                   
                 <% if tour.object.tour_category_id.nil? %>         
-                  leadTourCategory.prepend('<option value="">Select Tour Category</option>');
+                  leadTourCategory.prepend('<option value="">-- Select Tour Category --</option>');
                   leadTourCategory.val("");     
                 <% end %>    
                                                         
@@ -98,7 +98,7 @@
                     var tourOfTourCategory = $(this).closest(".formnestic-li-fieldset").find("select#lead_tour.lead-tour");
                     tourOfTourCategory.selectbox("detach");
                     tourOfTourCategory.html('');
-                    tourOfTourCategory.prepend('<option value="">Select Tour</option>');
+                    tourOfTourCategory.prepend('<option value="">-- Select Tour --</option>');
                     tourOfTourCategory.val("");
                     if (category_id !== null) {
                       $.ajax({
@@ -179,8 +179,7 @@
         if ($(this).val()) {
           leadTour.selectbox({});
         } else {
-          console.log(43434343)
-          $(this).prepend('<option value="">Select Tour</option>');
+          $(this).prepend('<option value="">-- Select Tour --</option>');
           $(this).val("");
           $(this).selectbox({});     
         }
@@ -188,12 +187,11 @@
                                 
       leadTourCategory.selectbox({
         onChange: function (val, inst) {
-          leadTourCategory.val(val)
           var category_id = val;
           var tourOfTourCategory = $(this).closest(".formnestic-li-fieldset").find("select#lead_tour.lead-tour");
           tourOfTourCategory.selectbox("detach");
           tourOfTourCategory.html('');
-          tourOfTourCategory.prepend('<option value="">Select Tour</option>');
+          tourOfTourCategory.prepend('<option value="">-- Select Tour --</option>');
           tourOfTourCategory.val("");
           if (category_id !== null) {
             $.ajax({
@@ -217,7 +215,7 @@
     
     var leadCustomerId = $('#lead_customer_id');
     <% if controller.action_name != "edit" and !@convert_cus_tomer_to_lead and @lead.customer_id.nil? %>        
-      leadCustomerId.prepend('<option value="">Select Customer</option>');
+      leadCustomerId.prepend('<option value="">-- Select Customer --</option>');
       leadCustomerId.val("");
     <% end %>
       
