@@ -6,19 +6,17 @@ class Tour < ActiveRecord::Base
   
   validates :name, :code, :price_per_person, :min_number_pax, :tour_category_id, :presence => true
   validates :name, :code,  :uniqueness => true
-  validate :min_number_pax, :check_number, :if => :min_number_pax_not_blank
-  
+  validates :min_number_pax, :numericality => { :greater_than => 0 }, :if => :min_number_pax_not_blank
+  validates :price_per_person, :numericality => { :greater_than => 0 }, :if => :price_per_person_not_blank
   
   def min_number_pax_not_blank
-    self.min_number_pax != ""
+    self.min_number_pax.present?
   end
   
-  def check_number
-    if self.min_number_pax.to_i < 0
-      errors.add(:min_number_pax, "Invalid number")
-      return false
-    end
+  def price_per_person_not_blank
+    self.price_per_person.present?
   end
+  
   
   def as_json(options={})
     {

@@ -8,7 +8,8 @@ class Booking < ActiveRecord::Base
   validates :customer_id, :contact_number, :travel_date, :travel_to, :presence => true
   validates :contact_number, numericality: true, :if => :contact_number_not_blank
   
-  
+  validates :number_adult, :numericality => { :greater_than_or_equal_to  => 0 }, :if => :adult_not_blank
+  validates :number_child, :numericality => { :greater_than_or_equal_to => 0 }, :if => :children_not_blank
    
   validate :validate_num_of_pax
   
@@ -18,6 +19,13 @@ class Booking < ActiveRecord::Base
     self.contact_number != ""
   end
   
+  def adult_not_blank
+    self.number_adult.present?
+  end
+  
+  def children_not_blank
+    self.number_child.present?
+  end
   
   def create_booking_code
     if self.booking_number.nil?
@@ -47,7 +55,7 @@ class Booking < ActiveRecord::Base
   def validate_num_of_pax
     value_return = true
     if self.number_of_pax == 0
-      self.errors.add(:number_adult, "must be at least 1")
+      self.errors.add(:number_adult, "Number of pax must be at least 1")
       value_return = false  
     end
     return value_return

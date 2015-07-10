@@ -11,8 +11,8 @@ class Lead < ActiveRecord::Base
   validates :customer_id, :contact_number, :travel_from, :travel_to, :office, :presence => true
   validates :contact_number, numericality: true, :if => :contact_number_not_blank
   
-  validates :adults, numericality: true, :if => :adult_not_blank
-  validates :children, numericality: true, :if => :children_not_blank
+  validates :adults, :numericality => { :greater_than_or_equal_to  => 0 }, :if => :adult_not_blank
+  validates :children, :numericality => { :greater_than_or_equal_to => 0 }, :if => :children_not_blank
   validate :validate_num_of_pax
   
   after_create :create_default_value
