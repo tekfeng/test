@@ -57,7 +57,10 @@
             <div class = "col-md-2 col-sm-2 col-xs-12"></div>
           </div> <!--travel to-->
           <% end %>
-           <%= f.action :submit, :label => "Filter", :button_html => { :class => "btn btn-primary filter-lead" } %>
+           <li id="lead_submit_action" class="action input_action">
+             <input type="submit" class="btn btn-primary filter-lead" value="Filter" name="commit">
+             <input type="submit" class="btn btn-primary filter-lead cancel-filter" value="Cancel" name="commit">
+           </li>
         <% end %>
       </div>
     </div>
@@ -137,6 +140,28 @@
       var travel_from = $("#lead_travel_from").val();
       var travel_to = $("#lead_travel_to").val();
       
+      if ($(e.currentTarget).hasClass("cancel-filter")) {
+        $('#lead_travel_from,#lead_travel_to').val("");      
+        $('#vendor_filter form').trigger("reset");     
+        leadSale.selectbox("detach");
+        leadSale.val("");
+        leadSale.selectbox({
+          onChange: function (val, inst) {
+            leadUserId = val;
+          }
+        });        
+        leadStatus.selectbox("detach");
+        leadStatus.val("");
+        leadStatus.selectbox({
+          onChange: function (val, inst) {
+            leadStatusValue = val;
+          }
+        });               
+        leadStatusValue = "";
+        leadUserId = "";
+        travel_from = "";
+        travel_to = "";
+      }
       $.ajax({
         url: url,
         type: "GET",

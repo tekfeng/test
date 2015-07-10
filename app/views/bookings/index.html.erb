@@ -52,11 +52,15 @@
               <div class= "form-group">
                 <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
                   <%= f.input :travel_to, :as => :string, :input_html => { :class => 'input-icon-select-date'},placeholder: "Travel to"%>
+                  
                 </div>
                 <div class="col-md-2 col-sm-2 col-xs-12"></div>
               </div>  
               <% end %>
-               <%= f.action :submit, :label => "Filter", :button_html => { :class => "btn btn-primary filter-booking" } %>
+               <li id="booking_submit_action" class="action input_action ">
+                 <input type="submit" class="btn btn-primary filter-booking" value="Filter" name="commit">
+                 <input type="submit" class="btn btn-primary filter-booking cancel-filter" value="Cancel" name="commit">
+               </li>
             <% end %>
           </div>
         </div> 
@@ -128,7 +132,32 @@
       var url = "/sales/bookings";
       var travel_from = $("#booking_travel_date").val();
       var travel_to = $("#booking_travel_to").val();
-    
+      
+      if ($(e.currentTarget).hasClass("cancel-filter")) {
+        $('#booking_travel_date,#booking_travel_to').val("");
+        $('#vendor_filter form').trigger("reset");     
+        bookingUserIdSelexBox.selectbox("detach");
+        bookingUserIdSelexBox.val("");
+        bookingUserIdSelexBox.selectbox({
+          onChange: function (val, inst) {
+            bookingUserId = val;
+          }
+        });      
+          
+        bookingStatus.selectbox("detach");
+        bookingStatus.val("");
+        bookingStatus.selectbox({
+          onChange: function (val, inst) {
+            bookingStatusValue = val;
+          }
+        }); 
+        
+        bookingStatusValue = "";
+        bookingUserId = "";
+        travel_from = "";
+        travel_to = "";
+      }
+      
       $.ajax({
         url: url,
         type: "GET",
