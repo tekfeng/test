@@ -6,7 +6,7 @@
         <th class="tour-no">No.</th>
         <th class="customer-thead-name cus-style-gray"><%= smart_listing.sortable "Tour Code", "code" %></th>
         <th class="customer-thead-name cus-style-white"><%= smart_listing.sortable "Tour Name", "name" %></th>     
-        <th class="tour-thead-category cus-style-gray">Tour Category</th>
+        <th class="tour-thead-category cus-style-gray"><%= smart_listing.sortable "Tour Category", "tour_categories.name" %></th>
         <th class="tour-action" style='text-align: center;'>Action</th>
       </tr>
     </thead>        
