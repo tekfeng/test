@@ -109,6 +109,18 @@ $(document).ready(function() {
   $(".timeago").timeago();
   $(".timeago").prepend("<i class='fa fa-clock-o'></i>");
   
+  $(document.body).delegate("input.filter-incoming", "click", function(e){
+    if ($(e.currentTarget).hasClass("cancel-filter")) {
+      $('#vendor_filter form').trigger("reset");     
+      $("select#source_info_cont").selectbox("detach");
+      $("select#source_info_cont").val("");
+      $("select#source_info_cont").selectbox({
+        onChange: function(val){
+          $("select#source_info_cont").val(val);
+        }
+      });      
+    }
+  });
   
 });
 

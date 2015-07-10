@@ -65,7 +65,10 @@
             <div class="col-md-2 col-sm-2 col-xs-12"></div>
           </div>
           <% end %>
-           <%= f.action :submit, :label => "Filter", :button_html => { :class => "btn btn-primary filter-style filter-vendors" } %>
+           <li id="vendor_submit_action" class="action input_action ">
+             <input type="submit" class="btn btn-primary filter-style filter-vendors" value="Filter" name="commit" style="margin-right:10px;">
+             <input type="submit" class="btn btn-primary filter-style filter-vendors cancel-filter" value="Cancel" name="commit" style="margin-left: 10px;">
+           </li>
         <% end %>
       </div>
     </div>
@@ -111,8 +114,26 @@
     
     
     
-    $(document.body).delegate('.filter-vendors', 'click', function() {
-      
+    $(document.body).delegate('.filter-vendors', 'click', function(e) {
+      if ($(e.currentTarget).hasClass("cancel-filter")) {
+        $('#vendor_filter form').trigger("reset");   
+        vendorCategory.selectbox("detach");
+        vendorCategory.val("");
+        vendorCategory.selectbox({
+          onChange: function (val, inst) {
+            category_id = val;
+          }
+        });        
+        vendorCity.selectbox("detach");
+        vendorCity.val("");
+        vendorCity.selectbox({
+          onChange: function (val, inst) {
+            city_id = val;
+          }
+        });    
+        category_id = "";
+        city_id = ""; 
+      }
       $.ajax({
         type: "GET",
         url: "/vendors",
