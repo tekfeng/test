@@ -20,6 +20,9 @@
         <th class="booking-sale cus-style-gray"><%= smart_listing.sortable "Sales Person", "users.username" %></th>
         
         <th class="booking-action" style='text-align: center;'>Itinerary</th>
+        
+        <th class="cus-style-gray" style='text-align: center;'>Action</th>
+        
       </tr>
     </thead>
     
@@ -42,6 +45,11 @@
           <td style='text-align: center;'>
             <div data-booking-id="<%= booking.id %>" class="btn btn-primary send-pdf-mailer">Send</a>
           </td>  
+          
+          <td style='text-align: center;'>
+            <%= link_to "", edit_booking_url(booking), class: 'glyphicon glyphicon-pencil' %>
+          </td>
+          
         </tr>
       <% end %>
     </tbody>       

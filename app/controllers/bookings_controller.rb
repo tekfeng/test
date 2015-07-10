@@ -28,6 +28,21 @@ class BookingsController < SalesController
     end
   end
   
+  def edit
+    @booking = Booking.find_by_id(params[:id])
+  end
+  
+  
+  def update
+    @booking = Booking.find(params[:id])
+    if @booking.update_attributes(booking_params)
+      flash[:notice] = true
+      redirect_to bookings_url
+    else
+      render :action => "edit"
+    end
+  end
+  
   def convert_to_booking
     @lead = Lead.find_by_id(params[:id])
     @booking = Booking.new({

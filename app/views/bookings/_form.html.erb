@@ -1,5 +1,5 @@
 <% lead ||= false%>
-<%= semantic_form_for @booking,  :url => "/sales/bookings",  :html => {:method => :post} do |form| %>
+<%= semantic_form_for @booking,  :url =>  @booking.new_record? ?  "/sales/bookings" : "/sales/bookings/#{@booking.id}",  :html => {:method => @booking.new_record? ? :post : :put,} do |form| %>
   <%= form.inputs do %>
     <div class= "form-group">
       <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
@@ -54,6 +54,7 @@
     <% if @booking.new_record?  and !lead and @booking.errors.count == 0 %>
       <% @booking.booking_tour_category_tours.new %>
     <% end %>
+    <% index_class_book = 0 %>
     <li class="form-group">
       <%= form.semantic_fields_for :booking_tour_category_tours, {
         min_entry: 1,
@@ -62,68 +63,58 @@
         new_record_link_label: "+ Add Tour"
       } do |tour| %>       
         <%= tour.inputs do %>
+          <% index_class_book +=  1 %>
+          <%= tour.input :tour_category_id, :as => :select, :collection => TourCategory.all.collect{|t| [t.name, t.id]},:input_html => { :class => "form-control booking-tour-category lt-cate-#{index_class_book}", :id => 'booking_tour_category'}, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12 padding-0 form-control "}, include_blank: false %>
         
-          <%= tour.input :tour_category_id, :as => :select, :collection => TourCategory.all.collect{|t| [t.name, t.id]},:input_html => { :class => 'form-control booking-tour-category', :id => 'booking_tour_category'}, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12 padding-0 form-control "}, include_blank: false %>
-        
-          <%= tour.input :tour_id, :as => :select , :collection => tour.object.tour_category.nil? ? [] : tour.object.tour_category.tours.collect{|t| [t.name, t.id]}, :input_html => { :class => 'form-control booking-tour', :id => 'booking_tour'}, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12 padding-0"}, include_blank: false%>
+          <%= tour.input :tour_id, :as => :select , :collection => tour.object.tour_category.nil? ? [] : tour.object.tour_category.tours.collect{|t| [t.name, t.id]}, :input_html => { :class => "form-control booking-tour lt-#{index_class_book}", :id => 'booking_tour'}, wrapper_html: {class: "col-md-12 col-sm-12 col-xs-12 padding-0"}, include_blank: false%>
        
             <script language="javascript">
               $(document).ready(function() {
-                             
-              <% if lead %>
-                var bookingTour = $('#booking_tour.booking-tour')
-                var bookingTourCategory =  $('#booking_tour_category.booking-tour-category')
-              <% else %>
-                var bookingTour = $('#booking_tour.booking-tour').last();
-                var bookingTourCategory =  $('#booking_tour_category.booking-tour-category').last();
-                <% if tour.object.tour_id.nil? %>
-                  bookingTour.prepend('<option value="0">Select Tour</option>');
-                  bookingTour.val("");
+                var bookTourCategory =  $("#booking_tour_category.booking-tour-category.lt-cate-<%=index_class_book%>");
+                var bookTour = $("#booking_tour.booking-tour.lt-<%=index_class_book%>");              
+                  
+                <% if tour.object.tour_id.nil? %> 
+                  bookTour.prepend('<option value="">-- Select Tour --</option>');
+                  bookTour.val("");    
                 <% end %>
-
-               <% if tour.object.tour_category_id.nil? %>
-                  bookingTourCategory.prepend('<option value="">-- Select Tour Category --</option>');
-                  bookingTourCategory.val("");
-                <% end %>
-
-              <% end %>
-
-                
-                bookingTourCategory.selectbox({
+                  
+                <% if tour.object.tour_category_id.nil? %>         
+                  bookTourCategory.prepend('<option value="">-- Select Tour Category --</option>');
+                  bookTourCategory.val("");     
+                <% end %>    
+                                                      
+                bookTour.selectbox({
                   onChange: function (val, inst) {
-                    bookingTourCategory.val(val)
+                    bookTour.val(val)
+                  }
+                });   
+                                       
+                bookTourCategory.selectbox({
+                  onChange: function (val, inst) {
+                    bookTourCategory.val(val)
                     var category_id = val;
                     var tourOfTourCategory = $(this).closest(".formnestic-li-fieldset").find("select#booking_tour.booking-tour");
                     tourOfTourCategory.selectbox("detach");
                     tourOfTourCategory.html('');
                     tourOfTourCategory.prepend('<option value="">-- Select Tour --</option>');
                     tourOfTourCategory.val("");
-                      if (category_id !== null) {
-                        $.ajax({
-                          url:"/sales/bookings/" + category_id + "/tour_of_tour_category",
-                          success:function(data){
-                            $.each(data, function(index, item) {
-                              var html = '<option value="'+item.id+'">'+item.name+'</option>';
-                              tourOfTourCategory.append(html);
-                            })
-                            tourOfTourCategory.selectbox({});
-
-                          }
-                        })
-                      } else {
-                        tourOfTourCategory.selectbox({});
-                      }
+                    if (category_id !== null) {
+                      $.ajax({
+                        url:"/sales/bookings/" + category_id + "/tour_of_tour_category",
+                        success:function(data){
+                          $.each(data, function(index, item) {
+                            var html = '<option value="'+item.id+'">'+item.name+'</option>';
+                            tourOfTourCategory.append(html);
+                          })            
+                          tourOfTourCategory.selectbox({});            
+                        }
+                      })
+                    } else {
+                      tourOfTourCategory.selectbox({});
                     }
-                });
-                
-                
-                bookingTour.selectbox({
-                  onChange: function (val, inst) {
-                    console.log("change value", val)
-                    bookingTour.val(val)
-                  }
-                });
-    
+                  }                                                        
+                });   
+             
               });  
             </script>            
         <% end %>
@@ -136,46 +127,7 @@
 <% end %>
 
 <script language="javascript">
-  $(document).ready(function() {
-    
-  <% if  @booking.errors.count > 0  %>
-    var bookingTour = $('#booking_tour.booking-tour')
-    var bookingTourCategory =  $('#booking_tour_category.booking-tour-category')
-
-    bookingTour.selectbox({
-      onChange: function (val, inst) {
-        bookingTour.val(val);
-      }
-    });
-    bookingTourCategory.selectbox({
-      onChange: function (val, inst) {
-        bookingTourCategory.val(val);
-        var category_id = val;
-        var tourOfTourCategory = $(this).closest(".formnestic-li-fieldset").find("select#booking_tour.booking-tour");
-        tourOfTourCategory.selectbox("detach");
-        tourOfTourCategory.html('');
-        tourOfTourCategory.prepend('<option value="">-- Select Tour --</option>');
-        tourOfTourCategory.val("");
-          if (category_id !== null) {
-            $.ajax({
-              url:"/sales/bookings/" + category_id + "/tour_of_tour_category",
-              success:function(data){
-                $.each(data, function(index, item) {
-                  var html = '<option value="'+item.id+'">'+item.name+'</option>';
-                  tourOfTourCategory.append(html);
-                })
-                tourOfTourCategory.selectbox({});
-
-              }
-            })
-          } else {
-            tourOfTourCategory.selectbox({});
-          }
-        }
-    });
-  <% end %>
-    
-    
+  $(document).ready(function() {    
     var bookingCustomerId = $('#booking_customer_id');
         
     <% if !lead and ((@booking.errors.count == 0) or (@booking.errors.count > 0 and !@booking.customer_id ) ) and @booking.customer_id.nil? %>
