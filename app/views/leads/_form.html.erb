@@ -55,6 +55,7 @@
       <% @lead.lead_tour_category_tours.new %>
     <% end %>
     
+    <% index_class = 0 %>
     <li class="form-group">
       <%= form.semantic_fields_for :lead_tour_category_tours, {
         min_entry: 1,
@@ -63,24 +64,18 @@
         new_record_link_label: "+ Add Tour"
       } do |tour| %>   
         <%= tour.inputs do %>
-        
-          <%= tour.input :tour_category_id, :as => :select, :collection => TourCategory.all.collect{|t| [t.name, t.id]},:input_html => { :class => 'lead-tour-category', :id => 'lead_tour_category'} , :include_blank => false %>  
+          <% index_class += 1 %>
+          <%= tour.input :tour_category_id, :as => :select, :collection => TourCategory.all.collect{|t| [t.name, t.id]}, :input_html => { :class => "lead-tour-category lt-cate-#{index_class}"  , :id => 'lead_tour_category'} , :include_blank => false %>  
          
-          <%= tour.input :tour_id, :as => :select, :collection => tour.object.tour_category.nil? ? [] : tour.object.tour_category.tours.collect{|t| [t.name, t.id]}, :input_html => { :class => 'lead-tour', :id => 'lead_tour'} , :include_blank => false  %>    
+          <%= tour.input :tour_id, :as => :select, :collection => tour.object.tour_category.nil? ? [] : tour.object.tour_category.tours.collect{|t| [t.name, t.id]}, :input_html => { :class => "lead-tour lt-#{index_class}", :id => 'lead_tour'} , :include_blank => false  %>    
              
             <script language="javascript">
-              $(document).ready(function() {
-                <% if (controller.action_name == "edit" and tour.object.tour_category_id) %>                              
-                  var leadTour = $('#lead_tour.lead-tour');
-                  var leadTourCategory =  $('#lead_tour_category.lead-tour-category') ;  
-                <% else %>                 
-                  var leadTour = $('#lead_tour.lead-tour').last();
-                  var leadTourCategory =  $('#lead_tour_category.lead-tour-category').last();
-                <% end %>   
+              $(document).ready(function() {               
+                
+                var leadTourCategory =  $("#lead_tour_category.lead-tour-category.lt-cate-<%=index_class%>");
+                var leadTour = $("#lead_tour.lead-tour.lt-<%=index_class%>");              
                   
-                                    
                 <% if tour.object.tour_id.nil? %> 
-                  console.log("hehehehhe")         
                   leadTour.prepend('<option value="">-- Select Tour --</option>');
                   leadTour.val("");    
                 <% end %>
@@ -89,8 +84,12 @@
                   leadTourCategory.prepend('<option value="">-- Select Tour Category --</option>');
                   leadTourCategory.val("");     
                 <% end %>    
-                                                        
-                leadTour.selectbox({});                          
+                                                      
+                leadTour.selectbox({
+                  onChange: function (val, inst) {
+                    leadTour.val(val)
+                  }
+                });                          
                 leadTourCategory.selectbox({
                   onChange: function (val, inst) {
                     leadTourCategory.val(val)
@@ -169,49 +168,7 @@
 <script language="javascript">
   $(document).ready(function() {
         
-    // run first select box for new lead
-    <% if @lead.errors.count > 0 %>
-     
-      var leadTour = $('#lead_tour.lead-tour');
-      var leadTourCategory =  $('#lead_tour_category.lead-tour-category');
-      leadTour.each(function() {
-        console.log($(this))
-        if ($(this).val()) {
-          leadTour.selectbox({});
-        } else {
-          $(this).prepend('<option value="">-- Select Tour --</option>');
-          $(this).val("");
-          $(this).selectbox({});     
-        }
-      });
-                                
-      leadTourCategory.selectbox({
-        onChange: function (val, inst) {
-          var category_id = val;
-          var tourOfTourCategory = $(this).closest(".formnestic-li-fieldset").find("select#lead_tour.lead-tour");
-          tourOfTourCategory.selectbox("detach");
-          tourOfTourCategory.html('');
-          tourOfTourCategory.prepend('<option value="">-- Select Tour --</option>');
-          tourOfTourCategory.val("");
-          if (category_id !== null) {
-            $.ajax({
-              url:"/sales/bookings/" + category_id + "/tour_of_tour_category",
-              success:function(data){
-                $.each(data, function(index, item) {
-                  var html = '<option value="'+item.id+'">'+item.name+'</option>';
-                  tourOfTourCategory.append(html);
-                })            
-                tourOfTourCategory.selectbox({});            
-              }
-            })
-          } else {
-            tourOfTourCategory.selectbox({});
-          }
-        }                                                        
-      });
-    <% end %>
-    
-    
+    // run first select box for new lead   
     
     var leadCustomerId = $('#lead_customer_id');
     <% if controller.action_name != "edit" and !@convert_cus_tomer_to_lead and @lead.customer_id.nil? %>        
@@ -250,9 +207,7 @@
           maxDate: db,
         });
       }
-    });   
-     
-    
+    });       
     
     //sum-pax
     $(document.body).delegate("#lead_adults, #lead_children", "keyup", function(){

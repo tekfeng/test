@@ -76,21 +76,22 @@
               <% else %>
                 var bookingTour = $('#booking_tour.booking-tour').last();
                 var bookingTourCategory =  $('#booking_tour_category.booking-tour-category').last();
-                <% if tour.object.tour_id.nil? %>    
+                <% if tour.object.tour_id.nil? %>
                   bookingTour.prepend('<option value="0">Select Tour</option>');
                   bookingTour.val("");
                 <% end %>
-                
-               <% if tour.object.tour_category_id.nil? %>       
+
+               <% if tour.object.tour_category_id.nil? %>
                   bookingTourCategory.prepend('<option value="">-- Select Tour Category --</option>');
                   bookingTourCategory.val("");
                 <% end %>
-                
+
               <% end %>
+
                 
-                bookingTour.selectbox({});  
                 bookingTourCategory.selectbox({
                   onChange: function (val, inst) {
+                    bookingTourCategory.val(val)
                     var category_id = val;
                     var tourOfTourCategory = $(this).closest(".formnestic-li-fieldset").find("select#booking_tour.booking-tour");
                     tourOfTourCategory.selectbox("detach");
@@ -104,15 +105,23 @@
                             $.each(data, function(index, item) {
                               var html = '<option value="'+item.id+'">'+item.name+'</option>';
                               tourOfTourCategory.append(html);
-                            })            
+                            })
                             tourOfTourCategory.selectbox({});
-              
+
                           }
                         })
                       } else {
                         tourOfTourCategory.selectbox({});
                       }
-                  	}
+                    }
+                });
+                
+                
+                bookingTour.selectbox({
+                  onChange: function (val, inst) {
+                    console.log("change value", val)
+                    bookingTour.val(val)
+                  }
                 });
     
               });  
@@ -132,8 +141,12 @@
   <% if  @booking.errors.count > 0  %>
     var bookingTour = $('#booking_tour.booking-tour')
     var bookingTourCategory =  $('#booking_tour_category.booking-tour-category')
-      
-    bookingTour.selectbox({});  
+
+    bookingTour.selectbox({
+      onChange: function (val, inst) {
+        bookingTour.val(val);
+      }
+    });
     bookingTourCategory.selectbox({
       onChange: function (val, inst) {
         bookingTourCategory.val(val);
@@ -150,15 +163,15 @@
                 $.each(data, function(index, item) {
                   var html = '<option value="'+item.id+'">'+item.name+'</option>';
                   tourOfTourCategory.append(html);
-                })            
+                })
                 tourOfTourCategory.selectbox({});
-  
+
               }
             })
           } else {
             tourOfTourCategory.selectbox({});
           }
-      	}
+        }
     });
   <% end %>
     
