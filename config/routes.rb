@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'invoice', controller: 'dashboard', action: 'invoice'
   get 'itinerary', controller: 'dashboard', action: 'itinerary'
   get 'sales/dashboard', controller: 'sales', action: 'dashboard' 
+  get 'operations/dashboard', controller: 'operations', action: 'dashboard' 
   
   root :to => 'dashboard#index'
   resources :dashboard
@@ -23,6 +24,11 @@ Rails.application.routes.draw do
       get 'dashboard_page'
     end
   end
+  
+  
+  scope 'operations' do
+    resources :mountain_guides
+  end  
   
   scope 'sales' do
     resources :incomings do

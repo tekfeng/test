@@ -150,6 +150,22 @@
             <span class="nav-label">MTQ Slots</span>
           <% end %>
         </li>
+      <% elsif session[:current_menu] == 'operations' %> 
+        <li class="<%= 'active' if params[:controller] == 'operations' and  controller.action_name == 'dashboard'%>">
+          <%= link_to "/operations/dashboard_page" do %>
+          <i class="fa fa-cubes"></i> 
+          <span class="nav-label">Dashboard</span>
+          <% end %>
+        </li>
+        <li class="<%= 'active' if params[:controller] == 'mountain_guides'%>">
+          <%= link_to "/operations/mountain_guides" do %>
+          <i class="fa fa-cubes"></i> 
+          <span class="nav-label">Mountain Guides</span>
+          <% end %>
+        </li>
+        
+        
+        
       <% end %>
     </ul>
   </div>
