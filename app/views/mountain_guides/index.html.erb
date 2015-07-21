@@ -1,3 +1,9 @@
+<% if flash[:form_notice].blank? == false %>
+	<script>
+		toastr['<%= flash[:form_notice]["type"] %>']('<%= flash[:form_notice]["message"] %>');
+	</script>
+	<% flash[:form_notice] = nil %>	
+<% end %>		
 <div class='row'>
   <div class='col-lg-12'>
     <div class="row wrapper border-bottom white-bg page-heading">
@@ -24,11 +30,11 @@
           <div class="col-md-12 col-sm-12 col-xs-12 padding-0 search">
             <%= smart_listing_controls_for(:mountain_guides) do %>
               <div class="form-group filter input-append">
-                <li class="date-form-field" style="list-style: none; margin-top:40px; position: relative;">
-                  <a style="color: #ccc; position: absolute" class="submit icon-search-style">
+                <li class="search-form-field" style="list-style: none; margin-top:40px; position: relative;">
+                  <%= text_field_tag :name, "", name: "search_rs[search_all]", class: "", placeholder: "Name"  %>
+                  <a style="color: #ccc;" class="submit icon-search-style">
                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                   </a>
-                  <%= text_field_tag :name, "", name: "search_rs[search_all]", class: "", placeholder: "Name"  %>
                 </li>
               </div>
               <% end %>
@@ -40,6 +46,7 @@
     <div class='wrapper wrapper-content'>
       <div class='ibox'>
         <div class='ibox-content container-fluid white-bg'>
+          <%= link_to 'New Mountain Guide', new_mountain_guide_url, class: "btn btn-primary pull-left" %>
           <div id="vendor_filter">
             <%= smart_listing_controls_for(:mountain_guides) do %>
               <div class="form-group filter input-append">
@@ -49,22 +56,23 @@
                    <span class='calendar-icon'></span>
                   </li>
                   <li class="number-filter">
-                   <%= text_field_tag :total_climb_filter, "", name: "search[total_climb]", class: "number-filter-field", placeholder: "eg 14,>=14..."  %>
-                   <span class='calendar-icon'></span>
+                   <%= text_field_tag :total_climb_filter, "", name: "search[total_climb]", class: "number-filter-field", placeholder: "Total Climb"  %>
+				   <span class='inline-hint'>Eg: 14,>=14...</span>
                   </li>
                   <li class="number-filter">
-                   <%= text_field_tag :penalty_filter, "", name: "search[penalty]", class: "number-filter-field", placeholder: "eg: 10, >=10..."  %>
-                   <span class='calendar-icon'></span>
+                   <%= text_field_tag :penalty_filter, "", name: "search[penalty]", class: "number-filter-field", placeholder: " Penalty"  %>
+				   <span class='inline-hint'>Eg: 12,>=12...</span>
+				   
                   </li>
                   <li class="number-filter">
-                   <%= text_field_tag :period_filter, "", name: "search[incentive]", class: "number-filter-field", placeholder: "eg: 12, <12..."  %>
-                   <span class='calendar-icon'></span>
+                   <%= text_field_tag :period_filter, "", name: "search[incentive]", class: "number-filter-field", placeholder: " Incentive"  %>
+				   <span class='inline-hint'>Eg: 13,>=13...</span>
                   </li>
                                 
                
-                  <li>
-                    <input type="submit" class="btn btn-primary filter-incoming" value="Filter" name="commit" style="margin-left: 90px; min-width: 30px !important; width: 70px; margin-top: 4px;">
-                    <input type="submit" class="btn btn-primary cancel-filter filter-incoming" value="Cancel" name="commit" style="margin-left: 20px; min-width: 30px !important; width: 70px; margin-top: 4px;">
+                  <li class="submit-control clearfix">
+                    <input type="submit" class="btn btn-primary filter-incoming" value="Filter" name="commit" style="margin-left: 82px; min-width: 30px !important; width: 70px; margin-top: 4px;">
+                    <input type="submit" class="btn btn-primary cancel-filter filter-incoming" value="Clear" name="commit" style="margin-left: 20px; min-width: 30px !important; width: 70px; margin-top: 4px;">
                   </li>
                 </ol>
               </div>
@@ -87,9 +95,11 @@
       return false;
     });
     
-    $('.date-field').datetimepicker({
-      timepicker: false,
-      format:'d-m-Y',
+    $('.month-select-field').datepicker({
+	    format: "MM, yyyy",
+	    startView: "months", 
+	    minViewMode: "months",
+	    autoclose: true
     }); 
     
     $(".select-form-field select").selectbox({

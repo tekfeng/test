@@ -28,6 +28,7 @@
 //= require formnestic/formnestic
 //= require dashboard/selectordie.js
 //= require dashboard/jquery.datetimepicker.js
+//= require dashboard/bootstrap-datepicker.js
 //= require dashboard/moment.min.js
 //= require dashboard/fullcalendar.js
 //= require dashboard/jquery.fancybox-1.3.4
@@ -279,8 +280,7 @@ $(function() {
       success: function(response) {
         
         if(response.result == 'ok') {
-          console.log("1111")
-          if(response.flash) {
+			if(response.flash) {
             console.log(response.flash.type)
             console.log(response.flash.message)
             $.cookie('flashType', response.flash.type, { path: '/' });

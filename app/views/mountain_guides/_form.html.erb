@@ -1,0 +1,48 @@
+<%= semantic_form_for @mountain_guide, :html => {id: "mountain_form", class: "default-form"} do |form| %>
+   <div class= "form-group container-fluid">
+     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+       <%= form.input :name, :as => :string, placeholder: "Name"%>
+     </div>
+     <div class="col-md-2 col-sm-2 col-xs-12"></div>
+   </div>
+   <div class= "form-group container-fluid">
+     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+       <%= form.input :period, :as => :string, placeholder: "Period", input_html: {class: 'date-field'}%>
+       <span class='calendar-icon'></span>
+     </div>
+     <div class="col-md-2 col-sm-2 col-xs-12"></div>
+   </div>
+   <div class= "form-group container-fluid">
+     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+       <%= form.input :total_climb, :as => :number, placeholder: "Total Climb"%>
+     </div>
+     <div class="col-md-2 col-sm-2 col-xs-12"></div>
+   </div>
+   <div class= "form-group container-fluid">
+     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+       <%= form.input :penalty, :as => :number, placeholder: "Penalty"%>
+     </div>
+     <div class="col-md-2 col-sm-2 col-xs-12"></div>
+   </div>
+   <div class= "form-group container-fluid">
+     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0 lead-group-select">
+       <%= form.input :incentive, :as => :number, placeholder: "Incentive"%>
+     </div>
+     <div class="col-md-2 col-sm-2 col-xs-12 container-fluid"></div>
+   </div>
+   <div class="form-group text-center">
+     <div class="col-md-12 col-sm-12 col-xs-12 padding-0">
+       <button class="btn btn-primary save-form-button" id="done" type="submit">Save</button>
+     </div>
+   </div>
+
+<% end %>
+<script>
+
+	$('.date-field').datepicker({
+	    format: "MM, yyyy",
+	    startView: "months", 
+	    minViewMode: "months",
+	    autoclose: true
+	}); 
+</script>

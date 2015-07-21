@@ -1,0 +1,44 @@
+<%= smart_listing.pagination_per_page_links %>
+<table id="mountain_guides_table" class='listing-table default-listing-table'>
+  <thead>
+    <tr>
+      <th class="odd">
+        <%= smart_listing.sortable "Name", :name %>
+      </th>
+      <th class="even" >
+        <%= smart_listing.sortable "Period", :period %>
+      </th>
+      <th class="odd">
+        <%= smart_listing.sortable "Total Climb", :total_climb %>
+      </th>
+      <th class="even">
+        <%= smart_listing.sortable "Penalty", :penalty %>
+      </th>
+      <th class="odd">
+        <%= smart_listing.sortable "Incentive", :incentive %>
+      </th>
+      <th class="even" style='text-align: center;'>
+        Action
+      </th>
+    </tr>
+  </thead>
+  <% if smart_listing.collection.count > 0 %>
+    <% smart_listing.collection.each_with_index do |guide, index| %>
+      <tr class="<%= cycle('odd', 'even') %>">
+        <td><%=  guide.name %></td>
+        <td><%=  guide.period %></td>
+        <td><%=  guide.total_climb %></td>
+        <td><%=  guide.penalty %></td>
+        <td><%=  guide.incentive %></td>
+        <td style='text-align: center;'>
+          <%= link_to "View", edit_mountain_guide_url(guide), class: 'btn btn-primary' %>
+        </td>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr>
+      <td colspan='5' class="no-data" >No Guides available</td>
+    </tr>
+  <% end %>
+</table>
+<%= smart_listing.paginate  %>
