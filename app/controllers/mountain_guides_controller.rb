@@ -52,6 +52,6 @@ class MountainGuidesController < OperationsController
   
   private
   def guide_params
-    params.require(:mountain_guide).permit(:name, :period, :total_climb, :penalty, :incentive)
+    params.require(:mountain_guide).permit(:name, :period, :total_climb, :penalty, :incentive, :remark)
   end
 end

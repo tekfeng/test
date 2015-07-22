@@ -1,0 +1,62 @@
+<div class="row wrapper border-bottom white-bg page-heading text-center">
+  <div class='col-lg-12'>
+    <div class="m-b-md text-center">
+      <a href="<%= tour_guides_url %>" class="btn btn-primary pull-left btn-back">&larr; Back</a>
+      <h2><%= @tour_guide.name %> - Tour Guide</h2>
+      <ol class="breadcrumb">
+        <li>
+          <a href="/dashboard">Home</a>
+        </li>
+        <li>
+          <a href="/dashboard">Operations</a>
+        </li>
+        <li>
+          <a href="<%= tour_guides_url %>">Tour Guides</a>
+        </li>
+        <li class="active">
+          <strong><%= @tour_guide.name %></strong>
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>
+<div class='wrapper wrapper-content operations-container'>
+  <div class='ibox white-bg'>
+    <div class='ibox-content container-fluid'>
+		<div class="control">
+	        <a href="<%= edit_tour_guide_url(@tour_guide) %>" class="btn btn-primary">Edit</a>
+		</div>		
+		
+		<div class='table-responsive'>
+			<table class="table table-striped information-table">
+				<tbody>
+					<tr>
+						<td class="td-label">Name</td>
+						<td><%= @tour_guide.name %></td>
+					</tr>
+					<tr>
+						<td class="td-label">Period</td>
+						<td><%= @tour_guide.period %></td>
+					</tr>
+					<tr>
+						<td class="td-label">Type</td>
+						<td><%= @tour_guide.tour_type %></td>
+					</tr>
+					<tr>
+						<td class="td-label">Allowance</td>
+						<td><%= @tour_guide.allowance %></td>
+					</tr>
+					<tr>
+						<td class="td-label">Total Tours</td>
+						<td><%= @tour_guide.total_tours %></td>
+					</tr>
+					<tr>
+						<td class="td-label">Total Allowances</td>
+						<td><%= @tour_guide.total_allowances %></td>
+					</tr>
+				</tbody>	
+			</table>
+		</div>
+    </div>
+  </div>
+</div> 

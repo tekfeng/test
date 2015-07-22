@@ -1,0 +1,49 @@
+<%= smart_listing.pagination_per_page_links %>
+<table id="mountain_guides_table" class='listing-table default-listing-table'>
+  <thead>
+    <tr>
+      <th class="odd">
+        <%= smart_listing.sortable "Name", :name %>
+      </th>
+      <th class="even" >
+        <%= smart_listing.sortable "Period", :period %>
+      </th>
+      <th class="odd">
+        <%= smart_listing.sortable "Tour Type", :tour_type %>
+      </th>
+      <th class="even">
+        <%= smart_listing.sortable "Allowance", :allowance %>
+      </th>
+      <th class="odd">
+        <%= smart_listing.sortable "Total Tours", :total_tours %>
+      </th>
+      <th class="even">
+        <%= smart_listing.sortable "Total Allowances", :total_allowances %>
+      </th>
+	  
+      <th class="odd" style='text-align: center;'>
+        Action
+      </th>
+    </tr>
+  </thead>
+  <% if smart_listing.collection.count > 0 %>
+    <% smart_listing.collection.each_with_index do |guide, index| %>
+      <tr class="<%= cycle('odd', 'even') %>">
+        <td><%=  guide.name %></td>
+        <td><%=  guide.period %></td>
+        <td><%=  guide.tour_type %></td>
+        <td><%=  guide.allowance %></td>
+        <td><%=  guide.total_tours %></td>
+        <td><%=  guide.total_allowances %></td>
+        <td style='text-align: center;'>
+          <%= link_to "View", tour_guide_url(guide), class: 'btn btn-primary' %>
+        </td>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr>
+      <td colspan='6' class="no-data" >No Guides available</td>
+    </tr>
+  <% end %>
+</table>
+<%= smart_listing.paginate  %>

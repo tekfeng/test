@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150717014434) do
+ActiveRecord::Schema.define(version: 20150722044153) do
 
   create_table "add_username_to_users", force: :cascade do |t|
     t.string   "username",   limit: 255
@@ -142,6 +142,7 @@ ActiveRecord::Schema.define(version: 20150717014434) do
     t.integer  "incentive",   limit: 4,   default: 0
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "remark",      limit: 255
   end
 
   create_table "mtq_slots", force: :cascade do |t|
@@ -196,6 +197,18 @@ ActiveRecord::Schema.define(version: 20150717014434) do
     t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "tour_guides", force: :cascade do |t|
+    t.string   "name",             limit: 255
+    t.string   "period",           limit: 255
+    t.string   "tour_type",        limit: 255
+    t.integer  "allowance",        limit: 4,   default: 0
+    t.integer  "total_tours",      limit: 4,   default: 0
+    t.integer  "total_allowances", limit: 4,   default: 0
+    t.string   "remark",           limit: 255
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
   end
 
   create_table "tours", force: :cascade do |t|

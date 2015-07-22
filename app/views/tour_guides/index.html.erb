@@ -13,7 +13,7 @@
           </div>
         </div>
         <div class="col-md-4 col-sm-4 col-xs-12 text-center">
-          <h2>Mountain Guide</h2>
+          <h2>Tour Guides</h2>
           <ol class="breadcrumb">
             <li>
               <a href="/dashboard">Home</a>
@@ -22,13 +22,13 @@
               <a href="/operations/dashboard">Operations</a>
             </li>
             <li class="active">
-              <strong>Mountain Guides</strong>
+              <strong>Tour Guides</strong>
             </li>
           </ol>
         </div>
         <div class="col-md-4 col-sm-4 col-xs-12 padding-0 search-incoming-rest">
           <div class="col-md-12 col-sm-12 col-xs-12 padding-0 search">
-            <%= smart_listing_controls_for(:mountain_guides) do %>
+            <%= smart_listing_controls_for(:tour_guides) do %>
               <div class="form-group filter input-append">
                 <li class="search-form-field" style="list-style: none; margin-top:40px; position: relative;">
                   <%= text_field_tag :name, "", name: "search_rs[search_all]", class: "", placeholder: "Name"  %>
@@ -46,9 +46,9 @@
     <div class='wrapper wrapper-content'>
       <div class='ibox'>
         <div class='ibox-content container-fluid white-bg'>
-          <%= link_to 'New Mountain Guide', new_mountain_guide_url, class: "btn btn-primary pull-left" %>
+          <%= link_to 'New Tour Guide', new_tour_guide_url, class: "btn btn-primary pull-left" %>
           <div id="vendor_filter">
-            <%= smart_listing_controls_for(:mountain_guides) do %>
+            <%= smart_listing_controls_for(:tour_guides) do %>
               <div class="form-group filter input-append">
                 <ol class='filter-form-group' >
                   <li class="date-form-field">
@@ -56,20 +56,26 @@
                    <span class='calendar-icon'></span>
                   </li>
                   <li class="number-filter">
-                   <%= text_field_tag :total_climb_filter, "", name: "search[total_climb]", class: "number-filter-field", placeholder: "Total Climb"  %>
-				   <span class='inline-hint'>Eg: 14,>=14...</span>
+	            	<select id="tour_type_search" name="search[tour_type_eq]">
+	          			<option value="">-- Type --</option>
+	          			<option value="overnight">Overnight</option>		
+	          			<option value="normal">Normal</option>		
+	              	</select>
                   </li>
                   <li class="number-filter">
-                   <%= text_field_tag :penalty_filter, "", name: "search[penalty]", class: "number-filter-field", placeholder: " Penalty"  %>
-				   <span class='inline-hint'>Eg: 12,>=12...</span>
+                   <%= text_field_tag :allowance_filter, "", name: "search[allowance]", class: "number-filter-field", placeholder: "Allowance"  %>
+				   <span class='inline-hint'>Eg: 200, >=200...</span>
 				   
                   </li>
                   <li class="number-filter">
-                   <%= text_field_tag :period_filter, "", name: "search[incentive]", class: "number-filter-field", placeholder: " Incentive"  %>
-				   <span class='inline-hint'>Eg: 13,>=13...</span>
+                   <%= text_field_tag :total_tours_filter, "", name: "search[total_tours]", class: "number-filter-field", placeholder: "Total Tours"  %>
+				   <span class='inline-hint'>Eg: 13, >=13...</span>
                   </li>
-                                
-               
+                  <li class="number-filter">
+                   <%= text_field_tag :total_allowances_filter, "", name: "search[total_allowances]", class: "number-filter-field", placeholder: "Total Tours"  %>
+				   <span class='inline-hint'>Eg: 500, >=500...</span>
+                  </li>
+               	  	
                   <li class="submit-control clearfix">
                     <input type="submit" class="btn btn-primary filter-incoming" value="Filter" name="commit" style="margin-left: 82px; min-width: 30px !important; width: 70px; margin-top: 4px;">
                     <input type="submit" class="btn btn-primary cancel-filter filter-incoming" value="Clear" name="commit" style="margin-left: 20px; min-width: 30px !important; width: 70px; margin-top: 4px;">
@@ -80,7 +86,7 @@
           </div>
         </div>
         <div id="listing-table">
-          <%= smart_listing_render(:mountain_guides) %>
+          <%= smart_listing_render(:tour_guides) %>
         </div>
       </div>
     </div>
@@ -92,6 +98,13 @@
 	    startView: "months", 
 	    minViewMode: "months",
 	    autoclose: true
+    }); 
+	
+    $('#tour_type_search').selectbox({
+      onChange: function(val){
+		  $('#tour_type_search').val(val);
+      }
     });
+	 
 	
 </script>
