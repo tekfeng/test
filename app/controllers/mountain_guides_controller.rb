@@ -17,6 +17,10 @@ class MountainGuidesController < OperationsController
     @mountain_guide = MountainGuide.new
   end
   
+  def show
+    @mountain_guide = MountainGuide.find_by_id(params[:id])
+  end  
+  
   def create
     @mountain_guide = MountainGuide.new(guide_params)
     if @mountain_guide.save
@@ -36,7 +40,7 @@ class MountainGuidesController < OperationsController
     if @mountain_guide  
       if @mountain_guide.update_attributes(guide_params)
         flash[:form_notice] = {type: 'success', message: "#{@mountain_guide.name} information updated."}
-        redirect_to mountain_guides_url 
+        redirect_to mountain_guide_url(@mountain_guide) 
       else
         render action: 'edit'
       end    

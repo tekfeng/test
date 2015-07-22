@@ -1,0 +1,58 @@
+<div class="row wrapper border-bottom white-bg page-heading text-center">
+  <div class='col-lg-12'>
+    <div class="m-b-md text-center">
+      <a href="<%= mountain_guides_url %>" class="btn btn-primary pull-left btn-back">&larr; Back</a>
+      <h2><%= @mountain_guide.name %> - Mountain Guide</h2>
+      <ol class="breadcrumb">
+        <li>
+          <a href="/dashboard">Home</a>
+        </li>
+        <li>
+          <a href="/dashboard">Operations</a>
+        </li>
+        <li>
+          <a href="<%= mountain_guides_url %>">Mountain Guides</a>
+        </li>
+        <li class="active">
+          <strong><%= @mountain_guide.name %></strong>
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>
+<div class='wrapper wrapper-content operations-container'>
+  <div class='ibox white-bg'>
+    <div class='ibox-content container-fluid'>
+		<div class="control">
+	        <a href="<%= edit_mountain_guide_url(@mountain_guide) %>" class="btn btn-primary">Edit</a>
+		</div>		
+		
+		<div class='table-responsive'>
+			<table class="table table-striped information-table">
+				<tbody>
+					<tr>
+						<td class="td-label">Name</td>
+						<td><%= @mountain_guide.name %></td>
+					</tr>
+					<tr>
+						<td class="td-label">Period</td>
+						<td><%= @mountain_guide.period %></td>
+					</tr>
+					<tr>
+						<td class="td-label">Total Climb</td>
+						<td><%= @mountain_guide.total_climb %></td>
+					</tr>
+					<tr>
+						<td class="td-label">Penalty</td>
+						<td><%= @mountain_guide.penalty %></td>
+					</tr>
+					<tr>
+						<td class="td-label">Incentive</td>
+						<td><%= @mountain_guide.incentive %></td>
+					</tr>
+				</tbody>	
+			</table>
+		</div>
+    </div>
+  </div>
+</div> 
