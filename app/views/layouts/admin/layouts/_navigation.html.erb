@@ -169,6 +169,12 @@
           <span class="nav-label">Tour Guides</span>
           <% end %>
         </li>
+        <li class="<%= 'active' if params[:controller] == 'captains'%>">
+          <%= link_to "/operations/captains" do %>
+          <i class="fa fa-cubes"></i> 
+          <span class="nav-label">Captains</span>
+          <% end %>
+        </li>
         
         
         

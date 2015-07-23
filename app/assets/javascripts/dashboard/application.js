@@ -31,6 +31,7 @@
 //= require dashboard/bootstrap-datepicker.js
 //= require dashboard/moment.min.js
 //= require dashboard/fullcalendar.js
+//= require dashboard/icheck.min.js
 //= require dashboard/jquery.fancybox-1.3.4
 //= require dashboard/jquery.selectbox-0.2
 //= require dashboard/jquery.timeago

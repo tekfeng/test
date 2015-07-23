@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   scope 'operations' do
     resources :mountain_guides
     resources :tour_guides
+    resources :captains
   end  
   
   scope 'sales' do

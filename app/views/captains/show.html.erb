@@ -1,0 +1,75 @@
+<div class="row wrapper border-bottom white-bg page-heading text-center">
+  <div class='col-lg-12'>
+    <div class="m-b-md text-center">
+      <a href="<%= captains_url %>" class="btn btn-primary pull-left btn-back">&larr; Back</a>
+      <h2><%= @captain.name %> - Captain</h2>
+      <ol class="breadcrumb">
+        <li>
+          <a href="/dashboard">Home</a>
+        </li>
+        <li>
+          <a href="/dashboard">Operations</a>
+        </li>
+        <li>
+          <a href="<%= captains_url %>">Captains</a>
+        </li>
+        <li class="active">
+          <strong><%= @captain.name %></strong>
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>
+<div class='wrapper wrapper-content operations-container'>
+  <div class='ibox white-bg'>
+    <div class='ibox-content container-fluid'>
+		<div class="control">
+	        <a href="<%= edit_captain_url(@captain) %>" class="btn btn-primary">Edit</a>
+		</div>		
+		
+		<div class='table-responsive'>
+			<table class="table table-striped information-table">
+				<tbody>
+					<tr>
+						<td class="td-label">Availability</td>
+						<td><%= @captain.availability? ? "YES" : "NO" %></td>
+					</tr>
+					
+					<tr>
+						<td class="td-label">Name</td>
+						<td><%= @captain.name %></td>
+					</tr>
+					<tr>
+						<td class="td-label">Contact Number</td>
+						<td><%= @captain.contact %></td>
+					</tr>
+					<tr>
+						<td class="td-label">Center</td>
+						<td><%= @captain.center %></td>
+					</tr>
+					<tr>
+						<td class="td-label">Home Address</td>
+						<td><%= @captain.address %></td>
+					</tr>
+					<tr>
+						<td class="td-label">Email</td>
+						<td><%= @captain.email %></td>
+					</tr>
+					<tr>
+						<td class="td-label">Date Join</td>
+						<td><%= @captain.join_date.strftime("%d-%m-%Y") %></td>
+					</tr>
+					<tr>
+						<td class="td-label">Personal Particular</td>
+						<td><%= @captain.personal_particular %></td>
+					</tr>
+					<tr>
+						<td class="td-label">Remark</td>
+						<td><%= @captain.remark %></td>
+					</tr>
+				</tbody>	
+			</table>
+		</div>
+    </div>
+  </div>
+</div> 

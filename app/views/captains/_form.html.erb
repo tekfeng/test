@@ -1,0 +1,88 @@
+<%= semantic_form_for @captain, :html => {id: "captain_form", class: "default-form"} do |form| %>
+   <div class= "form-group container-fluid">
+     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+       <%= form.input :name, :as => :string, placeholder: "Name"%>
+     </div>
+     <div class="col-md-2 col-sm-2 col-xs-12"></div>
+   </div>
+   <div class= "form-group container-fluid">
+     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+       <%= form.input :contact, :as => :string, placeholder: "Contact"%>
+     </div>
+     <div class="col-md-2 col-sm-2 col-xs-12"></div>
+   </div>
+   <div class= "form-group container-fluid">
+     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+       <%= form.input :center, :as => :select, collection: ["Sandakan", "Sandakan 1"], include_blank: "-- Select Center --"%>
+     </div>
+     <div class="col-md-2 col-sm-2 col-xs-12"></div>
+   </div>
+   <div class= "form-group container-fluid">
+     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+       <%= form.input :address, :as => :string, placeholder: "Address"%>
+     </div>
+     <div class="col-md-2 col-sm-2 col-xs-12"></div>
+   </div>
+   <div class= "form-group container-fluid">
+     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+       <%= form.input :email, :as => :string, placeholder: "Email"%>
+     </div>
+     <div class="col-md-2 col-sm-2 col-xs-12"></div>
+   </div>
+   
+   <div class= "form-group container-fluid">
+     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+       <%= form.input :join_date, :as => :string, placeholder: "Join Date", input_html: {class: 'date-field'}%>
+       <span class='calendar-icon'></span>
+     </div>
+     <div class="col-md-2 col-sm-2 col-xs-12"></div>
+   </div>
+   <div class= "form-group container-fluid">
+     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+       <%= form.input :personal_particular, :as => :string, placeholder: "Personal Particular"%>
+     </div>
+     <div class="col-md-2 col-sm-2 col-xs-12"></div>
+   </div>
+   <% if @captain.new_record? == false %>
+   <div class= "form-group container-fluid">
+     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+       <%= form.input :availability %>
+     </div>
+     <div class="col-md-2 col-sm-2 col-xs-12"></div>
+   </div>
+   <% end %>
+   <div class="form-group text-center">
+     <div class="col-md-12 col-sm-12 col-xs-12 padding-0">
+       <button class="btn btn-primary save-form-button" id="done" type="submit">Save</button>
+     </div>
+   </div>
+   
+   
+
+<% end %>
+<script>
+	$('.date-field').datetimepicker({
+	  timepicker: false,
+	  format:'d-m-Y',
+	}); 
+	
+	$('#captain_availability').iCheck({  
+		checkboxClass: 'icheckbox_square-green',
+		radioClass: 'iradio_square-aero',
+		increaseArea: '20%' // optional
+	});
+	$('#captain_availability').on('ifChecked', function(event){
+		$(event.target).val(1);
+	});
+	$('#captain_availability').on('ifUnchecked', function(event){
+		$(event.target).val(0);
+	});
+	
+	
+    $('#captain_center').selectbox({
+      onChange: function(val){
+		  $('#captain_center').val(val);
+      }
+    });
+	
+</script>

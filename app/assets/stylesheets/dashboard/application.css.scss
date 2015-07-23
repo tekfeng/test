@@ -31,6 +31,7 @@
  *= require dashboard/jquery.fancybox-1.3.4.css
  *= require dashboard/jquery.selectbox.css
  *= require dashboard/sweet-alert.css
+ *= require dashboard/icheck.css
  *= require incomings
  *= require ./vendors
  *= require ./operations
@@ -1455,6 +1456,10 @@ form.default-form {
 			.label {
 				display: inline;
 			}
+		}
+		
+		div.icheckbox_square-green {
+			margin-right: 10px;
 		}
 		
         span.calendar-icon {
