@@ -8,7 +8,6 @@ class OperationsController < BaseController
   end  
   
   def dashboard
-    
   end  
   
   

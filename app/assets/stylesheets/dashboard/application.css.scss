@@ -1412,7 +1412,7 @@ input#tour_min_number_pax {
 form.smart-listing-controls {
   	
   	
-  input {
+  input, textarea {
       width: 325px;
       margin:0 auto;
       display:block;
@@ -1452,6 +1452,21 @@ form.smart-listing-controls {
 
 form.default-form {
 	.form-group {
+		
+	    input, textarea {
+	        display:block;
+	        border-radius: 5px;
+	        box-shadow: 0 1px 2px #dedede inset;
+	        border: 1px solid #ccc;
+	        padding:7px;
+	    }
+		
+		textarea.remark-edit {
+			width: 100%;
+			height: 100px;
+			resize: none;
+		}
+		
 		li {
 			.label {
 				display: inline;

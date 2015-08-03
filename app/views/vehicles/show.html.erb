@@ -1,0 +1,62 @@
+<div class="row wrapper border-bottom white-bg page-heading text-center">
+  <div class='col-lg-12'>
+    <div class="m-b-md text-center">
+      <a href="<%= vehicles_url %>" class="btn btn-primary pull-left btn-back">&larr; Back</a>
+      <h2><%= @vehicle.vehicle_no %> - Vehicle</h2>
+      <ol class="breadcrumb">
+        <li>
+          <a href="/dashboard">Home</a>
+        </li>
+        <li>
+          <a href="/operations/dashboard">Operations</a>
+        </li>
+        <li>
+          <a href="<%= vehicles_url %>">Vehicles</a>
+        </li>
+        <li class="active">
+          <strong><%= @vehicle.vehicle_no %></strong>
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>
+<div class='wrapper wrapper-content operations-container'>
+  <div class='ibox white-bg'>
+    <div class='ibox-content container-fluid'>
+		<div class="control">
+	        <a href="<%= edit_vehicle_url(@vehicle) %>" class="btn btn-primary">Edit</a>
+		</div>		
+		
+		<div class='table-responsive'>
+			<table class="table table-striped information-table">
+				<tbody>
+					<tr>
+						<td class="td-label">Vehicle No</td>
+						<td><%= @vehicle.vehicle_no %></td>
+					</tr>
+					<tr>
+						<td class="td-label">Vehicle Type</td>
+						<td><%= @vehicle.vehicle_type.nil? == false ? @vehicle.vehicle_type.name : "N/A" %></td>
+					</tr>
+					<tr>
+						<td class="td-label">Center</td>
+						<td><%= @vehicle.center %></td>
+					</tr>
+					<tr>
+						<td class="td-label">Licence Validity</td>
+						<td><%= @vehicle.licence_validity %></td>
+					</tr>
+					<tr>
+						<td class="td-label">Last Mantenance</td>
+						<td><%= @vehicle.last_mantenance.blank? ? "N/A" : @vehicle.last_mantenance.strftime("%d-%m-%Y") %></td>
+					</tr>
+					<tr>
+						<td class="td-label">Remark</td>
+						<td><%= @vehicle.remarks %></td>
+					</tr>
+				</tbody>	
+			</table>
+		</div>
+    </div>
+  </div>
+</div> 

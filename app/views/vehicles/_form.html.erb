@@ -1,0 +1,72 @@
+<%= semantic_form_for @vehicle, :html => {id: "vehicle_form", class: "default-form"} do |form| %>
+   <div class= "form-group container-fluid">
+     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+       <%= form.input :vehicle_no, :as => :string, placeholder: "Vehicle No"%>
+     </div>
+     <div class="col-md-2 col-sm-2 col-xs-12"></div>
+   </div>
+   <div class= "form-group container-fluid">
+     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+       <%= form.input :vehicle_type_id, label: "Vehicle Type" ,:as => :select, collection: VehicleType.all.collect{|c| [c.name, c.id]}, include_blank: "-- Select Type --"%>
+     </div>
+     <div class="col-md-2 col-sm-2 col-xs-12"></div>
+   </div>
+   <div class= "form-group container-fluid">
+     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+       <%= form.input :center, :as => :select, collection: ["Sandakan", "Sandakan 1"], include_blank: "-- Select Center --"%>
+     </div>
+     <div class="col-md-2 col-sm-2 col-xs-12"></div>
+   </div>
+   <div class= "form-group container-fluid">
+     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+       <%= form.input :licence_validity, :as => :select, collection: ["5 years", "10 years"], include_blank: "-- Select Validity --"%>
+     </div>
+     <div class="col-md-2 col-sm-2 col-xs-12"></div>
+   </div>
+   <div class= "form-group container-fluid">
+     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+       <%= form.input :last_mantenance, :as => :string, placeholder: "Last Maintenance", input_html: {class: 'date-field'}%>
+       <span class='calendar-icon'></span>
+     </div>
+     <div class="col-md-2 col-sm-2 col-xs-12"></div>
+   </div>
+   <div class= "form-group container-fluid">
+     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+       <%= form.input :remarks, :as => :text, placeholder: "Remarks", input_html: {class: 'remark-edit'} %>
+     </div>
+   </div>
+   <div class="form-group text-center">
+     <div class="col-md-12 col-sm-12 col-xs-12 padding-0">
+       <button class="btn btn-primary save-form-button" id="done" type="submit">Save</button>
+     </div>
+   </div>
+   
+   
+
+<% end %>
+<script>
+	$('.date-field').datetimepicker({
+	  timepicker: false,
+	  format:'d-m-Y',
+	}); 
+	
+    $('#vehicle_vehicle_type_id').selectbox({
+      onChange: function(val){
+		  $('#vehicle_vehicle_type_id').val(val);
+      }
+    });
+	
+    $('#vehicle_licence_validity').selectbox({
+      onChange: function(val){
+		  $('#vehicle_licence_validity').val(val);
+      }
+    });
+	
+	
+    $('#vehicle_center').selectbox({
+      onChange: function(val){
+		  $('#vehicle_center').val(val);
+      }
+    });
+	
+</script>
