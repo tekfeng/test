@@ -13,7 +13,6 @@ class VehiclesController < OperationsController
   
   def show
     @vehicle = Vehicle.find_by_id(params[:id])
-    
   end
   
   def new
@@ -32,9 +31,23 @@ class VehiclesController < OperationsController
   end
   
   def edit
+    @vehicle = Vehicle.find_by_id(params[:id])
   end
   
   def update
+    @vehicle = Vehicle.find_by_id(params[:id])
+    if @vehicle  
+      if @vehicle.update_attributes(vehicle_params)
+        flash[:form_notice] = {type: 'success', message: "#{@vehicle.vehicle_no} information updated."}
+        redirect_to vehicle_url(@vehicle) 
+      else
+        render action: 'edit'
+      end    
+    else
+      flash[:form_notice] = {type: 'fail', message: "Cannot update information. Please check again."}
+      redirect_to vehicles_url
+    end    
+    
   end          
     
   private
