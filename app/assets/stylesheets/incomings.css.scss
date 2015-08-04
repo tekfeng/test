@@ -32,6 +32,13 @@ form.smart-listing-controls {
     li{
       margin-bottom: 15px;
       width:325px;
+	  &.field-control {
+		  input {
+			  float:left;
+			  box-shadow: none;
+			  border: none;
+		  }
+	  }
     }
     .select-form-field {
       .sbHolder {
