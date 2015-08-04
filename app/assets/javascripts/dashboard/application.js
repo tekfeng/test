@@ -38,7 +38,38 @@
 //= require smart_listing
 //= require dashboard/summernote.min.js  
  
+
+window.showModalBoxWithURL = function(url){
+  $('#modal_contain').modal({
+	    show: true,
+	    backdrop: 'static',
+	    keyboard: true
+  });
+  $('#modal_contain .modal-content').load(url, function() {
+  });
+}
+
+window.closeModalBox = function(){
+  $('#modal_contain').modal('hide');
+    return false;
+}
+ 
+ 
 $(document).ready(function() {
+  
+  
+  $(document.body).delegate('.modal-box-link', 'click', function(e){
+      e.preventDefault();
+	  
+	  var url = $(this).data('url');
+	  window.showModalBoxWithURL(url);
+  });
+  
+  $(document.body).delegate('.close-link', 'click', function(e){
+      e.preventDefault();
+	  window.closeModalBox();
+  });
+  
   
   $(document.body).delegate('.cl-all-btn', 'click', function() {
     confirmAccept = confirm("Are you sure you want to clear all notifications?");

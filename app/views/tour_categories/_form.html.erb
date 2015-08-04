@@ -1,15 +1,15 @@
 <%= form_for @tour_category, html: { class: 'form-horizontal ajax-form', enctype: 'multipart/form-data' } do |form| %>
   <div class='form-group'>
-    <!-- <label class='col-sm-2 control-label text-align-right'>Name:</label> -->
-    <div class='col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0'>
+    <div class='col-md-12 col-sm-12col-xs-12'>
       <%= form.text_field :name, class: 'form-control', placeholder: "Name Category" %>
     </div>
   </div>
   
   <div class="form-group text-center">
-    <div class="col-md-12 col-sm-12 col-xs-12">
-      <a class="btn btn-primary" href='<%= tour_categories_url %>'>Cancel</a>
+    <div class="buttons-group clearfix">
       <button class="btn btn-primary save-form-button" type="submit">Save</button>
+      <button class="btn btn-warning save-form-button" >Deactive</button>
+      <button class="btn btn-danger last-btn save-form-button" >Delete</button>
     </div>
   </div>
   

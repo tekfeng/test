@@ -1,0 +1,44 @@
+div.modal-box-content {
+	div.ibox {
+		margin-bottom:10px;
+		
+		div.ibox-header{
+			margin-top:10px;
+		    padding: 0px 10px 10px 10px;
+			position:relative;
+			div.ibox-tools {
+				position:absolute;
+				top:-6px;
+				right:9px;
+			}
+		}
+		
+		div.ibox-content {
+			padding-bottom: 10px;
+		}
+	}
+	
+	form {
+		.buttons-group {
+			margin: 0 auto;
+			width:auto;
+			display:inline-block;
+			margin-top:10px;
+			button {
+				float: left;
+				margin-right: 5px;
+				font-size: 12px;
+				width: 80px !important;
+				&.last-btn {
+					margin-right: 0px;
+				}
+			}
+			
+			button[type='submit'] {
+				width: 80px !important;
+				min-width:80px;
+			}
+		}
+	}
+	
+}

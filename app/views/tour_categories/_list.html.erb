@@ -20,7 +20,7 @@
           <td><%= tour_category.name.html_safe %></td>
        
           <td style='text-align: center;'>
-            <%= link_to "", edit_tour_category_url(tour_category), class: 'glyphicon glyphicon-pencil' %>
+			<a href="" class="glyphicon glyphicon-pencil modal-box-link" data-url="<%= edit_tour_category_url(tour_category) %>" >  
           </td>
         </tr>
       <% end %>

@@ -29,6 +29,7 @@ class TourCategoriesController < AdminsController
   
   def edit
     @tour_category = TourCategory.find_by_id(params[:id])
+    render layout: false
   end
 
   def update
