@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150803032340) do
+ActiveRecord::Schema.define(version: 20150803085055) do
 
   create_table "add_username_to_users", force: :cascade do |t|
     t.string   "username",   limit: 255
@@ -61,6 +61,13 @@ ActiveRecord::Schema.define(version: 20150803032340) do
     t.datetime "created_at",                                       null: false
     t.datetime "updated_at",                                       null: false
     t.boolean  "availability",        limit: 1,     default: true
+  end
+
+  create_table "centers", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "code",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "cities", force: :cascade do |t|
@@ -119,6 +126,22 @@ ActiveRecord::Schema.define(version: 20150803032340) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.integer  "user_id",       limit: 4
+  end
+
+  create_table "inventory_items", force: :cascade do |t|
+    t.string   "name",             limit: 255
+    t.integer  "center_id",        limit: 4
+    t.integer  "item_category_id", limit: 4
+    t.integer  "current_balance",  limit: 4
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  create_table "item_categories", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "code",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "lead_tour_category_tours", force: :cascade do |t|
