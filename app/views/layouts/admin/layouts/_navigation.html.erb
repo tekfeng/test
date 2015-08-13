@@ -152,7 +152,7 @@
         </li>
       <% elsif session[:current_menu] == 'operations' %> 
         <li class="<%= 'active' if params[:controller] == 'operations' and  controller.action_name == 'dashboard'%>">
-          <%= link_to "/operations/dashboard_page" do %>
+          <%= link_to "/operations/dashboard" do %>
           <i class="fa fa-cubes"></i> 
           <span class="nav-label">Dashboard</span>
           <% end %>
@@ -161,6 +161,24 @@
           <%= link_to "/operations/mountain_guides" do %>
           <i class="fa fa-cubes"></i> 
           <span class="nav-label">Mountain Guides</span>
+          <% end %>
+        </li>
+        <li class="<%= 'active' if params[:controller] == 'tour_guides'%>">
+          <%= link_to "/operations/tour_guides" do %>
+          <i class="fa fa-cubes"></i> 
+          <span class="nav-label">Tour Guides</span>
+          <% end %>
+        </li>
+        <li class="<%= 'active' if params[:controller] == 'captains'%>">
+          <%= link_to "/operations/captains" do %>
+          <i class="fa fa-cubes"></i> 
+          <span class="nav-label">Captains</span>
+          <% end %>
+        </li>
+        <li class="<%= 'active' if params[:controller] == 'vehicles'%>">
+          <%= link_to "/operations/vehicles" do %>
+          <i class="fa fa-cubes"></i> 
+          <span class="nav-label">Vehicles</span>
           <% end %>
         </li>
         

@@ -1,0 +1,44 @@
+<%= smart_listing.pagination_per_page_links %>
+<table id="vehicles_table" class='listing-table default-listing-table'>
+  <thead>
+    <tr>
+      <th class="odd">
+        <%= smart_listing.sortable "Vehicle No", :vehicle_no %>
+      </th>
+      <th class="even">
+        <%= smart_listing.sortable "Type", :type %>
+      </th>
+      <th class="odd">
+        <%= smart_listing.sortable "Center", :center %>
+      </th>
+      <th class="even">
+        <%= smart_listing.sortable "Licence validity", :licence_validity %>
+      </th>
+      <th class="odd">
+        <%= smart_listing.sortable "Last Maintenance", :last_mantenance %>
+      </th>
+      <th class="even" style='text-align: center;'>
+        Action
+      </th>
+    </tr>
+  </thead>
+  <% if smart_listing.collection.count > 0 %>
+    <% smart_listing.collection.each_with_index do |vehicle, index| %>
+      <tr class="<%= cycle('odd', 'even') %>">
+        <td><%=  vehicle.vehicle_no %></td>
+        <td><%=  vehicle.vehicle_type.nil? == false ? vehicle.vehicle_type.name : "N/A"  %></td>
+        <td><%=  vehicle.center %></td>
+        <td><%=  vehicle.licence_validity %></td>
+        <td><%=  vehicle.last_mantenance.strftime("%d-%m-%Y") %></td>
+        <td style='text-align: center;'>
+          <%= link_to "View", vehicle_url(vehicle), class: 'btn btn-primary' %>
+        </td>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr>
+      <td colspan='10' class="no-data" >No Vehicles available</td>
+    </tr>
+  <% end %>
+</table>
+<%= smart_listing.paginate  %>

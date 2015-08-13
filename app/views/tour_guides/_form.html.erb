@@ -1,0 +1,66 @@
+<%= semantic_form_for @tour_guide, :html => {id: "tour_guide_form", class: "default-form"} do |form| %>
+   <div class= "form-group container-fluid">
+     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+       <%= form.input :name, :as => :string, placeholder: "Name"%>
+     </div>
+     <div class="col-md-2 col-sm-2 col-xs-12"></div>
+   </div>
+   <div class= "form-group container-fluid">
+     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+       <%= form.input :period, :as => :string, placeholder: "Period", input_html: {class: 'date-field'}%>
+       <span class='calendar-icon'></span>
+     </div>
+     <div class="col-md-2 col-sm-2 col-xs-12"></div>
+   </div>
+   <div class= "form-group container-fluid">
+     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+       <%= form.input :tour_type, :as => :select, collection: [["Overnight","overnight"], ["Normal", "normal"]], include_blank: "-- Select Type --"%>
+     </div>
+     <div class="col-md-2 col-sm-2 col-xs-12"></div>
+   </div>
+   <div class= "form-group container-fluid">
+     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+       <%= form.input :allowance, :as => :number, placeholder: "allowance"%>
+     </div>
+     <div class="col-md-2 col-sm-2 col-xs-12"></div>
+   </div>
+   <div class= "form-group container-fluid">
+     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0 lead-group-select">
+       <%= form.input :total_tours, :as => :number, placeholder: "Total Tours"%>
+     </div>
+     <div class="col-md-2 col-sm-2 col-xs-12 container-fluid"></div>
+   </div>
+   <div class= "form-group container-fluid">
+     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0 lead-group-select">
+       <%= form.input :total_allowances, :as => :number, placeholder: "Total Allowances"%>
+     </div>
+     <div class="col-md-2 col-sm-2 col-xs-12 container-fluid"></div>
+   </div>
+   <div class= "form-group container-fluid">
+     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 padding-0">
+       <%= form.input :remark, :as => :text, placeholder: "Remarks", input_html: {class: 'remark-edit'} %>
+     </div>
+   </div>
+   <div class="form-group text-center">
+     <div class="col-md-12 col-sm-12 col-xs-12 padding-0">
+       <button class="btn btn-primary save-form-button" id="done" type="submit">Save</button>
+     </div>
+   </div>
+
+<% end %>
+<script>
+
+	$('.date-field').datepicker({
+	    format: "MM, yyyy",
+	    startView: "months", 
+	    minViewMode: "months",
+	    autoclose: true
+	}); 
+	
+    $('#tour_guide_tour_type').selectbox({
+      onChange: function(val){
+		  $('#tour_guide_tour_type').val(val);
+      }
+    });
+	
+</script>

@@ -87,28 +87,11 @@
   </div>
 </div>
 <script language="javascript">
-  $(document).ready(function() {
-    
-    $(document.body).delegate("#vendor_filter ol.filter-form-group li input", "change", function(e){
-      e.preventDefault();
-      e.stopImmediatePropagation();
-      return false;
-    });
-    
-    $('.month-select-field').datepicker({
+	$('.month-select-field').datepicker({
 	    format: "MM, yyyy",
 	    startView: "months", 
 	    minViewMode: "months",
 	    autoclose: true
-    }); 
-    
-    $(".select-form-field select").selectbox({
-      onChange: function(val){
-        $("select#source_info_cont").val(val);
-      }
-    });   
-    
-    
-  
-  });  
+    });
+	
 </script>

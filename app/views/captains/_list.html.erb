@@ -1,0 +1,61 @@
+<%= smart_listing.pagination_per_page_links %>
+<table id="mountain_guides_table" class='listing-table default-listing-table'>
+  <thead>
+    <tr>
+      <th class="odd">
+        <%= smart_listing.sortable "Availability", :availability %>
+      </th>
+      <th class="even" >
+        <%= smart_listing.sortable "Name", :name %>
+      </th>
+      <th class="odd">
+        <%= smart_listing.sortable "Contact", :contact %>
+      </th>
+      <th class="even">
+        <%= smart_listing.sortable "Center", :center %>
+      </th>
+      <th class="odd">
+        <%= smart_listing.sortable "Address", :address %>
+      </th>
+      <th class="even">
+        <%= smart_listing.sortable "Email", :email %>
+      </th>
+      <th class="odd">
+        <%= smart_listing.sortable "Allowance", :allowance %>
+      </th>
+      <th class="even">
+        <%= smart_listing.sortable "Date Join", :join_date %>
+      </th>
+      <th class="odd">
+        <%= smart_listing.sortable "Personal Particular", :personal_particular %>
+      </th>
+	  
+      <th class="even" style='text-align: center;'>
+        Action
+      </th>
+    </tr>
+  </thead>
+  <% if smart_listing.collection.count > 0 %>
+    <% smart_listing.collection.each_with_index do |captain, index| %>
+      <tr class="<%= cycle('odd', 'even') %>">
+        <td><%=  captain.availability? ? "YES" : "NO" %></td>
+        <td><%=  captain.name %></td>
+        <td><%=  captain.contact %></td>
+        <td><%=  captain.center %></td>
+        <td><%=  captain.address %></td>
+        <td><%=  captain.email %></td>
+        <td><%=  captain.allowance %></td>
+        <td><%=  captain.join_date.strftime("%d-%m-%Y") %></td>
+        <td><%=  captain.personal_particular %></td>
+        <td style='text-align: center;'>
+          <%= link_to "View", captain_url(captain), class: 'btn btn-primary' %>
+        </td>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr>
+      <td colspan='10' class="no-data" >No Guides available</td>
+    </tr>
+  <% end %>
+</table>
+<%= smart_listing.paginate  %>

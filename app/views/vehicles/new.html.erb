@@ -1,0 +1,26 @@
+<div class="row wrapper border-bottom white-bg page-heading text-center">
+  <div class='col-lg-12'>
+    <div class="m-b-md text-center">
+      <a href="<%= captains_url %>" class="btn btn-primary pull-left btn-back">&larr; Back</a>
+      <h2>New Vehicle</h2>
+      <ol class="breadcrumb">
+        <li>
+          <a href="/dashboard">Home</a>
+        </li>
+        <li>
+          <a href="/operations/dashboard">Operations</a>
+        </li>
+        <li class="active">
+          <strong>New Vehicle</strong>
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>
+<div class='wrapper wrapper-content'>
+  <div class='ibox white-bg'>
+    <div class='ibox-content container-fluid'>
+      <%= render 'form' %>
+    </div>
+  </div>
+</div> 

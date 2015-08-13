@@ -1,8 +1,8 @@
 <div class="row wrapper border-bottom white-bg page-heading text-center">
   <div class='col-lg-12'>
     <div class="m-b-md text-center">
-      <a href="<%= mountain_guides_url %>" class="btn btn-primary pull-left btn-back">&larr; Back</a>
-      <h2>Edit Mountain Guide</h2>
+      <a href="<%= mountain_guide_url(@mountain_guide) %>" class="btn btn-primary pull-left btn-back">&larr; Back</a>
+      <h2>Edit Mountain Guide - <%= @mountain_guide.name %></h2>
       <ol class="breadcrumb">
         <li>
           <a href="/dashboard">Home</a>
@@ -10,8 +10,12 @@
         <li>
           <a href="/dashboard">Operations</a>
         </li>
+        <li>
+          <a href="<%= mountain_guides_url %>">Mountain Guides</a>
+        </li>
+		
         <li class="active">
-          <strong>Mountain Guide</strong>
+          <strong><%= @mountain_guide.name %> - Edit</strong>
         </li>
       </ol>
     </div>

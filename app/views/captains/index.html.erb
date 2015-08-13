@@ -1,0 +1,110 @@
+<% if flash[:form_notice].blank? == false %>
+	<script>
+		toastr['<%= flash[:form_notice]["type"] %>']('<%= flash[:form_notice]["message"] %>');
+	</script>
+	<% flash[:form_notice] = nil %>	
+<% end %>		
+<div class='row'>
+  <div class='col-lg-12'>
+    <div class="row wrapper border-bottom white-bg page-heading">
+      <div class="col-lg-12">
+        <div class="col-md-4 col-sm-4 col-xs-12">
+          <div class="new-lead">
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-12 text-center">
+          <h2>Captains</h2>
+          <ol class="breadcrumb">
+            <li>
+              <a href="/dashboard">Home</a>
+            </li>
+            <li>
+              <a href="/operations/dashboard">Operations</a>
+            </li>
+            <li class="active">
+              <strong>Captains</strong>
+            </li>
+          </ol>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-12 padding-0 search-incoming-rest">
+          <div class="col-md-12 col-sm-12 col-xs-12 padding-0 search">
+            <%= smart_listing_controls_for(:captains) do %>
+              <div class="form-group filter input-append">
+                <li class="search-form-field" style="list-style: none; margin-top:40px; position: relative;">
+                  <%= text_field_tag :name, "", name: "search_rs[search_all]", class: "", placeholder: "Name"  %>
+                  <a style="color: #ccc;" class="submit icon-search-style">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                  </a>
+                </li>
+              </div>
+              <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class='wrapper wrapper-content'>
+      <div class='ibox'>
+        <div class='ibox-content container-fluid white-bg'>
+          <%= link_to 'New Captain', new_captain_url, class: "btn btn-primary pull-left" %>
+          <div id="vendor_filter">
+            <%= smart_listing_controls_for(:captains) do %>
+              <div class="form-group filter input-append">
+                <ol class='filter-form-group' >
+				  <li class="number-filter">
+					<select id="availability_search" name="search[availability_eq]">
+						<option value="">-- All --</option>
+						<option value="1">Yes</option>		
+						<option value="0">No</option>		
+					</select>
+				  </li>
+                  <li class="number-filter">
+	            	<select id="center_search" name="search[center_eq]">
+	          			<option value="">-- All Center --</option>
+	          			<option value="sandakan">Sandakan</option>		
+	              	</select>
+                  </li>
+                  <li class="date-form-field">
+                   <%= text_field_tag :date_join_eq, "", name: "search[join_date_eq]", class: "date-field", placeholder: "Select Join Date"  %>
+                   <span class='calendar-icon'></span>
+                  </li>
+                   <li class="text-filter">
+                   <%= text_field_tag :particular_eq, "", name: "search[personal_particular_cont]", class: "", placeholder: "Personal Particular"  %>
+                  </li>
+               	  	
+                  <li class="submit-control clearfix">
+                    <input type="submit" class="btn btn-primary filter-incoming" value="Filter" name="commit" style="margin-left: 82px; min-width: 30px !important; width: 70px; margin-top: 4px;">
+                    <input type="submit" class="btn btn-primary cancel-filter filter-incoming" value="Clear" name="commit" style="margin-left: 20px; min-width: 30px !important; width: 70px; margin-top: 4px;">
+                  </li>
+                </ol>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div id="listing-table">
+          <%= smart_listing_render(:captains) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script language="javascript">
+	$('.date-field').datetimepicker({
+	  timepicker: false,
+	  format:'d-m-Y',
+	}); 
+	
+    $('#availability_search').selectbox({
+      onChange: function(val){
+		  $('#availability_search').val(val);
+      }
+    });
+	
+    $('#center_search').selectbox({
+      onChange: function(val){
+		  $('#center_search').val(val);
+      }
+    });
+	 
+	
+</script>

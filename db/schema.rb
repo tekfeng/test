@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150717014434) do
+ActiveRecord::Schema.define(version: 20150803085055) do
 
   create_table "add_username_to_users", force: :cascade do |t|
     t.string   "username",   limit: 255
@@ -46,6 +46,28 @@ ActiveRecord::Schema.define(version: 20150717014434) do
     t.integer  "number_child",         limit: 4
     t.string   "booking_number",       limit: 255
     t.boolean  "check_send_itinerary", limit: 1,   default: false
+  end
+
+  create_table "captains", force: :cascade do |t|
+    t.string   "name",                limit: 255
+    t.string   "contact",             limit: 255
+    t.text     "address",             limit: 65535
+    t.string   "email",               limit: 255
+    t.string   "center",              limit: 255
+    t.integer  "allowance",           limit: 4
+    t.date     "join_date"
+    t.string   "personal_particular", limit: 255
+    t.text     "remark",              limit: 65535
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+    t.boolean  "availability",        limit: 1,     default: true
+  end
+
+  create_table "centers", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "code",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "cities", force: :cascade do |t|
@@ -106,6 +128,22 @@ ActiveRecord::Schema.define(version: 20150717014434) do
     t.integer  "user_id",       limit: 4
   end
 
+  create_table "inventory_items", force: :cascade do |t|
+    t.string   "name",             limit: 255
+    t.integer  "center_id",        limit: 4
+    t.integer  "item_category_id", limit: 4
+    t.integer  "current_balance",  limit: 4
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  create_table "item_categories", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "code",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "lead_tour_category_tours", force: :cascade do |t|
     t.integer  "tour_id",          limit: 4
     t.integer  "lead_id",          limit: 4
@@ -142,6 +180,7 @@ ActiveRecord::Schema.define(version: 20150717014434) do
     t.integer  "incentive",   limit: 4,   default: 0
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "remark",      limit: 255
   end
 
   create_table "mtq_slots", force: :cascade do |t|
@@ -198,6 +237,18 @@ ActiveRecord::Schema.define(version: 20150717014434) do
     t.datetime "updated_at"
   end
 
+  create_table "tour_guides", force: :cascade do |t|
+    t.string   "name",             limit: 255
+    t.string   "period",           limit: 255
+    t.string   "tour_type",        limit: 255
+    t.integer  "allowance",        limit: 4,   default: 0
+    t.integer  "total_tours",      limit: 4,   default: 0
+    t.integer  "total_allowances", limit: 4,   default: 0
+    t.string   "remark",           limit: 255
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+  end
+
   create_table "tours", force: :cascade do |t|
     t.string   "code",             limit: 255
     t.string   "name",             limit: 255
@@ -238,6 +289,24 @@ ActiveRecord::Schema.define(version: 20150717014434) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "vehicle_types", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "vehicles", force: :cascade do |t|
+    t.string   "vehicle_no",       limit: 255
+    t.string   "type",             limit: 255
+    t.string   "center",           limit: 255
+    t.date     "last_mantenance"
+    t.string   "licence_validity", limit: 255
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.text     "remarks",          limit: 65535
+    t.integer  "vehicle_type_id",  limit: 4
+  end
 
   create_table "vendor_categories", force: :cascade do |t|
     t.string   "name",          limit: 255
