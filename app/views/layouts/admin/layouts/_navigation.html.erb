@@ -18,172 +18,171 @@
               </span>
             </span>
           </a>
-          
+
           <ul class="dropdown-menu animated fadeInRight m-t-xs">
             <li><a class="edit-profile-rm" href="/profile/edit_profile">Edit Profile</a></li>
-            
             <li><a class="change-password-rm" href="/profile/change_password">Change Password</a></li>
             <li class="divider"></li>
             <li><a href="/users/sign_out">Logout</a></li>
           </ul>
         </div>
-        
+
         <div class="logo-element">
           F
         </div>
       </li>
-     
-      <% if session[:current_menu] == 'admins' %>  
-        
+
+      <% if session[:current_menu] == 'admins' %>
+
         <li class="<%= 'active' if params[:controller] == 'tours' and  controller.action_name == 'dashboard_page'%>">
           <%= link_to "/tours/dashboard_page" do %>
-          <i class="fa fa-cubes"></i> 
+          <i class="fa fa-cubes"></i>
           <span class="nav-label">Dashboard</span>
           <% end %>
         </li>
-        
+
         <li class="<%= 'active' if params[:controller] == 'tour_categories' %>">
           <%= link_to "/tour_categories" do %>
-          <i class="fa fa-cubes"></i> 
+          <i class="fa fa-cubes"></i>
           <span class="nav-label">Tour Categories</span>
           <% end %>
         </li>
-        
+
         <li class="<%= 'active' if params[:controller] == 'tours' and  controller.action_name != 'dashboard_page' %>">
           <%= link_to "/tours" do %>
-          <i class="fa fa-cubes"></i> 
+          <i class="fa fa-cubes"></i>
           <span class="nav-label">Tours</span>
           <% end %>
         </li>
-        
+
         <li class="<%= 'active' if params[:controller] == 'users'%>">
           <%= link_to "/users" do %>
-          <i class="fa fa-cubes"></i> 
+          <i class="fa fa-cubes"></i>
           <span class="nav-label">Users</span>
           <% end %>
         </li>
-        
+
         <li class="<%= 'active' if params[:controller] == 'sources'%>">
           <%= link_to "/sources" do %>
-          <i class="fa fa-cubes"></i> 
+          <i class="fa fa-cubes"></i>
           <span class="nav-label">Sources</span>
           <% end %>
-        </li>    
-        
+        </li>
+
         <li class="<%= 'active' if params[:controller] == 'countries'%>">
           <%= link_to "/countries" do %>
-          <i class="fa fa-cubes"></i> 
+          <i class="fa fa-cubes"></i>
           <span class="nav-label">Countries</span>
           <% end %>
         </li>
-      
-      <% elsif session[:current_menu] == 'sales' %> 
-         
+
+      <% elsif session[:current_menu] == 'sales' %>
+
          <li class="<%= 'active' if params[:controller] == 'sales' and  controller.action_name == 'dashboard'%>">
            <%= link_to "/sales/dashboard" do %>
-             <i class="fa fa-cubes"></i> 
+             <i class="fa fa-cubes"></i>
              <span class="nav-label">Dashboard</span>
            <% end %>
          </li>
-         
+
         <li class="<%= 'active' if params[:controller] == 'customers' %>">
           <%= link_to "/sales/customers" do %>
-          <i class="fa fa-cubes"></i> 
+          <i class="fa fa-cubes"></i>
           <span class="nav-label">Customers</span>
           <% end %>
         </li>
         <li class="<%= 'active' if params[:controller] == 'leads' %>">
           <%= link_to "/sales/leads" do %>
-          <i class="fa fa-cubes"></i> 
+          <i class="fa fa-cubes"></i>
           <span class="nav-label">Leads</span>
           <% end %>
         </li>
         <li class="<%= 'active' if params[:controller] == 'bookings' %>">
           <%= link_to "/sales/bookings" do %>
-          <i class="fa fa-cubes"></i> 
+          <i class="fa fa-cubes"></i>
           <span class="nav-label">Bookings</span>
           <% end %>
         </li>
-        
+
         <li class="<%= 'active' if params[:controller] == 'incomings' %>">
           <%= link_to "/sales/incomings" do %>
-          <i class="fa fa-cubes"></i> 
+          <i class="fa fa-cubes"></i>
           <span class="nav-label">Incoming</span>
           <% end %>
         </li>
-        
-      
-      <% elsif session[:current_menu] == 'reservations' %> 
-      
+
+
+      <% elsif session[:current_menu] == 'reservations' %>
+
         <li class="<%= 'active' if params[:controller] == 'vendors' and  controller.action_name == 'dashboard_page'%>">
           <%= link_to "/vendors/dashboard_page" do %>
-          <i class="fa fa-cubes"></i> 
+          <i class="fa fa-cubes"></i>
           <span class="nav-label">Dashboard</span>
           <% end %>
         </li>
-        
+
         <li class="<%= 'active' if params[:controller] == 'vendors'  and  controller.action_name != 'dashboard_page' %>">
           <%= link_to "/vendors" do %>
-            <i class="fa fa-cubes"></i> 
+            <i class="fa fa-cubes"></i>
             <span class="nav-label">Suppliers</span>
           <% end %>
-        </li>    
-      
+        </li>
+
         <li class="<%= 'active' if params[:controller] == 'vendor_categories' %>">
           <%= link_to "/vendor_categories" do %>
-            <i class="fa fa-cubes"></i> 
+            <i class="fa fa-cubes"></i>
             <span class="nav-label">Supplier Categories</span>
           <% end %>
         </li>
-      
+
         <li class="<%= 'active' if params[:controller] == 'vendor_rates' %>">
           <%= link_to "/vendor_rates" do %>
-            <i class="fa fa-cubes"></i> 
+            <i class="fa fa-cubes"></i>
             <span class="nav-label">Supplier Rates</span>
           <% end %>
         </li>
-      
-      
+
+
         <li class="<%= 'active' if params[:controller] == 'mtq_slots' %>">
           <%= link_to "/mtq_slots" do %>
-            <i class="fa fa-cubes"></i> 
+            <i class="fa fa-cubes"></i>
             <span class="nav-label">MTQ Slots</span>
           <% end %>
         </li>
-      <% elsif session[:current_menu] == 'operations' %> 
+      <% elsif session[:current_menu] == 'operations' %>
         <li class="<%= 'active' if params[:controller] == 'operations' and  controller.action_name == 'dashboard'%>">
           <%= link_to "/operations/dashboard" do %>
-          <i class="fa fa-cubes"></i> 
+          <i class="fa fa-cubes"></i>
           <span class="nav-label">Dashboard</span>
           <% end %>
         </li>
         <li class="<%= 'active' if params[:controller] == 'mountain_guides'%>">
           <%= link_to "/operations/mountain_guides" do %>
-          <i class="fa fa-cubes"></i> 
+          <i class="fa fa-cubes"></i>
           <span class="nav-label">Mountain Guides</span>
           <% end %>
         </li>
         <li class="<%= 'active' if params[:controller] == 'tour_guides'%>">
           <%= link_to "/operations/tour_guides" do %>
-          <i class="fa fa-cubes"></i> 
+          <i class="fa fa-cubes"></i>
           <span class="nav-label">Tour Guides</span>
           <% end %>
         </li>
         <li class="<%= 'active' if params[:controller] == 'captains'%>">
           <%= link_to "/operations/captains" do %>
-          <i class="fa fa-cubes"></i> 
+          <i class="fa fa-cubes"></i>
           <span class="nav-label">Captains</span>
           <% end %>
         </li>
         <li class="<%= 'active' if params[:controller] == 'vehicles'%>">
           <%= link_to "/operations/vehicles" do %>
-          <i class="fa fa-cubes"></i> 
+          <i class="fa fa-cubes"></i>
           <span class="nav-label">Vehicles</span>
           <% end %>
         </li>
-        
-        
-        
+
+
+
       <% end %>
     </ul>
   </div>

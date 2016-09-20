@@ -5,7 +5,10 @@ class ApplicationMailer < ActionMailer::Base
     @email = customer.email_address
     @name = customer.name
     pdf_file = QuotationPDF.new({}, lead.customer, lead)
-    attachments["quotation.pdf"] = { :mime_type => 'application/pdf', :content => pdf_file.render }
+    attachments["quotation.pdf"] = { 
+      :mime_type => 'application/pdf', 
+      :content => pdf_file.render 
+    }
     mail(:to => @email , :subject => "[Amazing Borneo] Quotation")
   end
   
